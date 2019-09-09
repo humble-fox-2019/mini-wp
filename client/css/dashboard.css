@@ -9,8 +9,6 @@ body {
 }
 
 .sidenav {
-    position: sticky;
-    top: 60px;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -25,13 +23,21 @@ body {
     text-align: center;
 }
 
+.sidenav div:hover {
+    color: #343a40;
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
 .sidenav img {
     padding: 1rem;
 }
 
 .sidenav,
 #sidenav-toggler {
-    border-top: 2px solid white
+    /* border-top: 2px solid white */
+    position: sticky;
+    top: 60px;
 }
 
 #sidenav-toggler {
@@ -57,4 +63,53 @@ hr {
     border: 1px solid white;
     width: 100%;
     margin: 0.5em;
+}
+
+#page-content {
+    flex-grow: 1;
+    background-color: #141A21
+}
+
+.container {
+    border: 2px solid white;
+    margin: 2em auto;
+    width: 90%;
+    min-height: 100vh;
+    /* padding: 2% 5%; */
+    background-color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#post-title,
+#post-footer {
+    align-self: center;
+    margin: 5px 0;
+}
+
+#post-title {
+    color: #141A21;
+
+}
+
+#editor {
+    flex-grow: 1;
+}
+
+.button {
+    background-color: #141A21;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.button:hover {
+    background-color: #282c34;
+    cursor: pointer;
 }

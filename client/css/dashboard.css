@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.content {
+    display: flex;
+}
+
+.sidenav {
+    position: sticky;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #343a40;
+    color: white;
+    align-items: center;
+}
+
+.sidenav div {
+    padding: 1vh 0;
+    max-width: 150px;
+    text-align: center;
+}
+
+.sidenav img {
+    padding: 1rem;
+}
+
+.sidenav,
+#sidenav-toggler {
+    border-top: 2px solid white
+}
+
+#sidenav-toggler {
+    height: 100vh;
+    width: 15px;
+    background-color: #343a40;
+    padding-left: 0.25em
+}
+
+#sidenav-toggler:hover {
+    border: 1px solid whitesmoke;
+    border-top: 2px solid white
+}
+
+#sidenav-toggler img {
+    top: 50%;
+    position: absolute;
+    max-width: 8px;
+    max-height: 40px;
+}
+
+hr {
+    border: 1px solid white;
+    width: 100%;
+    margin: 0.5em;
+}

@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#container-navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items: center
+}
+
+#login-logout{
+    margin-right: 30px;
+}
+
+#tagline{
+    margin-right: 500px;
+}
+
+#menu-navbar{
+    align-items:center;
+}
+
+#logo-navbar {
+    width:200px;
+    height:120px;
+}
+
+.button {
+    border-radius: 4px;
+    background-color: blue;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 12px;
+    padding: 15px;
+    width: 80px;
+    height: 40px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  /* The side navigation menu */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+
+  #mySearch{
+      height: 20px;
+      width: 140px;
+  }
+
+  #menubar{
+    display:flex;
+    list-style-type: none;
+    justify-content:space-between;
+  }
+  
+  /* Sidebar links */
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+  
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+  
+  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+    display:flex;
+    justify-content: center;
+  }
+  
+  /* On screens that are less than 700px wide, make the sidebar into a topbar */
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+  }
+  
+  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
+  
+  .center{
+      background-color: green;
+      width: 75%;
+      height:17vh;
+      margin-top:25px;
+      display: flex;
+      flex-direction: column;
+  }
+
+  #published-or-drafts{
+    list-style-type: none;
+    width: auto; 
+    display: inline-block;
+  }
+
+  .list-article{
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid grey;
+      box-sizing: border-box;
+  }
+
+  .published-drafts{
+      display:flex;
+      justify-content: space-between;
+      border: 1px solid black;
+      box-sizing: border-box;
+  }
+
+  #container-pod{
+      display:flex;
+      justify-content: space-between;
+  }
+
+  .add-content-container{
+      display:flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      width:600px;
+      height:600px;
+      margin-left: 400px;
+  }
+
+  #editor{
+      width: 100%;
+      height: 200px;
+  }
+
+  #name-article{
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .btn-group .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 13px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  
+  .btn-group .button:hover {
+    background-color: #3e8e41;
+  }

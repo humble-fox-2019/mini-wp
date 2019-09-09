@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/5cd1e1d933.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <title>GO-WEB</title>
+</head>
+<body>
+
+    <!-- Landing Page -->
+    <header>
+        <h1>welcome in Hackticle</h1>
+        <p>the first  Official Website to provide information about hacking in the world</p>
+        <button type="button" class="btn btn-outline-secondary get-started">GET STARTED</button>
+    </header>
+    <!-- Akhir landing Page -->
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: none">
+        <a class="navbar-logo" href="#"><img src="http://www.pngall.com/wp-content/uploads/2/Rocket-PNG-High-Quality-Image.png" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" >
+                    Hackticle
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">View Site</a>
+                        <a class="dropdown-item" href="#">Stat</a>
+                        <a class="dropdown-item" href="#">Activity</a>
+                        <a class="dropdown-item" href="#">Plan</a>
+                    </div>
+                </li>
+            </ul>
+            <button class="btn btn-outline-secondary btn-write">Write</button>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control type-search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-secondary" id="btn-search">Search</button>
+            </form>
+        </div>
+    </nav>
+    <!-- Akhir Navbar -->
+
+    <!-- Menu -->
+    <div class="menu">
+        <ul>
+            <li><a href="#"><i class="fas fa-desktop"></i> View Site</a></li>
+            <li><a href="#"><i class="fas fa-chart-bar"></i> Stats</a></li>
+            <li><a href="#"><i class="fas fa-history"></i> Activity</a></li>
+            <li><a href="#">Plan</a></li>
+            <li>Manage</li>
+            <li><a href="#"><i class="far fa-file"></i> Site Pages</a> <button>Add</button></li>
+            <li><a href="#">Blog Posts</a> <button>Add</button></li>
+            <li><a href="#">Media</a> <button>Add</button></li>
+            <li><a href="#">Comments</a></li>
+            <li><a href="#">Feedback</a> <button>Add</button></li>
+            <li><a href="#">Plugins</a> <button>Manage</button></li>
+            <li><a href="#">Import</a></li>
+            <li>Personalize</li>
+            <li><a href="#">Customize</a> <button>Themes</button></li>
+        </ul>
+    </div>
+    <!-- Akhir Menu -->
+
+    <!-- Write -->
+    <div class="create-article" style="display: none">
+        <div id="editor">
+            
+        </div>
+    </div>
+    <!--  -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        $('.get-started').click(function(){
+            $('header').hide(600)
+            $('nav').show()
+            $('.create-article').hide()
+
+        })
+
+        $('#navbarDropdown').click(function(){
+            $('.dropdown-menu').toggleClass('show')            
+        })
+
+        $('.navbar-toggler').click(function(){
+            $('.collapse').toggleClass('show')
+        })
+
+        $('.btn-write').click(function(){
+            let quill = new Quill('#editor', {theme : 'snow'});
+            $('.bg-img-landing').hide()
+            $('.create-article').show()
+        })
+
+        $('.navbar-logo').click(function(){
+            $('.menu').toggleClass('menu-show')
+        })
+
+    </script>
+</body>
+</html>

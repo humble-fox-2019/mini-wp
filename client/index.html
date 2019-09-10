@@ -110,7 +110,7 @@
                                         <tr v-for="(article, index) in articles" :key="article.id" :id="article.id">
                                             <th scope="row">{{ index + 1 }}</th>
                                             <td>{{article.title}}</td>
-                                            <td>{{article.created_at}}</td>
+                                            <td>{{ dateFormat(article.createdAt) }}</td>
                                             <td>
                                                 <button class="btn btn-info btn-sm">
                                                     <i class="fa fa-edit"></i>
@@ -167,19 +167,23 @@
                     if (this.search == '') {
                         endPoint = 'http://localhost:3000/articles';
                     } else {
-                        endPoint = 'http://localhost:3000/articles?title_like=' + this.search;
+                        endPoint = 'http://localhost:3000/articles?title=' + this.search;
                     }
 
                     axios.get(endPoint)
                         .then((response) => {
                             this.articles = response.data;
                         })
-                        .catch(function (error) {
+                        .catch((error) => {
+                            this.articles = []
                             console.log(error);
                         })
                         .finally(function () {
                             // always executed
                         });
+                },
+                dateFormat: function (date) {
+                    return String(date).substring(0, 10);;
                 }
             },
             created() {

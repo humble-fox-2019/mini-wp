@@ -9,9 +9,8 @@
     <title>Mini wordpress</title>
 
     <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet"
-        href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
-        integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="style.css">
 
@@ -22,34 +21,26 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
         integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
         crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper" id="app">
 
         <!-- Sidebar -->
-        <nav id="sidebar">
+        <nav id="sidebar" v-show="sidebar">
             <div class="sidebar-header">
                 <h3>Mini WP</h3>
             </div>
 
             <ul class="list-unstyled components">
                 <p>Menu</p>
-                <li class="active">
-                    <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <li :class="(currentPage == 'dashboard') ? 'active' : ''">
+                    <a href="#" @click="changePage('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                 </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-newspaper"></i> Post
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Add new article</a>
-                        </li>
-                        <li>
-                            <a href="#">Articles list</a>
-                        </li>
-                    </ul>
+                <li :class="(currentPage == 'articles') ? 'active' : ''">
+                    <a href="#" @click="changePage('articles')"><i class="fas fa-newspaper"></i> Articles</a>
                 </li>
                 <li>
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -86,54 +77,51 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
 
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info" @click="sidebar ^= true">
                         <i class="fas fa-bars"></i>
                     </button>
 
                 </div>
             </nav>
 
-            <div class="container">
+            <div class="container animated fadeInUp" id="container" v-if="currentPage == 'articles'">
                 <div class="row">
                     <div class="col-md-12">
-                        <button class="btn btn-outline-primary">Add</button>
-
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Categories</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>
-                                        <button class="btn btn-outline-info">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>
-                                        <button class="btn btn-outline-info">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>
-                                        <button class="btn btn-outline-info">Edit</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <button class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
+                        <div class="card mt-2">
+                            <div class="card-body">
+                                <div class="cs-card-title">
+                                    <h5>Articles</h5>
+                                    <div class="d-flex">
+                                        <input type="text" class="form-control" placeholder="Search ..."
+                                            v-model="search">
+                                    </div>
+                                </div>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(article, index) in articles" :key="article.id" :id="article.id">
+                                            <th scope="row">{{ index + 1 }}</th>
+                                            <td>{{article.title}}</td>
+                                            <td>{{article.created_at}}</td>
+                                            <td>
+                                                <button class="btn btn-info btn-sm">
+                                                    <i class="fa fa-edit"></i>
+                                                    Edit
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,14 +143,55 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+
     <script>
-        $(document).ready(function () {
+        var app = new Vue({
+            el: '#app',
+            data: {
+                sidebar: true,
+                message: 'Hello Vue!',
+                articles: [],
+                currentPage: 'dashboard',
+                search: ''
+            },
+            methods: {
+                changePage: function (page) {
+                    this.currentPage = page;
+                    console.log(this.currentPage);
+                },
+                getArticles: function () {
+                    let endPoint = '';
+                    if (this.search == '') {
+                        endPoint = 'http://localhost:3000/articles';
+                    } else {
+                        endPoint = 'http://localhost:3000/articles?title_like=' + this.search;
+                    }
 
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-
-        });
+                    axios.get(endPoint)
+                        .then((response) => {
+                            this.articles = response.data;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                }
+            },
+            created() {
+                this.debouncedGetArticles = _.debounce(this.getArticles, 500);
+                this.debouncedGetArticles();
+            },
+            watch: {
+                search: function (val) {
+                    this.debouncedGetArticles();
+                }
+            }
+        })
     </script>
 </body>
 

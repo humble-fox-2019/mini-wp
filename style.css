@@ -1,11 +1,11 @@
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Muli', sans-serif;
     background: #fafafa;
 }
 
 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -26,7 +26,9 @@ a:focus {
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: -1px 9px 16px -11px rgba(0,0,0,1);
+-moz-box-shadow: -1px 9px 16px -11px rgba(0,0,0,1);
+box-shadow: -1px 9px 16px -11px rgba(0,0,0,1);
 }
 
 .navbar-btn {
@@ -149,4 +151,11 @@ a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+}
+
+.cs-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
 }

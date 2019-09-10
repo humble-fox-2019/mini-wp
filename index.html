@@ -28,12 +28,14 @@
     .left-bar {
         height: 100%;
         background: rgb(219, 219, 214);
+        box-shadow: -10px 0 10px -10px rgb(134, 125, 125) inset;
     }
 
     .account {
         color: aliceblue;
         height: 36vh;
-        background: linear-gradient(180deg, rgb(19, 2, 11), rgb(87, 86, 80))
+        background: linear-gradient(180deg, rgb(19, 2, 11), rgb(87, 86, 80));
+        box-shadow: -10px 0 10px -10px rgb(134, 125, 125) inset;
     }
 
     .avatarImg {
@@ -53,13 +55,18 @@
         display: flex;
         justify-content: flex-start;
         flex-direction: column;
-        background: rgb(219, 219, 214)
+        background: rgb(219, 219, 214);
+        box-shadow: -10px 0 10px -10px rgb(134, 125, 125) inset;
+    }
+
+    .media p:hover{
+        color: rgb(8, 67, 134);
+        font-size: 2.5vh;
     }
 
     .timeline {
         padding-top: 20px;
         background: linear-gradient(90deg, #B4D2D9, rgb(232, 244, 247))
-        
     }
 
     #timeline-box {
@@ -96,6 +103,10 @@
         margin-right: 15pt
     }
 
+    #show-1:hover{
+        color: rgb(103, 128, 133);
+    }
+
     .articles {
         padding-top: 8%;
         padding-bottom: 7%;
@@ -118,7 +129,7 @@
         height: 10vh;
         position: sticky;
         top: 0;
-        background:  #6C898C ;
+        background: #6C898C;
         font-family: 'Patua One', cursive;
         font-size: 3vh;
         -webkit-text-stroke-width: 0.5px;
@@ -126,8 +137,7 @@
     }
 
     .logo {
-        border-style: inset;
-        border-color: rgba(49, 34, 3, 0.623);
+        box-shadow: 0 -15px 15px -15px black inset;
         padding-left: 10px;
         background: linear-gradient(98deg, rgb(87, 51, 3), rgb(122, 87, 5));
         display: flex;
@@ -149,18 +159,21 @@
     }
 
     .icon {
-        border-style: outset;
-        border-color:rgba(52, 88, 117, 0.822); 
+        box-shadow: 0 -15px 15px -15px black inset;
         padding-top: 1.5%;
         padding-right: 2%;
         display: flex;
         flex-direction: columns;
         justify-content: flex-end;
-        background:linear-gradient(98deg, rgb(63, 116, 131), rgb(124, 158, 161));
+        background: linear-gradient(98deg, rgb(63, 116, 131), rgb(124, 158, 161));
     }
 
     #icon-bar {
         padding-left: 8px
+    }
+
+    #icon-bar:hover{
+        color: rgb(247, 213, 26)
     }
 
     .articles {
@@ -175,7 +188,7 @@
         grid-template-columns: 8fr 2fr;
         margin-bottom: 2%;
         width: 90%;
-        height: 9vw;
+        height: 10vw;
     }
 
     .summary {
@@ -226,16 +239,23 @@
                 <div id="timeline-box">
                     <div class="navabar-timeline" id="box">
                         <div class="showAll">
-                            <div class="show-tl" type="button" id="show-1">
+                            <div class="show-tl" id="show-1">
                                 <p>Timeline</p>
                             </div>
-                            <div class="myarticle" type="button" id="show-1">
+                            <div class="myarticle" id="show-1">
                                 <p>My Article</p>
                             </div>
                         </div>
                         <div class="serachArt">
-                            <div class="search-art" type="button">
-                                <p>Search</p>
+                            <div class="search-art"">
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                    <button class="btn btn-light" type="submit">
+                                            <i class="fas fa-search"></i>
+                                    </button>
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -258,4 +278,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -22,7 +22,13 @@
 
 <body>
     <div id="app">
-        <div class="dashboard">
+        <div v-if="!login" class="login">
+            <div class="box-login">
+                
+            </div>
+            <h1>Login dulu yee</h1>
+        </div>
+        <div class="dashboard" v-else="login">
             <div class="navabar-dash">
                 <div class="logo">
                     <img src="https://cdn3.imggmi.com/uploads/2019/9/9/cbf7ba2f3586a70bc6c2278e29d37997-full.png"
@@ -81,8 +87,8 @@
                             <div class="article" id="number" v-for="item in items">
                                 <div class="summary">
                                     <h3>{{item.title}}</h3>
-                                    <p>{{item.summary}}</p>
-                                    <a href="#">{{item.author}}</a>
+                                    <p>{{item.content}}</p>
+                                    <a href="#">{{item.author.name}}</a>
 
                                 </div>
                                 <div class="action"></div>
@@ -91,23 +97,23 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="needQuill">
-            <form action="">
-                <div class="container" style="width: 600px; height:300px;">
-                    <div id="editor" class="text">
-                        <p>Write here..</p>
-                        <p><br></p>
+            <div id="needQuill">
+                <form action="">
+                    <div class="container" style="width: 600px; height:300px;">
+                        <div id="editor" class="text">
+                            <p>Write here..</p>
+                            <p><br></p>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <button class="btn btn-light" type="submit" v-on:click="create()">
-                        Submit
-                    </button>
-                </div>
-            </form>
+                    <div>
+                        <button class="btn btn-light" type="submit" v-on:click="create()">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+        </div>
     <script>
         var quill = new Quill('#editor', {
             theme: 'snow'
@@ -121,6 +127,7 @@
         var app = new Vue({
             el: '#app',
             data: {
+                login : false,
                 message: 'Hello Vue!',
                 items: []
             },
@@ -133,10 +140,14 @@
             mounted() {
                 axios({
                         method: 'GET',
-                        url: 'http://localhost:3000/posts/'
+                        url: 'http://localhost:3000/articles',
+                        headers : {
+                            token : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDc3NTJjZDA4ZGUwNzQ2YjdmMDE4Y2IiLCJuYW1lIjoiQXl1IFN1ZGkiLCJlbWFpbCI6ImF5dXN1ZGlAeWFob28uY29tIiwiaWF0IjoxNTY4MTA1NjUwfQ.MQK4Ehic3sIjwxpzu0L2IuPueWSKI40BpjQe4gWzdbI'
+                        }
                     })
                     .then((result) => {
-                        this.items = result.data
+                        console.log(result);
+                        this.items = result.data.articles
                     })
                     .catch(err => {
                         console.log(err);

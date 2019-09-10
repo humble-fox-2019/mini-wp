@@ -14,7 +14,7 @@ const articleSchema = mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  UserId: {
+  author: {
     type: String,
     ref: 'User'
   }

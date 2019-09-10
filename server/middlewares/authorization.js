@@ -1,20 +1,20 @@
-const Todo = require('../models/todo')
+const Article = require('../models/article')
 
 function authorization(req, res, next){
-  Todo.findById(req.params.id)
+  Article.findById(req.params.id)
   .then(isFound =>{
-      if (isFound.UserId === req.decoded._id){
+      if (isFound.author === req.decoded._id){
         next()
       }
       else {
-        res.send({
+        next({
           status : 401,
           message : 'Unathorized'
         })
       }
   })
   .catch(() =>{
-    res.send({
+    next({
       status: 404,
       message: 'Not Found'
     })

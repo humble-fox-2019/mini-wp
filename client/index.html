@@ -100,7 +100,7 @@
                 </div>
             </div>
 
-            <div class="container animated fadeInUp" id="container" v-if="currentPage == 'addArticle'">
+            <div class="container animated fadeInUp" id="container" v-else-if="currentPage == 'addArticle'">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card mt-2">
@@ -127,7 +127,7 @@
                 </div>
             </div>
 
-            <div class="container animated fadeInUp" id="container" v-if="currentPage == 'editArticle'">
+            <div class="container animated fadeInUp" id="container" v-else-if="currentPage == 'editArticle'">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card mt-2">
@@ -156,7 +156,7 @@
                 </div>
             </div>
 
-            <div class="container animated fadeInUp" id="container" v-if="currentPage == 'articles'">
+            <div class="container animated fadeInUp" id="container" v-else-if="currentPage == 'articles'">
                 <div class="row">
                     <div class="col-md-12">
                         <button class="btn btn-primary" @click="changePage('addArticle')"><i class="fa fa-plus"></i>

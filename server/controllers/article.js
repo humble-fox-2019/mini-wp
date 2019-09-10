@@ -2,10 +2,13 @@ const Article = require('../model/article')
 class ArticleController {
 
     static create(req, res, next) {
-        const { title, content, created } = req.body
-        // console.log(title);
-        Article.create({ title, content, created })
+        const { title, content } = req.body
+         console.log(req.body);
+        
+        let created = new Date()
+        Article.create({ title, content, created:created })
             .then(data => {
+                console.log('broo');
                 res.status(201).json(data)
             }).catch(err => {
                 next(err)
@@ -22,10 +25,11 @@ class ArticleController {
     }
     static filterByTitle(req, res, next) {
         const title = req.body.title_search
-        console.log(title);
+        console.log(req.body);
         Article.find({'title': new RegExp(title,'i')})
         .then(data =>{
             res.status(200).json(data)
+            console.log(data);
         })
         .catch(err => {
             next(err)
@@ -48,7 +52,7 @@ class ArticleController {
     }
     static delete(req, res, next) {
         console.log('deeelete');
-        const id = req.params.id
+        
         Article.findByIdAndDelete(id)
             .then(data => {
                 res.status(200).json('article succesfully deleted')

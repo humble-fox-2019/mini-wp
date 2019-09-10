@@ -38,18 +38,21 @@
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
+                            <!-- Dashboard Button -->
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">
                                     Dashboard
                                 </a>
                             </li>
+                            <!-- My Articles Button -->
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="" @click.prevent="page = 'my-articles'">
                                     <i class="fa fa-list"></i> My Articles
                                 </a>
                             </li>
+                            <!-- Add Article Button -->
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="" @click.prevent="page = 'add-article'">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add Article
                                 </a>
                             </li>
@@ -73,52 +76,69 @@
                     </div>
                 </nav>
                 
-                <!-- My Articles Page -->
+                
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                    <!-- header content -->
-                    <div class="d-flex justify-content-start flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">My Articles</h1>
-                        
-                        <div class="btn-toolbar ml-3 mb-2 mb-md-0">
-                            <input class="form-control form-control" type="text" placeholder="Search article" aria-label="Search" v-model="searchByTitle">
-                            <!-- <div class="btn-group mr-2">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                    <div class="pages" v-if="page === 'my-articles'">
+                        <!-- My Articles Page -->
+                        <div id="article-page">
+                            <!-- header content -->
+                            <div class="d-flex justify-content-start flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2">My Articles</h1>
+                                
+                                <div class="btn-toolbar ml-3 mb-2 mb-md-0">
+                                    <input class="form-control form-control" type="text" placeholder="Search article" aria-label="Search" v-model="searchByTitle">
+                                </div>
                             </div>
-                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                                <span data-feather="calendar"></span> This week
-                            </button> -->
+                            
+                            <!-- content -->
+                            <div class="container">
+                                <div class="row justify-content-center" v-if="searchByTitle">
+                                    <!-- Cards -->
+                                    <div class="col-10 card d-flex mb-3" v-for="article in searchedArticles" :key="article.id">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ article.title }}</h5>
+                                            <p>{{ article.content }}</p>
+                                            <p>{{ article.created_at }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row justify-content-center" v-else>
+                                    <!-- Cards -->
+                                    <div class="col-10 card d-flex mb-3" v-for="article in articles" :key="article.id">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ article.title }}</h5>
+                                            <p>{{ article.content }}</p>
+                                            <p>{{ article.created_at }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
-                    
-                    <!-- content -->
-                    <div class="container">
-                        <!-- <button @click="fetchArticles()">Fetch Article</button> -->
-                        
-                        <div class="row justify-content-center" v-if="searchByTitle">
-                            <!-- Cards -->
-                            <div class="col-10 card d-flex mb-3" v-for="article in searchedArticles" :key="article.id">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ article.title }}</h5>
-                                    <p>{{ article.content }}</p>
-                                    <p>{{ article.created_at }}</p>
+                    <div class="pages" v-else-if="page === 'add-article'">
+                        <!-- Add Article Page -->
+                        <div id="add-article-page">
+                            <!-- header content -->
+                            <div class="d-flex justify-content-start flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2">Add Article</h1>
+                                
+                                <div class="btn-toolbar ml-3 mb-2 mb-md-0">
+                                    
+                                </div>
+                            </div>
+                            
+                            <!-- content -->
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <h2>Form add article</h2>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row justify-content-center" v-else>
-                            <!-- Cards -->
-                            <div class="col-10 card d-flex mb-3" v-for="article in articles" :key="article.id">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ article.title }}</h5>
-                                    <p>{{ article.content }}</p>
-                                    <p>{{ article.created_at }}</p>
-                                </div>
-                            </div>
-                        </div>
-                       
                     </div>
                 </main>
+                
             </div>
         </div>
         

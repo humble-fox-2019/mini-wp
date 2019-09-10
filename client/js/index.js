@@ -3,6 +3,7 @@ let app = new Vue ({
     data: {
         articles: [],
         searchByTitle: '',
+        page: 'my-articles',
         loading: false
     },
     methods: {

@@ -160,6 +160,11 @@
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </button>
+                                                <button class="btn btn-danger btn-sm"
+                                                    @click="deleteArticle(article._id)">
+                                                    <i class="fa fa-trash"></i>
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -247,6 +252,16 @@
                         this.debouncedGetArticles();
 
                         this.currentPage = 'articles';
+                    }).catch((error) => {
+                        this.articles = []
+                        console.log(error);
+                    }).finally(function () {
+                        // always executed
+                    });
+                },
+                deleteArticle: function (id) {
+                    axios.delete(baseUrl + '/articles/' + id).then((response) => {
+                        this.debouncedGetArticles();
                     }).catch((error) => {
                         this.articles = []
                         console.log(error);

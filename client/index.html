@@ -127,6 +127,35 @@
                 </div>
             </div>
 
+            <div class="container animated fadeInUp" id="container" v-if="currentPage == 'editArticle'">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mt-2">
+                            <div class="card-body">
+                                <div class="cs-card-title">
+                                    <h5>Add Article</h5>
+                                </div>
+
+                                <form>
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" class="form-control" id="title" v-model="title"
+                                            value="{{title}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="content">Content</label>
+                                        <wysiwyg v-model="content">{{content}}</wysiwyg>
+                                    </div>
+
+                                    <button type="button" class="btn btn-primary mb-2"
+                                        @click="save('edit')">Save</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="container animated fadeInUp" id="container" v-if="currentPage == 'articles'">
                 <div class="row">
                     <div class="col-md-12">
@@ -156,7 +185,7 @@
                                             <td>{{article.title}}</td>
                                             <td>{{ dateFormat(article.createdAt) }}</td>
                                             <td>
-                                                <button class="btn btn-info btn-sm">
+                                                <button class="btn btn-info btn-sm" @click="editArticle(article._id)">
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </button>
@@ -210,6 +239,7 @@
                 articles: [],
                 currentPage: 'dashboard',
                 search: '',
+                id: '',
                 title: '',
                 content: ''
             },
@@ -244,10 +274,23 @@
                 dateFormat: function (date) {
                     return String(date).substring(0, 10);;
                 },
-                save: function () {
-                    axios.post(baseUrl + '/articles', {
-                        title: this.title,
-                        content: this.content
+                save: function (isEdit) {
+
+                    let url = baseUrl + '/articles';
+                    let method = 'post';
+
+                    if (isEdit === 'edit') {
+                        url += '/' + this.id;
+                        method = 'patch';
+                    }
+
+                    axios({
+                        url,
+                        method,
+                        data: {
+                            title: this.title,
+                            content: this.content
+                        }
                     }).then((response) => {
                         this.debouncedGetArticles();
 
@@ -262,6 +305,21 @@
                 deleteArticle: function (id) {
                     axios.delete(baseUrl + '/articles/' + id).then((response) => {
                         this.debouncedGetArticles();
+                    }).catch((error) => {
+                        this.articles = []
+                        console.log(error);
+                    }).finally(function () {
+                        // always executed
+                    });
+                },
+                editArticle: function (id) {
+                    axios.get(baseUrl + '/articles/' + id).then((response) => {
+
+                        this.id = response.data._id;
+                        this.title = response.data.title;
+                        this.content = response.data.content;
+
+                        this.changePage('editArticle');
                     }).catch((error) => {
                         this.articles = []
                         console.log(error);

@@ -1,3 +1,4 @@
+let quill
 var app = new Vue({
     el: '#app',
     data: {
@@ -7,24 +8,28 @@ var app = new Vue({
         content: "",
         login: true,
         articleId: null,
-        search: ""
-
+        search: "",
+        menuBarCollapsed: -25,
+        settingArticleRight: 0
+        
     },
     methods: {
         openThirdPage: function(){
+            this.menuBarCollapsed = -25
             this.title = ""
             this.articleId = null
             this.content = "What do you want to write..."
             this.page = 3
         },
         openSecondPage: function(){
+            this.menuBarCollapsed = -25
             this.fetchArticles()
             this.page = 2
         },
         fetchArticles: function(){
             axios({
                 method: "get",
-                url: ' http://localhost:3000/posts/'
+                url: 'http://localhost:3000/posts/'
             })
             .then(response => {
                 this.articles = response.data
@@ -34,6 +39,7 @@ var app = new Vue({
             })
         },
         editArticle: function(){
+            this.menuBarCollapsed = -25
             this.page = 3
         },
         openArticle: function(title, content, _id){
@@ -44,7 +50,8 @@ var app = new Vue({
             this.content = content
         },
         publish: function(){
-            console.log(this.title)
+            console.log(this.title, quill.root.innerHTML)
+
         },
         openRegisterForm: function(){
             this.login = false
@@ -78,17 +85,21 @@ var app = new Vue({
                 return regex.test(article.title.toLowerCase())   
             })
             return filtered
-        }
-    },
-    watch: {
-        content: function(){
-            console.log(this.content)
-        }
+        },
+        toggleMenubar: function(){
+            console.log(this.menuBarCollapsed)
+            if(this.menuBarCollapsed === -25){
+                this.menuBarCollapsed = 0
+            }else{
+                this.menuBarCollapsed = -25
+            }
+        },
+        
     },
     created: function(){
         this.page = 2
         this.fetchArticles()
-        var quill = new Quill('#editor', {
+        var quill2 = new Quill('#editor', {
             modules: { toolbar: true },
             theme: 'snow'
         });

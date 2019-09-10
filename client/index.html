@@ -75,18 +75,18 @@
             <div v-if="page === 2" class="homepage" style="width: 100%; height: 100%;">
                 <div class="left">
                     <div>
-                        <a href="#" id="toggleNavbar()"><h4 style="display: inline-block"><i class="fab fa-wordpress-simple"></i> Read Words</h4></a>
+                        <a href="" v-on:click.prevent="toggleMenubar"><h4><i class="fab fa-wordpress-simple"></i> Read Words</h4></a>
                     </div>
                     <div>
-                        <a href="#">Reader</a>
+                        <a href="">Reader</a>
                     </div>
                 </div>
                 <div class="right">
                     <div>
-                        <a v-on:click.prevent="openThirdPage()" href="#"><i class="far fa-edit fa-1x"></i> Write</a>
+                        <a v-on:click.prevent="openThirdPage()" href=""><i class="far fa-edit fa-1x"></i> Write</a>
                     </div>
                     <div>
-                        <a href="#"><i class="far fa-comments fa-1x"></i></a>
+                        <a href=""><i class="far fa-comments fa-1x"></i></a>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
             <div v-else-if="page === 3" class="articlePage" style="width: 100%; height: 100%;">
                 <div class="left">
                     <div class="box">
-                        <a v-on:click.prevent="openSecondPage()" href="#" id="toggleNavbar()"><h4 style="display: inline-block"><i class="fab fa-wordpress-simple"></i> Close</h4></a>
+                        <a v-on:click.prevent="openSecondPage()" href="" id="toggleNavbar()"><h4 style="display: inline-block"><i class="fab fa-wordpress-simple"></i> Close</h4></a>
                     </div>
                     <div class="box spesial">
                         <div>
@@ -112,7 +112,7 @@
                 <div class="right">
                     <div class="box">
                         <div class="btn">
-                            <button type="button"><i class="fas fa-cog"></i></button>
+                            <button v-on:click.prevent="toggleMenubar" type="button"><i class="fas fa-cog"></i></button>
                             
                         </div>
                     </div>
@@ -132,7 +132,7 @@
             <div v-else-if="page === 4" class="articleEdit">
                 <div class="left">
                     <div class="box">
-                        <a v-on:click.prevent="openSecondPage" href="#" id="toggleNavbar()"><h4 style="display: inline-block"><i class="fab fa-wordpress-simple"></i> Close</h4></a>
+                        <a v-on:click.prevent="openSecondPage" href=""><h4 style="display: inline-block"><i class="fab fa-wordpress-simple"></i> Close</h4></a>
                     </div>
                     <div class="box spesial">
                         <div>
@@ -151,12 +151,12 @@
         </div>
         <!---->
         <div v-if="page === 2" class="secondPage">
-            <div class="menuBar" style="overflow: scroll">
+            <div class="menuBar" v-bind:style="{ left: menuBarCollapsed + 'vw'}">
                 <div style="display: flex; flex-direction: column;">
 
                         <div class="box top">
                             <div class="left">
-                                <a href="#"><i class="fas fa-desktop fa-1x"></i> View Site</a>
+                                <a href=""><i class="fas fa-desktop fa-1x"></i> View Site</a>
                             </div>
                             <div class="right">
             
@@ -164,7 +164,7 @@
                         </div>
                         <div class="box">
                             <div class="left">
-                                <a href="#"><i class="far fa-chart-bar"></i> Stats</a>
+                                <a href=""><i class="far fa-chart-bar"></i> Stats</a>
                             </div>
                             <div class="right">
             
@@ -172,7 +172,7 @@
                         </div>
                         <div class="box">
                             <div class="left">
-                                <a href="#"><i class="fas fa-history"></i> Activity</a>
+                                <a href=""><i class="fas fa-history"></i> Activity</a>
                             </div>
                             <div class="right">
                 
@@ -180,7 +180,7 @@
                         </div>
                         <div class="box">
                             <div class="left">
-                                <a href="#"><i class="fas fa-bolt"></i> Plan</a>
+                                <a href=""><i class="fas fa-bolt"></i> Plan</a>
                             </div>
                             <div class="right">
             
@@ -191,7 +191,7 @@
                         <div><h3>Manage</h3></div>
                         <div class="box">
                             <div class="left">
-                                <a href="#"><i class="far fa-file"></i> Site Pages</a>
+                                <a href=""><i class="far fa-file"></i> Site Pages</a>
                             </div>
                             <div class="right">
                                 <button>Add</button>
@@ -199,7 +199,7 @@
                         </div>
                         <div class="box">
                             <div class="left">
-                                <a href="#"><i class="fas fa-align-right"></i> Blog Posts</a>
+                                <a href=""><i class="fas fa-align-right"></i> Blog Posts</a>
                             </div>
                             <div class="right">
                                 <button>Add</button>
@@ -207,7 +207,7 @@
                         </div>
                         <div class="box">
                             <div class="left">
-                                <a href="#"><i class="fas fa-photo-video"></i> Media</a>        
+                                <a href=""><i class="fas fa-photo-video"></i> Media</a>        
                             </div>
                             <div class="right">
                                 <button>Add</button>
@@ -215,7 +215,7 @@
                         </div>
                         <div class="box">
                             <div class="left">
-                                <a href="#"><i class="far fa-comment-alt"></i> Comments</a>
+                                <a href=""><i class="far fa-comment-alt"></i> Comments</a>
                             </div>
                             <div class="right">
 
@@ -223,7 +223,7 @@
                         </div>
                         <div class="box">       
                             <div class="left">
-                                <a href="#"><i class="fas fa-comment-medical"></i> FeedBack</a>        
+                                <a href=""><i class="fas fa-comment-medical"></i> FeedBack</a>        
                             </div>
                             <div class="right">
                                 <button>Add</button>
@@ -231,7 +231,7 @@
                         </div>
                         <div class="box">
                             <div class="left">
-                                <a href="#"><i class="fas fa-plug"></i> Plugins</a>      
+                                <a href=""><i class="fas fa-plug"></i> Plugins</a>      
                             </div>
                             <div class="right">
                                 <button>Manage</button>
@@ -239,7 +239,7 @@
                         </div>
                         <div class="box">
                             <div class="left">
-                                    <a href="#"><i class="fas fa-cloud-download-alt"></i> Import</a>
+                                    <a href=""><i class="fas fa-cloud-download-alt"></i> Import</a>
                             </div>
                             <div class="right">
 
@@ -252,7 +252,7 @@
                 <div class="articleNavbar">
                     <div class="left" >
                         <div class="box">
-                            <a href="#">Published</a>
+                            <a href="">Published</a>
                         </div>
                         <div class="box">
                             <a href="">Drafts</a>
@@ -271,7 +271,7 @@
                     <div class="row" v-for="article in filterArticle()">
                         <div class="left">
                             <div>
-                                <a v-on:click.prevent="openArticle(article.title, article.content, article.id)" href="#"><h5>{{article.title}}</h5></a>
+                                <a v-on:click.prevent="openArticle(article.title, article.content, article.id)" href=""><h5>{{article.title}}</h5></a>
                             </div>
                             <div>
                                 <h6>7 minutes ago</h6>
@@ -293,34 +293,33 @@
                 </div>
                 <div style="width: 100%">
                     <div id="editor">
-                        <p>{{content}}</p>
+                        {{ content }}
                     </div>
                 </div>
                 
             </div>
-            <div class="settingArticle">
+            <div class="settingArticle" v-bind:style="{ right: menuBarCollapsed + 'vw'}">
                 <div class="box">
-                    <a href="#"><h4>Post Setting</h4></a>
+                    <a href=""><h4>Post Setting</h4></a>
                 </div>
                 <div class="box">
-                    <a href="#"><h4>Status</h4></a>
+                    <a href=""><h4>Status</h4></a>
                 </div>
                 <div class="box">
-                    <a href="#"><h4>Categories & Tags</h4></a>
+                    <a href=""><h4>Categories & Tags</h4></a>
                 </div>
                 <div class="box">
-                    <a href="#"><h4>Featured image</h4></a>
+                    <a href=""><h4>Featured image</h4></a>
                 </div>
                 <div class="box">
-                    <a href="#"><h4>Sharing</h4></a>
+                    <a href=""><h4>Sharing</h4></a>
                 </div>
                 <div class="box">
-                    <a href="#"><h4>More Option</h4></a>
+                    <a href=""><h4>More Option</h4></a>
                 </div>
                 <div v-if="articleId" class="box trash">
                     <a v-on:click.prevent="removeArticle" href="#"><i class="far fa-trash-alt"></i> Move to trash</a>
                 </div>
-            
             </div>
         </div>
         <div v-else-if="page === 4" class="fourthPage">
@@ -335,7 +334,6 @@
             </div>
         </div>
     </div>
-    
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

@@ -1,0 +1,17 @@
+{
+    "title": [{
+        "id": 1,
+        "title": "json-server",
+        "author": "typicode"
+    },
+    {
+        "id": 2,
+        "title": "Moby Dick",
+        "author": "fadhilsurya"
+    },
+    {
+        "id": 3,
+        "title": "Flag of Iwo",
+        "author": "typicode"
+    }]
+}

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./vue-wysiwyg-example//vueWysiwyg.css">
+
+    <title>Easy Press</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- NAVBAR -->
+        <div class="header">
+
+            <nav class="navbar navbar-expand bg-dark" id="baru">
+                <div class="collapse navbar-collapse ml-3" id="navbarTogglerDemo01">
+
+                    <a class="navbar-brand" href="#" style="text-decoration: none;">Simple Post</a>
+
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                    </ul>
+
+                    <a class="btn btn-success mr-2" href="#">Sign In</a>
+                    <a class="btn btn-warning" href="#">Sign Out</a>
+
+                </div>
+            </nav>
+
+        </div>
+
+        <!-- JUMBBOTRON -->
+        <div class="jumbotron jumbotron-fluid" id="welcome-banner">
+            <div class="container">
+                <h1>Welcome to Simple Post</h1>
+                <p>Amplify your voice with just a click !</p>
+            </div>
+        </div>
+
+
+
+
+        <!-- MAIN CONTENT -->
+        <div class="container-fluid">
+            <!-- INI ADALAH UNTUK PEMBAGIAN -->
+
+            <!-- PEMBAGIAN 1 -->
+            <div class="row" style="height: 90vh;">
+                <div class="addArticle col-4 p-0 container-fluid">
+                    <!-- ISI 1 -->
+                    <div class=" info col m-0 p-0" style="background-color: whitesmoke; height: 40%; width: 100%">
+                        <div class="container text-center" id="sec1top">
+                            <img src="./pic/doctor.png" alt="" srcset="" id="userPic">
+
+                        </div>
+                    </div>
+                    <div class="container" id="sec2bot"></div>
+
+
+                    <!-- ISI 2 -->
+                    <div class="insert col m-0 p-0" style="background-color: grey   ; height: 60%; width: 100%">
+                        <center>
+                            <div class="container">
+                                <p class="username">Dr. Bertha Benz</p>
+
+                                <button type="button" class="btn btn-outline-primary mt-3 ml-3">Edit User</button>
+                                <button type="button" class="btn btn-outline-success mt-3 ml-3">Write Article</button>
+                                <button type="button" class="btn btn-outline-info mt-3 ml-3">View all Threads</button>
+
+
+                                <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search For Articles"
+                                    title="Type in a name" style="width: 100%" class="searchBar mt-3"
+                                    v-model="searchbar"> -->
+
+                            </div>
+                        </center>
+
+
+                    </div>
+                </div>
+
+
+                <!-- PEMBAGIAN 2 -->
+                <div class="articles col" style="background-color: burlywood;">
+
+                    <!-- quill file -->
+                    <br>
+                    <div class="card bg-light text-dark" style="height: 45%">
+                        <div class="card-body">
+                            <form action="submit" class="thread">
+                                <td>Title</td>
+                                <td><input style="width: 90%" type="text" name="title" id="title"
+                                        placeholder="Insert your Title Here" required v-model="title">
+                                </td>
+                                <div id="editor" style="height: 80px; width: 100% ;">
+                                    <wysiwyg v-model="input"></wysiwyg>
+
+                                </div>
+
+                                <a href="" class="btn btn-primary " @click="postData"
+                                    style="margin-top: 120px">SUBMIT</a>
+
+                            </form>
+
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="card bg-secondary text-light">
+                        <div class="card-body text-center" style="font: bolder;">
+                            POOL OF ARTICLES
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <!-- <div class="card bg-light text-dark" v-for="key in articles" v-show="">
+                        <div class="card-body">
+                            <p>{{ key.title}}</p>
+                            <p>{{ key.content}}</p>
+                            <div class="btn-edit-delete"></div>
+                            <button type="button" class="btn btn-outline-primary">Edit</button>
+                            <button type="button" class="btn btn-outline-primary"
+                                @click.prevent="deleteData(key._id)">Delete</button>
+                        </div>
+                    </div> -->
+
+                    <!-- INI BAGIAN LOGIN EDITNYA -->
+
+                    <div class="card bg-light text-dark" style="height: 250px">
+                        <div class="container mt-4">
+                            <form action="">
+                                <table class="table-edit">
+                                    <tr>
+                                        <td>Title</td>
+                                        <td><input type="text" name="title" id="title" placeholder="Edit your title"
+                                                style="width: 250px; margin-left: 10px" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Content</td>
+                                        <td><input type="text" name="email" id="email" placeholder="Edit your title"
+                                                style="width: 250px; height:100px; margin-left: 10px" required>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                            </form>
+                            <a href="" class="btn btn-primary mt-2" @click="">SUBMIT</a>
+
+                        </div>
+
+                    </div>
+
+                    <br>
+
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <footer id="sticky-footer" class=" bg-dark text-white-50">
+                <div class="container text-center">
+                    <p>Copy Right of <a href="fadhilsurya.com">fadhilsurya</a></p>
+                </div>
+            </footer>
+
+
+        </div>
+
+    </div>
+
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- script vuejs -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./vue-wysiwyg-example/vueWysiwyg.js"></script>
+    <script src="./style.js"></script>
+
+
+
+</body>
+
+</html>

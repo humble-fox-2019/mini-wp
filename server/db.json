@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "title": "Travel the world",
+      "content": "Ya HARUS PUNYA DUIT BOS!!!",
+      "author": "zaky"
+    },
+    {
+      "id": 5,
+      "title": "Eating disorder",
+      "content": "Nikmatin ajaaaaa",
+      "author": "guntoro"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -7,7 +7,6 @@
  * Attribution: Animate CSS, Twitter Bootstrap, Materialize CSS, Normalize CSS, Waves JS, WOW JS, Toastr, Chart.js
  *
 
-
 /* HEADER PLAY */
 
 body {
@@ -34,7 +33,7 @@ body {
 }
 
 #header-search input {
-    width: 780px;
+    width: 875px;
     border: none;
     padding: 5px 20px;
     font-size: 14px;
@@ -50,7 +49,7 @@ body {
 }
 
 /* MENU PLAY */
-#menu-play {
+.menu-play {
     position: fixed;
     top: 60px;
     left: 200px;
@@ -60,7 +59,7 @@ body {
     background-color: #fff;
     justify-content: space-between;
     align-items: center;
-    padding: 0 60px;
+    padding: 0 15px;
     z-index: 999;
 }
 
@@ -124,7 +123,7 @@ div.menu-play-item:hover {
 #navbar-item-1 .text::before {
     position: absolute;
     font-family: 'FontAwesome';
-    content: "\f001";
+    content: "\f15c";
     color: white;
     margin-left: -50px;
 }
@@ -264,10 +263,31 @@ div.navbar-link-item:hover {
 
 /* BODY PLAY */
 
-#body-play {
+.body-play {
     position: relative;
     display: flex;
     width: calc(100% - 200px);
     align-items: center;
     margin: 120px 0px 0px 200px;
+    padding: 20px 0px;
+}
+
+
+/* Mobile class */
+.mobile-menu {
+    left: 0px;
+    width : 100%;
+    padding : 0;
+}
+
+.mobile-body {
+    width : 100%;
+    margin : 120px 0px 0px 0px;
+}
+
+.blog-content {
+    white-space: normal;
+    height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

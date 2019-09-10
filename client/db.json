@@ -1,0 +1,7 @@
+{
+  "articles": [
+    { "id": 1, "title": "Chocolate", "content": "A choco" },
+    { "id": 2, "title": "Vanilla", "content": "A van" },
+    { "id": 3, "title": "Strawberry", "content": "A straw" }
+  ]
+}

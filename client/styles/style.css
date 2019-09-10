@@ -21,14 +21,4 @@ body {
   -webkit-transform: translateX(4px);
           transform: translateX(4px);
 }
-
-#post-list-nav ul li {
-  border-bottom: 1px solid transparent;
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
-}
-
-#post-list-nav ul li:hover {
-  border-bottom: 5px solid #CBD5E0;
-}
 /*# sourceMappingURL=style.css.map */

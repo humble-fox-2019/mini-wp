@@ -2,7 +2,11 @@ const Article = require('../models/article');
 
 class ArticleController {
     static findAll(req, res, next) {
-        Article.find()
+        let where = {};
+        if (req.query.title) {
+            where = { "title": { $regex: '.*' + req.query.title + '.*' } }
+        }
+        Article.find(where)
             .then(articles => {
                 if (articles.length > 0) {
                     res.status(200).json(articles);

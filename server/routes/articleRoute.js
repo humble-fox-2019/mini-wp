@@ -4,7 +4,7 @@ const router = express.Router();
 
 const authentication = require('../middlewares/authentication');
 
-router.use(authentication);
+// router.use(authentication);
 router.get('/', ArticleController.findAll);
 router.post('/', ArticleController.store);
 

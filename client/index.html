@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Raleway:700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <script src="https://kit.fontawesome.com/fb2816a9db.js"></script>
+    <!-- Dev version-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>Hacktiv Press</title>
 </head>
 
@@ -29,21 +31,8 @@
                 $('#sidebar, #content').toggleClass('active');
             });
         });
-
-        var dropdown = document.getElementsByClassName("dropdown-btn");
-        var i;
-
-        for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var dropdownContent = this.nextElementSibling;
-                if (dropdownContent.style.display === "block") {
-                    dropdownContent.style.display = "none";
-                } else {
-                    dropdownContent.style.display = "block";
-                }
-            });
-        }
+       // var app = new Vu
+      
 
     </script>
 </body>

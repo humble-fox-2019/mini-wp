@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/tw-output.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/e9ec0d13c8.js"></script>
+
+    <!-- WYSiWIG -->
+    <link rel="stylesheet" href="./css/vueWysiwyg.css">
+
+    <title>mini wp</title>
+</head>
+<body>
+    <div id="app">
+        <!-- REGISTER -->
+        <!-- <div class="h-screen flex items-center justify-center hidden" id="registerForm">
+            <form class="bg-white shadow-md rounded px-12 pt-6 pb-8 mb-4 flex items-center flex-col">
+                <div class="mb-4">
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="username" type="text" placeholder="Username">
+                </div>
+                <div class="mb-6">
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="password" type="password" placeholder="password">
+                </div>
+                <div class="flex items-center justify-between">
+                    <button
+                        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="button" id="registerBtn">
+                        Register
+                    </button>
+                </div>
+                <br>
+                <p class="text-gray-500">already have an account? <a href="#" class="font-extrabold text-gray-700"
+                        id="linkToLogin">login</a> here</p>
+            </form>
+        </div> -->
+        
+        <!-- LOGIN -->
+        <div class="h-screen flex items-center justify-center hidden" id="loginForm">
+            <form class="bg-white shadow-md rounded px-12 pt-6 pb-8 mb-4 flex items-center flex-col">
+                <div class="mb-4">
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="username" type="text" placeholder="Username">
+                </div>
+                <div class="mb-6">
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="password" type="password" placeholder="password">
+                </div>
+                <div class="flex items-center justify-between">
+                    <button
+                        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="button" id="loginBtn">
+                        Login
+                    </button>
+                </div>
+                <br>
+                <p class="text-gray-500">don't have an account? <a href="#" class="font-extrabold text-gray-700"
+                        id="linkToReg">register</a>
+                    here</p>
+            </form>
+        </div>
+        
+        <div id="contents" class="">
+            <nav class="h-auto navigation flex fixed w-full">
+                <ul class="flex items-center">
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-wordpress fa-2x p-2"></i>
+                        </a>
+                    </li>
+                    <li class="mx-3">
+                        <a href="#" class="dashboardBtn">
+                            <i class="fas fa-home fa-1x"></i>
+                            <span class="mr-4">My Blog</span>
+                        </a>
+                    </li>
+                    <li class="mx-3">
+                        <a href="#">
+                            <i class="fas fa-comment-alt fa-1x"></i>
+                            <span class="mr-4">0</span>
+                        </a>
+                    </li>
+                    <li class="mx-3">
+                        <a @click="selectPost({})" href="#" id="addNewPostBtn">
+                            <i class="fas fa-plus fa-1x"></i>
+                            <span class="mr-4">New</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="flex items-center ml-auto">
+                    <a @click="selectNav('users')" href="#" class="usersBtn">
+                        <span>Hi, Hostinger</span>
+                        <i class="fas fa-user-circle fa-1x mx-4"></i>
+                    </a>
+                </div>
+            </nav>
+        
+            <main class="h-full pt-10 flex">
+                <ul class="w-2/12 navigation pl-2 pt-2 fixed h-screen" id="navigationBar">
+                    <li class="mt-3">
+                        <a @click="selectNav('dashboard')" href="#" class="dashboardBtn">
+                            <i class="fas fa-tachometer-alt fa-1x m-4 w-4"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="selectNav('posts')" href="#" id="postsBtn">
+                            <i class="fas fa-thumbtack fa-1x m-4 w-4"></i>
+                            <span>Posts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="selectNav('media')" href="#" id="mediaBtn">
+                            <i class="fas fa-images fa-1x m-4 w-4"></i>
+                            <span>Media</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="selectNav('comments')" href="#" id="commentsBtn">
+                            <i class="fas fa-comment-alt fa-1x m-4 w-4"></i>
+                            <span>Comments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="selectNav('appearance')" href="#" id="appearanceBtn">
+                            <i class="fas fa-brush fa-1x m-4 w-4"></i>
+                            <span>Appearance</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="selectNav('plugins')" href="#" id="pluginsBtn">
+                            <i class="fas fa-plug fa-1x m-4 w-4"></i>
+                            <span>Plugins</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="selectNav('users')" href="#" class="usersBtn">
+                            <i class="fas fa-user fa-1x m-4 w-4"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="selectNav('tools')" href="#" id="toolsBtn">
+                            <i class="fas fa-wrench fa-1x m-4 w-4"></i>
+                            <span>Tools</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="selectNav('settings')" href="#" id="settingsBtn">
+                            <i class="fas fa-sliders-h fa-1x m-4 w-4"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="w-2/12"></div>
+        
+                <div class="h-screen w-10/12" id="contentBox">
+                    <!-- DASHBOARD -->
+                    <div v-if="activeNav === 'dashboard'" class="container p-20" id="dashboard">
+                        <h1 class="text-3xl">Dashboard</h1>
+                    </div>
+        
+                    <!-- POSTS -->
+                    <div v-else-if="activeNav === 'posts'" class="container p-20" id="posts">
+                        <!-- nav -->
+                        <h1 class="text-3xl">Posts</h1>
+                        <div class="container bg-white rounded mt-3 flex shadow">
+                            <ul class="flex">
+                                <li class="px-6 py-3 navPosts">
+                                    <a href="#" id="published">Published</a>
+                                </li>
+                                <li class="px-6 py-3 navPosts">
+                                    <a href="#" id="drafts">Drafts</a>
+                                </li>
+                            </ul>
+                            <div class="py-3 ml-auto">
+                                <input v-model="searchWord" class="focus:outline-none" type="text" placeholder="search . . .">
+                            </div>
+                            <a href="#" class="px-6 py-3">
+                                <i class="fas fa-search"></i>
+                            </a>
+                        </div>
+        
+                        <!-- content -->
+                        <ul id="postContent">
+                            <li v-for="(article, index) in filteredArticles" :key="article._id" class="container bg-white rounded mt-3 flex items-center shadow">
+                                <div class="pl-6 py-3">
+                                    <a @click="selectPost({ id: article._id, title: article.title, content: article.content })" href="#">
+                                        <h3>{{ article.title }}</h3>
+                                    </a>
+                                    <p>{{ article.content }}</p>
+                                    <small class="text-gray-600">{{ article.created_at}}</small>
+                                </div>
+                                <button @click="selectPost({ id: article._id, title: article.title, content: article.content })" class="ml-auto">
+                                    <i class="far fa-edit pr-3"></i>
+                                </button>
+                                <button @click="deletePost(article._id, index)">
+                                    <i class="far fa-trash-alt pr-6"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- POST DETAIL -->
+                    <div v-else-if="activeNav === 'editPost'" class="container p-20" id="editPost">
+                        <input type="text" class="text-3xl mb-3 bg-transparent focus:outline-none" id="postTitleInput" v-model="selectedPost.title" placeholder="Yout title here">
+                        <wysiwyg v-model="selectedPost.content"></wysiwyg>
+                        <div class="flex">
+                            <button @click="saveArticle()" class="mt-3 bg-white hover:bg-gray-100 py-1 px-4 rounded shadow ml-auto"
+                                id="save">
+                                save
+                            </button>
+                        </div>
+                    </div>
+        
+                    <!-- MEDIA -->
+                    <div v-else-if="activeNav === 'media'" class="container p-20" id="media">
+                        <h1 class="text-3xl">Media</h1>
+                    </div>
+        
+                    <!-- COMMENTS -->
+                    <div v-else-if="activeNav === 'comments'" class="container p-20" id="comments">
+                        <h1 class="text-3xl">Comments</h1>
+                    </div>
+        
+                    <!-- APPEARANCE -->
+                    <div v-else-if="activeNav === 'appearance'" class="container p-20" id="appearance">
+                        <h1 class="text-3xl">Appearance</h1>
+                    </div>
+        
+                    <!-- PLUGINS -->
+                    <div v-else-if="activeNav === 'plugins'" class="container p-20" id="plugins">
+                        <h1 class="text-3xl">Plugins</h1>
+                    </div>
+        
+                    <!-- USERS -->
+                    <div v-else-if="activeNav === 'users'" class="container p-20" id="users">
+                        <h1 class="text-3xl">Users</h1>
+                    </div>
+        
+                    <!-- TOOLS -->
+                    <div v-else-if="activeNav === 'tools'" class="container p-20" id="tools">
+                        <h1 class="text-3xl">Tools</h1>
+                    </div>
+        
+                    <!-- SETTINGS -->
+                    <div v-else-if="activeNav === 'settings'" class="container p-20" id="settings">
+                        <h1 class="text-3xl">Settings</h1>
+                    </div>
+                </div>
+            </main>
+        
+            <footer class="flex">
+                <div class="w-2/12"></div>
+                <div class="w-10/12 h-10 text-right pr-6">
+                    &copy; 2019, made with <i class="fas fa-heart"></i> by zakiarsyad.
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- WYSIWYG -->
+    <script src="./js/vueWysiwyg.js"></script>
+
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="./js/index.js"></script>
+</body>
+</html>

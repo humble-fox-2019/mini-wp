@@ -17,7 +17,6 @@ class UserController {
     const email = req.params.email
     User.findOne({ email })
       .then((result) => {
-        // console.log(result)
         res.status(200).json(result)
       }).catch(next)
   }
@@ -66,7 +65,6 @@ class UserController {
   }
 
   static loginGoogle (req, res, next) {
-    // console.log('<<<< masuk login google')
     let payload = null
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
     client.verifyIdToken({
@@ -74,14 +72,10 @@ class UserController {
       audience: process.env.GOOGLE_CLIENT_ID
     })
       .then((ticket) => {
-        // console.log('keluar ticket:')
-        // console.log(ticket)
         payload = ticket.getPayload()
         return User.findOne({ email: payload.email })
       })
       .then((user) => {
-        // console.log('uda ada user atau belum:')
-        // console.log(user)
         if (user) {
           console.log('User is already registered in the server')
           return user
@@ -97,8 +91,6 @@ class UserController {
       .then((user) => {
         payload = { id: user._id, email: user.email }
         const token = generateToken(payload)
-        // console.log('token untuk user ke generate')
-        // console.log(token)
         res.status(201).json({
           message: 'Successfully logged in',
           token,

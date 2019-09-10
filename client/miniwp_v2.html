@@ -2,81 +2,81 @@
 <html lang="en">
 
 <head>
-	<title>Think Tank</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://fonts.googleapis.com/css?family=Crimson+Pro&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    <title>Think Tank</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 
-	</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
 
-	</script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
 
-	</script>
+    </script>
 
-	<style>
-		/* Style the jumbotron for background color and font */
-		.jumbotron {
-			background: #f0f0f0;
-			font-family: Crimson Pro;
-		}
+    <style>
+        /* Style the jumbotron for background color and font */
+        .jumbotron {
+            background: #f0f0f0;
+            font-family: "Crimson Pro";
+        }
 
-		/* Style the body for background color and font */
-		body {
-			background: #f0f0f0;
-			font-family: Crimson Pro;
-		}
+        /* Style the body for background color and font */
+        body {
+            background: #f0f0f0;
+            font-family: "Crimson Pro";
+        }
 
-		/* Style the dashboard (view post) container so between card (post) there is a sufficient space */
-		.content {
-			margin-top: 10px;
-			font-family: Crimson Pro;
-		}
+        /* Style the dashboard (view post) container so between card (post) there is a sufficient space */
+        .content {
+            margin-top: 10px;
+            font-family: "Crimson Pro";
+        }
 
-		/* Style the login form container so it will not be too wide */
-		#loginForm {
-			max-width: 50%;
-			padding: 20px;
-		}
+        /* Style the login form container so it will not be too wide */
+        #loginForm {
+            max-width: 50%;
+            padding: 20px;
+        }
 
-		/* Style the register form container so it will not be too wide */
-		#registerForm {
-			max-width: 50%;
-			padding: 20px;
-		}
+        /* Style the register form container so it will not be too wide */
+        #registerForm {
+            max-width: 50%;
+            padding: 20px;
+        }
 
-		/* Style the create post container so it will not be too wide */
-		#createPost {
-			max-width: 80%;
-		}
+        /* Style the create post container so it will not be too wide */
+        #createPost {
+            max-width: 80%;
+        }
 
-		/* Style the edit post container so it will not be too wide */
-		#editPost {
-			max-width: 80%;
-		}
+        /* Style the edit post container so it will not be too wide */
+        #editPost {
+            max-width: 80%;
+        }
 
-		/* Style the top navigation bar using flexbox */
-		.navbar {
-			display: flex;
-			background-color: #333;
-			font-family: Crimson Pro;
-			justify-content: space-around;
-		}
-	</style>
+        /* Style the top navigation bar using flexbox */
+        .navbar {
+            display: flex;
+            background-color: #333;
+            font-family: "Crimson Pro";
+            justify-content: space-around;
+        }
+    </style>
 </head>
 
 <body>
 
 
-	<!--Navbar on top-->
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navbarTop">
+    <!--Navbar on top-->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navbarTop">
 
-		<!--Think Tank branding on the lift, when clicked, user is taken to the homepage-->
-		<a class="navbar-brand" href="#"><i class="fab fa-wordpress"></i> Think Tank</a> 
+        <!--Think Tank branding on the lift, when clicked, user is taken to the homepage-->
+        <a class="navbar-brand" href="#"><i class="fab fa-wordpress"></i> Think Tank</a>
 
         <!--This button is the stacked toggle nav button which appears when screen size is super small, in order to hide and show navigation in that small screen-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -108,7 +108,7 @@
 
     <!--This is the jumbotron. The position is right below the navbar-->
     <div class="jumbotron text-center" style="margin-bottom:0" id="jumbotron">
-    <h1><i class="fab fa-wordpress"></i></h1>
+        <h1><i class="fab fa-wordpress"></i></h1>
         <h1>Think Tank</h1>
         <p>Tank What You Think!</p>
     </div>
@@ -116,119 +116,122 @@
 
     <!--This is the content area, di mana hal2 berikut muncul secara bergantian melalui show/hide:
     login, register, create post, edit post, drafts, view posts. SEMUA content HARUS berada di dalam kotak ini-->
-        <div class="col-sm-12"> <!--Div container dan col 12 ini penting banget biar bentuk area contentnya rapi dan terdistribusi dengan tepat ukurannya di dalam browser!-->
+    <div class="col-sm-12">
+        <!--Div container dan col 12 ini penting banget biar bentuk area contentnya rapi dan terdistribusi dengan tepat ukurannya di dalam browser!-->
 
-    <!--Login Form-->
-    <div class="container" id="loginForm">
+        <!--Login Form-->
+        <div class="container" id="loginForm">
             <h4>Login</h4>
             <div id="errorSignup"></div>
             <div id="emailLogin">
                 <form action="/action_page.php">
                     <div class="form-group">
                         <label for="login-email">Email:</label>
-                        <input type="email" class="form-control" id="login-email" placeholder="Enter email" name="email">
+                        <input type="email" class="form-control" id="login-email" placeholder="Enter email"
+                            name="email">
                     </div>
                     <div class="form-group">
                         <label for="login-password">Password:</label>
                         <input type="password" class="form-control" id="login-password" placeholder="Enter password"
                             name="password">
                     </div>
-    
+
                     <p> <button type="submit" class="btn btn-primary" id="login-button2">Login</button></p>
                 </form>
             </div>
-    
-            <hr>
-    
-            <div id="loginOption">
-                        <p><button type="button" id="github" class="btn btn-light"><i class="fab fa-github"></i> Login with Github</button></p> 
-             </div>
-            <p>Don't have an account? Click to <a href="#" id="register-button">register.</a></p>
-            
-        </div>
-        </div>
- 
-        <!--Register Form-->
-        <div class="container" id="registerForm">
-            <div id="registerContent">
-                <div id="errorSignup"></div>
-                <form action="/action_page.php">
-                    <h4>Register</h4>
-    
-                    <div class="form-group">
-                        <label for="register-name">Name:</label>
-                        <input type="text" class="form-control" id="register-name" placeholder="Enter name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="register-email">Email:</label>
-                        <input type="email" class="form-control" id="register-email" placeholder="Enter email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="register-password">Password:</label>
-                        <input type="password" class="form-control" id="register-password" placeholder="Enter password"
-                            name="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="register-button2">Register</button>
-                </form>
-            </div>
-            <br>
-            <p>Already have an account? Click to <a href="#" id="login-button">login.</a></p>
-        </div>
-        </div>
-        
-        
 
-<!--Create post form-->
-            <div class="container" id="createPost">
-                <form>
-                    <h4>Create post</h4>
-                    <div class="form-group" style="color: #000000">
-                        <label for="titleCreateModal">Title:</label>
-                        <input type="text" class="form-control" id="titleCreateModal" placeholder="Enter something"
-                            name="title">
-                    </div>
-                    <div class="form-group" style="color: #000000">
-                        <label for="descriptionCreateModal">Description:</label>
-                        <textarea class="form-control" rows="5" id="descriptionCreateModal"
-                            placeholder="Enter description" name="description"></textarea>
-                    </div>
-                    <div class="form-group" style="color: #000000">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
-                        </div>
-                    </div>
-                    <!-- Form buttons -->
+            <hr>
+
+            <div id="loginOption">
+                <p><button type="button" id="github" class="btn btn-light"><i class="fab fa-github"></i> Login with
+                        Github</button></p>
+            </div>
+            <p>Don't have an account? Click to <a href="#" id="register-button">register.</a></p>
+
+        </div>
+    </div>
+
+    <!--Register Form-->
+    <div class="container" id="registerForm">
+        <div id="registerContent">
+            <div id="errorSignup"></div>
+            <form action="/action_page.php">
+                <h4>Register</h4>
+
+                <div class="form-group">
+                    <label for="register-name">Name:</label>
+                    <input type="text" class="form-control" id="register-name" placeholder="Enter name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email:</label>
+                    <input type="email" class="form-control" id="register-email" placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password:</label>
+                    <input type="password" class="form-control" id="register-password" placeholder="Enter password"
+                        name="password">
+                </div>
+                <button type="submit" class="btn btn-primary" id="register-button2">Register</button>
+            </form>
+        </div>
+        <br>
+        <p>Already have an account? Click to <a href="#" id="login-button">login.</a></p>
+    </div>
+    </div>
+
+
+
+    <!--Create post form-->
+    <div class="container" id="createPost">
+        <form>
+            <h4>Create post</h4>
+            <div class="form-group" style="color: #000000">
+                <label for="titleCreateModal">Title:</label>
+                <input type="text" class="form-control" id="titleCreateModal" placeholder="Enter something"
+                    name="title">
+            </div>
+            <div class="form-group" style="color: #000000">
+                <label for="descriptionCreateModal">Description:</label>
+                <textarea class="form-control" rows="5" id="descriptionCreateModal" placeholder="Enter description"
+                    name="description"></textarea>
+            </div>
+            <div class="form-group" style="color: #000000">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+            <!-- Form buttons -->
             <div id="form-buttons">
                 <button type="button" class="btn btn-success">Submit</button>
                 <button type="button" class="btn btn-primary">Save</button>
                 <button type="button" class="btn btn-danger">Cancel</button>
             </div>
+    </div>
+
+    <!--Edit post form-->
+    <div class="container" id="editPost">
+        <form>
+            <h4>Edit post</h4>
+            <div class="form-group" style="color: #000000">
+                <label for="titleCreateModal">Title:</label>
+                <input type="text" class="form-control" id="titleCreateModal" placeholder="Enter something"
+                    name="title">
             </div>
-
-<!--Edit post form-->
-            <div class="container" id="editPost">
-                <form>
-                    <h4>Edit post</h4>
-                    <div class="form-group" style="color: #000000">
-                        <label for="titleCreateModal">Title:</label>
-                        <input type="text" class="form-control" id="titleCreateModal" placeholder="Enter something"
-                            name="title">
-                    </div>
-                    <div class="form-group" style="color: #000000">
-                        <label for="descriptionCreateModal">Description:</label>
-                        <textarea class="form-control" rows="5" id="descriptionCreateModal"
-                            placeholder="Enter description" name="description"></textarea>
-                    </div>
-                    <div class="form-group" style="color: #000000">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
-                        </div>
+            <div class="form-group" style="color: #000000">
+                <label for="descriptionCreateModal">Description:</label>
+                <textarea class="form-control" rows="5" id="descriptionCreateModal" placeholder="Enter description"
+                    name="description"></textarea>
+            </div>
+            <div class="form-group" style="color: #000000">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
 
 
 
-                    </div>
+            </div>
 
             <!-- Form buttons -->
             <div id="form-buttons">
@@ -237,7 +240,7 @@
                 <button type="button" class="btn btn-danger">Cancel</button>
             </div>
 
-<!--Dashboard view post-->
+            <!--Dashboard view post-->
             <div class="content" id="viewPost">
                 <p><button type="button" id="#createButton" class="btn btn-dark" data-toggle="modal"
                         data-target="#createModal"><i class="fas fa-edit"></i> Create post</button></p>
@@ -303,78 +306,78 @@
                     </div>
                 </div>
             </div>
-        
-    
-    
-<!--Drafts-->
-    <div class="content" id="drafts">
-<h4>Drafts</h4>
-            <div class="card" id="articleCard">
-                <img src="./assets/images/bali.jpg" class="card-img-top" alt="nature">
-                <div class="card-body">
-                    <h4 class="card-title"> <i class="fas fa-book"></i> Hidden Paradise</h4>
-                    <p class="card-text">Three friends, two regions, one flight; that was the mission for our short
-                        but sweet
-                        road
-                        trip through Italy. In just eight days we would be lounging on rugged beaches, gorging on
-                        countless
-                        cuisines, shopping in fashion metropolises, gawping at castles in lakes and visiting
-                        villages so adorable
-                        their home should have been in a fairytale.</p>
-                    <button type="button" class="btn btn-warning" href=#editPost id=buttonEdit>Edit</button>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
-                        id="buttonDelete">Delete</button>
-                </div>
-                <div class="card-footer text-muted">
-                    <i class="fas fa-calendar-week"></i> Posted 2 days ago
-                </div>
-            </div>
-            <div class="content">
+
+
+
+            <!--Drafts-->
+            <div class="content" id="drafts">
+                <h4>Drafts</h4>
                 <div class="card" id="articleCard">
-                    <img src="./assets/images/paris.jpg" class="card-img-top" alt="nature">
+                    <img src="./assets/images/bali.jpg" class="card-img-top" alt="nature">
                     <div class="card-body">
-                        <h4 class="card-title"> <i class="fas fa-book"></i> Beauty of Paris</h4>
-                        <p class="card-text">Three friends, two regions, one flight; that was the mission for our
-                            short but sweet
-                            road trip through Italy. In just eight days we would be lounging on rugged beaches,
-                            gorging on countless
+                        <h4 class="card-title"> <i class="fas fa-book"></i> Hidden Paradise</h4>
+                        <p class="card-text">Three friends, two regions, one flight; that was the mission for our short
+                            but sweet
+                            road
+                            trip through Italy. In just eight days we would be lounging on rugged beaches, gorging on
+                            countless
                             cuisines, shopping in fashion metropolises, gawping at castles in lakes and visiting
                             villages so adorable
                             their home should have been in a fairytale.</p>
-                        <button type="button" class="btn btn-warning">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-warning" href=#editPost id=buttonEdit>Edit</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                            id="buttonDelete">Delete</button>
                     </div>
                     <div class="card-footer text-muted">
-                        <i class="fas fa-calendar-week"></i> Posted 7 days ago
+                        <i class="fas fa-calendar-week"></i> Posted 2 days ago
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="card" id="articleCard">
+                        <img src="./assets/images/paris.jpg" class="card-img-top" alt="nature">
+                        <div class="card-body">
+                            <h4 class="card-title"> <i class="fas fa-book"></i> Beauty of Paris</h4>
+                            <p class="card-text">Three friends, two regions, one flight; that was the mission for our
+                                short but sweet
+                                road trip through Italy. In just eight days we would be lounging on rugged beaches,
+                                gorging on countless
+                                cuisines, shopping in fashion metropolises, gawping at castles in lakes and visiting
+                                villages so adorable
+                                their home should have been in a fairytale.</p>
+                            <button type="button" class="btn btn-warning">Edit</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <i class="fas fa-calendar-week"></i> Posted 7 days ago
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="card" id="articleCard">
+                        <img src="./assets/images/beansprout.jpg" class="card-img-top" alt="nature">
+                        <div class="card-body">
+                            <h4 class="card-title"> <i class="fas fa-book"></i> Foodie Stuff</h4>
+                            <p class="card-text">Three friends, two regions, one flight; that was the mission for our
+                                short but sweet
+                                roadtrip through Italy. In just eight days we would be lounging on rugged beaches,
+                                gorging on countless
+                                cuisines, shopping in fashion metropolises, gawping at castles in lakes and visiting
+                                villages so
+                                adorable
+                                their home should have been in a fairytale.</p>
+                            <button type="button" class="btn btn-warning">Edit</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <i class="fas fa-calendar-week"></i> Posted 12 days ago
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="content">
-                <div class="card" id="articleCard">
-                    <img src="./assets/images/beansprout.jpg" class="card-img-top" alt="nature">
-                    <div class="card-body">
-                        <h4 class="card-title"> <i class="fas fa-book"></i> Foodie Stuff</h4>
-                        <p class="card-text">Three friends, two regions, one flight; that was the mission for our
-                            short but sweet
-                            roadtrip through Italy. In just eight days we would be lounging on rugged beaches,
-                            gorging on countless
-                            cuisines, shopping in fashion metropolises, gawping at castles in lakes and visiting
-                            villages so
-                            adorable
-                            their home should have been in a fairytale.</p>
-                        <button type="button" class="btn btn-warning">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <i class="fas fa-calendar-week"></i> Posted 12 days ago
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     </div>
     </div>
-</div>
+    </div>
 
     <!-- Footer -->
     <footer class="page-footer font-small" id="footer">

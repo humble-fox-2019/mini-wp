@@ -86,6 +86,70 @@
     bottom: 2.5%;
     height: 6vh;
   }
+  .create-article{
+    background : #303e40;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    
+  }
+  .box-create{
+    background: white;
+    min-height: 60vh;
+  }
+  form.form-create{
+    width: 75%;
+    margin-top: 5%;
+    min-height: 85vh;
+    display: flex;
+    flex-flow: column;  
+    justify-content: space-around;
+  }
+  .label-create{
+    color: aliceblue;
+    text-align: center;
+  }
+
+  form.form-create button{
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .edit-article{
+    background : rgb(28, 47, 82);
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    
+  }
+  .box-edit{
+    background: white;
+    min-height: 60vh;
+  }
+  form.form-edit{
+    width: 75%;
+    margin-top: 5%;
+    min-height: 85vh;
+    display: flex;
+    flex-flow: column;  
+    justify-content: space-around;
+  }
+  .label-edit{
+    color: aliceblue;
+    text-align: center;
+  }
+
+  form.form-edit button{
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  input.title-place{
+    height: 6vh;
+  }
 </style>
 
 <body>
@@ -109,14 +173,14 @@
 
 
 
-    <div class="dashboard" v-else="login">
+    <div class="dashboard" v-else-if="login">
       <div class="navabar-dash">
         <div class="logo">
           <img src="https://cdn3.imggmi.com/uploads/2019/9/9/cbf7ba2f3586a70bc6c2278e29d37997-full.png" alt="">
           <h4>E.P</h4>
         </div>
         <div class="icon">
-          <div class="reader" id="icon-bar">Reader</div>
+          <div class="reader" id="icon-bar" @click="backHome">Home</div>
           <div class="write" id="icon-bar">Write</div>
           <div class="logout" id="icon-bar">Logout</div>
         </div>
@@ -134,14 +198,14 @@
             </div>
           </div>
           <div class="media">
-            <p class="newArticle"><i class="fas fa-plus-square" type="button"></i> Create Article</p>
+            <p class="newArticle"><i class="fas fa-plus-square" type="button" @click="getFormArticle"></i> Create Article</p>
             <p class="userArticle"><i class="fas fa-newspaper" type="button"></i> My Article</p>
             <p class="userArticle"><i class="fas fa-tools" type="button"></i> Setting</p>
             <p class="userArticle"><i class="fas fa-border-all" type="button"></i> Style</p>
           </div>
         </div>
         <div class="timeline">
-          <div id="timeline-box">
+          <div id="timeline-box" v-if="page === 'home-user'">
             <div class="navabar-timeline" id="box">
               <div class="showAll">
                 <div class="show-tl" id="show-1">
@@ -169,15 +233,12 @@
                   <h3>{{item.title}}</h3>
                   <p>{{item.content}}</p>
                   <a href="#">{{item.author.name}}</a>
-              {{item.author._id}}
-                  
-
                 </div>
                 <div class="action">
                 
                     <div class="action-owner" v-if='(item.author._id===currentUser._id)'>
 
-                      <i class="fas fa-pencil-alt fa-2x" @click="updateArticle(item._id)"></i>
+                      <i class="fas fa-pencil-alt fa-2x" @click="getEditForm(item._id)"></i>
                       <i class="fas fa-trash-alt fa-2x" @click="deleteArticle(item._id)"></i>
                     </div>
                     <div v-else>
@@ -188,20 +249,25 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div>
-        <form action enctype="multipart/form-data" @submit.prevent="trackingInput">
-          <input type="text" placeholder="Title" v-model="title" />
-          <wysiwyg v-model="content">
-            <div>
+          <div class="create-article" v-else-if="page === 'create'">
+            <form action enctype="multipart/form-data" @submit.prevent="trackingInput" class="form-create"/>
+              <h2 class="label-create">Write Your Article</h2>
+            <input type="text" placeholder="Title" v-model="title" class="title-place">
+              <wysiwyg v-model="content" class="box-create">
+              </wysiwyg>
+              <button class='btn btn-warning' type="submit" @click="createArticle">Submit</button>
+            </form>
+          </div>
+          <div class="edit-article" v-else-if="page === 'edit'">
+              <form action enctype="multipart/form-data" @submit.prevent="trackingInput" class="form-create"/>
+                <h2 class="label-edit">Edit Your Article</h2>
+              <input type="text" v-model="currentTitle" class="title-place">
+                <wysiwyg v-model="currentContent" class="box-edit">
+                </wysiwyg>
+                <button class='btn btn-warning' type="submit" @click="updateArticle(editArt_id)">Submit</button>
+              </form>
             </div>
-          </wysiwyg>
-          <button class='btn btn-warning' type="submit" @click="createArticle">Submit</button>
-        </form>
-      </div>
-      <div>
-
+        </div>
       </div>
     </div>
   </div>
@@ -210,21 +276,52 @@
   <script src="vueWysiwyg.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDc4NzgwZDNhYjBjNWU3MGZlYzM3MTUiLCJuYW1lIjoiYXl1IHN1ZGkiLCJlbWFpbCI6ImF5dXN1ZGkuYWJjQGdtYWlsLmNvbSIsImlhdCI6MTU2ODE3NjE2NH0.Z7Z9Ae2T8UAqKxs1L-BlOvWaBFdAI54fj12Ju_PeX0w'
+    // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDc3NTJjZDA4ZGUwNzQ2YjdmMDE4Y2IiLCJuYW1lIjoiQXl1IFN1ZGkiLCJlbWFpbCI6ImF5dXN1ZGlAeWFob28uY29tIiwiaWF0IjoxNTY4MTA1NjUwfQ.MQK4Ehic3sIjwxpzu0L2IuPueWSKI40BpjQe4gWzdbI'
     const baseUrl = 'http://localhost:3000'
     var app = new Vue({
       el: '#app',
       data: {
         currentUser : {
-          _id : '5d7752cd08de0746b7f018cb'
+          _id : '5d78780d3ab0c5e70fec3715'
         },
         login: true,
         message: 'Hello Vue!',
         title: "",
         content: "",
         items: [],
-        page: 'write'
+        editArt_id : "",
+        // page: 'home-user'
+        // page: 'create',
+        page: 'home-user',
+        currentTitle: '',
+        currentContent: ''
       },
       methods: {
+        showDashboard(){
+          axios({
+            method: 'GET',
+            url: 'http://localhost:3000/articles',
+            headers: {
+              token: token
+            }
+          }
+          )
+          .then((result) => {
+            console.log(result);
+            this.items = result.data.articles
+          })
+          .catch(err => {
+            console.log(err);
+          })
+          
+        },
+        backHome(){
+          this.page = 'home-user'
+        },
+        getFormArticle(){
+          this.page = 'create'
+        },
         trackingInput() {
           let formData = new FormData();
           formData.set("title", this.title);
@@ -239,7 +336,7 @@
               content : this.content
             },
             headers : {
-              token : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDc3NTJjZDA4ZGUwNzQ2YjdmMDE4Y2IiLCJuYW1lIjoiQXl1IFN1ZGkiLCJlbWFpbCI6ImF5dXN1ZGlAeWFob28uY29tIiwiaWF0IjoxNTY4MTA1NjUwfQ.MQK4Ehic3sIjwxpzu0L2IuPueWSKI40BpjQe4gWzdbI'
+              token : token
             }
           })
           .then(data =>{
@@ -247,9 +344,6 @@
           })
           .catch(({response})=>{
             console.log(response.data);
-            // let data = response.status
-            // let msg = response.errMsg
-            // console.log(response, '<<<<')
           })
         },
         deleteArticle(input){
@@ -257,7 +351,7 @@
             method: 'DELETE',
             url : baseUrl+'/articles/'+input,
             headers : {
-              token : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDc3NTJjZDA4ZGUwNzQ2YjdmMDE4Y2IiLCJuYW1lIjoiQXl1IFN1ZGkiLCJlbWFpbCI6ImF5dXN1ZGlAeWFob28uY29tIiwiaWF0IjoxNTY4MTA1NjUwfQ.MQK4Ehic3sIjwxpzu0L2IuPueWSKI40BpjQe4gWzdbI'
+              token : token
             }
           })
           .then(data =>{
@@ -266,27 +360,64 @@
           .catch (err =>{
             console.log(err);
           })
+        },
+        getEditForm(input){
+          console.log(input);
+          let temp = '5d777a46f242977791d58b61'
+          axios({
+            method: 'GET',
+            url: baseUrl+'/articles/'+input,
+            headers : {
+              token: token
+            }
+          })
+          .then(({data}) =>{
+            // console.log(data.article._id);
+            this.page = 'edit'
+            // console.log();
+            this.editArt_id = data.article._id
+            this.currentTitle = data.article.title
+            this.currentContent = data.article.content
+            console.log(this.currentContent);
+          })
+        },
+        updateArticle(input){
+          this.page = 'home-user'
+          let temp = '5d777a46f242977791d58b61'
+          axios({
+            method: 'PUT',
+            url: baseUrl+'/articles/'+input,
+            headers : {
+              token: token
+            },
+            data : {
+              title : this.currentTitle,
+              content: this.currentContent
+            }
+          })
+          .then(({data})=>{
+            console.log(data);
+          })
+          .catch(err =>{
+            console.log(err);
+          })
         }
       },
       components: {
         wysiwyg: vueWysiwyg.default.component,
       },
+      created() {
+        this.showDashboard()
+      },
       mounted() {
-        axios({
-            method: 'GET',
-            url: 'http://localhost:3000/articles',
-            headers: {
-              token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDc3NTJjZDA4ZGUwNzQ2YjdmMDE4Y2IiLCJuYW1lIjoiQXl1IFN1ZGkiLCJlbWFpbCI6ImF5dXN1ZGlAeWFob28uY29tIiwiaWF0IjoxNTY4MTA1NjUwfQ.MQK4Ehic3sIjwxpzu0L2IuPueWSKI40BpjQe4gWzdbI'
-            }
-          })
-          .then((result) => {
-            console.log(result);
-            this.items = result.data.articles
-          })
-          .catch(err => {
-            console.log(err);
-          })
-      }
+        this.showDashboard()
+      },
+      updated() {
+        this.showDashboard()
+      },
+      destroyed() {
+        this.showDashboard()
+      },
     })
 
     console.log(app);

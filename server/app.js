@@ -13,7 +13,9 @@ app.use(express.urlencoded({extended : false}))
 
 app.use('/', index)
 
-mongoose.connect('mongodb://localhost/miniwp', {
+let temp = 'mongodb+srv://ayusudi:ayusudi@cluster0-acddn.mongodb.net/mini-wp?retryWrites=true&w=majority'
+
+mongoose.connect(temp, {
   useNewUrlParser : true
 }, function(err){
   if(err) console.log(`server isn't connect to mongodb`);

@@ -52,13 +52,12 @@ div.avatarImg img {
 }
 
 .timeline {
-    padding-top: 20px;
     background: linear-gradient(90deg, #B4D2D9, rgb(232, 244, 247))
 }
 
 #timeline-box {
     padding: 2% 6% 2% 6%;
-    margin: 4%;
+    margin: 7.5% 4.2% 4.2% 7%;
     min-height: 100vh;
     background: #313E40;
     display: flex;

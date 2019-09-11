@@ -24,25 +24,21 @@ const upload = Multer({
 
 function uploadFile(req, res, next) {
   upload(req, res, function(err) {
-    console.log('masuk')
     if(err instanceof Multer.MulterError) {
-      console.log('5')
       next({
         status : 400,
         message : err.message
       })
     }else if(err){
-      console.log('4')
       next({
         status : 400,
         message : err
       })
     }else{
-      console.log('3')
       next()
     }
   })
 }
 
 
-module.exports = upload
+module.exports = uploadFile

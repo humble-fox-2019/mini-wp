@@ -24,48 +24,6 @@
           <span><i class="fas fa-trash"></i></span>
         </div>
       </div>
-      <div class="article">
-        <router-link to="/">
-          <div class="article-image" >
-          </div>
-          <div class="article-text">
-            <h1>Bagaimana cara menemukan jati diri</h1>
-            <p>Sebuah cara tentang bagaimana menemukan jati diri yang sesungguhnya dan berusaha menemukan sesuatu didalamnya</p>
-          </div>
-        </router-link>
-        <div class="article-action">
-          <span><i class="fas fa-pencil-alt"></i></span>
-          <span><i class="fas fa-trash"></i></span>
-        </div>
-      </div>
-      <div class="article">
-        <router-link to="/">
-          <div class="article-image" >
-          </div>
-          <div class="article-text">
-            <h1>Bagaimana cara menemukan jati diri</h1>
-            <p>Sebuah cara tentang bagaimana menemukan jati diri yang sesungguhnya dan berusaha menemukan sesuatu didalamnya</p>
-          </div>
-        </router-link>
-        <div class="article-action">
-          <span><i class="fas fa-pencil-alt"></i></span>
-          <span><i class="fas fa-trash"></i></span>
-        </div>
-      </div>
-      <div class="article">
-        <router-link to="/">
-          <div class="article-image" >
-          </div>
-          <div class="article-text">
-            <h1>Bagaimana cara menemukan jati diri</h1>
-            <p>Sebuah cara tentang bagaimana menemukan jati diri yang sesungguhnya dan berusaha menemukan sesuatu didalamnya</p>
-          </div>
-        </router-link>
-        <div class="article-action">
-          <span><i class="fas fa-pencil-alt"></i></span>
-          <span><i class="fas fa-trash"></i></span>
-        </div>
-      </div>
     </div>
   </div>
 </template>

@@ -17,11 +17,17 @@
       </div>
       <div class="preview-picture" id="thumb-image">
       </div>
-      <input type="file" accept="image/*" class="form-control-file" ref="image" v-on:change="handleImage" required>
+      <input type="file" class="form-control-file" ref="image" v-on:change="handleImage" required>
     </div>
-    <button class="button-post">POST ARTICLE</button>
+    <button class="button-post" id="button-post">POST ARTICLE</button>
     </form>
-    <froalaView v-model="content"></froalaView>
+    <transition name="shake">
+      <div class="error" v-if="errors.length > 0">
+        <ul>
+          <li v-for="(error, index) in errors" :key="index"> {{ error }} </li>
+        </ul>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -42,7 +48,8 @@ export default {
       },
       content: '',
       image: '',
-      title: ''
+      title: '',
+      errors: []
     }
   },
   methods: {
@@ -55,6 +62,8 @@ export default {
       this.image = this.$refs.image.files[0]
     },
     addArticle() {
+      document.getElementById('button-post').innerHTML = "Loading..."
+      document.getElementById('button-post').setAttribute('disabled', true)
       let formData = new FormData()
       formData.append('title', this.title)
       formData.append('content', this.content)
@@ -62,10 +71,16 @@ export default {
 
       axios.post('/article', formData)
         .then(({data}) => {
-          console.log(data)
+          this.$router.push('/dashboard')
         })
         .catch(err => {
-          console.log(err.response.data)
+          if(err.response.status === 400) {
+            this.errors = err.response.data.errors
+          }
+        })
+        .finally(() => {
+          document.getElementById('button-post').innerHTML = "POST ARTICLE"
+          document.getElementById('button-post').removeAttribute('disabled')
         })
 
     }

@@ -449,7 +449,7 @@ button.button-post{
   background-color: $primary-color;
   color: $white;
   border-radius: 5px;
-  margin-top: 30px;
+  margin: 30px 0;
 }
 button.button-post:hover{
   background-color: $primary-hover;

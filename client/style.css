@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box
 }
 header{
     height: 100vh;
@@ -35,33 +36,73 @@ nav{
 }
 
 .menu{
-    width: 0;
-    display: none;
+    position: absolute;
+    transition: 1s;
+    z-index: 2;
+    left: -250px;
+    width: 250px;
     height: 100vh;
     background-color: #F8F9FA ;
     margin-top: 0;
-    
+    padding: 2px 5px
 }
 
 .menu ul li{
     list-style: none;
     margin: 5px 5px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .menu ul li a{
+
     color: #6C757D;
 }
 
 .menu button{
     box-sizing: border-box;
-    width: 30px;
+    padding: 1px 1px;
     height: 20px;
     font-size: 10px;
 }
 
 .menu-show{
-    width: 250px;
-    display: block;
-    transition: 5s;
+    left: 0;
 }
 
+article{
+    z-index: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px; 
+}
+
+.col-headline{
+    border: 1px solid #6C757D;
+    border-radius: 10px; 
+    width: 56.33%;
+    padding: 30px;
+}
+
+.col-article{
+    border: 1px solid #6C757D;
+    border-radius: 10px; 
+    width: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column
+}
+
+.article-list{
+    margin-top: 30px;
+}
+
+.article-list li{
+    list-style: none;
+    margin: 10px 20px;
+}
+
+.author p{
+    margin: 0 10px; 
+}

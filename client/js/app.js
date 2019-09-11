@@ -1,4 +1,5 @@
-const serverURL = 'http://localhost:3000'
+const serverURL = 'http://34.87.63.236'
+// const serverURL = 'http://localhost:3000'
 var app = new Vue({
     el: '#app',
     data: {

@@ -96,10 +96,10 @@
                             <input type="email" class="inputFields" id="email-register" placeholder="Email" v-model="registerEmail" />
                         </li>
                         <li id="center-btn">
-                            <button id="register-btn" @click="register">Register Now</button>
+                            <button id="register-btn" @click.prevent="register">Register Now</button>
                         </li>
                     </ul>
-                    <small>Already got an account? Login <a @click="changePage('signin')" href="#">here</a> </small>
+                    <small>Already got an account? Login <a @click.prevent="changePage('signin')" href="#">here</a> </small>
                 </form>
             </div>
         </div>

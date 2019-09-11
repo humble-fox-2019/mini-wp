@@ -27,6 +27,7 @@ class UserController {
     }
     static register( req, res ,next ) {
         const { username, email ,password } = req.body;
+      
         User.create({ username , email , password })
         .then ( createdUser => {
             res.status(201).json({ status : 201 , message : "User Registered" , createdUser})

@@ -143,7 +143,6 @@
                         this.authorHead = this.articles[0].author
                         this.createdAthead = this.articles[0].created_at
                         this.contentHead = this.articles[0].content
-                        // console.log(this.articles)
                     })
                     .catch(err => {
                         console.log(err)
@@ -161,7 +160,6 @@
                     let getYear = date.getFullYear()
                     let getMonth = date.getMonth()
                     let getDate = date.getDate()
-                    console.log(quill.root.innerHTML)
                     let title = this.title
                     let content = quill.root.innerHTML
                     let author = 'Ghozi'
@@ -183,7 +181,7 @@
                 },
                 getPage3 : function(){
                     if(!quill){
-                        quill = new Quill('#content', {theme : 'snow', placeholder : 'Content'});
+                        quill = new Quill('#content',{});
                     }
                     this.isCreateArticle = true
                     this.isMenu = false
@@ -196,7 +194,6 @@
                     this.contentHead = content
                 },
                 showMenu : function(){
-                    console.log(`<<<<<<<<<<<<<<<,,,,,mausk`)
                     if(this.isMenu) this.isMenu = false
                     else this.isMenu = true
                 }

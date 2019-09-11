@@ -1,4 +1,5 @@
 const { Article } = require('../models/')
+// const { multer } = require('../helpers/gcl')
 
 class ArticleController {
   static getAll(req, res, next) {
@@ -56,6 +57,10 @@ class ArticleController {
         }
       })
       .catch(next)
+  }
+
+  static upload(req, res, next) {
+    res.send('yes')
   }
 }
 

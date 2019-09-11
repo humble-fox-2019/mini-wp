@@ -277,7 +277,7 @@
   <script>
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDc4NzgwZDNhYjBjNWU3MGZlYzM3MTUiLCJuYW1lIjoiYXl1IHN1ZGkiLCJlbWFpbCI6ImF5dXN1ZGkuYWJjQGdtYWlsLmNvbSIsImlhdCI6MTU2ODE3NjE2NH0.Z7Z9Ae2T8UAqKxs1L-BlOvWaBFdAI54fj12Ju_PeX0w'
     // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDc3NTJjZDA4ZGUwNzQ2YjdmMDE4Y2IiLCJuYW1lIjoiQXl1IFN1ZGkiLCJlbWFpbCI6ImF5dXN1ZGlAeWFob28uY29tIiwiaWF0IjoxNTY4MTA1NjUwfQ.MQK4Ehic3sIjwxpzu0L2IuPueWSKI40BpjQe4gWzdbI'
-    const baseUrl = 'http://localhost:3000'
+    const baseUrl = 'http://35.198.213.225'
     var app = new Vue({
       el: '#app',
       data: {
@@ -301,7 +301,7 @@
         showDashboard(){
           axios({
             method: 'GET',
-            url: 'http://localhost:3000/articles/myarticle',
+            url: baseUrl+'/articles/myarticle',
             headers: {
               token: token
             }
@@ -433,7 +433,7 @@
         allArticle(){
           axios({
             method: 'GET',
-            url: 'http://localhost:3000/articles/',
+            url: baseUrl+'/articles/',
             headers: {
               token: token
             }

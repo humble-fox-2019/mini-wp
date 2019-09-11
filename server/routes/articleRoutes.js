@@ -1,8 +1,8 @@
 const router = require('express').Router()
 const articleController = require('../controllers/ArticleController')
-const uploadHandler = require('../middleware/uploadHandler')
+const images = require('../helpers/images')
 
-router.post('/', uploadHandler, articleController.create)
+router.post('/', images.multer.single('image'), images.sendUploadToGCS,  articleController.create)
 router.get('/', articleController.getAll)
 
 

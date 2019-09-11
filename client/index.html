@@ -104,34 +104,37 @@
             </div>
         </div>
         <div v-else-if="currentPage === 'home'">
-            <div class="sidenav">
-                <a href="#" id="my-article-btn" @click="changeMainPage('myArticlePage')">
-                    <span class="nav-icon" style="margin-right: 15px">
-                            <i class="far fa-list-alt"></i>
-                        </span>
-                    <span> My Article</span>
-                </a>
-                <a href="#" id="all-article-btn" @click="changeMainPage('allArticlePage')">
-                    <span class="nav-icon" style="margin-right: 15px">
-                            <i class="fas fa-list"></i>
-                        </span>
-                    <span>
-                            List of Articles
-                        </span>
-                </a>
-                <a href="#" id="add-article-btn" @click="changeMainPage('addNewArticle')">
-                    <span class="nav-icon" style="margin-right: 15px">
-                            <i class="fas fa-plus-square"></i> 
-                        </span>
-                    <span> Add Article</span>
-                </a>
-
-                <a href="#" id="logout-btn" @click.prevent="signout()">
-                    <span class="nav-icon" style="margin-right: 15px">
-                        <i class="fas fa-power-off"></i> 
-                    </span> 
-                    <span> Logout</span>
-                </a>
+            <div class="sidenav" style="display: flex; justify-content: space-between; flex-direction: column">
+                <div>
+                    <a href="#" id="my-article-btn" @click="changeMainPage('myArticlePage')">
+                        <span class="nav-icon" style="margin-right: 15px">
+                                <i class="far fa-list-alt"></i>
+                            </span>
+                        <span> My Article</span>
+                    </a>
+                    <a href="#" id="all-article-btn" @click="changeMainPage('allArticlePage')">
+                        <span class="nav-icon" style="margin-right: 15px">
+                                <i class="fas fa-list"></i>
+                            </span>
+                        <span>
+                                List of Articles
+                            </span>
+                    </a>
+                    <a href="#" id="add-article-btn" @click="changeMainPage('addNewArticle')">
+                        <span class="nav-icon" style="margin-right: 15px">
+                                <i class="fas fa-plus-square"></i> 
+                            </span>
+                        <span> Add Article</span>
+                    </a>
+                </div>
+                <div style="padding-bottom: 20px;">
+                    <a href="#" id="logout-btn" @click.prevent="signout()">
+                        <span class="nav-icon" style="margin-right: 15px">
+                            <i class="fas fa-power-off"></i> 
+                        </span> 
+                        <span> Logout</span>
+                    </a>
+                </div>
             </div>
 
             <div class="main">

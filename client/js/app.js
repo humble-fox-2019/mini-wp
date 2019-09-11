@@ -153,7 +153,7 @@ var app = new Vue({
         },
         register() {
             if ( !this.registerUsernameError && !this.registerPasswordError && 
-                !this.registerPassword2Error && !this.registerEmailError )
+                !this.registerPassword2Error && !this.registerEmailError ) {
                 axios({
                     method : "POST",
                     url : `${serverURL}/register`,
@@ -168,9 +168,10 @@ var app = new Vue({
                     this.showSuccessMessage("Register Success", "Login to continue...")
                 })
                 .catch ( err => {
-                    console.log("Register Error" , err )
-                    this,this.showErrorMessage("Fail to login", err)
+                    console.log( err )
+                    this.showErrorMessage("Fail to login", 'User Already registered, please choose another email');
                 })
+            }
         },
         fetchMyArticle : function() {
             const token = localStorage.getItem('token')
@@ -226,7 +227,7 @@ var app = new Vue({
                     this.showErrorMessage( "Failed to login" , "user not found" )
                 })
             } else {
-                this.showErrorMessage("Login Failed" )
+                this.showErrorMessage( "Failed to login" , "user not found" )
             }
             
         },

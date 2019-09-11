@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Play Blog</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+  
+  <script src="//cdn.ckeditor.com/4.12.1/basic/ckeditor.js"></script>
+  </head>
+</head>
+
+
+
+<body>
+  <div id="app">
+     <section id="header-play">
+          <img id="header-logo" src="./img/play/Background.png" alt="">
+          <div id="header-search" class="d-none d-sm-none d-md-none d-lg-block">
+            <input type="text" placeholder="Search">
+            <button class="btn btn-sm btn-primary">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-primary">
+              <b>Sign In</b>
+            </button>
+          </div>
+      </section>
+
+      <section class="menu-play" :class="{ 'mobile-menu': mobile }">
+        <div @click="showFormCreateBlog" class="menu-play-item d-flex align-items-center">
+          <i class="fas fa-edit mr-2" aria-hidden="true"></i>
+          Write New Blog
+        </div>
+      </section>
+
+      <section v-if="navbar" id="navbar-play">
+        <div id="navbar-menu">
+          <div @click.prevent="showBlogs()" id="navbar-item-1" class="navbar-play-item d-flex align-items-center">
+            <div class="text">
+              My Blogs
+            </div>
+          </div>
+          <div id="navbar-item-2" class="navbar-play-item d-flex align-items-center">
+            <div class="text">
+              Message
+            </div>
+          </div>
+          <div id="navbar-item-3" class="navbar-play-item d-flex align-items-center">
+            <div class="text">
+              Favorite
+            </div>
+          </div>
+          <div id="navbar-item-4" class="navbar-play-item d-flex align-items-center">
+            <div class="text">
+              Account
+            </div>
+          </div>
+        </div>   
+
+        <div id="navbar-link">
+          <div class="navbar-link-item">
+            Payment methods
+          </div>
+          <div class="navbar-link-item">
+            My subcriptions
+          </div>
+        </div>
+      </section>
+
+      <section class="body-play" :class="{ 'mobile-body' : mobile }" >
+        <!-- index blog start -->
+        <div v-if="blogIndex" id="blogIndex" class="container">
+          <div class="row">
+            <div v-for="blog in blogs" class="col-md-3 my-2">
+                <div class="card">
+                  <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
+                  <div class="card-body" style="height: 120px">
+                    <b>{{ blog.title }}</b>
+                    <div class="blog-content" v-html="blog.content">                      
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- index blog end-->
+          
+          <!-- create blog start -->
+          <main v-if="blogCreate" id="blogCreate" class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      Write New Blog
+                    </div>
+                    <div class="card-body">
+                      <div class="row py-5">
+                        <div class="col-md-10 offset-md-1">
+                          <form action="">
+                            <div class="form-group">
+                              <label for="blog-title">Blog Title</label>
+                              <input v-model="inputTitle" autofocus type="text" class="form-control" type="text">
+                            </div>
+                                                       
+                            <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+                            
+                            <button @click.prevent="postBlog(inputTitle, editorData)" class="btn btn-primary btn-sm">
+                              Post Blog
+                              <i class="fa fa-paper-plane"></i>
+                            </div>
+                            
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          <!-- create blog end -->
+
+      </section>
+  </div>
+  
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Vue Js -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
+  <script src="./node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js"></script>
+  <script>
+    
+    //SERVER ADDRESS
+    const SERVER_ADDRESS = "http://34.87.19.131"
+
+    //WYSWYG EDITOR
+    Vue.use( CKEditor );
+
+    new Vue({
+      el: '#app',
+      data: {
+        //layout
+        mobile : false,
+        navbar : true,
+        blogIndex : false,
+        blogCreate : false,
+        inputTitle : "",
+        
+        //data
+        blogs : [],
+        editor: ClassicEditor,
+        editorData: '',
+        editorConfig: {
+        // The configuration of the editor.
+        }
+      },
+      created() {
+        //layout
+        this.responsive()        
+        window.addEventListener('resize', this.responsive)
+        //show blog index
+        this.blogIndex = true
+        
+        //data
+        this.fetchBlogs()
+
+      },
+      mounted(){
+        document.body.style.display = "block"
+      },
+      methods: {
+        responsive() {
+          if(window.innerWidth < 576){
+            this.mobile = true
+            this.navbar = false
+          } else {
+            this.mobile = false
+            this.navbar = true
+          }          
+        },
+        
+        fetchBlogs() {
+          //fetch blogs
+          axios.get(`${SERVER_ADDRESS}/blog`)
+            .then(response =>{
+              this.blogs = response.data
+            })
+            .catch(err =>{
+              console.log(err)
+            })
+        },
+
+        showBlogs() {
+          this.fetchBlogs()
+          this.blogIndex = true
+          this.blogCreate = false
+        },
+
+        showFormCreateBlog() {
+          this.blogIndex = false
+          this.blogCreate = true
+        },
+
+        postBlog(inputTitle, editorData){
+          axios.post(`${SERVER_ADDRESS}/blog`, {
+            title : inputTitle,
+            content : editorData
+          })
+          .then(response => {
+              this.inputTitle = ""
+              this.editorData = ""
+              this.fetchBlogs()
+              this.blogIndex = true
+              this.blogCreate = false
+          })
+          .catch(err => {
+            console.log(err)
+          })
+        }        
+        
+      }
+    });
+
+    CKEDITOR.replace( 'wyswyg' );
+  </script>
+</body>
+
+</html>

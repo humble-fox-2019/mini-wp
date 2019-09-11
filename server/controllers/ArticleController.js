@@ -12,7 +12,11 @@ class ArticleController {
   }
 
   static getAll(req, res, next) {
-    Article.find()
+    Article.find(null, null, {
+      sort: {
+        updatedAt: -1
+      }
+    })
       .then(articles => {
         res.json(articles)
       })

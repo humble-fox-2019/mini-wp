@@ -42,6 +42,7 @@ export default {
   created(){
     axios.get('/article')
       .then(({data}) => {
+        console.log(data)
         this.articles = data
       })
       .catch(err => {

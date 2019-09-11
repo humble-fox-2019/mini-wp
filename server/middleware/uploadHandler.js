@@ -1,7 +1,7 @@
 const Multer = require('multer')
 const MulterGoogleStorage = require('multer-google-storage')
 
-const accepted_extensions = ['jpg', 'png']
+const accepted_extensions = ['jpg', 'png', 'jpeg']
 
 const upload = Multer({
   storage : MulterGoogleStorage.storageEngine({

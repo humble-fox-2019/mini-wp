@@ -63,16 +63,34 @@ class ArticleController {
     static delete(req, res, next) {
 
         console.log('Berhasil Masuk Ke Delete')
+        console.log(req.params.id, '<<<<< ini datanya')
 
         articleModel.deleteOne({
                 _id: req.params.id
             })
             .then(data => {
+                console.log('BERHASIL BROH! KEDELETE')
                 res.status(201).json({
                     data
                 })
             })
             .catch(next)
+    }
+
+    static findOne(req, res, next) {
+        console.log('masuk ke find one')
+
+        articleModel.findOne({
+                title: req.params.title
+            })
+            .then(data => {
+                res.status(201).json({
+                    data
+                })
+                console.log(data, '<<< BERHASIL DATANYA BERIKUT')
+            })
+            .catch(next)
+
     }
     // static findByName()
 

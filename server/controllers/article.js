@@ -24,7 +24,7 @@ class ArticleController {
 
   static findAll (req, res, next) {
     console.log('Successfully read all articles')
-    Article.find().populate('author')
+    Article.find({ author: req.decoded.id }).populate('author')
       .then(todos => {
         console.log(todos)
         res.status(200).json(todos)

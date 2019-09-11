@@ -1,6 +1,7 @@
 'use strict'
 
-const url = 'http://35.246.229.159'
+const url = 'http://localhost:3000'
+// const url = 'http://35.246.229.159'
 // If kalau belom ada token, login page. Kalau ada token -> dashboard
 // login page -> default form yg keluar si login, kalau diclick register, keluar register
 
@@ -23,10 +24,6 @@ var app = new Vue({
     articleId: ''
   },
   methods: {
-    showMyArticle: function () {
-      this.currentPage = 'dashboardPage'
-      this.fetchMyArticle()
-    },
     showEditArticle: function (id, title, content) {
       console.log(id, title, content)
       this.articleId = id
@@ -90,6 +87,7 @@ var app = new Vue({
       }
     },
     register: function () {
+      console.log(this.name, this.email, this.password)
       axios({
         method: 'POST',
         url: `${url}/users/register`,
@@ -137,22 +135,7 @@ var app = new Vue({
         }
       })
         .then(({ data }) => {
-          console.log('Data masuk')
-          this.articles = data
-        }).catch((err) => {
-          console.log(err)
-        })
-    },
-    fetchMyArticle () {
-      axios({
-        method: 'GET',
-        url: `${url}/articles/user`,
-        headers: {
-          token: localStorage.getItem('token')
-        }
-      })
-        .then(({ data }) => {
-          console.log('Data masuk')
+          console.log('Articles successfully fetched from the server')
           this.articles = data
         }).catch((err) => {
           console.log(err)
@@ -175,13 +158,6 @@ var app = new Vue({
       this.password = ''
       this.currentPage = 'loginPage'
       this.currentForm = 'login'
-    },
-    showAlert: function () {
-      Swal.fire(
-        'Good job!',
-        'You clicked the button!',
-        'success'
-      )
     },
     createArticle: function () {
       let method = null
@@ -252,7 +228,7 @@ var app = new Vue({
     },
     isLogin: function () {
       if (this.isLogin === true) {
-        this.fetchArticle()
+        this.showDashboard()
       }
     }
 

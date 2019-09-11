@@ -13,14 +13,6 @@ class UserController {
       }).catch(next)
   }
 
-  static findOne (req, res, next) {
-    const email = req.params.email
-    User.findOne({ email })
-      .then((result) => {
-        res.status(200).json(result)
-      }).catch(next)
-  }
-
   static register (req, res, next) {
     const { name, email, password } = req.body
     // console.log(newUser) -> name: "Admin", email: "admin@fancytodo.com", password:"admin"

@@ -7,7 +7,10 @@ module.exports = (err, req, res, next) => {
 
   if (err.name === 'JsonWebTokenError' || err.name === 'TokenExpiredError') {
     status = 401
-    message = err.message
+    message = 'Please login first, you are not logged in yet!'
+  } else if (err.name === 'TokenExpiredError') {
+    status = 401
+    message = 'Your session is already expired! Please login again'
   } else if (err.name === 'ValidationError') {
     status = 400
     const arr = []

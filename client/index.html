@@ -48,10 +48,7 @@
             <a class="nav-link" href="#">Drafts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" @click.prevent="showDashboard()">View all post</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" @click.prevent="showMyArticle()">View my post</a>
+            <a class="nav-link" href="#" @click.prevent="showDashboard()">View post</a>
           </li>
         </ul>
       </div>
@@ -85,7 +82,12 @@
         <div v-if="currentPage === 'loginPage' && currentForm === 'login'">
           <div class="container" id="loginForm">
             <h4>Login</h4>
-            <div id="errorSignup"></div>
+            <!-- <div id="errorLogin" v-model="errorLogin">
+              <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Error!</strong>
+              </div>
+            </div> -->
             <div id="emailLogin">
               <form>
                 <div class="form-group">
@@ -126,7 +128,7 @@
           <div class="container" id="registerForm">
             <div id="registerContent">
               <div id="errorSignup"></div>
-              <form action="/action_page.php">
+              <form>
                 <h4>Register</h4>
 
                 <div class="form-group">
@@ -144,7 +146,8 @@
                   <input type="password" class="form-control" id="register-password" placeholder="Enter password"
                     name="password" v-model="password">
                 </div>
-                <button type="submit" class="btn btn-primary" id="register-button2">Register</button>
+                <button type="submit" class="btn btn-primary" id="register-button2"
+                  @click.prevent="register()">Register</button>
               </form>
             </div>
             <br>
@@ -249,7 +252,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <!--Wysiwyg-->
   <script src="./js/vueWysiwyg.js"></script>
-  <!--Main JavaScr-->
+  <!--Main JavaScript-->
   <script src="./js/index.js"></script>
 </body>
 

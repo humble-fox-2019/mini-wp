@@ -9,6 +9,10 @@ const ArticleSchema = new Schema({
     content: {
         type: String,
         required: true
+    },
+    UserId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 }, {
     timestamps: true

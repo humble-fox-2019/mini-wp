@@ -2,7 +2,8 @@ const Article = require('../models/article');
 
 class ArticleController {
     static findAll(req, res, next) {
-        Article.find()
+        const { UserId } = req.decoded;
+        Article.find({UserId}).populate('UserId')
             .then(articles => {
                 res.status(200).json(articles);
             })
@@ -11,7 +12,8 @@ class ArticleController {
 
     static create(req, res, next) {
         const { title, content } = req.body;
-        Article.create({ title, content })
+        const { UserId } = req.decoded;
+        Article.create({ title, content, UserId })
             .then(article => {
                 res.status(201).json(article);
             })
@@ -21,7 +23,8 @@ class ArticleController {
     static update(req, res, next) {
         const _id = req.params.id;
         const { title, content } = req.body;
-        Article.updateOne({_id}, { title, content })
+        const { UserId } = req.decoded;
+        Article.updateOne({_id}, { title, content, UserId })
             .then(article => {
                 res.status(200).json(article);
             })

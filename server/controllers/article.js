@@ -2,7 +2,6 @@ const Article = require('../models/articles')
 class ArticleController {
     static createArticle(req, res, next){
         const { title, content } = req.body
-        //masih kurang user id nya
         Article.create({
             title,
             content,

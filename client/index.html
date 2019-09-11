@@ -14,13 +14,22 @@
 </head>
 <body>
     <div id="app">
+        
         <div v-if="page === 1" class="loginCanvas">
             <div v-if="login == true" class="loginBox">
                 <div class="box1">
                     <h1>Sign in.</h1>
+                    
                 </div>
                 <div class="box2">
+                    <div>
+
+                    </div>
+                    <div>
+                            <h6 style="color: red">{{ errorMessage }}</h6>
+                    </div>
                     <div class="formInput" >
+                        
                         <div>
                             <input type="text" placeholder="Email" v-model="email">
                         </div>
@@ -44,9 +53,14 @@
             <div v-else class="registerBox loginBox">
                 <div class="box1">
                     <h1>Sign up.</h1>
+                    
+                </div>
+                <div>
+                        <h6 style="color: red">{{ errorMessage }}</h6>
                 </div>
                 <div class="box2">
                     <div class="formInput">
+                        
                         <div>
                             <input type="text" placeholder="Username" v-model="username">
                         </div>
@@ -92,6 +106,9 @@
                     <div>
                         <a href=""><i class="far fa-comments fa-1x"></i></a>
                     </div>
+                    <div>
+                        <a href="" v-on:click.prevent="logout">Sign Out</i></a>
+                    </div>
                 </div>
             </div>
         <!------------>
@@ -130,6 +147,9 @@
                             <button v-on:click.prevent="publish" type="button">Publish..</button>
                         </div>
                     </div>
+                    <div>
+                        <a href="" v-on:click.prevent="logout">Sign Out</i></a>
+                    </div>
                 </div>
             </div>
         <!------------>
@@ -149,10 +169,20 @@
                     </div>
                 </div> 
                 <div class="right">
-                    <a href="#" v-on:click.prevent="editArticle">Edit</a>
+                    <div>
+                        <a href="#" v-on:click.prevent="editArticle">Edit</a>
+                    </div>
+                    <div>
+                        <a href="" v-on:click.prevent="logout">Sign Out</i></a>
+                    </div>
                 </div>
             </div>
         </div>
+        <!---->
+        <div v-if="page == -1" style="width: 100vw; height: 100vh; display: flex; justify-content:center; align-items:center">
+            <h1>{{ errorMessage }}</h1>
+        </div>
+
         <!---->
         <div v-if="page === 2" class="secondPage">
             <div class="menuBar" v-bind:style="{ left: menuBarCollapsed + 'vw'}">

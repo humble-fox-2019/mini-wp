@@ -1,4 +1,6 @@
-let quill
+//35.240.183.35:80
+// const errorHandler = require('./errorHandler')
+var baseUrl = "http://localhost:3000"
 var app = new Vue({
     el: '#app',
     components: {
@@ -16,7 +18,8 @@ var app = new Vue({
         articleId: null,
         search: "",
         menuBarCollapsed: -25,
-        settingArticleRight: 0
+        settingArticleRight: 0,
+        errorMessage:""
         
     },
     methods: {
@@ -35,14 +38,15 @@ var app = new Vue({
         fetchArticles: function(){
             axios({
                 method: "get",
-                url: 'http://35.240.183.35:80/posts/'
+                url: `${baseUrl}/articles/`,
+                headers: {
+                    token: localStorage.getItem('token')
+                }
             })
             .then(response => {
                 this.articles = response.data
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(this.errorHandler)
         },
         editArticle: function(){
             this.menuBarCollapsed = -25
@@ -59,34 +63,36 @@ var app = new Vue({
             if(!this.articleId){
                 axios({
                     method: "post",
-                    url: "http://35.240.183.35:80/articles/",
+                    url: `${baseUrl}/articles/`,
                     data: {
                         title: this.title,
                         content: this.content
+                    },
+                    headers: {
+                        token: localStorage.getItem('token')
                     }
                 })
                 .then(response => {
-                    console.log(response)
+                    this.errorMessage = ""
                     this.openSecondPage()
                 })
-                .catch(err =>{
-                    console.log(err)
-                })
+                .catch(this.errorHandler)
             }else{
                 axios({
                     method: "patch",
-                    url: `http://35.240.183.35:80/articles/${this.articleId}`,
+                    url: `${baseUrl}/articles/${this.articleId}`,
                     data: {
                         title: this.title,
                         content: this.content
+                    },
+                    headers: {
+                        token: localStorage.getItem('token')
                     }
                 })
                 .then(response => {
                     this.openSecondPage()
                 })
-                .catch(err =>{
-                    console.log(err)
-                })
+                .catch(this.errorHandler)
             }
 
         },
@@ -94,6 +100,7 @@ var app = new Vue({
             this.username = ""
             this.password = ""
             this.email = ""
+            this.errorMessage =""
             if(this.login){
                 this.login = false
             }
@@ -102,29 +109,24 @@ var app = new Vue({
             }
         },
         doLogin: function(){
-            
-            console.log(this.email, this.password)
             axios({
                 method: "post",
-                url: "http://35.240.183.35:80/users/loginform",
+                url: `${baseUrl}/users/loginform`,
                 data: {
                     email: this.email,
                     password: this.password
                 }
             })
             .then(response =>{
-                console.log(response)
+                localStorage.setItem('token', response.data.token)
                 this.openSecondPage()
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(this.errorHandler)
         },
         doRegister: function(){
-            console.log(this.username ,this.email, this.password)
             axios({
                 method: "post",
-                url: "http://35.240.183.35:80/users/register",
+                url: `${baseUrl}/users/register`,
                 data: {
                     email: this.email,
                     password: this.password,
@@ -132,25 +134,21 @@ var app = new Vue({
                 }
             })
             .then(response =>{
-                console.log(response)
-                this.openSecondPage()
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(this.errorHandler)
         },
         removeArticle: function(){
             axios({
                 method: "delete",
-                url: `http://35.240.183.35:80/posts/${this.articleId}`
+                url: `${baseUrl}/articles/${this.articleId}`,
+                headers: {
+                    token: localStorage.getItem('token')
+                }
             })
             .then(response => {
-                console.log(response)
                 this.openSecondPage()
             })
-            .catch(err =>{
-                console.log(err)
-            })
+            .catch(this.errorHandler)
         },
         filterArticle: function(){
             var filtered = this.articles.filter(article =>{
@@ -160,16 +158,34 @@ var app = new Vue({
             return filtered
         },
         toggleMenubar: function(){
-            console.log(this.menuBarCollapsed)
             if(this.menuBarCollapsed === -25){
                 this.menuBarCollapsed = 0
             }else{
                 this.menuBarCollapsed = -25
             }
         },
-        
+        errorHandler: function(err){
+            if(err.response){
+                this.errorMessage = err.response.data.message
+                console.log(err.response.data.message)
+            }else if(err.request){
+                this.page = -1
+                this.errorMessage = `500 Internal Server Error`
+            }else {
+                console.log(err.message)
+            }
+        },
+        logout: function(err){
+            localStorage.removeItem('token')
+            this.page = 1
+        }
     },
     created: function(){
-        this.fetchArticles()
+        if(localStorage.getItem('token')){
+            this.openSecondPage()
+        }
+        else{
+            this.page = 1
+        }
     }
 })

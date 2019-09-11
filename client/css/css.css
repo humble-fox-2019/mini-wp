@@ -45,7 +45,7 @@ input {
     padding-right: 1vw;
 }
 .navbar .homepage .right {
-    width: 20vh;
+    width: 30vh;
     display: flex;
     justify-content: space-evenly;
 }
@@ -286,6 +286,13 @@ input {
     display: flex;
     height: 100%;
     justify-content: space-between;
+}
+.articleEdit .right {
+    display: flex;
+    align-items: center;
+}
+.articleEdit .right div{
+    padding-right: 1vw;
 }
 .fourthPage{
     margin: 0 auto;

@@ -5,7 +5,6 @@ const { OAuth2Client } = require('google-auth-library')
 const { hashPassword } = require('../helpers/bcrypt')
 class UserController {
     static createUser(req, res, next){
-        console.log('masuk')
         const { username, email, password } = req.body
         User.create({
             username,
@@ -27,7 +26,8 @@ class UserController {
             if(user && comparePassword(password, user.password)){
                 let payload = {
                     _id: user._id,
-                    email: user.email
+                    email: user.email,
+                    username: user.username
                 }
                 let token = generateJWTToken(payload)
                 res.status(200).json({token, username: user.username})
@@ -67,7 +67,8 @@ class UserController {
         .then(user =>{
             let payload = {
                 _id: user._id,
-                email: user.email
+                email: user.email,
+                username: user.username
             }
             let token = generateJWTToken(payload)
            

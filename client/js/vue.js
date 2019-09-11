@@ -1,9 +1,15 @@
 let quill
 var app = new Vue({
     el: '#app',
+    components: {
+        wysiwyg: vueWysiwyg.default.component,
+    },
     data: {
-        page: null,
+        page: 1,
+        email: "",
+        password:"",
         articles: [],
+        username: "",
         title: "",
         content: "",
         login: true,
@@ -50,23 +56,90 @@ var app = new Vue({
             this.content = content
         },
         publish: function(){
-            console.log(this.title, quill.root.innerHTML)
+            if(!this.articleId){
+                axios({
+                    method: "post",
+                    url: "http://localhost:3000/articles/",
+                    data: {
+                        title: this.title,
+                        content: this.content
+                    }
+                })
+                .then(response => {
+                    console.log(response)
+                    this.openSecondPage()
+                })
+                .catch(err =>{
+                    console.log(err)
+                })
+            }else{
+                axios({
+                    method: "patch",
+                    url: `http://localhost:3000/articles/${this.articleId}`,
+                    data: {
+                        title: this.title,
+                        content: this.content
+                    }
+                })
+                .then(response => {
+                    this.openSecondPage()
+                })
+                .catch(err =>{
+                    console.log(err)
+                })
+            }
 
         },
-        openRegisterForm: function(){
-            this.login = false
-        },
-        openLoginForm: function(){
-            this.login = true
+        switchForm: function(){
+            this.username = ""
+            this.password = ""
+            this.email = ""
+            if(this.login){
+                this.login = false
+            }
+            else{
+                this.login = true
+            }
         },
         doLogin: function(){
-
+            
+            console.log(this.email, this.password)
+            axios({
+                method: "post",
+                url: "http://localhost:3000/users/loginform",
+                data: {
+                    email: this.email,
+                    password: this.password
+                }
+            })
+            .then(response =>{
+                console.log(response)
+                this.openSecondPage()
+            })
+            .catch(err => {
+                console.log(err)
+            })
         },
         doRegister: function(){
-
+            console.log(this.username ,this.email, this.password)
+            axios({
+                method: "post",
+                url: "http://localhost:3000/users/register",
+                data: {
+                    email: this.email,
+                    password: this.password,
+                    username: this.username
+                }
+            })
+            .then(response =>{
+                console.log(response)
+                this.openSecondPage()
+            })
+            .catch(err => {
+                console.log(err)
+            })
         },
         removeArticle: function(){
-            console.log('masukdelete', this.articleId)
             axios({
                 method: "delete",
                 url: `http://localhost:3000/posts/${this.articleId}`
@@ -97,11 +170,6 @@ var app = new Vue({
         
     },
     created: function(){
-        this.page = 2
         this.fetchArticles()
-        var quill2 = new Quill('#editor', {
-            modules: { toolbar: true },
-            theme: 'snow'
-        });
     }
 })

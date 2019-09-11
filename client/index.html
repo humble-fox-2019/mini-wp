@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/c445c8df7a.js"></script>
     <link rel="stylesheet" href="./css/login.css">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/vueWysiwyg.css">
     <title>Read Words</title>
 </head>
 <body>
@@ -21,10 +22,10 @@
                 <div class="box2">
                     <div class="formInput" >
                         <div>
-                            <input type="text" placeholder="Email">
+                            <input type="text" placeholder="Email" v-model="email">
                         </div>
                         <div>
-                            <input type="password" name="" placeholder="Password" >
+                            <input type="password" name="" placeholder="Password" v-model="password">
                         </div>
                     </div>
                     <div>
@@ -33,10 +34,10 @@
                 </div>
                 <div class="box3">
                     <div>
-                        <button>Sign In</button>
+                        <button v-on:click.prevent="doLogin">Sign In</button>
                     </div>
                     <div class="blue">
-                        <a v-on:click.prevent="openRegisterForm" href="#"><h5>Don't have an account? register now!</h5></a>
+                        <a v-on:click.prevent="switchForm" href="#"><h5>Don't have an account? register now!</h5></a>
                     </div>
                 </div>
             </div>
@@ -47,13 +48,13 @@
                 <div class="box2">
                     <div class="formInput">
                         <div>
-                            <input type="text" placeholder="Username">
+                            <input type="text" placeholder="Username" v-model="username">
                         </div>
                         <div>
-                            <input type="text" placeholder="Email">
+                            <input type="text" placeholder="Email" v-model="email"> 
                         </div>
                         <div>
-                            <input type="password" name="" placeholder="Password">
+                            <input type="password" name="" placeholder="Password" v-model="password">
                         </div>
                     </div>
                     <div>
@@ -62,10 +63,10 @@
                 </div>
                 <div  class="box3">
                     <div>
-                        <button>Sign Up</button>
+                        <button v-on:click.prevent="doRegister">Sign Up</button>
                     </div>
                     <div class="blue">
-                        <a v-on:click.prevent="openLoginForm" href="#"><h5>Already have an account? login now!</h5></a>
+                        <a v-on:click.prevent="switchForm" href="#"><h5>Already have an account? login now!</h5></a>
                     </div>
                 </div>
             </div>
@@ -75,7 +76,10 @@
             <div v-if="page === 2" class="homepage" style="width: 100%; height: 100%;">
                 <div class="left">
                     <div>
-                        <a href="" v-on:click.prevent="toggleMenubar"><h4><i class="fab fa-wordpress-simple"></i> Read Words</h4></a>
+                        <a href="" v-on:click.prevent="toggleMenubar"><i class="fas fa-bars"></i></a> 
+                    </div>
+                    <div>
+                        <h4><i class="fab fa-wordpress-simple"></i> Read Words</h4>
                     </div>
                     <div>
                         <a href="">Reader</a>
@@ -94,7 +98,7 @@
             <div v-else-if="page === 3" class="articlePage" style="width: 100%; height: 100%;">
                 <div class="left">
                     <div class="box">
-                        <a v-on:click.prevent="openSecondPage()" href="" id="toggleNavbar()"><h4 style="display: inline-block"><i class="fab fa-wordpress-simple"></i> Close</h4></a>
+                        <a v-on:click.prevent="openSecondPage()" href="" id="toggleNavbar()"><h4 style="display: inline-block"><i class="fas fa-times fa-2x"></i></h4></a>
                     </div>
                     <div class="box spesial">
                         <div>
@@ -292,9 +296,7 @@
                     <input type="text" placeholder="Your title goes here..." id="articleTitle" v-model="title">
                 </div>
                 <div style="width: 100%">
-                    <div id="editor">
-                        {{ content }}
-                    </div>
+                    <wysiwyg v-model="content"></wysiwyg>
                 </div>
                 
             </div>
@@ -329,11 +331,12 @@
                     <h1>{{title}}</h1>
                 </div>
                 <div class="content">
-                   <p>{{content}}</p>
+                   <p v-html="content"></p>
                 </div>
             </div>
         </div>
     </div>
+    <script src="./js/vueWysiwyg.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

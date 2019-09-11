@@ -5,7 +5,9 @@ class ArticleController {
         //masih kurang user id nya
         Article.create({
             title,
-            content
+            content,
+            userId: req.decode._id,
+            author: req.decode.username
         })
         .then(response =>{
             res.status(201).json(response)
@@ -36,10 +38,9 @@ class ArticleController {
         .catch(next)
     }
     static readArticle(req, res, next){
-        //masukan {
-        //   userId: req.decode._id
-        //}
-        Article.find().then(response=>{
+        Article.find({
+            userId: req.decode._id
+        }).then(response=>{
             res.status(200).json(response)
         })
         .catch(next)

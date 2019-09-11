@@ -5,6 +5,7 @@ const { OAuth2Client } = require('google-auth-library')
 const { hashPassword } = require('../helpers/bcrypt')
 class UserController {
     static createUser(req, res, next){
+        console.log('masuk')
         const { username, email, password } = req.body
         User.create({
             username,

@@ -9,7 +9,7 @@ const cors = require('cors')
 app.use(cors())
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/mini-wp', { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true })
+mongoose.connect(process.env.ATLAS_CONNECT, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true })
 .then(()=>{
     console.log('connected to MongoDB')
 })

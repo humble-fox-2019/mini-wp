@@ -2,10 +2,10 @@ const ArticleController = require('../controllers/article')
 const router = require('express').Router()
 const authenticate = require('../middlewares/authenticate')
 const authorizeArticle = require('../middlewares/authorizeArticle')
-app.use(authenticate)
+router.use(authenticate)
 router.get('/', ArticleController.readArticle)
 router.post('/', ArticleController.createArticle)
-router.patch('/:_id', authorizeArticle, authoArticleController.updateArticle)
+router.patch('/:_id', authorizeArticle, ArticleController.updateArticle)
 router.delete('/:_id', authorizeArticle, ArticleController.removeArticle)
 
 module.exports = router

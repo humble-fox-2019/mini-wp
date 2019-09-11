@@ -18,7 +18,7 @@ mongoose.connect(process.env.ATLAS_CONNECT, { useNewUrlParser: true, useFindAndM
 })
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }))   
 
 const router = require('./routes')
 const PORT = process.env.PORT || 3000

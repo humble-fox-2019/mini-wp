@@ -35,7 +35,7 @@ var app = new Vue({
         fetchArticles: function(){
             axios({
                 method: "get",
-                url: 'http://localhost:3000/posts/'
+                url: 'http://35.240.183.35:80/posts/'
             })
             .then(response => {
                 this.articles = response.data
@@ -59,7 +59,7 @@ var app = new Vue({
             if(!this.articleId){
                 axios({
                     method: "post",
-                    url: "http://localhost:3000/articles/",
+                    url: "http://35.240.183.35:80/articles/",
                     data: {
                         title: this.title,
                         content: this.content
@@ -75,7 +75,7 @@ var app = new Vue({
             }else{
                 axios({
                     method: "patch",
-                    url: `http://localhost:3000/articles/${this.articleId}`,
+                    url: `http://35.240.183.35:80/articles/${this.articleId}`,
                     data: {
                         title: this.title,
                         content: this.content
@@ -106,7 +106,7 @@ var app = new Vue({
             console.log(this.email, this.password)
             axios({
                 method: "post",
-                url: "http://localhost:3000/users/loginform",
+                url: "http://35.240.183.35:80/users/loginform",
                 data: {
                     email: this.email,
                     password: this.password
@@ -124,7 +124,7 @@ var app = new Vue({
             console.log(this.username ,this.email, this.password)
             axios({
                 method: "post",
-                url: "http://localhost:3000/users/register",
+                url: "http://35.240.183.35:80/users/register",
                 data: {
                     email: this.email,
                     password: this.password,
@@ -142,7 +142,7 @@ var app = new Vue({
         removeArticle: function(){
             axios({
                 method: "delete",
-                url: `http://localhost:3000/posts/${this.articleId}`
+                url: `http://35.240.183.35:80/posts/${this.articleId}`
             })
             .then(response => {
                 console.log(response)

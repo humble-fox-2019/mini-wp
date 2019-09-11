@@ -6,16 +6,16 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const index = require('./routes/index')
 const errHandler = require('./middlewares/errorHandler')
+const database = process.env.MONGOO_ATLAS
 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended : false}))
 
 app.use('/', index)
+// console.log(database);
 
-let temp = 'mongodb+srv://ayusudi:ayusudi@cluster0-acddn.mongodb.net/mini-wp?retryWrites=true&w=majority'
-
-mongoose.connect(temp, {
+mongoose.connect(database, {
   useNewUrlParser : true
 }, function(err){
   if(err) console.log(`server isn't connect to mongodb`);

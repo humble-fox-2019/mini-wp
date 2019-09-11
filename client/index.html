@@ -154,7 +154,7 @@
 
 <body>
   <div id="app">
-    <div v-if="!login" class="login">
+    <div v-if="!login" class="login" style="display: none">
       <div class="box-login">
         <h2>Yoo</h2>
         <form id="sign_form">
@@ -199,7 +199,7 @@
           </div>
           <div class="media">
             <p class="newArticle"><i class="fas fa-plus-square" type="button" @click="getFormArticle"></i> Create Article</p>
-            <p class="userArticle"><i class="fas fa-newspaper" type="button"></i> My Article</p>
+            <p class="userArticle"><i class="fas fa-newspaper" type="button" @click="showDashboard"></i> My Article</p>
             <p class="userArticle"><i class="fas fa-tools" type="button"></i> Setting</p>
             <p class="userArticle"><i class="fas fa-border-all" type="button"></i> Style</p>
           </div>
@@ -208,18 +208,18 @@
           <div id="timeline-box" v-if="page === 'home-user'">
             <div class="navabar-timeline" id="box">
               <div class="showAll">
-                <div class="show-tl" id="show-1">
+                <div class="show-tl" id="show-1" @click="allArticle">
                   <p>Timeline</p>
                 </div>
-                <div class="myarticle" id="show-1">
+                <div class="myarticle" id="show-1" @click="showDashboard">
                   <p>My Article</p>
                 </div>
               </div>
               <div class="serachArt">
                 <div class="search-art">
-                  <form class=" form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-light" type="submit">
+                  <form class=" form-inline my-2 my-lg-0" @submit.prevent="trackingSearch">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="search">
+                    <button class="btn btn-light" type="submit" @click="searchArticle">
                       <i class="fas fa-search"></i>
                     </button>
                   </form>
@@ -230,21 +230,20 @@
             <div class="articles" id="box" v.on>
               <div class="article" id="number" v-for="item in items">
                 <div class="summary">
+                  {{search}}
                   <h3>{{item.title}}</h3>
                   <p>{{item.content}}</p>
                   <a href="#">{{item.author.name}}</a>
                 </div>
                 <div class="action">
                 
-                    <div class="action-owner" v-if='(item.author._id===currentUser._id)'>
-
+                    <div class="action-owner" v-if='(item.author._id==currentUser._id)'>
                       <i class="fas fa-pencil-alt fa-2x" @click="getEditForm(item._id)"></i>
                       <i class="fas fa-trash-alt fa-2x" @click="deleteArticle(item._id)"></i>
                     </div>
                     <div v-else>
-                    
+                        <i class="fas fa-ellipsis-h"></i>
                     </div>
-                  
                 </div>
               </div>
             </div>
@@ -295,13 +294,14 @@
         // page: 'create',
         page: 'home-user',
         currentTitle: '',
-        currentContent: ''
+        currentContent: '',
+        search : ''
       },
       methods: {
         showDashboard(){
           axios({
             method: 'GET',
-            url: 'http://localhost:3000/articles',
+            url: 'http://localhost:3000/articles/myarticle',
             headers: {
               token: token
             }
@@ -322,6 +322,10 @@
         getFormArticle(){
           this.page = 'create'
         },
+        trackingSearch(){
+          let formData = new FormData();
+          formData.set("search", this.search)
+        },
         trackingInput() {
           let formData = new FormData();
           formData.set("title", this.title);
@@ -340,6 +344,8 @@
             }
           })
           .then(data =>{
+            this.showDashboard()
+            this.page = 'home-user'
             console.log(data);
           })
           .catch(({response})=>{
@@ -355,6 +361,8 @@
             }
           })
           .then(data =>{
+            // items => filter => hilangkan sesuai input
+            this.showDashboard()
             console.log(data);
           })
           .catch (err =>{
@@ -396,9 +404,46 @@
             }
           })
           .then(({data})=>{
+            this.showDashboard()
             console.log(data);
           })
           .catch(err =>{
+            console.log(err);
+          })
+        },
+        searchArticle(){
+          let search = this.search
+          console.log(search);
+          axios({
+            method: 'GET',
+            url : baseUrl+'/articles/search/'+search,
+            headers: {
+              token :  token
+            }
+          })
+          .then(({data}) =>{
+            // this.page ='create'
+            this.items = data.articles
+           console.log(data);
+          })
+          .catch(err=>{
+            console.log(err);
+          })
+        },
+        allArticle(){
+          axios({
+            method: 'GET',
+            url: 'http://localhost:3000/articles/',
+            headers: {
+              token: token
+            }
+          }
+          )
+          .then((result) => {
+            console.log(result);
+            this.items = result.data.articles
+          })
+          .catch(err => {
             console.log(err);
           })
         }
@@ -408,16 +453,7 @@
       },
       created() {
         this.showDashboard()
-      },
-      mounted() {
-        this.showDashboard()
-      },
-      updated() {
-        this.showDashboard()
-      },
-      destroyed() {
-        this.showDashboard()
-      },
+      }
     })
 
     console.log(app);

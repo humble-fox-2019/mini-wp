@@ -6,7 +6,9 @@ const authorization = require('../middlewares/authorization')
 
 
 router.get('/', authentication, ArticleController.getAll)
+router.get('/myarticle', authentication, ArticleController.getMyArticle)
 router.get('/:id', authentication, ArticleController.getOne)
+router.get('/search/:search', authentication, ArticleController.getByTitle)
 router.post('/create', authentication, ArticleController.create)
 router.get('/own', authentication, ArticleController.findMyArticle )
 router.put('/:id', authentication, authorization, ArticleController.updatePut)

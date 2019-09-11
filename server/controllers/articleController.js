@@ -23,6 +23,22 @@ class ArticleController {
         })
       })
   }
+  static getMyArticle(req, res, next){
+    Article.find({
+      author : req.decoded._id
+    })
+    .populate('author')
+    .then(data =>{
+      console.log(data);
+      res.status(200).json({
+        message: 'List of Your Article',
+        articles: data
+      })
+    })
+    .catch(err => {
+      next()
+    })
+  }
   static getAll(req, res, next) {
     Article.find({})
       .populate('author')
@@ -48,6 +64,27 @@ class ArticleController {
       .catch(err => {
         next()
       })
+  }
+  static getByTitle(req, res, next){
+    let search = req.params.search
+    console.log(search);
+    Article.find({})
+    .then(data =>{
+      let articles = []
+      data.forEach(el =>{
+        if (el.title.includes(search)){
+          articles.push(el)
+        }
+        console.log(articles);
+        res.status(200).json({
+          message: `Here's your result`,
+          articles : articles
+        })
+      })
+    })
+    .catch(err=>{
+      next()
+    })
   }
   static updatePut(req, res, next) {
     let change = {}
@@ -76,7 +113,8 @@ class ArticleController {
     )
       .then(data => {
         res.status(200).json({
-          message: 'Success Deleted'
+          message: 'Success Deleted',
+          _id : req.params.id
         })
       })
       .catch(err => {

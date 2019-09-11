@@ -13,13 +13,11 @@ const getPublicUrl = (filename) => {
 }
 
 const sendUploadToGCS = (req, res, next) => {
-    // console.log(req.file)
     if(!req.file) {
         return next()
     }
     const gcsname = Date.now() + req.file.originalname
     const file = bucket.file(gcsname)
-    console.log(file)
 
     const stream = file.createWriteStream({
         metadata: {
@@ -35,7 +33,6 @@ const sendUploadToGCS = (req, res, next) => {
     stream.on('finish', () => {
         req.file.cloudStorageObject = gcsname
         file.makePublic().then(() => {
-            console.log(req.file)
             req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
             next()
         })
@@ -48,7 +45,7 @@ const sendUploadToGCS = (req, res, next) => {
 const multer = Multer({
     storage: Multer.MemoryStorage,
     limits: {
-        fileSize: 1 * 1024,
+        fileSize: 1 * 1024 * 1024,
         files: 1
     }
 })

@@ -1,8 +1,13 @@
+const multer = require('multer')
+
 function errorHandler(err, req, res, next) {
-  console.log(err)
 
   const status = err.status || 500
   const message = err.message || 'Internal server error'
+
+  if(err instanceof multer.MulterError) {
+    console.log('Yaaasadsasdasd')
+  }
 
   if(err.name === 'ValidationError') {
     const errors = []
@@ -14,6 +19,12 @@ function errorHandler(err, req, res, next) {
     res.status(400).json({
       errors
     })
+  }else if(err.name === 'MulterError') {
+    if(err.code === 'LIMIT_FILE_SIZE') {
+      res.status(400).json({
+        errors: ['File too large']
+      })
+    }
   }else{
     res.status(status).json({
       errors: [message]

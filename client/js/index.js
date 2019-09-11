@@ -1,4 +1,5 @@
 // let quill = null;
+let server = `http://35.247.129.137`;
 
 let app = new Vue ({
     el: '#app',
@@ -14,7 +15,7 @@ let app = new Vue ({
     methods: {
         fetchArticles: function() {
             axios({
-                url: 'http://localhost:3001/articles',
+                url: `${server}/articles`,
                 method: 'GET'
             })
             .then(({data}) => {
@@ -29,7 +30,7 @@ let app = new Vue ({
         
         insertArticle: function() {
             axios({
-                url: 'http://localhost:3001/articles',
+                url: `${server}/articles`,
                 method: 'POST',
                 data: {
                     title: this.title,
@@ -48,7 +49,7 @@ let app = new Vue ({
         
         updateArticle: function(articleId) {
             axios({
-                url: `http://localhost:3001/articles/${articleId}`,
+                url: `${server}/articles`,
                 method: 'PUT',
                 data: {
                     title: this.title,
@@ -67,7 +68,7 @@ let app = new Vue ({
         
         deleteArticle: function(articleId) {
             axios({
-                url: `http://localhost:3001/articles/${articleId}`,
+                url: `${server}/articles/${articleId}`,
                 method: 'DELETE'
             })
             .then(({data}) => {

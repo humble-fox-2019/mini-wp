@@ -24,7 +24,7 @@
     </ul>
     <div id="sidenav">
         <ul>
-            <li><a class="btn-invitation-to-write">Create new post</a></li>
+            <li><a class="btn-invitation-to-write" v-on:click='toggleForm()'>Create new post</a></li>
         </ul>
     </div>
     <div class="intro-pic container-fluid"">
@@ -33,19 +33,20 @@
     </div>
     <div class="container" id="post-history">
         <!-- Create the form for submitting article -->
-        <form id="article-form">
-            <input type="hidden" v-model="id">
+        <form v-show="showForm" id="article-form">
             <label>Article title</label><br>
             <input type="text" name="title" id="form-title" v-model="form.title"><br>
+            <p>{{form.description}}</p>
+            <p>{{form.id}}</p>
             <p>{{form.title}}</p>
             <label>Tell your story</label><br>
             <input type="text" name="description" id="form-description" v-model="form.description"><br>
-            <button type="submit" id="btn-submit-article" v-show="!updateSubmit">Submit story</button><br>
-            <button type="button" v-show="updateSubmit" @click='updateData(form)'>Update story</button><br>
-            <button class="btn-close-popup" >Close</button><br>
+            <button type="button" id="btn-submit-article" @click='submitData()' v-show="!updateSubmit">Submit story</button><br>
+            <button type="button" v-show="updateSubmit" @click='updateData()'>Update story</button><br>
+            <button class="btn-close-popup" @click="hideForm()" >Close</button><br>
         </form>
         <div class="row">
-            <button class="col btn-invitation-to-write"> Create new post</button>
+            <button class="col btn-invitation-to-write" @click='toggleForm()'> Create new post</button>
         </div>
         <div class="post row" v-for="post in posts">
             <div class="col-5 article-img"></div>
@@ -127,15 +128,13 @@
             el: "#post-history",
             data: {
                 posts : [],
-                title : "",
-                description : "",
-                id : "",
                 updateSubmit : false,
                 form: {
                     id: '',
                     title: '',
                     description: ''
-                    }
+                    },
+                showForm: false
             },
             methods: {
                 fetchData : function(){
@@ -148,12 +147,14 @@
                     })
                 },
                 submitData : function(){
+                    console.log(this.form.description)
+                    console.log("wyo")
                     axios({
                         method: 'POST',
                         url: 'http://localhost:3000/posts/',
                         data : {
-                            title: this.title,
-                            description: this.description,
+                            title: this.form.title,
+                            description: this.form.description,
                             createdAt: new Date()
                         }
                     }).then(()=>{
@@ -162,13 +163,16 @@
                         console.log(err)
                     })
                 },
-                updateData : function(form){
+                updateData : function(){
+                    console.log(this.form.id)
+                    console.log(this.form.title)
+                    console.log(this.form.description)
                     axios({
                         method: 'PATCH',
-                        url: 'http://localhost:3000/posts/' + form.id,
+                        url: 'http://localhost:3000/posts/' + this.form.id,
                         data : {
-                            title: form.title,
-                            description: form.description
+                            title: this.form.title,
+                            description: this.form.description
                         }
                     }).then(res => {
                         this.form.id = ''
@@ -180,18 +184,28 @@
                     })
                 },
                 edit : function(post){ 
+                    console.log(post._id)
                     this.updateSubmit = true
-                    this.form.id = post.id 
-                    this.form.name = post.title 
+                    this.form.id = post._id 
+                    this.form.title = post.title
+                    this.form.description = post.description 
                 },
-                del(post){
+                del : function(post){
                     axios({
                         method: 'DELETE',
-                        url: 'http://localhost:3000/posts/' + post.id,
+                        url: 'http://localhost:3000/posts/' + post._id,
                     }).then(res =>{
                         let index = this.posts.indexOf(this.form.title)
                         this.posts.splice(index,1)
                     })
+                },
+                toggleForm : function(){
+                    console.log(this.showForm)
+                    this.showForm = true
+                    console.log(this.showForm)
+                },
+                hideForm : function(){
+                    this.showForm = false
                 }
             },
             mounted : function(){
@@ -200,12 +214,12 @@
         })
     </script>
     <script>
-    $('#btn-submit-article').click(function(event){
+/*     $('#btn-submit-article').click(function(event){
         console.log('final');
         event.preventDefault();
         app.submitData();
     })
-
+ */
     $('#btn-update-article').click(function(event){
         console.log('hello')
         event.preventDefault();

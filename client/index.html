@@ -148,6 +148,11 @@
   <script src="./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
   <script src="./node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js"></script>
   <script>
+    
+    //SERVER ADDRESS
+    const SERVER_ADDRESS = "http://34.87.19.131"
+
+    //WYSWYG EDITOR
     Vue.use( CKEditor );
 
     new Vue({
@@ -195,7 +200,7 @@
         
         fetchBlogs() {
           //fetch blogs
-          axios.get('http://localhost:3000/blog')
+          axios.get(`${SERVER_ADDRESS}/blog`)
             .then(response =>{
               this.blogs = response.data
             })
@@ -216,7 +221,7 @@
         },
 
         postBlog(inputTitle, editorData){
-          axios.post('http://localhost:3000/blog', {
+          axios.post(`${SERVER_ADDRESS}/blog`, {
             title : inputTitle,
             content : editorData
           })

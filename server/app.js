@@ -15,6 +15,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 mongoose.connect( DATABASE_URL , { useNewUrlParser : true })
     .then( () => { console.log( `Database connected to: ${DATABASE_URL}` ); })
     .catch( err =>{ console.log( err ); })
+mongoose.set('useCreateIndex', true);
 
 app.use( cors() )
 app.use( express.json() ); 

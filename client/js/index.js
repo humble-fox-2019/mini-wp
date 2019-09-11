@@ -1,6 +1,6 @@
 'use strict'
 
-const url = 'http://localhost:3000'
+const url = 'http://35.246.229.159'
 // If kalau belom ada token, login page. Kalau ada token -> dashboard
 // login page -> default form yg keluar si login, kalau diclick register, keluar register
 

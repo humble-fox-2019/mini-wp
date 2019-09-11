@@ -12,7 +12,11 @@ class ArticleController {
   }
 
   static getAll(req, res, next) {
-
+    Article.find()
+      .then(articles => {
+        res.json(articles)
+      })
+      .catch(next)
   }
 
 }

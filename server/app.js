@@ -22,7 +22,9 @@ app.use( express.urlencoded({ extended : true }));
 
 app.use( '/' , userRouter );
 app.use( '/articles' , articleRouter )
-
+app.use( '/test' , (req , res ) => {
+    res.send("Server jalan")
+})
 app.use( errorHandler )
 
 

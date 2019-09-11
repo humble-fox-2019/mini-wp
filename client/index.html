@@ -131,16 +131,18 @@
 
                 <div class="form-group">
                   <label for="register-name">Name:</label>
-                  <input type="text" class="form-control" id="register-name" placeholder="Enter name" name="name">
+                  <input type="text" class="form-control" id="register-name" placeholder="Enter name" name="name"
+                    v-model="name">
                 </div>
                 <div class="form-group">
                   <label for="register-email">Email:</label>
-                  <input type="email" class="form-control" id="register-email" placeholder="Enter email" name="email">
+                  <input type="email" class="form-control" id="register-email" placeholder="Enter email" name="email"
+                    v-model="email">
                 </div>
                 <div class="form-group">
                   <label for="register-password">Password:</label>
                   <input type="password" class="form-control" id="register-password" placeholder="Enter password"
-                    name="password">
+                    name="password" v-model="password">
                 </div>
                 <button type="submit" class="btn btn-primary" id="register-button2">Register</button>
               </form>
@@ -167,7 +169,7 @@
             <img src="./assets/images/bali.jpg" class="card-img-top" alt="nature">
             <div class="card-body">
               <h4 class="card-title"> <i class="fas fa-book"></i> {{article.title}}</h4>
-              <p class="card-text" v-html="article.content">{{article.content}}</p>
+              <p class="card-text" v-html="article.content"></p>
               <button type="button" class="btn btn-warning" href=#editPost id=buttonEdit
                 @click.prevent="showEditArticle(article._id, article.title, article.content)">Edit</button>
               <button type=" button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"

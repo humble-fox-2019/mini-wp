@@ -4,10 +4,14 @@ module.exports = (err, req, res, next) => {
   console.log(err)
   let status = null
   let message = null
-  if (err.name === 'ValidationError') {
+
+  if (err.name === 'JsonWebTokenError' || err.name === 'TokenExpiredError') {
+    status = 401
+    message = err.message
+  } else if (err.name === 'ValidationError') {
     status = 400
     const arr = []
-    for (const key in err.erros) {
+    for (const key in err.errors) {
       arr.push(err.errors[key].message)
     }
     message = arr

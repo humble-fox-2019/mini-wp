@@ -13,6 +13,7 @@ var app = new Vue({
     isLogin: false,
     currentPage: 'loginPage',
     currentForm: 'login',
+    name: '',
     email: '',
     password: '',
     articles: [],
@@ -88,6 +89,29 @@ var app = new Vue({
         this.currentPage = 'loginPage'
       }
     },
+    register: function () {
+      axios({
+        method: 'POST',
+        url: `${url}/users/register`,
+        data: {
+          name: this.name,
+          email: this.email,
+          password: this.password
+        }
+      })
+        .then(({ data }) => {
+          Swal.fire(
+            'Successfully signed in',
+            'Please clicked the button to close!',
+            'success'
+          )
+          localStorage.setItem('token', data.token)
+          console.log('User successfully signed in')
+          this.checkLogin()
+        }).catch((err) => {
+          console.log(err)
+        })
+    },
     logout: function () {
       const auth2 = gapi.auth2.getAuthInstance()
       auth2.signOut().then(function () {
@@ -139,10 +163,16 @@ var app = new Vue({
       this.fetchArticle()
     },
     showRegister: function () {
+      this.name = ''
+      this.email = ''
+      this.password = ''
       this.currentPage = 'loginPage'
       this.currentForm = 'register'
     },
     showLogin: function () {
+      this.name = ''
+      this.email = ''
+      this.password = ''
       this.currentPage = 'loginPage'
       this.currentForm = 'login'
     },

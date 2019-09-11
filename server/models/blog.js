@@ -1,9 +1,4 @@
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/playblog', {
-    useNewUrlParser: true,
-    useUnifiedTopology:true
-});
-
+const mongoose = require('./connection')
 const Schema = mongoose.Schema
 
 const blogSchema = new Schema({

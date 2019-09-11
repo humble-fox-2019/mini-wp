@@ -8,9 +8,9 @@ const routes = require('./routes/index')
 const errorHandler = require('./middlewares/errorHandler')
 
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
-mongoose.connect('mongodb://localhost:27017/mini-wp', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.ATLAS_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(function () {
         console.log(`connection success`)
     })

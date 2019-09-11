@@ -10,13 +10,13 @@
       </div>
     </div>
     <div class="content-body">
-      <div class="article">
-        <router-link to="/">
-          <div class="article-image" >
+      <div class="article" v-for="article in articles" :key="article._id">
+        <router-link :to="'/article/' + article._id">
+          <div class="article-image" :style="'background-image: url(' + article.image + ')'">
           </div>
           <div class="article-text">
-            <h1>Bagaimana cara menemukan jati diri</h1>
-            <p>Sebuah cara tentang bagaimana menemukan jati diri yang sesungguhnya dan berusaha menemukan sesuatu didalamnya</p>
+            <h1> {{ article.title }} </h1>
+            <p> {{ article.content }} </p>
           </div>
         </router-link>
         <div class="article-action">
@@ -29,8 +29,25 @@
 </template>
 
 <script>
-export default {
 
+import axios from '@/api/server.js'
+
+export default {
+  name: 'Articles',
+  data() {
+    return {
+      articles: []
+    }
+  },
+  created(){
+    axios.get('/article')
+      .then(({data}) => {
+        this.articles = data
+      })
+      .catch(err => {
+        console.log(err.response.data)
+      })
+  }
 }
 </script>
 

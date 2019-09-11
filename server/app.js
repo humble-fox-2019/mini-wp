@@ -10,11 +10,12 @@ const router = require('./routes')
 const app = express()
 const PORT = process.env.PORT || 3000
 
-mongoose.connect('mongodb://localhost:27017/mini-wp', { useNewUrlParser: true, useFindAndModify: false })
+mongoose.connect(`${process.env.ATLAS_CONNECT}`, { useNewUrlParser: true, useFindAndModify: false })
   .then(_ => {
     console.log('Database: connected')
   })
-  .catch(_ => {
+  .catch(err => {
+    console.log(err)
     console.log('Database: failed to connect')
   })
 

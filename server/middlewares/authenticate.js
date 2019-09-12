@@ -1,8 +1,7 @@
-const jwt = require('jsonwebtoken')
-const SECRET_JWT = process.env.JWT
+const { verifyToken } = require('../helpers/jwt');
 module.exports = (req, res, next) =>{
     try {
-        const decode = jwt.verify(req.headers.token, SECRET_JWT)
+        const decode = verifyToken(req.headers.token)
         req.decode = decode.data
         next()
     } catch (err) {

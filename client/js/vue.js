@@ -1,4 +1,5 @@
 //35.240.183.35:80
+//localhost:3000
 // const errorHandler = require('./errorHandler')
 var baseUrl = "http://localhost:3000"
 var app = new Vue({
@@ -19,7 +20,8 @@ var app = new Vue({
         search: "",
         menuBarCollapsed: -25,
         settingArticleRight: 0,
-        errorMessage:""
+        errorMessage:"",
+        loading: false
         
     },
     methods: {
@@ -60,6 +62,7 @@ var app = new Vue({
             this.content = content
         },
         publish: function(){
+            this.loading = true
             if(!this.articleId){
                 axios({
                     method: "post",
@@ -73,10 +76,14 @@ var app = new Vue({
                     }
                 })
                 .then(response => {
+                    this.loading = false
                     this.errorMessage = ""
                     this.openSecondPage()
                 })
-                .catch(this.errorHandler)
+                .catch(err => {
+                    this.loading = false
+                    this.errorHandler(err)
+                })
             }else{
                 axios({
                     method: "patch",
@@ -90,9 +97,13 @@ var app = new Vue({
                     }
                 })
                 .then(response => {
+                    this.loading = false
                     this.openSecondPage()
                 })
-                .catch(this.errorHandler)
+                .catch(err => {
+                    this.loading = false
+                    this.errorHandler(err)
+                })
             }
 
         },
@@ -109,6 +120,7 @@ var app = new Vue({
             }
         },
         doLogin: function(){
+            this.loading = true
             axios({
                 method: "post",
                 url: `${baseUrl}/users/loginform`,
@@ -118,12 +130,19 @@ var app = new Vue({
                 }
             })
             .then(response =>{
+                this.loading = false
                 localStorage.setItem('token', response.data.token)
                 this.openSecondPage()
+                this.password = ""
+                this.email = ""
             })
-            .catch(this.errorHandler)
+            .catch(err => {
+                this.loading = false
+                this.errorHandler(err)
+            })
         },
         doRegister: function(){
+            this.loading = true
             axios({
                 method: "post",
                 url: `${baseUrl}/users/register`,
@@ -134,8 +153,13 @@ var app = new Vue({
                 }
             })
             .then(response =>{
+                this.loading = false
+                this.switchForm()
             })
-            .catch(this.errorHandler)
+            .catch(err =>{
+                this.loading = false
+                this.errorHandler(err)
+            })
         },
         removeArticle: function(){
             axios({
@@ -166,8 +190,12 @@ var app = new Vue({
         },
         errorHandler: function(err){
             if(err.response){
-                this.errorMessage = err.response.data.message
-                console.log(err.response.data.message)
+                if(err.response.status === 401){
+                    this.page = 1 
+                    this.errorMessage = err.response.data.message
+                }else{
+                    this.errorMessage = err.response.data.message
+                }
             }else if(err.request){
                 this.page = -1
                 this.errorMessage = `500 Internal Server Error`
@@ -178,14 +206,10 @@ var app = new Vue({
         logout: function(err){
             localStorage.removeItem('token')
             this.page = 1
+
         }
     },
     created: function(){
-        if(localStorage.getItem('token')){
-            this.openSecondPage()
-        }
-        else{
-            this.page = 1
-        }
+        
     }
 })

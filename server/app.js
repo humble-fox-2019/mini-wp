@@ -18,7 +18,8 @@ mongoose.connect(`${MONGODB_URI}`, { useNewUrlParser: true })
         console.log('mongodb connected!')
     })
     .catch(err => {
-        console.log('cannot connect to mongodb!', err);
+        console.log('cannot connect to mongodb!');
+        console.log(err);
     })
 
 app.use(express.json());

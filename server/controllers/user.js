@@ -10,7 +10,9 @@ class UserController {
             email,
             password
         }).then(user => {
-            res.status(201).json(user);
+            res.status(201).json({
+                name, email
+            });
         }).catch(next);
     }
 
@@ -22,15 +24,17 @@ class UserController {
                 if (user) {
                     if(comparePassword(password, user.password)) {
                         const payload = {
-                            UserId: user.id,
-                            name: user.name
+                            author: user.id,
+                            name: user.name,
+                            email: user.email
                         }
 
                         const token = generateToken(payload);
                         
                         res.status(200).json({
-                            UserId: user.id,
-                            name: user.name,
+                            // author: user.id,
+                            // name: user.name,
+                            // email: user.email,
                             token
                         })
                         

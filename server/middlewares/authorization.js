@@ -3,9 +3,9 @@ const Article = require('../models/article');
 module.exports = {
     isOwner(req, res, next) {
         const _id = req.params.id;
-        const { UserId } = req.decoded;
+        const { author } = req.decoded;
 
-        Article.findOne({_id, UserId})
+        Article.findOne({_id, author})
             .then(user => {
                 if (user) {
                     next();

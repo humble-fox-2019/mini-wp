@@ -10,9 +10,16 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    UserId: {
+    author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
+    },
+    featured_image: {
+        type: String,
+        required: true
+    },
+    slug : {
+        type: String
     }
 }, {
     timestamps: true

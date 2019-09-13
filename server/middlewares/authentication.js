@@ -7,10 +7,10 @@ module.exports = {
         try {
             let decoded = verifyToken(token);
             req.decoded = decoded;
-            console.log(decoded)
+            // console.log(decoded)
             next();
         } catch (err) {
-            next({status: 403, message: err.message});
+            next({status: 403, message: 'You must login first!'});
         }
     }
 }

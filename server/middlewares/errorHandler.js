@@ -14,5 +14,6 @@ module.exports = (err, req, res, next) => {
         message = err.message || `Internal server error`
     }
 
+    console.log(err.status, err, message)
     res.status(status).json({message})
 }

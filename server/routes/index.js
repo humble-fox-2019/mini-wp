@@ -1,7 +1,8 @@
 
 const router = require('express').Router()
 const articleRouter = require('./article')
-const images = require('../helpers/image')
+const userRouter = require('./user')
+const { authentication } = require('../middlewares/auth')
 
 router.get('/', (req, res) => {
     res.status(200).json({
@@ -9,17 +10,9 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/upload',
-    images.multer.single('image'),
-    images.sendUploadToGCS,
-    (req, res) => {
-        res.send({
-            status: 200,
-            message: 'Your file is successfully uploaded',
-            link: req.file.cloudStoragePublicUrl
-        })
-    })
+router.use('/users', userRouter)
 
+router.use(authentication)
 router.use('/articles', articleRouter)
 
 module.exports = router

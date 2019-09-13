@@ -10,6 +10,13 @@ const articleSchema = new Schema({
     content: {
         type: String,
         required: ['true', 'Content is required']
+    },
+    tags: [{
+        type: String
+    }],
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 }, { timestamps: true })
 

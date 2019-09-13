@@ -6,7 +6,7 @@ class ArticleController {
     static getArticles(req, res, next) {
         const { userId } = req.decode
 
-        Article.find({ userId }).populate('userId', 'email')
+        Article.find({ userId }).populate('userId', 'email').sort({ createdAt: -1 })
             .then(articles => {
                 res.status(200).json(articles)
             })

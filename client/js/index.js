@@ -1,4 +1,7 @@
 
+const server = `http://35.247.163.135`
+// const server = `http://localhost:3000`
+
 const app = new Vue({
     el: '#app',
     components: {
@@ -16,12 +19,12 @@ const app = new Vue({
         }
     },
     methods: {
-        selectNav (param) {
+        selectNav(param) {
             this.activeNav = param
         },
-        getArticles () {
+        getArticles() {
             axios({
-                url: "http://localhost:3000/articles",
+                url: `${server}/articles`,
                 method: "get"
             })
                 .then(({ data }) => {
@@ -38,7 +41,7 @@ const app = new Vue({
         },
         deletePost(id, index) {
             axios({
-                url: `http://localhost:3000/articles/${id}`,
+                url: `${server}/articles/${id}`,
                 method: "delete"
             })
                 .then(() => {
@@ -49,15 +52,17 @@ const app = new Vue({
                 })
         },
         saveArticle() {
-            const { id, title, content } = this.selectedPost
+            console.log(this.selectedPost.content)
 
+            const { id, title, content } = this.selectedPost
+            
             let method, url
             if (id) {
-                url = `http://localhost:3000/articles/${id}`
+                url = `${server}/articles/${id}`
                 method = 'patch'
             }
             else {
-                url = `http://localhost:3000/articles`
+                url = `${server}/articles`
                 method = 'post'
             }
 
@@ -75,7 +80,7 @@ const app = new Vue({
                 })
         }
     },
-    created: function() {
+    created: function () {
         this.getArticles()
     },
     computed: {

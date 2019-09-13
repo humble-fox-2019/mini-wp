@@ -193,9 +193,9 @@
                             <li v-for="(article, index) in filteredArticles" :key="article._id" class="container bg-white rounded mt-3 flex items-center shadow">
                                 <div class="pl-6 py-3">
                                     <a @click="selectPost({ id: article._id, title: article.title, content: article.content })" href="#">
-                                        <h3>{{ article.title }}</h3>
+                                        <h3 v-html="article.title"></h3>
                                     </a>
-                                    <p>{{ article.content }}</p>
+                                    <p v-html="article.content"></p>
                                     <small class="text-gray-600">{{ article.created_at}}</small>
                                 </div>
                                 <button @click="selectPost({ id: article._id, title: article.title, content: article.content })" class="ml-auto">

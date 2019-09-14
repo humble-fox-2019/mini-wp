@@ -84,7 +84,7 @@
             </a>
           </li>
           <li>
-            <a href="#" @click="$emit('changepage', 'PostList')">
+            <a href="#" @click="$emit('changepage', 'ArticleList')">
               <i class="fas fa-newspaper"></i>
               <span class="sidebar-mini-hide">Articles</span>
             </a>

@@ -23,7 +23,7 @@
         <span
           style="cursor: pointer;"
           class="d-none d-sm-inline-block font-weight-bold"
-          @click="$emit('changepage', 'PostAdd')"
+          @click="$emit('changepage', 'ArticleAdd')"
         >
           <i class="fas fa-plus"></i> Add new article
         </span>

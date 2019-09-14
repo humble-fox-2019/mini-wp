@@ -2,8 +2,8 @@
   <main id="main-container">
     <!-- Page Content -->
     <div class="content">
-      <PostList v-if="page === 'PostList'" @changepage="changePage"></PostList>
-      <PostAdd v-else-if="page === 'PostAdd'" @changepage="changePage"></PostAdd>
+      <ArticleList v-if="page === 'ArticleList'" @changepage="changePage"></ArticleList>
+      <ArticleAdd v-else-if="page === 'ArticleAdd'" @changepage="changePage"></ArticleAdd>
       <Profile v-else-if="page === 'Profile'" @changepage="changePage"></Profile>
       <DashboardMenu v-else @changepage="changePage"></DashboardMenu>
     </div>
@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import PostList from "./PostList";
-import PostAdd from "./PostAdd";
+import ArticleList from "./ArticleList";
+import ArticleAdd from "./ArticleAdd";
 import DashboardMenu from "./DashboardMenu";
 import Profile from "./Profile";
 
@@ -28,8 +28,8 @@ export default {
     }
   },
   components: {
-    PostList,
-    PostAdd,
+    ArticleList,
+    ArticleAdd,
     DashboardMenu,
     Profile
   }

@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const articleRoute = require('./articleRoute');
 const userRoute = require('./userRoute');
-const gcs = require('../helpers/gcs');
 
 const UserController = require('../controllers/userController');
 
@@ -11,7 +10,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/signup', gcs.multer.single('image'), gcs.sendUploadToGCS, UserController.signup);
+router.post('/signup', UserController.signup);
 router.post('/signin', UserController.signin);
 
 router.use('/articles', articleRoute);

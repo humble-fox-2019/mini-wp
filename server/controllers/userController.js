@@ -36,7 +36,7 @@ class UserController {
                         }
 
                         let token = jwt.generateToken(userData);
-                        res.status(200).json({ token })
+                        res.status(200).json({ token, name: userData.name })
                     } else {
                         next({ statusCode: 400, msg: "email/password not found" });
                     }

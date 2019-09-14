@@ -3,25 +3,14 @@
     <form @submit.prevent="signin">
       <div class="input-group">
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" required autocomplete="off" v-model="email" />
+        <input type="email" name="email" id="email" autocomplete="off" v-model="email" />
       </div>
       <div class="input-group">
         <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          autocomplete="off"
-          v-model="password"
-        />
+        <input type="password" name="password" id="password" autocomplete="off" v-model="password" />
       </div>
       <transition name="shake">
-        <div class="error" v-if="errors.length > 0">
-          <ul>
-            <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-          </ul>
-        </div>
+        <div class="error" v-if="errors.length > 0">{{errors}}</div>
       </transition>
       <button type="submit" class="btn btn-login" id="button-signin">Signin</button>
     </form>
@@ -39,14 +28,29 @@ import axios from "../api/server";
 export default {
   data() {
     return {
-      email: "",
-      password: "",
-      errors: []
+      email: "candrasaputra@live.com",
+      password: "password123",
+      errors: ""
     };
   },
   methods: {
     signin() {
-      console.log("object");
+      axios
+        .post("/signin", { email: this.email, password: this.password })
+        .then(({ data }) => {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("name", data.name);
+          this.$emit("changepage", "dashboard");
+        })
+        .catch(err => {
+          this.errors = err.response.data.message;
+          setTimeout(() => {
+            this.errors = "";
+          }, 2000);
+        })
+        .finally(() => {
+          // Add some stuff like loading done
+        });
     }
   }
 };

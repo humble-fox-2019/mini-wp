@@ -20,6 +20,14 @@
 
       <!-- Right Section -->
       <div class="content-header-section">
+        <span
+          style="cursor: pointer;"
+          class="d-none d-sm-inline-block font-weight-bold"
+          @click="$emit('changepage', 'PostAdd')"
+        >
+          <i class="fas fa-plus"></i> Add new article
+        </span>
+
         <!-- User Dropdown -->
         <div class="btn-group" role="group">
           <button
@@ -31,7 +39,7 @@
             aria-expanded="false"
           >
             <i class="fas fa-user d-sm-none"></i>
-            <span class="d-none d-sm-inline-block">J. Smith</span>
+            <span class="d-none d-sm-inline-block">{{name}}</span>
             <i class="fas fa-angle-down ml-5"></i>
           </button>
           <div
@@ -39,7 +47,7 @@
             aria-labelledby="page-header-user-dropdown"
           >
             <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="#" @click="$emit('changepage', 'Profile')">
               <i class="fas fa-user mr-5"></i> Profile
             </a>
 

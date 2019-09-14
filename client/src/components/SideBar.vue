@@ -60,7 +60,7 @@
               <a
                 class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase"
                 href="#"
-              >J. Smith</a>
+              >{{name}}</a>
             </li>
           </ul>
         </div>
@@ -72,9 +72,21 @@
       <div class="content-side content-side-full">
         <ul class="nav-main">
           <li>
-            <a href="#">
+            <a href="#" @click="$emit('changepage', 'DashboardMenu')">
               <i class="fas fa-mug-hot"></i>
               <span class="sidebar-mini-hide">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" @click="$emit('changepage', 'Profile')">
+              <i class="fas fa-user"></i>
+              <span class="sidebar-mini-hide">Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" @click="$emit('changepage', 'PostList')">
+              <i class="fas fa-newspaper"></i>
+              <span class="sidebar-mini-hide">Articles</span>
             </a>
           </li>
         </ul>
@@ -92,11 +104,6 @@ export default {
       name: localStorage.getItem("name"),
       image: localStorage.getItem("image")
     };
-  },
-  methods: {
-    signout() {
-      console.log("terpanggil");
-    }
   }
 };
 </script>

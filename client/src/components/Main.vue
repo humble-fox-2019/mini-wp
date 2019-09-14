@@ -2,33 +2,21 @@
   <main id="main-container">
     <!-- Page Content -->
     <div class="content">
-      <div class="block">
-        <div class="block-content">
-          <p class="text-center py-100">...</p>
-        </div>
-      </div>
-      <div class="block">
-        <div class="block-content">
-          <p class="text-center py-100">...</p>
-        </div>
-      </div>
-      <div class="block">
-        <div class="block-content">
-          <p class="text-center py-100">...</p>
-        </div>
-      </div>
-      <div class="block">
-        <div class="block-content">
-          <p class="text-center py-100">...</p>
-        </div>
-      </div>
-      <!-- END Dummy content -->
+      <PostList v-if="page === 'PostList'" @changepage="changePage"></PostList>
+      <PostAdd v-else-if="page === 'PostAdd'" @changepage="changePage"></PostAdd>
+      <Profile v-else-if="page === 'Profile'" @changepage="changePage"></Profile>
+      <DashboardMenu v-else @changepage="changePage"></DashboardMenu>
     </div>
     <!-- END Page Content -->
   </main>
 </template>
 
 <script>
+import PostList from "./PostList";
+import PostAdd from "./PostAdd";
+import DashboardMenu from "./DashboardMenu";
+import Profile from "./Profile";
+
 export default {
   props: ["page"],
   data() {
@@ -39,7 +27,12 @@ export default {
       this.$emit("changepage", page);
     }
   },
-  components: {}
+  components: {
+    PostList,
+    PostAdd,
+    DashboardMenu,
+    Profile
+  }
 };
 </script>
 

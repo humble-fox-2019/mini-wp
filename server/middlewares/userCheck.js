@@ -10,21 +10,21 @@ function userCheck(req, res, next) {
         let _id = req.decode.id
 
         if (_id != req.params.id) {
-            next({ statusCode: 401, msg: "You do not have access to data user" });
+            next({ statusCode: 403, msg: "You do not have access to data user" });
         } else {
             User.findById(_id)
                 .then(user => {
                     if (user) {
                         next()
                     } else {
-                        next({ statusCode: 401, msg: "You do not have access to data user" })
+                        next({ statusCode: 403, msg: "You do not have access to data user" })
                     }
                 })
                 .catch(next)
         }
     }
     catch{
-        next({ statusCode: 401, msg: "You do not have access to data user" })
+        next({ statusCode: 403, msg: "You do not have access to data user" })
     }
 }
 

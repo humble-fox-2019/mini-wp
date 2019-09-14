@@ -17,6 +17,10 @@ const articleSchema = new Schema({
     },
     isPublished: {
         type: Boolean
+    },
+    image: {
+        type: String,
+        default: null
     }
 }, {
     timestamps: true

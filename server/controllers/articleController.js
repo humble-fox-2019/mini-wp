@@ -1,7 +1,7 @@
 const Article = require('../models/article');
 
 class ArticleController {
-    static findAll(req, res, next) {
+    static myArticle(req, res, next) {
 
         Article.find({
             createdBy: req.decode.id
@@ -18,8 +18,10 @@ class ArticleController {
     static store(req, res, next) {
         const { title, content, isPublished } = req.body;
         const createdBy = req.decode.id;
+        const image = req.file.cloudStoragePublicUrl;
+
         Article.create(
-            { title, content, createdBy, isPublished }
+            { title, content, createdBy, isPublished, image }
         ).then(article => {
             res.status(201).json(article)
         }).catch(next);

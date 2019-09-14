@@ -12,8 +12,8 @@
       <table class="table table-hover table-vcenter">
         <thead>
           <tr>
-            <th>Name</th>
-            <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
+            <th>Title</th>
+            <th class="d-none d-sm-table-cell" style="width: 15%;">isPublished</th>
             <th class="text-center" style="width: 100px;">Actions</th>
           </tr>
         </thead>
@@ -21,7 +21,7 @@
           <tr v-for="article in articles" :key="article._id">
             <td>{{article.title}}</td>
             <td class="d-none d-sm-table-cell">
-              <span class="badge badge-success" v-if="article.isPublised">Published</span>
+              <span class="badge badge-success" v-if="article.isPublished">Published</span>
               <span class="badge badge-warning" v-else>Draff</span>
             </td>
             <td class="text-center">

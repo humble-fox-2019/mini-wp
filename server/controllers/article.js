@@ -1,15 +1,28 @@
 const Article = require('../models/articles')
 class ArticleController {
     static createArticle(req, res, next){
-        const { title, content } = req.body
+        const { title, content, published } = req.body
         Article.create({
             title,
             content,
+            published,
             userId: req.decode._id,
             author: req.decode.username
         })
         .then(response =>{
             res.status(201).json(response)
+        })
+        .catch(next)
+    } 
+    static publishArticle(req, res, next){
+        const { _id } = req.params
+        Article.updateOne({
+            _id
+        }, {
+            published: true
+        })
+        .then(response =>{
+            res.status(200).json(response)
         })
         .catch(next)
     }
@@ -40,6 +53,12 @@ class ArticleController {
         Article.find({
             userId: req.decode._id
         }).then(response=>{
+            res.status(200).json(response)
+        })
+        .catch(next)
+    }
+    static readAllArticle(req, res, next){
+        Article.find().then(response =>{
             res.status(200).json(response)
         })
         .catch(next)

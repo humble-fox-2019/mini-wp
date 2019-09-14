@@ -8,20 +8,17 @@ const articleSchema = new Schema({
     },
     content: {
         type: String,
-        required: [true, "Content must be filled"],
+    },
+    publish: {
+        type: Boolean,
+        default: false
     },
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    tagId: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Tag'
-    }],
-    categorizeId: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Categorize'
-    }]  
+    tag: [String],
+    categorize: [String]  
 },{ timestamps: true })
 
 

@@ -33,10 +33,11 @@ class UserController {
                 res.status(200).json({token, username: user.username})
             }
             else if(user){
-                next({status: 404, message: "invalid password"})
+                next({status: 400, message: "invalid password"})
             }
             else{
-                next({status: 404, message: "User does not exist. Please register first!"})
+                
+                next({status: 400, message: "User does not exist. Please register first!"})
             }
         })
         .catch(next)

@@ -66,7 +66,16 @@
                     <div class="form-group row"></div>
 
                     <transition name="shake">
-                      <div class="error" v-if="errors.length > 0">{{errors}}</div>
+                      <div
+                        class="alert alert-danger alert-dismissable"
+                        role="alert"
+                        v-if="errors.length > 0"
+                      >
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        {{errors}}
+                      </div>
                     </transition>
 
                     <div class="form-group">
@@ -75,9 +84,9 @@
                       </button>
                       <div class="mt-30">
                         <a
-                          href="#"
                           class="link-effect text-muted mr-10 mb-5 d-inline-block"
                           @click="$emit('changepage', 'signup')"
+                          style="cursor: pointer;"
                         >
                           <i class="fas fa-plus mr-5"></i> Create Account
                         </a>

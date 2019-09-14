@@ -2,25 +2,29 @@ if (process.env.NODE_ENV === 'development') {
     require('dotenv').config();
 }
 
-const mongoose = require('mongoose');
-const express = require('express');
-const routes = require('./routes');
-const cors = require('cors');
+const express = require('express'),
+    cors = require('cors'),
+    mongoose = require('mongoose'),
+    routes = require('./routes'),
+    errorHandler = require('./middlewares/errorHandler'),
+    PORT = process.env.PORT || 3000,
+    MONGO_CONNECTION = process.env.MONGO_CONNECTION,
+    app = express()
 
-const errorHandler = require('./middlewares/errorHandler');
+mongoose.connect(MONGO_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
+    if (err) console.log('Database connection failed')
+    else console.log('Database connection success')
+});
 
-const app = express();
-
-const PORT = process.env.PORT || 8000;
-
+// Middleware
 app.use(cors())
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+    .use(express.json())
+    .use(express.urlencoded({ extended: false }))
 
-mongoose.connect(process.env.MONGO_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true, useNewUrlParser: true });
-
+// Route
 app.use('/', routes);
 
+// Error Handler
 app.use(errorHandler);
 
 app.listen(PORT, () => {

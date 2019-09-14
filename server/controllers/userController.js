@@ -25,7 +25,6 @@ class UserController {
         User.findOne({ email })
             .then(user => {
                 if (!user) {
-                    // Note: gak bisa digabung dengan error yang dibawah karena balikan dari user jika gak ketemu null
                     next({ statusCode: 400, msg: "email/password not found" });
                 } else {
 
@@ -37,7 +36,7 @@ class UserController {
                         }
 
                         let token = jwt.generateToken(userData);
-                        res.status(200).json({ token, name: user.name })
+                        res.status(200).json({ token })
                     } else {
                         next({ statusCode: 400, msg: "email/password not found" });
                     }

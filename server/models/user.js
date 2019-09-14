@@ -47,7 +47,17 @@ const userSchema = new Schema({
             message: 'Password must contain at least one letter, one number, and minimum six characters'
         },
         required: [true, 'Password is required']
-    }
+    },
+    image: {
+        type: String,
+        default: 'default.jpg'
+    },
+    articles: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Article'
+        }
+    ]
 }, {
     timestamps: true
 })

@@ -39,7 +39,8 @@ export default {
         .post("/signin", { email: this.email, password: this.password })
         .then(({ data }) => {
           localStorage.setItem("token", data.token);
-          localStorage.setItem("name", data.name);
+          localStorage.setItem("id", data.userData.id);
+          localStorage.setItem("name", data.userData.name);
           this.$emit("changepage", "dashboard");
         })
         .catch(err => {

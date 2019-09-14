@@ -34,7 +34,22 @@ export default {
       this.page = "signin";
     }
   },
-  created() {}
+  created() {
+    let token = localStorage.getItem("token");
+    axios
+      .get(`/users/${localStorage.getItem("id")}`, {
+        headers: {
+          token
+        }
+      })
+      .then(({ data }) => {
+        this.page = "dashboard";
+      })
+      .catch(err => {
+        this.page = "login";
+        console.log(err.response.data);
+      });
+  }
 };
 </script>
 

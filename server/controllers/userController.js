@@ -5,8 +5,9 @@ const { bcrypt } = require('../helpers');
 class UserController {
     static signup(req, res, next) {
         const { name, email, password } = req.body
-
-        User.create({ name, email, password })
+        const image = req.file.cloudStoragePublicUrl
+        
+        User.create({ name, email, image, password })
             .then(result => {
                 res.status(201).json(result)
             })
@@ -77,8 +78,8 @@ class UserController {
     }
 
     static update(req, res, next) {
-        const { name, email, password } = req.body;
-        const data = { name, email, password };
+        const { name, email, image, password } = req.body;
+        const data = { name, email, image, password };
 
         User.updateOne({ _id: req.params.id }, data, { omitUndefined: true, runValidators: true })
             .then((info) => {

@@ -1,7 +1,6 @@
 if (process.env.NODE_ENV === 'development') {
   require('dotenv').config()
 }
-
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -10,12 +9,11 @@ const router = require('./routes')
 const app = express()
 const PORT = process.env.PORT || 3000
 
-mongoose.connect(process.env.ATLAS_CONNECT2, { useNewUrlParser: true, useFindAndModify: false })
+mongoose.connect('mongodb://localhost:27017/we-mini-wp', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(_ => {
     console.log('Database: connected')
   })
-  .catch(err => {
-    console.log(err)
+  .catch(_ => {
     console.log('Database: failed to connect')
   })
 

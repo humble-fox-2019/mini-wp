@@ -1,18 +1,15 @@
-require('dotenv').config()
+const fileType = require('file-type')
+const accepted_extensions = ['jpg, png, jpeg']
 
-// Imports the Google Cloud client library
 const { Storage } = require('@google-cloud/storage')
+const CLOUD_BUCKET = process.env.CLOUD_BUCKET
 
-// Creates a client
 const storage = new Storage({
   projectId: process.env.GCLOUD_PROJECT,
   keyFilename: process.env.KEYFILE_PATH
-});
-
-const CLOUD_BUCKET = process.env.CLOUD_BUCKET
+})
 
 const bucket = storage.bucket(CLOUD_BUCKET)
-// console.log(bucket);
 
 const getPublicUrl = (filename) => {
   return `https://storage.googleapis.com/${CLOUD_BUCKET}/${filename}`
@@ -23,8 +20,10 @@ const sendUploadToGCS = (req, res, next) => {
     return next()
   }
 
+  
   const gcsname = Date.now() + req.file.originalname
   const file = bucket.file(gcsname)
+  
 
   const stream = file.createWriteStream({
     metadata: {
@@ -48,38 +47,36 @@ const sendUploadToGCS = (req, res, next) => {
   stream.end(req.file.buffer)
 }
 
-// .then(bucket => {
-//   console.log(bucket)
-// })
-// .catch(err => {
-//   console.log(err)
-// })
-
-// function createBucket() {
-//   // Creates the new bucket
-//   storage.createBucket(CLOUD_BUCKET)
-//     .then(test => {
-//       console.log(test);
-//     })
-//     .catch(err => {
-//       console.log(err)
-//     })
-//   // console.log(`Bucket ${CLOUD_BUCKET} created.`);
-// }
-
-// createBucket()
-
 const Multer = require('multer'),
   multer = Multer({
     storage: Multer.MemoryStorage,
     limits: {
       fileSize: 5 * 1024 * 1024
-    }
-    // dest: '../images'
+    },
+    // fileFilter: (req, file, cb) => {
+    //   if (accepted_extensions.some(ext => file.originalname.endsWith("." + ext))) {
+    //     return cb(null, true);
+    //   }
+
+    //   return cb(new Error('Only ' + accepted_extensions.join(", ") + ' files are allowed!'))
+    // }
   })
+
+function validate_format(req, res, next) {
+  // For MemoryStorage, validate the format using `req.file.buffer`
+  // For DiskStorage, validate the format using `fs.readFile(req.file.path)` from Node.js File System Module
+  let mime = fileType(req.file.buffer)
+
+  // if can't be determined or format not accepted
+  if (!mime || !accepted_extensions.includes(mime.ext))
+    return next(new Error('The uploaded file is not in ' + accepted_extensions.join(", ") + ' format!'))
+
+  next()
+}
 
 module.exports = {
   getPublicUrl,
   sendUploadToGCS,
   multer
+  // validate_format
 }

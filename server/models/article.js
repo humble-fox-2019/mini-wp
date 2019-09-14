@@ -4,11 +4,19 @@ const Schema = mongoose.Schema
 const articleSchema = new Schema({
     title: {
         type: String,
-        required: [true, 'Article title is required']
+        required: [true, 'Title is required']
     },
     content: {
         type: String,
-        required: [true, 'Article content is required']
+        required: [true, 'Content is required']
+    },
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
+    isPublished: {
+        type: Boolean
     }
 }, {
     timestamps: true

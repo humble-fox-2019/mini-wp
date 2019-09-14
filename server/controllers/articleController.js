@@ -2,11 +2,10 @@ const Article = require('../models/article');
 
 class ArticleController {
     static findAll(req, res, next) {
-        let where = {};
-        if (req.query.title) {
-            where = { "title": { $regex: '.*' + req.query.title + '.*' } }
-        }
-        Article.find(where)
+
+        Article.find({
+            createdBy: req.decode.id
+        }).populate('createdBy')
             .then(articles => {
                 if (articles.length > 0) {
                     res.status(200).json(articles);
@@ -17,9 +16,10 @@ class ArticleController {
     }
 
     static store(req, res, next) {
-        const { title, content } = req.body;
+        const { title, content, isPublished } = req.body;
+        const createdBy = req.decode.id;
         Article.create(
-            { title, content }
+            { title, content, createdBy, isPublished }
         ).then(article => {
             res.status(201).json(article)
         }).catch(next);
@@ -28,18 +28,20 @@ class ArticleController {
     static findOne(req, res, next) {
         Article.findOne({
             _id: req.params.id
-        }).then(article => {
-            if (article) {
-                res.status(200).json(article);
-            } else {
-                next({ statusCode: 404 });
-            }
-        }).catch(next);
+        })
+            .populate('createdBy')
+            .then(article => {
+                if (article) {
+                    res.status(200).json(article);
+                } else {
+                    next({ statusCode: 404 });
+                }
+            }).catch(next);
     }
 
     static update(req, res, next) {
-        const { title, content } = req.body;
-        const data = { title, content };
+        const { title, content, isPublished } = req.body;
+        const data = { title, content, isPublished };
 
         Article.updateOne({ _id: req.params.id }, data, { omitUndefined: true })
             .then((info) => {

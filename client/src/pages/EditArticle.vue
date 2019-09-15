@@ -11,7 +11,7 @@
         />
 
         <quillEditor class="mt-4 h-64" v-model="content" ref="myQuillEditor"></quillEditor>
-        <button class="mt-24 focus:outline-none">Save</button>
+        <button class="mt-20 focus:outline-none px-5 py-2 bg-black text-white rounded">Save</button>
       </form>
     </div>
   </div>

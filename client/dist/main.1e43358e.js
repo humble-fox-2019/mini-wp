@@ -12241,6 +12241,7 @@ var _default = {
       // See https://developers.google.com/identity/sign-in/web/reference#users
 
       var id_token = googleUser.getAuthResponse().id_token;
+      console.log(id_token);
       (0, _axios.default)({
         method: 'post',
         url: 'http://35.187.235.228/users/google',
@@ -12255,7 +12256,7 @@ var _default = {
         _eventBus.default.$emit('checkToken');
       }).catch(function (err) {
         _this2.isLoading = false;
-        console.log(err);
+        console.log(err, 'axios err');
       });
     },
     onSignInError: function onSignInError(error) {
@@ -12403,7 +12404,7 @@ exports.default = _default;
                 attrs: { params: _vm.googleSignInParams },
                 on: { success: _vm.onSignInSuccess, error: _vm.onSignInError }
               },
-              [_vm._v("\n        Google\n      ")]
+              [_c("i", { staticClass: "fab fa-google text-2xl mt-1" })]
             )
           ],
           1
@@ -26835,6 +26836,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   components: {
     quillEditor: _vueQuillEditor.quillEditor,
@@ -26959,9 +26961,16 @@ exports.default = _default;
               on: { change: _vm.addPicture }
             }),
             _vm._v(" "),
-            _c("button", { staticClass: "mt-24 focus:outline-none" }, [
-              _vm._v("Save")
-            ])
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "mt-6 focus:outline-none px-5 py-2 bg-black text-white rounded"
+              },
+              [_vm._v("Save")]
+            )
           ],
           1
         )
@@ -27197,9 +27206,14 @@ exports.default = _default;
               }
             }),
             _vm._v(" "),
-            _c("button", { staticClass: "mt-24 focus:outline-none" }, [
-              _vm._v("Save")
-            ])
+            _c(
+              "button",
+              {
+                staticClass:
+                  "mt-20 focus:outline-none px-5 py-2 bg-black text-white rounded"
+              },
+              [_vm._v("Save")]
+            )
           ],
           1
         )
@@ -27493,7 +27507,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62221" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54728" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -46,7 +46,7 @@
           @success="onSignInSuccess"
           @error="onSignInError"
         >
-          Google
+          <i class="fab fa-google text-2xl mt-1"></i>
         </g-signin-button>
       </div>
 
@@ -131,6 +131,7 @@ export default {
       // `googleUser` is the GoogleUser object that represents the just-signed-in user.
       // See https://developers.google.com/identity/sign-in/web/reference#users
       const id_token = googleUser.getAuthResponse().id_token
+      console.log(id_token)
       axios({
         method: 'post',
         url: 'http://35.187.235.228/users/google',
@@ -143,7 +144,7 @@ export default {
         })
         .catch(err => {
           this.isLoading = false
-          console.log(err)
+          console.log(err, 'axios err')
         })
     },
     onSignInError(error) {

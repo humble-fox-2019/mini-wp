@@ -12,7 +12,8 @@
 
         <quillEditor class="mt-4 h-64" v-model="content" ref="myQuillEditor"></quillEditor>
         <input class="mt-24 focus:outline-none" type="file" ref="picture" @change="addPicture" />
-        <button class="mt-24 focus:outline-none">Save</button>
+        <br>
+        <button class="mt-6 focus:outline-none px-5 py-2 bg-black text-white rounded">Save</button>
       </form>
     </div>
   </div>

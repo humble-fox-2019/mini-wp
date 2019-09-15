@@ -29,6 +29,7 @@ class UserController {
   }
 
   static google(req, res, next) {
+    console.log('google')
     let payload
     verifyGoogle(req.headers.id_token)
       .then(ticket => {

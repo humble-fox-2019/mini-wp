@@ -1,5 +1,5 @@
 module.exports = (err, req, res, next) => {
-  console.log(err);
+  console.log(err, 'error handler');
   if (err.name === 'JsonWebTokenError') {
     res.status(400).json({ message: err.message })
   } else if (err.name === 'ValidationError') {

@@ -65,7 +65,7 @@ export default {
                 if (result.value) {
                      localStorage.removeItem('token');
                     localStorage.removeItem('userId' )
-
+                    localStorage.clear();
                     this.$emit('logout')
                 }
             })

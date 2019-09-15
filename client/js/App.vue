@@ -91,6 +91,9 @@ export default {
             Swal.fire('success', title, message )
         },
         changeCurrentPage ( page ) {
+            if ( page == 'home' ) {
+                this.fetchArticle();
+            } 
             this.currentPage = page;
         },
         myArticleSearch( keyword) {
@@ -171,6 +174,7 @@ export default {
             this.fetchUserArticles();
         } else {
             this.changeCurrentPage('login')
+            localStorage.clear();
         }
     }
 

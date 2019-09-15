@@ -1,4 +1,5 @@
 const serverURL = `http://localhost:3000`
+// const serverURL = 'http://34.87.63.236'
 
 // localhost 1234
 const client_id = '397711291646-fgrnl8h2969mqm5fd2ufmjthm4kv36p5.apps.googleusercontent.com'

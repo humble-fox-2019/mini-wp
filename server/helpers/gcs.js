@@ -1,8 +1,8 @@
-const Storage = require('@google-cloud/storage');
+const { Storage } = require('@google-cloud/storage');
 
 const GOOGLE_CLOUD_BUCKET = process.env.GOOGLE_CLOUD_BUCKET
 
-const storage = Storage({
+const storage = new Storage({
     projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
     keyFilename: process.env.GOOGLE_CLOUD_KEYFILE
 })

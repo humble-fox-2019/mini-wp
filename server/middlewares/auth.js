@@ -18,7 +18,7 @@ function authorization(req, res, next) {
         .then(article => {
             if (article) {
                 if (article.userId._id == userId) next()
-                else next({ status: 403, message: `You are not authorized` })
+                else next({ status: 401, message: `You are not authorized` })
             } else next({ status: 404, message: `article id is invalid` })
         })
         .catch(next)

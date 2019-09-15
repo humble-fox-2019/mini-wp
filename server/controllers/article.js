@@ -29,7 +29,7 @@ class ArticleController {
     static getArticle(req, res, next) {
         const { id } = req.params
 
-        Article.findById(id)
+        Article.findById(id).populate('userId', 'email')
             .then(article => {
                 res.status(200).json(article)
             })

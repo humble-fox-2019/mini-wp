@@ -36,7 +36,7 @@ Code : `200`
 Response :
 ```
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDdiOTYxNzU3ZWQ0MTI0ZTYyNDJlODAiLCJlbWFpbCI6Inpha2lAbWFpbC5jb20iLCJpYXQiOjE1NjgzODA1MDN9.........."
+    "token": "eyJhbGciOiJIUzI1NiIsInR5c.........."
 }
 ```  
 
@@ -48,15 +48,15 @@ Code : `200`
 Response :
 ```
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDdiOTYxNzU3ZWQ0MTI0ZTYyNDJlODAiLCJlbWFpbCI6Inpha2lAbWFpbC5jb20iLCJpYXQiOjE1NjgzODA1MDN9.........."
+    "token": "eyJhbGciOiJIUzI1NiIsInR5c.........."
 }
 ``` 
 
 ## LIST OF ARTICLE ROUTER
 
-Route | HTTP | Headers | Body
------ | ---- | ------- | ----
-`/articles` | `GET` | `token:String` | `none`
+Route | HTTP | Headers | Body | Descrition | Additional info
+----- | ---- | ------- | ---- | ---------- | ---------------
+`/articles` | `GET` | `token:String` | `none` | get all user's articles | Authentication required
 
 Code : `200`  
 Response :
@@ -64,113 +64,139 @@ Response :
 [
     {
         "tags": [
-            "sequelize",
-            "mongodb"
+            "bali",
+            "pura"
         ],
-        "_id": "5d7ba424b7225e2a2b7dffbf",
-        "title": "Eleventh Articles",
-        "content": "Artikel yang ke sekian",
+        "_id": "5d7e0a7f70339075d39cef0a",
+        "title": "pura bali",
+        "content": "artikel tentang kehidupan di bali",
         "userId": {
-            "_id": "5d7b961757ed4124e6242e80",
-            "email": "zaki@mail.com"
+            "_id": "5d7dfb3a568ea771d7ddd0a3",
+            "email": "admin@mail.com"
         },
-        "createdAt": "2019-09-13T14:13:56.060Z",
-        "updatedAt": "2019-09-13T14:13:56.060Z",
+        "url": "https://storage.googleapis.com/storage-mini-wp.zakiarsyad.com/1568541310778bali.jpg",
+        "createdAt": "2019-09-15T09:55:11.477Z",
+        "updatedAt": "2019-09-15T09:55:11.477Z",
         "__v": 0
     },
     {
         "tags": [
-            "Database",
-            "Mongoose"
+            "klasik",
+            "mobil"
         ],
-        "_id": "5d7ba51aafe84c2a58c1cb16",
-        "title": "Search Articles",
-        "content": "Artikel yang ke sekian",
+        "_id": "5d7e0a4270339075d39cef09",
+        "title": "mobil klasik",
+        "content": "artikel tentang mobil-mobil klasik",
         "userId": {
-            "_id": "5d7b961757ed4124e6242e80",
-            "email": "zaki@mail.com"
+            "_id": "5d7dfb3a568ea771d7ddd0a3",
+            "email": "admin@mail.com"
         },
-        "createdAt": "2019-09-13T14:18:02.559Z",
-        "updatedAt": "2019-09-13T14:18:02.559Z",
+        "url": "https://storage.googleapis.com/storage-mini-wp.zakiarsyad.com/1568541246358markus-spiske-TzyIQe2SxHk-unsplash.jpg",
+        "createdAt": "2019-09-15T09:54:10.580Z",
+        "updatedAt": "2019-09-15T09:54:10.580Z",
         "__v": 0
     }
 ]
 ``` 
 
-Route | HTTP | Headers | Body
------ | ---- | ------- | ----
-`/articles` | `POST` | `token:String` | `title:String, content:String, tags:Array`
+Route | HTTP | Headers | Body | Descrition | Additional info
+----- | ---- | ------- | ---- | ---------- | ---------------
+`/articles` | `POST` | `token:String` | `title:String, content:String, tags:Array, image:File` | post a new article | Authentication required
 
 Code : `201`  
 Response :
 ```
 {
     "tags": [
-        "Database",
-        "Mongoose"
+        "klasik",
+        "mobil"
     ],
-    "_id": "5d7ba51aafe84c2a58c1cb16",
-    "title": "Search Articles",
-    "content": "Artikel yang ke sekian",
-    "userId": "5d7b961757ed4124e6242e80",
-    "createdAt": "2019-09-13T14:18:02.559Z",
-    "updatedAt": "2019-09-13T14:18:02.559Z",
+    "_id": "5d7e0a4270339075d39cef09",
+    "title": "mobil klasik",
+    "content": "artikel tentang mobil-mobil klasik",
+    "userId": "5d7dfb3a568ea771d7ddd0a3",
+    "url": "https://storage.googleapis.com/storage-mini-wp.zakiarsyad.com/1568541246358markus-spiske-TzyIQe2SxHk-unsplash.jpg",
+    "createdAt": "2019-09-15T09:54:10.580Z",
+    "updatedAt": "2019-09-15T09:54:10.580Z",
     "__v": 0
 }
 ```  
 
-Route | HTTP | Headers | Body
------ | ---- | ------- | ----
-`/articles/:id` | `GET` | `token:String` | `none`
+Route | HTTP | Headers | Body | Descrition | Additional info
+----- | ---- | ------- | ---- | ---------- | ---------------
+`/articles/:id` | `GET` | `token:String` | `none` | get single article | Authentication and Authorization required
 
 Code : `200`  
 Response :
 ```
 {
-        "tags": [
-            "Database",
-            "Mongoose"
-        ],
-        "_id": "5d7ba51aafe84c2a58c1cb16",
-        "title": "Search Articles",
-        "content": "Artikel yang ke sekian",
-        "userId": {
-            "_id": "5d7b961757ed4124e6242e80",
-            "email": "zaki@mail.com"
-        },
-        "createdAt": "2019-09-13T14:18:02.559Z",
-        "updatedAt": "2019-09-13T14:18:02.559Z",
-        "__v": 0
-    }
-```  
-
-Route | HTTP | Headers | Body
------ | ---- | ------- | ----
-`/articles/:id` | `PATCH` | `token:String` | `title:String, content:String`
-
-Code : `200`  
-Response :
-```
-{
-    "message": "Success update an article"
+    "tags": [
+        "bali",
+        "pura"
+    ],
+    "_id": "5d7e0a7f70339075d39cef0a",
+    "title": "pura bali",
+    "content": "artikel tentang kehidupan di bali",
+    "userId": {
+        "_id": "5d7dfb3a568ea771d7ddd0a3",
+        "email": "admin@mail.com"
+    },
+    "url": "https://storage.googleapis.com/storage-mini-wp.zakiarsyad.com/1568541310778bali.jpg",
+    "createdAt": "2019-09-15T09:55:11.477Z",
+    "updatedAt": "2019-09-15T09:55:11.477Z",
+    "__v": 0
 }
 ```  
 
-Route | HTTP | Headers | Body
------ | ---- | ------- | ----
-`/articles/:id` | `DELETE` | `token:String` | `none`
+Route | HTTP | Headers | Body | Descrition | Additional info
+----- | ---- | ------- | ---- | ---------- | ---------------
+`/articles/:id` | `PATCH` | `token:String` | `title:String, content:String, tags:Array, image:File` | edit single article | Authentication and Authorization required
 
 Code : `200`  
 Response :
 ```
 {
-    "message": "Success delete an article"
+    "tags": [
+        "pura",
+        "denpasar"
+    ],
+    "_id": "5d7e0a7f70339075d39cef0a",
+    "title": "pura denpasar",
+    "content": "artikel tentang kehidupan di denpsar",
+    "userId": "5d7dfb3a568ea771d7ddd0a3",
+    "url": "https://storage.googleapis.com/storage-mini-wp.zakiarsyad.com/1568544689468john-westrock-7Q-x0TH6z4w-unsplash.jpg",
+    "createdAt": "2019-09-15T09:55:11.477Z",
+    "updatedAt": "2019-09-15T10:51:35.282Z",
+    "__v": 1
 }
 ```  
 
-Route | HTTP | Headers | Body
------ | ---- | ------- | ----
-`/articles/search/:tag` | `GET` | `token:String` | `none`
+Route | HTTP | Headers | Body | Descrition | Additional info
+----- | ---- | ------- | ---- | ---------- | ---------------
+`/articles/:id` | `DELETE` | `token:String` | `none` | delete single article | Authentication and Authorization required
+
+Code : `200`  
+Response :
+```
+{
+    "tags": [
+        "klasik",
+        "mobil"
+    ],
+    "_id": "5d7e0a4270339075d39cef09",
+    "title": "mobil klasik",
+    "content": "artikel tentang mobil-mobil klasik",
+    "userId": "5d7dfb3a568ea771d7ddd0a3",
+    "url": "https://storage.googleapis.com/storage-mini-wp.zakiarsyad.com/1568541246358markus-spiske-TzyIQe2SxHk-unsplash.jpg",
+    "createdAt": "2019-09-15T09:54:10.580Z",
+    "updatedAt": "2019-09-15T09:54:10.580Z",
+    "__v": 0
+}
+```  
+
+Route | HTTP | Headers | Body | Descrition | Additional info
+----- | ---- | ------- | ---- | ---------- | ---------------
+`/articles/search/:tag` | `GET` | `token:String` | `none` | get user's articles by tag | Authentication required
 
 Code : `200`  
 Response :
@@ -178,35 +204,46 @@ Response :
 [
     {
         "tags": [
-            "sequelize",
-            "mongodb"
+            "klasik",
+            "mobil"
         ],
-        "_id": "5d7ba424b7225e2a2b7dffbf",
-        "title": "Eleventh Articles",
-        "content": "Artikel yang ke sekian",
+        "_id": "5d7e0a4270339075d39cef09",
+        "title": "mobil klasik",
+        "content": "artikel tentang mobil-mobil klasik",
         "userId": {
-            "_id": "5d7b961757ed4124e6242e80",
-            "email": "zaki@mail.com"
+            "_id": "5d7dfb3a568ea771d7ddd0a3",
+            "email": "admin@mail.com"
         },
-        "createdAt": "2019-09-13T14:13:56.060Z",
-        "updatedAt": "2019-09-13T14:13:56.060Z",
+        "url": "https://storage.googleapis.com/storage-mini-wp.zakiarsyad.com/1568541246358markus-spiske-TzyIQe2SxHk-unsplash.jpg",
+        "createdAt": "2019-09-15T09:54:10.580Z",
+        "updatedAt": "2019-09-15T09:54:10.580Z",
         "__v": 0
     },
     {
         "tags": [
-            "Database",
-            "Mongoose"
+            "pura",
+            "denpasar"
         ],
-        "_id": "5d7ba51aafe84c2a58c1cb16",
-        "title": "Search Articles",
-        "content": "Artikel yang ke sekian",
+        "_id": "5d7e0a7f70339075d39cef0a",
+        "title": "pura denpasar",
+        "content": "artikel tentang kehidupan di denpsar",
         "userId": {
-            "_id": "5d7b961757ed4124e6242e80",
-            "email": "zaki@mail.com"
+            "_id": "5d7dfb3a568ea771d7ddd0a3",
+            "email": "admin@mail.com"
         },
-        "createdAt": "2019-09-13T14:18:02.559Z",
-        "updatedAt": "2019-09-13T14:18:02.559Z",
-        "__v": 0
+        "url": "https://storage.googleapis.com/storage-mini-wp.zakiarsyad.com/1568544689468john-westrock-7Q-x0TH6z4w-unsplash.jpg",
+        "createdAt": "2019-09-15T09:55:11.477Z",
+        "updatedAt": "2019-09-15T10:51:35.282Z",
+        "__v": 1
     }
 ]
 ```
+
+## Error Status
+Code | Name | Description
+---- | ---- | -----------
+400 | Bad request | We could not process that action. Please double check your input
+401 | Unauthorized | You are not authorized to access tha page. Authorization is required
+403 | Forbidden | You are not authenticated to access tha page. Authentication is required
+404 | Not Found | The requested resource could not be found
+500 | Internal Server Error | We had a problem with our server. Please try again later

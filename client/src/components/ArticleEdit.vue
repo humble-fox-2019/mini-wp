@@ -1,7 +1,7 @@
 <template>
   <div class="block animated fadeIn">
     <div class="block-header block-header-default">
-      <h3 class="block-title">Add new Article</h3>
+      <h3 class="block-title">Edit Article</h3>
       <div class="block-options">
         <div class="block-options-item">
           <code>.</code>
@@ -10,7 +10,7 @@
     </div>
     <div class="block-content d-flex justify-content-center">
       <div class="col-9">
-        <form @submit.prevent="createPost()">
+        <form @submit.prevent="updatePost()">
           <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" v-model="title" />
@@ -76,6 +76,7 @@ import "quill/dist/quill.bubble.css";
 import { quillEditor } from "vue-quill-editor";
 
 export default {
+  props: ["articleid"],
   data() {
     return {
       title: "",
@@ -97,7 +98,7 @@ export default {
       this.image = this.$refs.image.files[0];
       this.imageName = this.$refs.image.files[0].name;
     },
-    createPost() {
+    updatePost() {
       let formData = new FormData();
 
       formData.append("title", this.title);
@@ -106,7 +107,7 @@ export default {
       formData.append("isPublished", this.isPublished);
 
       axios
-        .post("/articles", formData, {
+        .patch("/articles/" + this.articleid, formData, {
           headers: {
             token: localStorage.getItem("token")
           }
@@ -123,7 +124,27 @@ export default {
           }, 2000);
         })
         .finally(() => {});
+    },
+    getArticle(id) {
+      axios
+        .get("/articles/" + id, {
+          headers: {
+            token: localStorage.getItem("token")
+          }
+        })
+        .then(({ data }) => {
+          this.title = data.title;
+          this.content = data.content;
+          this.image = data.image;
+          this.isPublished = data.isPublished;
+        })
+        .catch(err => {
+          console.log(err.response.data);
+        });
     }
+  },
+  created() {
+    this.getArticle(this.articleid);
   }
 };
 </script>

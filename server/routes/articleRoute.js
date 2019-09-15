@@ -12,7 +12,7 @@ router.post('/', gcs.multer.single('image'), gcs.sendUploadToGCS, ArticleControl
 
 router.use("/:id", articleCheck);
 router.get('/:id', ArticleController.findOne);
-router.patch('/:id', ArticleController.update);
+router.patch('/:id', gcs.multer.single('image'), gcs.sendUploadToGCS, ArticleController.update);
 router.delete('/:id', ArticleController.delete);
 
 module.exports = router;

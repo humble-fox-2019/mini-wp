@@ -32,6 +32,7 @@
                   data-toggle="tooltip"
                   title
                   data-original-title="Edit"
+                  @click="edit(article._id)"
                 >
                   <i class="fas fa-pencil-alt"></i>
                 </button>
@@ -59,6 +60,7 @@ import axios from "../api/server";
 import Swal from "sweetalert2";
 
 export default {
+  props: ["page"],
   data() {
     return {
       articles: []
@@ -105,6 +107,10 @@ export default {
             });
         }
       });
+    },
+    edit(id) {
+      this.$emit("setarticleid", id);
+      this.$emit("changepage", "ArticleEdit");
     }
   },
   created() {

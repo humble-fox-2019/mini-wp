@@ -2,10 +2,23 @@ const Article = require('../models/article');
 
 class ArticleController {
     static myArticle(req, res, next) {
-
-        Article.find({
+        let where = {
             createdBy: req.decode.id
-        }).sort({ createdAt: -1 })
+        };
+
+        if (req.query.title) {
+            where.title = { $regex: '.*' + req.query.title + '.*', $options: 'i' }
+        }
+
+        if (req.query.isPublished) {
+            where.isPublished = req.query.isPublished
+        }
+
+        if (req.query.tag) {
+            where.tags = { $regex: '.*' + req.query.tag + '.*', $options: 'i' }
+        }
+
+        Article.find(where).sort({ createdAt: -1 })
             .populate('createdBy')
             .then(articles => {
                 if (articles.length > 0) {

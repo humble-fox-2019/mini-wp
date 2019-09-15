@@ -9,6 +9,30 @@
       </div>
     </div>
     <div class="block-content">
+      <button class="btn btn-info" @click="showFilter">Filter</button>
+      <div class="row pt-3" if="filter" v-show="filter">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" v-model="title" />
+          </div>
+          <div class="form-group">
+            <label for="tag">Tag</label>
+            <input type="text" class="form-control" id="tag" v-model="tag" />
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="title">Published</label>
+            <select id="isPublished" class="form-control" v-model="isPublished">
+              <option value>All</option>
+              <option value="true">Published</option>
+              <option value="false">Draff</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr />
       <table class="table table-hover table-vcenter">
         <thead>
           <tr>
@@ -73,13 +97,19 @@ export default {
   props: ["page"],
   data() {
     return {
-      articles: []
+      articles: [],
+      isPublished: "",
+      title: "",
+      filter: false,
+      tag: ""
     };
   },
   methods: {
     getArticles() {
+      let endPoint = `/articles?isPublished=${this.isPublished}&title=${this.title}&tag=${this.tag}`;
+
       axios
-        .get("/articles", {
+        .get(endPoint, {
           headers: {
             token: localStorage.getItem("token")
           }
@@ -121,10 +151,30 @@ export default {
     edit(id) {
       this.$emit("setarticleid", id);
       this.$emit("changepage", "ArticleEdit");
+    },
+    showFilter() {
+      this.clearFilter();
+      this.filter = !this.filter;
+    },
+    clearFilter() {
+      this.tag = "";
+      this.isPublished = "";
+      this.title = "";
     }
   },
   created() {
     this.getArticles();
+  },
+  watch: {
+    isPublished: function(val) {
+      this.getArticles();
+    },
+    title: function(val) {
+      this.getArticles();
+    },
+    tag: function(val) {
+      this.getArticles();
+    }
   }
 };
 </script>

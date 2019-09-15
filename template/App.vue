@@ -35,12 +35,10 @@ export default {
       this.currentPage = "dashboard-page";
     },
     showWritingPage() {
-      this.article = {};
       this.currentPage = "writing-page";
     },
     showEditPage(article) {
       this.article = article;
-      console.log(this.article);
       this.currentPage = "writing-page";
     }
   },

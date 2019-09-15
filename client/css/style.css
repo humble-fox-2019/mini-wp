@@ -3,12 +3,6 @@
   padding: 0;
 }
 
-/* Style the jumbotron for background color and font */
-.jumbotron {
-  background: #f0f0f0;
-  padding: 1rem 2rem;
-}
-
 /* Style the body for background color and font */
 body {
   background: #f0f0f0;
@@ -18,18 +12,6 @@ body {
 /* Style the dashboard (view post) container so between card (post) there is a sufficient space */
 .content {
   margin-top: 10px;
-}
-
-/* Style the login form container so it will not be too wide */
-#loginForm {
-  max-width: 50%;
-  padding: 20px;
-}
-
-/* Style the register form container so it will not be too wide */
-#registerForm {
-  max-width: 50%;
-  padding: 20px;
 }
 
 /* Style the create post container so it will not be too wide */
@@ -48,23 +30,6 @@ body {
   background-color: #333;
   font-family: "Crimson Pro";
   justify-content: space-around;
-}
-
-#github {
-  margin-left: 15px;
-  border-radius: 0px;
-  width: 150px;
-  height: 36px;
-  font-size: 14px;
-  text-align: center;
-}
-
-#gmail {
-  margin-left: 15px;
-}
-
-#giphy {
-  max-height: 100px;
 }
 
 .card-img-top {

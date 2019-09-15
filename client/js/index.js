@@ -126,7 +126,7 @@ var app = new Vue({
       }
       this.checkLogin()
     },
-    fetchArticle () {
+    fetchArticle() {
       axios({
         method: 'GET',
         url: `${url}/articles`,
@@ -217,10 +217,10 @@ var app = new Vue({
         })
     }
   },
-  created () {
+  created() {
     this.checkLogin()
   },
-  mounted () {
+  mounted() {
   },
   watch: {
     searchInput: function () {

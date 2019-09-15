@@ -10,11 +10,10 @@ const articleSchema = new Schema({
     type: String,
     required: [true, 'Please insert a title for the article!']
   },
-  description: String,
-  content: String,
+  content: { type: String, required: [true, 'Please insert the content of the post!'] },
+  isPublished: { type: Boolean, default: false },
   author: { type: ObjectID, ref: 'User' },
-  image: { type: String, default: '' },
-  tags: [String]
+  featured_image: { type: String, default: null }
 
 }, {
   timestamps: true

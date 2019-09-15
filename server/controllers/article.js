@@ -12,27 +12,17 @@ class ArticleController {
   }
 
   static create (req, res, next) {
-    Article.create({
-      title: req.body.title,
-      content: req.body.content,
-      author: req.decoded.id
-    })
-      .then((todo) => {
-        res.status(201).json(todo)
+    const { title, content, isPublished } = req.body
+    const author = req.decoded.id
+    // const featured_image = req.file.cloudStoragePublicUrl
+    Article.create({ title, content, author, isPublished, featured_image: null })
+      .then((article) => {
+        res.status(201).json(article)
       }).catch(next)
   }
 
   static findAll (req, res, next) {
     console.log('Successfully read all articles')
-    Article.find({ author: req.decoded.id }).populate('author')
-      .then(todos => {
-        console.log(todos)
-        res.status(200).json(todos)
-      })
-      .catch(next)
-  }
-
-  static findAllUserArticle (req, res, next) {
     Article.find({ author: req.decoded.id }).populate('author')
       .then(todos => {
         console.log(todos)

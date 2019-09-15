@@ -73,7 +73,7 @@ export default {
                     this.changeCurrentPage('login')
                 })
                 .catch ( err => {
-                    console.log( err.response )
+                    // console.log( err.response )
                     const errMsg = err.response.data.message;
                     Swal.fire("Fail to Register", errMsg , 'error');
                 })

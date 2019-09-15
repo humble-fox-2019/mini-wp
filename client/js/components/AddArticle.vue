@@ -76,8 +76,8 @@ export default {
   },
   methods: {
     handlefileupload(event) {
-      let file = event.target.files || event.dataTransfer.files;
-      this.file = file[0];
+        let file = event.target.files || event.dataTransfer.files;
+        this.file = file[0];
     },
     addNewArticle() {
         if ( !this.title || !this.content  ) {
@@ -125,7 +125,7 @@ export default {
             this.tags= []
             this.tag = ''
             this.content= ""
-            console.log("ADD SUCCESS")
+            // console.log("ADD SUCCESS")
             this.$buefy.toast.open({
                 message: 'Add Article Success!',
                 type: 'is-success'

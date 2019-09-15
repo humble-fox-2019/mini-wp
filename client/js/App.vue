@@ -46,8 +46,8 @@ export default {
                 this.allArticles = response.data.articles
             })
             .catch( err => {
-                console.log('FETCH ALL ARTICLES ERROR');
-                console.log( err.response ) ;
+                // console.log('FETCH ALL ARTICLES ERROR');
+                // console.log( err.response ) ;
                 this.$buefy.toast.open({
                     duration: 5000,
                     message: `Oppss... Somthing gone can't fetch all article please reload!`,
@@ -70,8 +70,8 @@ export default {
                     localStorage.setItem('userId' , this.myArticles[0].userId._id )
             })
             .catch( err => {
-                console.log('FETCH USER ARTICLES ERROR');
-                console.log( err );
+                // console.log('FETCH USER ARTICLES ERROR');
+                // console.log( err );
                 this.$buefy.toast.open({
                     duration: 5000,
                     message: `Oppss... Somthing gone can't fetch user article please reload!`,
@@ -106,8 +106,8 @@ export default {
                 this.myArticles = response.data.articles;
             })
             .catch ( err => {
-                console.log("MY ARTICLE SEARCH ERRr");
-                console.log( err.response )
+                // console.log("MY ARTICLE SEARCH ERRr");
+                // console.log( err.response )
                 this.$buefy.toast.open({
                     duration: 5000,
                     message: `Oppss... Somthing gone can't search article please reload!`,
@@ -129,8 +129,8 @@ export default {
                 this.allArticles = response.data.articles;
             })
             .catch ( err => {
-                console.log("MY ARTICLE SEARCH BY TITLE ERRr");
-                console.log( err.response )
+                // console.log("MY ARTICLE SEARCH BY TITLE ERRr");
+                // console.log( err.response )
                 this.$buefy.toast.open({
                     duration: 5000,
                     message: `Oppss... Somthing gone can't search by title please reload!`,
@@ -152,8 +152,8 @@ export default {
                 this.allArticles = response.data.articles;
             })
             .catch ( err => {
-                console.log("MY ARTICLE SEARCH BY TAG ERRr");
-                console.log( err.response )
+                // console.log("MY ARTICLE SEARCH BY TAG ERRr");
+                // console.log( err.response )
                 this.$buefy.toast.open({
                     duration: 5000,
                     message: `Oppss... Somthing gone can't search by tag please reload!`,

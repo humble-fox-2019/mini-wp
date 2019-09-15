@@ -71,8 +71,8 @@ export default {
                 // console.log( this.article )
             })
             .catch( err => {
-                console.log( "ONE ARTICLE ERROR ")
-                console.log( err );
+                // console.log( "ONE ARTICLE ERROR ")
+                // console.log( err );
                 this.$buefy.toast.open({
                     duration: 5000,
                     message: `Oppss... Somthing gone can't fetch article please reload!`,
@@ -94,8 +94,8 @@ export default {
                 this.changeMainPage('myArticle')
             })
             .catch( err=> {
-                console.log( err.response )
-                console.log( "DELETE ERROR ")
+                // console.log( err.response )
+                // console.log( "DELETE ERROR ")
                 this.$buefy.toast.open({
                     duration: 5000,
                     message: `Oppss... Somthing gone can't delete article please reload!`,
@@ -117,8 +117,8 @@ export default {
                 this.changeMainPage( 'editArticle');           
             })
             .catch( err => {
-                console.log("DI HOME EDIT ARTICLE ERROR");
-                console.log( err.respnose )
+                // console.log("DI HOME EDIT ARTICLE ERROR");
+                // console.log( err.respnose )
                 this.$buefy.toast.open({
                     duration: 5000,
                     message: `Oppss... Somthing gone can't edit article please reload!`,

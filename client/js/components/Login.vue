@@ -56,7 +56,7 @@ export default {
     methods: {
         onSuccess ( googleUser ) {
             const idToken = googleUser.Zi.id_token
-            console.log( idToken )
+            // console.log( idToken )
             axios({
                 method:"POST",
                 url : `${serverURL}/googleSignIn`,
@@ -65,18 +65,28 @@ export default {
                 }
             })
             .then( response => {
-                console.log( response.data , "GOOGLE SIGN IN MASUK")
+                // console.log( response.data , "GOOGLE SIGN IN MASUK")
                 const { token } = response.data;
                 localStorage.setItem('token' , token );
                 this.changeCurrentPage('home')
             })
             .catch ( err => {
-                console.log( err.response );
-                console.log("GOOGLE SIGNI NERROR");
+                // console.log( err.response );
+                this.$buefy.toast.open({
+                    duration: 5000,
+                    message: `Oppss... Somthing gone wrong.. can't signin using google sign in!`,
+                    type: 'is-danger'
+                })  
+                // console.log("GOOGLE SIGNI NERROR");
             })
         },
         onFailure ( err ) {
-            console.log( err );
+            // console.log( err );
+            this.$buefy.toast.open({
+                duration: 5000,
+                message: `Oppss... Somthing gone wrong when using google sign in!`,
+                type: 'is-danger'
+            })  
         },
         login(){
             if ( this.emailError || this.passwordError || this.email.length == 0 || this.password.length == 0) {
@@ -96,7 +106,7 @@ export default {
                     this.changeCurrentPage('home')
                 })
                 .catch( err => {
-                    console.log( err.response )
+                    // console.log( err.response )
                     const errMsg = err.response.data.message;
                     Swal.fire("Fail to login", errMsg , 'error');
                 })
@@ -120,7 +130,7 @@ export default {
     },
     watch : {
         email : function () {
-            console.log(!this.validEmail( this.email ))
+            // console.log(!this.validEmail( this.email ))
             if ( !this.validEmail( this.email ) ) {
                 this.emailError = true
             } else {

@@ -65,7 +65,7 @@ export default {
         handlefileupload(event) {
             let file = event.target.files || event.dataTransfer.files;
             this.file = file[0];
-            console.log(this.file)
+            // console.log(this.file)
         },
         editArticle( ) {
             if ( !this.title || !this.content  ) {
@@ -95,7 +95,7 @@ export default {
             formData.set("file", this.file);
             formData.set("title", this.title);
             formData.set("content", this.content);
-            console.log( formData )
+            // console.log( formData )
             axios({
                 method: "PUT",
                 url : `${serverURL}/articles/${this.articleData._id}`,
@@ -106,18 +106,18 @@ export default {
             })
             .then( response => {
                 Swal.close();
-                console.log( "updated" )
+                // console.log( "updated" )
                  this.$buefy.toast.open({
                     message: 'Update Article Success!',
                     type: 'is-success'
                 })
-                console.log( response.data )
+                // console.log( response.data )
                 this.$emit('changeMainPage')
             })
             .catch( err => {
                 Swal.close()
-                console.log( "EDIT ARTTICLE EROR");
-                console.log( err.response )
+                // console.log( "EDIT ARTTICLE EROR");
+                // console.log( err.response )
                 this.$buefy.toast.open({
                     duration: 5000,
                     message: err.response.data.message,

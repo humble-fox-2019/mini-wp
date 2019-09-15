@@ -1,5 +1,6 @@
 
 const Article = require('../models/article')
+const { Storage } = require('@google-cloud/storage')
 
 class ArticleController {
     
@@ -16,8 +17,9 @@ class ArticleController {
     static create(req, res, next) {
         const { title, content, tags } = req.body
         const { userId } = req.decode
+        const url = req.file.cloudStoragePublicUrl
 
-        Article.create({ title, content, tags, userId })
+        Article.create({ title, content, tags, userId, url })
             .then(article => {
                 res.status(200).json(article)
             })
@@ -35,12 +37,40 @@ class ArticleController {
     }
 
     static update(req, res, next) {
-        const { title, content } = req.body
+        const { title, content, tags } = req.body
+        const url = req.file.cloudStoragePublicUrl
         const { id } = req.params
 
-        Article.updateOne({ _id: id }, { title, content })
-            .then(changes => {
-                res.status(200).json({message : `Success update an article`})
+        Article.findById(id)
+            .then(article => {
+                const CLOUD_BUCKET = process.env.CLOUD_BUCKET
+
+                const storage = new Storage({
+                    projectId: process.env.GCLOUD_PROJECT,
+                    keyFilename: process.env.KEYFILE_PATH
+                })
+
+                if (req.file) {
+                    let deleteFile = article.url
+
+                    // set image in db with a new uploaded image
+                    article.url = url
+                    let filename = deleteFile.replace(/(https:\/\/storage.googleapis.com\/storage-mini-wp.zakiarsyad.com\/)/, '')
+
+                    storage
+                        .bucket(CLOUD_BUCKET)
+                        .file(filename)
+                        .delete()
+
+                    article.title = title
+                    article.content = content
+                    article.tags = tags
+                    article.save()
+                        .then(article => {
+                            res.status(200).json(article)
+                        })
+                        .catch(next)
+                }
             })
             .catch(next)
     }
@@ -48,9 +78,28 @@ class ArticleController {
     static delete(req, res, next) {
         const { id } = req.params
 
-        Article.deleteOne({ _id: id })
-            .then(changes => {
-                res.status(200).json({ message: `Success delete an article` })
+        Article.findById(id)
+            .then(article => {
+                const CLOUD_BUCKET = process.env.CLOUD_BUCKET
+
+                const storage = new Storage({
+                    projectId: process.env.GCLOUD_PROJECT,
+                    keyFilename: process.env.KEYFILE_PATH
+                })
+
+                let deleteFile = article.url
+                let filename = deleteFile.replace(/(https:\/\/storage.googleapis.com\/storage-mini-wp.zakiarsyad.com\/)/, '')
+
+                storage
+                    .bucket(CLOUD_BUCKET)
+                    .file(filename)
+                    .delete()
+                
+                article.delete()
+                    .then(article => {
+                        res.status(200).json(article)
+                    })
+                    .catch(next)
             })
             .catch(next)
     }

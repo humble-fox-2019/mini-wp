@@ -27,7 +27,7 @@ class UserController {
                 if (user && compareHash(password, user.password)) {
                     const token = generateToken({
                         userId: user._id,
-                        email: payload.email
+                        email
                     })
 
                     res.status(200).json({ token })

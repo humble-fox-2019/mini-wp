@@ -5,11 +5,11 @@ const Schema = mongoose.Schema
 const articleSchema = new Schema({
     title: {
         type: String,
-        required: ['true', 'Title is required']
+        required: [true, 'Title is required']
     },
     content: {
         type: String,
-        required: ['true', 'Content is required']
+        required: [true, 'Content is required']
     },
     tags: [{
         type: String
@@ -17,6 +17,10 @@ const articleSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User'
+    },
+    url: {
+        type: String,
+        required: [true, "There's no image uploaded"]
     }
 }, { timestamps: true })
 

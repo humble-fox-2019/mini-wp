@@ -1,5 +1,6 @@
 <template>
   <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
+
 </template>
 
 <script>
@@ -48,6 +49,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+button {
+  
+}
 </style>

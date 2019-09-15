@@ -33,7 +33,7 @@ export default {
             errorShow: "hidden",
             loading: false,
             googleSignInParams: {
-                client_id: '917807764644-vpc8agqmpl8v5bn8d273i4te0ojs2b3m.apps.googleusercontent.comm'
+                client_id: '917807764644-vpc8agqmpl8v5bn8d273i4te0ojs2b3m.apps.googleusercontent.com'
             }
         }
     },

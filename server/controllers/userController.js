@@ -1,6 +1,9 @@
 const User = require('../models/user');
 const { jwt } = require('../helpers');
 const { bcrypt } = require('../helpers');
+const { OAuth2Client } = require('google-auth-library');
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID
+const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 class UserController {
     static signup(req, res, next) {
@@ -32,7 +35,8 @@ class UserController {
                         let userData = {
                             'name': user.name,
                             'id': user._id,
-                            'email': user.email
+                            'email': user.email,
+                            'image': user.image
                         }
 
                         let token = jwt.generateToken(userData);
@@ -43,6 +47,39 @@ class UserController {
                 }
             })
             .catch(next)
+    }
+
+    static Gsignin(req, res, next) {
+        console.log('object');
+        client.verifyIdToken({
+            idToken: req.body.idToken,
+            audience: GOOGLE_CLIENT_ID
+        }).then(ticket => {
+            const { email } = ticket.getPayload()
+            User.findOne({ email })
+                .then(user => {
+                    if (!user) {
+                        return User.create({
+                            "email": email,
+                            "password": process.env.DEFAULT_PASSWORD
+                        })
+                    } else {
+                        return user
+                    }
+                }).then(user => {
+
+                    let userData = {
+                        'name': user.name,
+                        "id": user._id,
+                        "email": user.email,
+                        "image": user.image
+                    }
+
+                    let token = jwt.generateToken(userData);
+                    res.status(200).json({ token, userData });
+                })
+                .catch(next)
+        }).catch(next)
     }
 
     static search(req, res, next) {

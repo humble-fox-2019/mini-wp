@@ -55,7 +55,15 @@
               {{errors}}
             </div>
           </transition>
-
+          <multiselect
+            v-model="tags"
+            tag-placeholder="Add this as new tag"
+            placeholder="Add a tag"
+            :options="options"
+            :multiple="true"
+            :taggable="true"
+            @tag="addTag"
+          ></multiselect>
           <br />
           <div class="form-group">
             <button type="submit" class="btn btn-alt-primary" id="button-add">Save</button>
@@ -74,6 +82,7 @@ import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 
 import { quillEditor } from "vue-quill-editor";
+import Multiselect from "vue-multiselect";
 
 export default {
   data() {
@@ -83,11 +92,14 @@ export default {
       image: "",
       isPublished: true,
       errors: "",
-      imageName: ""
+      imageName: "",
+      tags: [],
+      options: []
     };
   },
   components: {
-    quillEditor
+    quillEditor,
+    Multiselect
   },
   methods: {
     handleImage() {
@@ -104,6 +116,7 @@ export default {
       formData.append("content", this.content);
       formData.append("image", this.image);
       formData.append("isPublished", this.isPublished);
+      formData.append("tags", this.tags);
 
       axios
         .post("/articles", formData, {
@@ -123,6 +136,9 @@ export default {
           }, 2000);
         })
         .finally(() => {});
+    },
+    addTag(newTag) {
+      this.tags.push(newTag);
     }
   }
 };

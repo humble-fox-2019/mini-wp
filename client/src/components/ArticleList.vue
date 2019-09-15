@@ -13,6 +13,7 @@
         <thead>
           <tr>
             <th>Title</th>
+            <th>Tags</th>
             <th class="d-none d-sm-table-cell" style="width: 15%;">isPublished</th>
             <th class="text-center" style="width: 100px;">Actions</th>
           </tr>
@@ -20,6 +21,11 @@
         <tbody>
           <tr v-for="article in articles" :key="article._id">
             <td>{{article.title}}</td>
+            <td>
+              <div class="d-inline-flex pl-1" v-for="tag in article.tags">
+                <span class="badge badge-success">{{tag}}</span>
+              </div>
+            </td>
             <td class="d-none d-sm-table-cell">
               <span class="badge badge-success" v-if="article.isPublished">Published</span>
               <span class="badge badge-warning" v-else>Draff</span>

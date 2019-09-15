@@ -16,8 +16,10 @@ const articleSchema = new Schema({
         ref: 'User'
     },
     isPublished: {
-        type: Boolean
+        type: Boolean,
+        default: true
     },
+    tags: [String],
     image: {
         type: String,
         default: null

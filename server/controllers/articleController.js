@@ -20,9 +20,14 @@ class ArticleController {
         const { title, content, isPublished } = req.body;
         const createdBy = req.decode.id;
         const image = req.file.cloudStoragePublicUrl;
+        let tags;
+
+        if (req.body.tags) {
+            tags = req.body.tags.split(',');
+        }
 
         Article.create(
-            { title, content, createdBy, isPublished, image }
+            { title, content, tags, createdBy, isPublished, image }
         ).then(article => {
             res.status(201).json(article)
         }).catch(next);
@@ -44,7 +49,14 @@ class ArticleController {
 
     static update(req, res, next) {
         const { title, content, isPublished } = req.body;
-        const data = { title, content, isPublished };
+
+        let tags;
+
+        if (req.body.tags) {
+            tags = req.body.tags.split(',');
+        }
+
+        const data = { title, content, tags, isPublished };
 
         Article.updateOne({ _id: req.params.id }, data, { omitUndefined: true })
             .then((info) => {

@@ -1,3 +1,0 @@
-PORT=3000
-JWT=iphonasda
-GTOKEN=9asdasdasdalksadjgfho39434983493439efju.apps.googleusercontent.com

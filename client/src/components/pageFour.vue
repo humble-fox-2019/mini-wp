@@ -24,7 +24,7 @@
 </template>
 
 <script>
-let baseUrl = 'http://35.240.183.35'
+let baseUrl = 'http://localhost:3000'
 import axios from 'axios'
 import navbar from './navbar'
 import contentwrite from './contentWrite'

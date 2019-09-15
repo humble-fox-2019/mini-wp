@@ -10632,7 +10632,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = "http://localhost:3000";
+var baseUrl = "http://35.240.183.35";
 var _default = {
   data: function data() {
     return {
@@ -10642,7 +10642,7 @@ var _default = {
       errorShow: "hidden",
       loading: false,
       googleSignInParams: {
-        client_id: '938474376936-sbut31u45htv7qbb2os3p5o698q1skt4.apps.googleusercontent.com'
+        client_id: '917807764644-vpc8agqmpl8v5bn8d273i4te0ojs2b3m.apps.googleusercontent.com'
       }
     };
   },
@@ -10938,7 +10938,7 @@ var _default = {
       errorShow: "hidden",
       loading: false,
       googleSignInParams: {
-        client_id: '938474376936-sbut31u45htv7qbb2os3p5o698q1skt4.apps.googleusercontent.com'
+        client_id: '917807764644-vpc8agqmpl8v5bn8d273i4te0ojs2b3m.apps.googleusercontent.com'
       }
     };
   },
@@ -16427,7 +16427,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54693" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57394" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

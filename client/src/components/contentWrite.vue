@@ -11,7 +11,7 @@
 
 <script>
 import axios from 'axios'
-let baseUrl = "http://35.240.183.35"
+let baseUrl = "http://localhost:3000"
 import wysiwyg from '../../vueWysiwyg'
 export default {
     props:['content', 'title'],

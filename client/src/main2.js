@@ -14,7 +14,6 @@ var app = new Vue({
     components: {
         wysiwyg: vueWysiwyg.default.component,
     },
-
     methods: {
         fetchdata() {
             console.log('halooo')
@@ -132,6 +131,7 @@ var app = new Vue({
         }
 
     },
+    
     created() {
         // apa yang mau diisi statenya? state = data
         // pada dasarnya mengisi data yang ada diatas
@@ -147,7 +147,6 @@ var app = new Vue({
             })
         }
     }
-
 })
 
 // var app = new Vue({
@@ -156,3 +155,4 @@ var app = new Vue({
 //         message: 'Hello Vue!'
 //     }
 // })
+

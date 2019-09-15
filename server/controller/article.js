@@ -7,12 +7,20 @@ class ArticleController {
         const {
             title,
             content,
-            createdAt
+            url
         } = req.body
-        // console.log(title, '<<<< INI TITLE', content, '<<<< INI CONTENT')
+
+        console.log(req.body, '<<<< INI REQ BODY')
+        // console.log(req.file, '<<<<<< INI FILENYA BRO')
+        console.log(req.payload)
+
+
+
         articleModel.create({
+                userId: req.payload._id,
                 title,
-                content
+                content,
+                url: req.body.imageUrl
             })
             .then(data => {
                 console.log(`Berhasil Masuk dan Datanya jadi >>> ${data}`)
@@ -25,14 +33,41 @@ class ArticleController {
 
     static findAll(req, res, next) {
         console.log('Berhasil Masuk ke Find All')
+        // console.log(req.payload, '<<<<< INI PAYLOAD DARI FIND ALL')
+        // console.log(req.body)
+        articleModel.find({
+                userId: req.payload._id
+            })
+            .then(data => {
+                res.status(201).json({
+                    data
+                })
+            })
+            .catch(next)
+    }
+
+    static findAllPublish(req, res, next) {
+        console.log('masuk ke all publish')
         articleModel.find()
             .then(data => {
                 res.status(201).json({
                     data
                 })
-
             })
             .catch(next)
+    }
+
+    static findThread(req, res, next) {
+        console.log('masuk ke all thread')
+        articleModel.find()
+            .then(data => {
+                res.status(201).json({
+                    data
+                })
+            })
+            .catch(err => {
+                console.log('disini errornya >>>', err)
+            })
     }
 
     static update(req, res, next) {
@@ -84,15 +119,25 @@ class ArticleController {
                 title: req.params.title
             })
             .then(data => {
+
+                let obj = {
+                    _id: data._id,
+                    userId: data.userId,
+                    title: data.title,
+                    content: data.content,
+                    picUrl: data.url
+                }
+
                 res.status(201).json({
-                    data
+                    obj
                 })
-                console.log(data, '<<< BERHASIL DATANYA BERIKUT')
+
+
+                console.log(obj, '<<< BERHASIL DATANYA BERIKUT')
             })
             .catch(next)
 
     }
-    // static findByName()
 
 
 }

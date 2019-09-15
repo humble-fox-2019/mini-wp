@@ -2,18 +2,26 @@ const mongoose = require('mongoose')
 const schema = mongoose.Schema
 
 const articleSchema = new schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        require: [true, 'userId required']
+    },
     title: {
         type: String,
-        required: true
+        required: [true, 'Title Required']
     },
     content: {
         type: String,
-        required: true
+        required: [true, 'Content Required']
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+    url: {
+        type: String,
+        required: [true, 'Url Required']
+    },
+
+
+}, {
+    timestamps: true
 })
 
 const articleModel = mongoose.model('Article', articleSchema)

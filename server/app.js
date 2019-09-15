@@ -8,6 +8,8 @@ const mongoose = require('mongoose')
 
 mongoose.connect('mongodb://localhost:27017/miniwp', {
     useNewUrlParser: true
+}).then(() => {
+    console.log('masuk ke database')
 })
 
 app.use(cors())
@@ -17,8 +19,10 @@ app.use(express.urlencoded({
 }))
 
 const articleUser = require('./routes/article')
+const userRoutes = require('./routes/user')
 
 app.use('/article', articleUser)
+app.use('/user', userRoutes)
 
 const errHandler = require('./middleware/errHandler')
 // app.use('./middleware/errHandler.js')

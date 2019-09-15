@@ -1,15 +1,16 @@
-const bycrpyt = require('bycriptjs')
+var bcrypt = require('bcryptjs');
 
-function hashPassowrd(params) {
-    var hash = bcrypt.hashSync(params, process.env.PASSWORD_SALT)
+function hash(params) {
+    let salt = bcrypt.genSaltSync(10);
+    let hash = bcrypt.hashSync(params, salt);
     return hash
 }
 
-function syncPassword(params) {
-    bcrypt.compareSync(params, process.env.PASSWORD_SALT)
+function checkHash(inputPass, hashPass) {
+    let check = bcrypt.compareSync(inputPass, hashPass)
+    return check
 }
-
 module.exports = {
-    hashPassowrd,
-    syncPassword
+    hash,
+    checkHash
 }

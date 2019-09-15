@@ -22,10 +22,9 @@ const userSchema = mongoose.Schema({
     required: [true, 'Password is required'],
     minlength: [6, 'Password length minimum 6']    
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+},{
+  timestamps: true,
+  versionKey: false
 })
 
 

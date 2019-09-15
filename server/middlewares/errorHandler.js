@@ -25,7 +25,6 @@ function errorHandler(err, req, res, next){
     error = 'Error Internal Server'
   }
   res.status(status).json({
-    status : status,
     errMsg : error
   })
 }

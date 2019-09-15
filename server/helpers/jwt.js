@@ -6,7 +6,6 @@ function getToken(payload) {
 }
 
 function verifyToken(payload) {
-  // console.log(payload);
   return jwt.verify(payload, secret)
 }
 

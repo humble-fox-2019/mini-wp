@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "sweetalert2": "^8.17.1",
+    "toastr": "^2.1.4",
+    "vu": "0.0.0",
+    "vue": "^2.6.10",
+    "vue-google-signin-button-directive": "^1.0.3",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-wysiwyg": "^1.7.2"
+  }
+}

@@ -2,13 +2,13 @@ const Article = require('../models/article')
 
 class ArticleController {
   static create(req, res, next) {
-    console.log(req.decoded);
     const author = req.decoded._id
-    const { title, content } = req.body
+    const { title, content, featured_image } = req.body
     Article.create({
       title,
       content,
-      author
+      author,
+      featured_image
     })
       .then(data => {
         res.status(200).json({
@@ -29,29 +29,25 @@ class ArticleController {
     })
     .populate('author')
     .then(data =>{
-      console.log(data);
+      // console.log(data);
       res.status(200).json({
         message: 'List of Your Article',
         articles: data
       })
     })
-    .catch(err => {
-      next()
-    })
+    .catch(next)
   }
   static getAll(req, res, next) {
     Article.find({})
       .populate('author')
       .then(data => {
-        console.log(data);
+        // console.log(data);
         res.status(200).json({
           message: 'List Articles',
           articles: data
         })
       })
-      .catch(err => {
-        next()
-      })
+      .catch(next)
   }
   static getOne(req, res, next) {
     Article.findById(req.params.id)
@@ -61,46 +57,44 @@ class ArticleController {
           article: data
         })
       })
-      .catch(err => {
-        next()
-      })
+      .catch(next)
   }
   static getByTitle(req, res, next){
     let search = req.params.search
-    console.log(search);
-    Article.find({})
+    Article.find({
+      author : req.decoded._id
+    })
     .then(data =>{
       let articles = []
       data.forEach(el =>{
         if (el.title.includes(search)){
           articles.push(el)
         }
-        console.log(articles);
+        // console.log(articles);
         res.status(200).json({
           message: `Here's your result`,
           articles : articles
         })
       })
     })
-    .catch(err=>{
-      next()
-    })
+    .catch(next)
   }
   static updatePut(req, res, next) {
-    let change = {}
-    for (let k in req.body) {
-      change[k] = req.body[k]
-    }
+    const {title ,content, featured_image} = req.body 
     Article.updateOne(
-      { _id: req.params.id },
-      change)
+      { _id: req.params.id },{
+        title,
+        content, 
+        featured_image
+      }
+      )
       .then(data => {
         res.status(200).json({
           messange: 'Success Updated',
         })
       })
       .catch(err => {
-        console.log(err, '<<<');
+
         next({
           status: 400,
           message: err
@@ -117,9 +111,7 @@ class ArticleController {
           _id : req.params.id
         })
       })
-      .catch(err => {
-        next()
-      })
+      .catch(next)
   }
 
   static findMyArticle(req, res, next) {
@@ -134,9 +126,7 @@ class ArticleController {
           articles : data
         })
       })
-      .catch(err => {
-        next()
-      })
+      .catch(next)
   }
 }
 

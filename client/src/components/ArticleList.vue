@@ -51,7 +51,11 @@
                 v-for="(tag, index) in article.tags"
                 :key="`tag-${index}`"
               >
-                <span class="badge badge-success">{{tag}}</span>
+                <span
+                  class="badge badge-success"
+                  @click="filterTagClick(tag)"
+                  style="cursor:pointer;"
+                >{{tag}}</span>
               </div>
             </td>
             <td class="d-none d-sm-table-cell">
@@ -160,6 +164,9 @@ export default {
       this.tag = "";
       this.isPublished = "";
       this.title = "";
+    },
+    filterTagClick(tag) {
+      this.tag = tag;
     }
   },
   created() {

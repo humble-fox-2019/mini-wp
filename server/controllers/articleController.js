@@ -3,7 +3,7 @@ const Article = require('../models/article');
 class ArticleController {
     static myArticle(req, res, next) {
         let where = {
-            createdBy: req.decode.id
+            author: req.decode.id
         };
 
         if (req.query.title) {
@@ -19,7 +19,7 @@ class ArticleController {
         }
 
         Article.find(where).sort({ createdAt: -1 })
-            .populate('createdBy')
+            .populate('author')
             .then(articles => {
                 if (articles.length > 0) {
                     res.status(200).json(articles);
@@ -31,8 +31,8 @@ class ArticleController {
 
     static store(req, res, next) {
         const { title, content, isPublished } = req.body;
-        const createdBy = req.decode.id;
-        const image = req.file.cloudStoragePublicUrl;
+        const author = req.decode.id;
+        const featured_image = req.file.cloudStoragePublicUrl;
         let tags;
 
         if (req.body.tags) {
@@ -40,7 +40,7 @@ class ArticleController {
         }
 
         Article.create(
-            { title, content, tags, createdBy, isPublished, image }
+            { title, content, tags, author, isPublished, featured_image }
         ).then(article => {
             res.status(201).json(article)
         }).catch(next);
@@ -50,7 +50,7 @@ class ArticleController {
         Article.findOne({
             _id: req.params.id
         })
-            .populate('createdBy')
+            .populate('author')
             .then(article => {
                 if (article) {
                     res.status(200).json(article);

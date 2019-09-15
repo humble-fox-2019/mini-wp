@@ -10,7 +10,7 @@ const articleSchema = new Schema({
         type: String,
         required: [true, 'Content is required']
     },
-    createdBy: {
+    author: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'User'
@@ -20,7 +20,7 @@ const articleSchema = new Schema({
         default: true
     },
     tags: [String],
-    image: {
+    featured_image: {
         type: String,
         default: null
     }

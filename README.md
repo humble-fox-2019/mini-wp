@@ -30,7 +30,7 @@ __BASE_URL__ http://34.87.55.207
 | Name                   | String (require)      |
 
 
-## List Of Todo Routes
+## List Of MiniWP Routes
 
 ### Create <br>
  <b> POST </b> __BASE_URL__/miniWp/ <br>

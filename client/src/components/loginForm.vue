@@ -23,7 +23,7 @@
 
 <script>
 import axios from 'axios'
-let baseUrl = "http://localhost:3000"
+let baseUrl = "http://35.240.183.35"
 export default {
     data: function(){
         return {
@@ -33,7 +33,7 @@ export default {
             errorShow: "hidden",
             loading: false,
             googleSignInParams: {
-                client_id: '938474376936-sbut31u45htv7qbb2os3p5o698q1skt4.apps.googleusercontent.com'
+                client_id: '917807764644-vpc8agqmpl8v5bn8d273i4te0ojs2b3m.apps.googleusercontent.comm'
             }
         }
     },

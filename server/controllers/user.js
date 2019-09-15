@@ -7,41 +7,41 @@ const User = require('../models/user')
 //const client = new OAuth2Client(process.env.CLIENT_ID);
 
 class UserController {
-    // static GsignIn(req,res,next){
-    //     client.verifyIdToken({
-    //         idToken: req.body.idToken,
-    //         audience: process.env.CLIENT_ID,
-    //       }).then(ticket => {
-    //         const payload = ticket.payload;
-    //         return User.findOne({
-    //                 email: payload.email        
-    //         }).then(result => {
-    //             if(!result){
-    //                 return User.create({
-    //                     name: payload.name,
-    //                     email: payload.email,
-    //                     password: encrypt(process.env.PASSWORD)
-    //                 })
-    //             } else {
-    //                 return result
-    //             }
-    //         }).then(user => {
-    //             let dataUser = {
-    //                 id: user.id,
-    //                 name: user.name,
-    //                 email: user.email
-    //             }
-    //             let token = generateToken(dataUser)
-    //             res.status(200).json({
-    //                 token,
-    //                 message: 'Login Success'
-    //             })
-    //         })
-    //       }).catch(err => {
-    //         res.status(404)
-    //         next(err)
-    //       })
-    // }
+    static GsignIn(req,res,next){
+        client.verifyIdToken({
+            idToken: req.body.idToken,
+            audience: process.env.CLIENT_ID,
+          }).then(ticket => {
+            const payload = ticket.payload;
+            return User.findOne({
+                    email: payload.email        
+            }).then(result => {
+                if(!result){
+                    return User.create({
+                        name: payload.name,
+                        email: payload.email,
+                        password: encrypt(process.env.PASSWORD)
+                    })
+                } else {
+                    return result
+                }
+            }).then(user => {
+                let dataUser = {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email
+                }
+                let token = generateToken(dataUser)
+                res.status(200).json({
+                    token,
+                    message: 'Login Success'
+                })
+            })
+          }).catch(err => {
+            res.status(404)
+            next(err)
+          })
+    }
 
     static signIn(req,res,next){
         console.log("masuk ke login server")

@@ -11,7 +11,6 @@ const articleSchema = new Schema({
     required: [true, 'Please insert a title for the article!']
   },
   content: { type: String, required: [true, 'Please insert the content of the post!'] },
-  isPublished: { type: Boolean, default: false },
   author: { type: ObjectID, ref: 'User' },
   featured_image: { type: String, default: null }
 

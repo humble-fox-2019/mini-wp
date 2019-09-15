@@ -59,6 +59,7 @@ export default {
 }
 
 #jumbotronBanner {
+  font-family: "Crimson Pro";
   background-image: url(https://cdn.pixabay.com/photo/2016/03/26/13/09/notebook-1280538_960_720.jpg);
   background-size: cover;
   color: #f0f0f0;

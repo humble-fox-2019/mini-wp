@@ -10,6 +10,8 @@
     <WritingPage
       v-else-if="currentPage === 'writing-page'"
       @show-dashboard-page="showDashboard"
+      @show-writing-page="showWritingPage"
+      @show-login-page="showLoginPage"
       :article="article"
     ></WritingPage>
   </div>

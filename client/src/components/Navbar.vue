@@ -1,7 +1,7 @@
 <template>
   <div id="navbar">
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand href="#">MiniWP</b-navbar-brand>
+      <b-navbar-brand href><i class="fab fa-wordpress"> Think Tank</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 

@@ -35,10 +35,4 @@ export default {
 </script>
 
 <style>
-#dashboardPage {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  align-items: center;
-}
 </style>

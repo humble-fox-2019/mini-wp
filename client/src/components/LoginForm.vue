@@ -36,15 +36,17 @@
         </b-button>
       </b-form>
       <div id="loginOption">
-        <div>
-          <!-- <div class="g-signin2" id="gmail" data-onsuccess="onSignIn"></div> -->
-        </div>
+        <g-signin-button
+          :params="googleSignInParams"
+          @success="onSignInSuccess"
+          @error="onSignInError"
+        >Sign in with Google</g-signin-button>
       </div>
       <br />
       <p>
         Don't have an account? Click here to
         <a
-          href="#"
+          href
           id="register-button"
           @click.prevent="showRegisterForm"
         >register.</a>
@@ -56,7 +58,7 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
-const url = "http://localhost:3000";
+const url = "http://35.246.229.159";
 
 export default {
   data: function() {
@@ -65,10 +67,48 @@ export default {
       password: "",
       errorMessage: "",
       errorShow: "hidden",
-      loading: false
+      loading: false,
+      googleSignInParams: {
+        client_id:
+          "706669614539-mg5oc4j27qsqm759nibl6gil3crk8s7i.apps.googleusercontent.com"
+      }
     };
   },
   methods: {
+    onSignInSuccess(googleUser) {
+      const id_token = googleUser.getAuthResponse().id_token;
+      axios({
+        url: `${url}/users/login-google`,
+        method: "POST",
+        data: {
+          id_token: id_token
+        }
+      })
+        .then(response => {
+          console.log(response.data.token);
+          localStorage.setItem("token", response.data.token);
+          this.resetLoginForm();
+          Swal.fire(
+            "Successfully signed in",
+            "Please clicked the button to close!",
+            "success"
+          );
+          console.log("User successfully signed in");
+          this.$emit("show-dashboard-page");
+        })
+        .catch(err => {
+          console.log(err.response.data);
+          if (err.response) {
+            this.errorMessage = err.response.data;
+          } else if (err.request) {
+            this.errorMessage = "No response from server side";
+          }
+          this.errorShow = "visible";
+        });
+    },
+    onSignInError(error) {
+      console.log("OH NOES", error);
+    },
     login: function() {
       this.loading = true;
       axios({
@@ -137,6 +177,16 @@ export default {
 }
 
 #gmail {
-  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.g-signin-button {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background-color: #3c82f7;
+  color: #fff;
+  box-shadow: 0 3px 0 #0f69ff;
 }
 </style>

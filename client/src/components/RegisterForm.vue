@@ -60,7 +60,7 @@
 </template>
 
 <script>
-const url = "http://localhost:3000";
+const url = "http://35.246.229.159";
 import axios from "axios";
 import Swal from "sweetalert2";
 

@@ -1,6 +1,10 @@
 <template>
   <div id="createArticlePage">
-    <Navbar></Navbar>
+    <Navbar
+      @show-login-page="showLoginPage"
+      @show-dashboard-page="showDashboard"
+      @show-writing-page="showWritingPage"
+    ></Navbar>
     <div class="editor">
       <WritingContent @show-dashboard-page="showDashboard" :article="article"></WritingContent>
     </div>
@@ -16,8 +20,14 @@ export default {
     return {};
   },
   methods: {
+    showLoginPage() {
+      this.$emit("show-login-page");
+    },
     showDashboard() {
       this.$emit("show-dashboard-page");
+    },
+    showWritingPage() {
+      this.$emit("show-writing-page");
     }
   },
   components: {

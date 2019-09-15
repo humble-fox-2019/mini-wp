@@ -1,24 +1,39 @@
 <template>
-  <div>
-    <b-form-group id="input-group-title" label="Post title:" label-for="input-title">
-      <b-form-input id="input-title" required placeholder="Enter post title" v-model="articleTitle"></b-form-input>
-    </b-form-group>
+  <div id="contentBlanket">
+    <div id="contentBox">
+      <b-form-group id="input-group-title" label="Post title:" label-for="input-title">
+        <b-form-input
+          id="input-title"
+          required
+          placeholder="Enter post title"
+          v-model="articleTitle"
+        ></b-form-input>
+      </b-form-group>
 
-    <div class="editor">
-      <vueWysiwyg class="texteditor" v-model="articleContent"></vueWysiwyg>
+      <div class="editor">
+        <vueWysiwyg class="texteditor" v-model="articleContent"></vueWysiwyg>
+      </div>
+      <b-form-file
+        type="file"
+        ref="file"
+        v-on:change="handlefileupload($event)"
+        placeholder="Choose an image to upload"
+      ></b-form-file>
+
+      <div id="contentButtonGroup">
+        <b-button type="submit" @click.prevent="createArticle" id="contentSubmitButton">Submit</b-button>
+        <b-button type="cancel" @click.prevent="showDashboard" id="contentCancelButton">Cancel</b-button>
+      </div>
     </div>
-    <b-form-file placeholder="Choose an image to upload"></b-form-file>
-
-    <b-button type="submit" variant="primary" @click.prevent="createArticle">Submit</b-button>
-    <b-button type="cancel" variant="danger">Cancel</b-button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-const url = "http://localhost:3000";
+const url = "http://35.246.229.159";
 import vueWysiwyg from "../../js/vueWysiwyg";
 import Swal from "sweetalert2";
+
 export default {
   props: ["article"],
   created: function() {
@@ -34,6 +49,21 @@ export default {
     };
   },
   methods: {
+    registerimage() {
+      let formData = new FormData();
+      formData.append("title", this.imagetitle);
+      formData.append("image", this.image);
+      this.$emit("registerimage", formData);
+      this.imagetitle = "";
+    },
+    handleimage() {
+      let reader = new FileReader();
+      reader.readAsDataURL(this.$refs.image.files[0]);
+      this.image = this.$refs.image.files[0];
+    },
+    showDashboard() {
+      this.$emit("show-dashboard-page");
+    },
     createArticle: function() {
       let method = null;
       let path = null;
@@ -86,4 +116,45 @@ export default {
 </script>
 
 <style>
+#contentBlanket {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  font-family: "Crimson Pro";
+}
+
+#contentBox {
+  max-width: 60%;
+  font-family: "Crimson Pro";
+}
+
+#contentButtonGroup {
+  margin-top: 20px;
+}
+
+#contentSubmitButton {
+  background-image: linear-gradient(to bottom right, #74d680, #378b29);
+  border: none;
+  box-shadow: 0px 10px 10px -5px #111;
+  text-align: left;
+  font-family: "Crimson Pro";
+}
+
+#contentSaveButton {
+  background-image: linear-gradient(to bottom right, #ffdd00, #fbb034);
+  border: none;
+  box-shadow: 0px 10px 10px -5px #111;
+  color: #000000;
+  text-align: left;
+  font-family: "Crimson Pro";
+}
+
+#contentCancelButton {
+  background-image: linear-gradient(to bottom right, #ff0000, #990000);
+  border: none;
+  box-shadow: 0px 10px 10px -5px #111;
+  text-align: left;
+  font-family: "Crimson Pro";
+}
 </style>

@@ -12,10 +12,10 @@ class ArticleController {
   }
 
   static create (req, res, next) {
-    const { title, content, isPublished } = req.body
+    const { title, content } = req.body
     const author = req.decoded.id
     // const featured_image = req.file.cloudStoragePublicUrl
-    Article.create({ title, content, author, isPublished, featured_image: null })
+    Article.create({ title, content, author, featured_image: null })
       .then((article) => {
         res.status(201).json(article)
       }).catch(next)

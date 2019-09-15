@@ -13,4 +13,4 @@ router.delete('/:id', authorization, ArticleController.remove)
 
 module.exports = router
 
-//  multer.single('image'), sendUploadToGCS,
+// multer.single('image'), sendUploadToGCS,

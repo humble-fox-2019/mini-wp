@@ -38,7 +38,7 @@
 
 <script>
 import search from './search'
-let baseUrl = 'http://localhost:3000'
+let baseUrl = 'http://35.240.183.35'
 import axios from 'axios'
 export default {
     data: function(){

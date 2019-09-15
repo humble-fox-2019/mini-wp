@@ -19,7 +19,7 @@
 
 <script>
 import axios from 'axios'
-let baseUrl = "http://localhost:3000"
+let baseUrl = "http://35.240.183.35"
 export default {
     data: function(){
         return {
@@ -58,6 +58,31 @@ export default {
                 this.loading = false
             })
         },
+        onSignIn(googleUser) {
+            var id_token = googleUser.getAuthResponse().id_token;
+            axios({
+                method: "post",
+                url: `${baseUrl}/logingoogle`,
+                data: {
+                    token: id_token
+                }
+            })
+            .then(response =>{
+                localStorage.setItem('token', response.data.token)
+                this.$emit('gotosecondpage')
+            })
+            .catch(err =>{
+                if(err.response){
+                    this.error = err.response.data.message
+                }else if(err.request){
+                    this.error = "No response from server"
+                }
+                this.errorShow = 'visible'
+            })
+            .finally(()=>{
+                this.loading = false
+            })
+        },        
         toregister(){
             this.resetLogin()
             this.$emit('toregister')

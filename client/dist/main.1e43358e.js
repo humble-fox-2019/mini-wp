@@ -10628,7 +10628,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = "http://localhost:3000";
+var baseUrl = "http://35.240.183.35";
 var _default = {
   data: function data() {
     return {
@@ -10667,6 +10667,32 @@ var _default = {
         _this.errorShow = 'visible';
       }).finally(function () {
         _this.loading = false;
+      });
+    },
+    onSignIn: function onSignIn(googleUser) {
+      var _this2 = this;
+
+      var id_token = googleUser.getAuthResponse().id_token;
+      (0, _axios.default)({
+        method: "post",
+        url: "".concat(baseUrl, "/logingoogle"),
+        data: {
+          token: id_token
+        }
+      }).then(function (response) {
+        localStorage.setItem('token', response.data.token);
+
+        _this2.$emit('gotosecondpage');
+      }).catch(function (err) {
+        if (err.response) {
+          _this2.error = err.response.data.message;
+        } else if (err.request) {
+          _this2.error = "No response from server";
+        }
+
+        _this2.errorShow = 'visible';
+      }).finally(function () {
+        _this2.loading = false;
       });
     },
     toregister: function toregister() {
@@ -10879,7 +10905,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = "http://localhost:3000";
+var baseUrl = "http://35.240.183.35";
 var _default = {
   data: function data() {
     return {
@@ -10916,6 +10942,32 @@ var _default = {
         _this.errorShow = "visible";
       }).finally(function () {
         _this.loading = false;
+      });
+    },
+    onSignIn: function onSignIn(googleUser) {
+      var _this2 = this;
+
+      var id_token = googleUser.getAuthResponse().id_token;
+      (0, _axios.default)({
+        method: "post",
+        url: "".concat(baseUrl, "/logingoogle"),
+        data: {
+          token: id_token
+        }
+      }).then(function (response) {
+        localStorage.setItem('token', response.data.token);
+
+        _this2.$emit('gotosecondpage');
+      }).catch(function (err) {
+        if (err.response) {
+          _this2.error = err.response.data.message;
+        } else if (err.request) {
+          _this2.error = "No response from server";
+        }
+
+        _this2.errorShow = 'visible';
+      }).finally(function () {
+        _this2.loading = false;
       });
     },
     tologin: function tologin() {
@@ -11085,7 +11137,12 @@ exports.default = _default;
         }
       },
       [_c("h4", [_vm._v("Have an account?")])]
-    )
+    ),
+    _vm._v(" "),
+    _c("div", {
+      staticClass: "g-signin2",
+      attrs: { "data-onsuccess": "onSignIn" }
+    })
   ])
 }
 var staticRenderFns = []
@@ -11316,6 +11373,13 @@ var _default = {
       this.$emit('gotosecondpage');
     },
     logout: function logout() {
+      if (gapi.auth2) {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+      }
+
       localStorage.removeItem('token');
       this.$emit('gotofirstpage');
     },
@@ -11769,7 +11833,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = 'http://localhost:3000';
+var baseUrl = 'http://35.240.183.35';
 var _default = {
   data: function data() {
     return {
@@ -12166,7 +12230,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = 'http://localhost:3000';
+var baseUrl = 'http://35.240.183.35';
 var _default = {
   data: function data() {
     return {
@@ -15565,7 +15629,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = "http://localhost:3000";
+var baseUrl = "http://35.240.183.35";
 var _default = {
   props: ['content', 'title'],
   data: function data() {
@@ -15715,7 +15779,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = 'http://localhost:3000';
+var baseUrl = 'http://35.240.183.35';
 var _default = {
   props: ['page', 'articles'],
   data: function data() {
@@ -16287,7 +16351,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49503" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54734" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

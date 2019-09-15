@@ -14,13 +14,13 @@
         </form>
         <a href="" @click.prevent="tologin"><h4>Have an account?</h4></a>
         
-        <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
         
     </div>
 </template>
 
 <script>
-let baseUrl = "http://localhost:3000"
+let baseUrl = "http://35.240.183.35"
 import axios from 'axios'
 export default {
     data: function(){
@@ -55,6 +55,31 @@ export default {
                     this.error = "No response from server"
                 }
                 this.errorShow = "visible"
+            })
+            .finally(()=>{
+                this.loading = false
+            })
+        },
+        onSignIn(googleUser) {
+            var id_token = googleUser.getAuthResponse().id_token;
+            axios({
+                method: "post",
+                url: `${baseUrl}/logingoogle`,
+                data: {
+                    token: id_token
+                }
+            })
+            .then(response =>{
+                localStorage.setItem('token', response.data.token)
+                this.$emit('gotosecondpage')
+            })
+            .catch(err =>{
+                if(err.response){
+                    this.error = err.response.data.message
+                }else if(err.request){
+                    this.error = "No response from server"
+                }
+                this.errorShow = 'visible'
             })
             .finally(()=>{
                 this.loading = false

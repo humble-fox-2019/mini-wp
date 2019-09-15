@@ -11116,7 +11116,7 @@ render._withStripped = true
       
       }
     })();
-},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/firstPage.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/pageOne.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11159,14 +11159,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $f838d8 = exports.default || module.exports;
+        var $51e541 = exports.default || module.exports;
       
-      if (typeof $f838d8 === 'function') {
-        $f838d8 = $f838d8.options;
+      if (typeof $51e541 === 'function') {
+        $51e541 = $51e541.options;
       }
     
         /* template */
-        Object.assign($f838d8, (function () {
+        Object.assign($51e541, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11198,7 +11198,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-f838d8",
+            _scopeId: "data-v-51e541",
             functional: undefined
           };
         })());
@@ -11211,9 +11211,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$f838d8', $f838d8);
+            api.createRecord('$51e541', $51e541);
           } else {
-            api.reload('$f838d8', $f838d8);
+            api.reload('$51e541', $51e541);
           }
         }
 
@@ -11283,6 +11283,18 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   props: ['page'],
   data: function data() {
@@ -11295,9 +11307,6 @@ var _default = {
     gotofourthpage: function gotofourthpage() {
       this.$emit('gotofourthpage');
     },
-    gotofifthpage: function gotofifthpage() {
-      this.$emit('gotofifthpage');
-    },
     gotosecondpage: function gotosecondpage() {
       this.$emit('gotosecondpage');
     },
@@ -11307,6 +11316,9 @@ var _default = {
     },
     gotothirdpage: function gotothirdpage() {
       this.$emit('gotothirdpage');
+    },
+    gotoeditpage: function gotoeditpage() {
+      this.$emit('gotoeditpage');
     }
   }
 };
@@ -11324,7 +11336,7 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.page === 2 || _vm.page === 5 || _vm.page === 4
+    _vm.page === 2 || _vm.page === 3
       ? _c("div", { staticClass: "root" }, [
           _c("div", { staticClass: "left" }, [
             _c("div", { staticClass: "box" }, [
@@ -11339,7 +11351,11 @@ exports.default = _default;
                     }
                   }
                 },
-                [_c("i", { staticClass: "fas fa-globe-asia fa-1x" })]
+                [
+                  _c("i", { staticClass: "fas fa-globe-asia fa-1x" }, [
+                    _vm._v(" Published")
+                  ])
+                ]
               )
             ]),
             _vm._v(" "),
@@ -11351,23 +11367,7 @@ exports.default = _default;
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      return _vm.gotofifthpage($event)
-                    }
-                  }
-                },
-                [_vm._v("Published")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "box" }, [
-              _c(
-                "a",
-                {
-                  attrs: { href: "" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.gotofourthpage($event)
+                      return _vm.gotothirdpage($event)
                     }
                   }
                 },
@@ -11385,7 +11385,7 @@ exports.default = _default;
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      return _vm.gotothirdpage($event)
+                      return _vm.gotofourthpage($event)
                     }
                   }
                 },
@@ -11413,7 +11413,7 @@ exports.default = _default;
             ])
           ])
         ])
-      : _vm.page === 3
+      : _vm.page === 4
       ? _c("div", { staticClass: "root" }, [
           _c("div", { staticClass: "left" }, [
             _c("div", { staticClass: "box" }, [
@@ -11428,7 +11428,11 @@ exports.default = _default;
                     }
                   }
                 },
-                [_c("i", { staticClass: "fas fa-globe-asia fa-1x" })]
+                [
+                  _c("i", { staticClass: "fas fa-globe-asia fa-1x" }, [
+                    _vm._v(" Published")
+                  ])
+                ]
               )
             ]),
             _vm._v(" "),
@@ -11440,23 +11444,7 @@ exports.default = _default;
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      return _vm.gotofourthpage($event)
-                    }
-                  }
-                },
-                [_vm._v("Published")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "box" }, [
-              _c(
-                "a",
-                {
-                  attrs: { href: "" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.gotofifthpage($event)
+                      return _vm.gotothirdpage($event)
                     }
                   }
                 },
@@ -11495,6 +11483,83 @@ exports.default = _default;
                   }
                 },
                 [_vm._v("Publish")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "box" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.logout($event)
+                    }
+                  }
+                },
+                [_vm._v("Sign out")]
+              )
+            ])
+          ])
+        ])
+      : _vm.page === 5
+      ? _c("div", { staticClass: "root" }, [
+          _c("div", { staticClass: "left" }, [
+            _c("div", { staticClass: "box" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.gotosecondpage($event)
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-globe-asia fa-1x" }, [
+                    _vm._v(" Published")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "box" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.gotothirdpage($event)
+                    }
+                  }
+                },
+                [_vm._v("Draft")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "right" }, [
+            _c("div", { staticClass: "box" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.gotoeditpage($event)
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-feather-alt" }),
+                  _vm._v(" Edit.")
+                ]
               )
             ]),
             _vm._v(" "),
@@ -11566,7 +11631,14 @@ exports.default = void 0;
 //
 var _default = {
   data: function data() {
-    return {};
+    return {
+      search: ""
+    };
+  },
+  watch: {
+    search: function search() {
+      this.$emit('search', this.search);
+    }
   }
 };
 exports.default = _default;
@@ -11582,22 +11654,32 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.search,
+          expression: "search"
+        }
+      ],
+      staticClass: "searchbar",
+      attrs: { type: "text", placeholder: "Looking for something?" },
+      domProps: { value: _vm.search },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.search = $event.target.value
+        }
+      }
+    }),
+    _c("i", { staticClass: "fas fa-search" })
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("input", {
-        staticClass: "searchbar",
-        attrs: { type: "text", placeholder: "Looking for something?" }
-      }),
-      _c("i", { staticClass: "fas fa-search" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
           return {
@@ -11630,7 +11712,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/contentAll.vue":[function(require,module,exports) {
+},{"_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/contentPublish.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11638,12 +11720,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _axios = _interopRequireDefault(require("axios"));
-
 var _search = _interopRequireDefault(require("./search"));
+
+var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -11678,17 +11764,32 @@ var baseUrl = 'http://localhost:3000';
 var _default = {
   data: function data() {
     return {
-      articles: []
+      articles: [],
+      searchtext: ""
     };
   },
   methods: {
-    readAllArticle: function readAllArticle() {
+    gotofifth: function gotofifth(article) {
+      this.$emit('gotofifth', article);
+    },
+    search: function search(value) {
+      this.searchtext = value;
+    },
+    filter: function filter() {
+      var regex = new RegExp("^".concat(this.searchtext));
+      var filtered = this.articles.filter(function (article) {
+        return regex.test(article.title);
+      });
+      return filtered;
+    },
+    readArticle: function readArticle(value) {
       var _this = this;
 
       (0, _axios.default)({
-        url: "".concat(baseUrl, "/articles/all"),
+        url: "".concat(baseUrl, "/articles"),
         method: 'get',
         headers: {
+          publish: true,
           token: localStorage.getItem('token')
         }
       }).then(function (response) {
@@ -11704,22 +11805,22 @@ var _default = {
       }).finally(function () {});
     }
   },
+  created: function created() {
+    this.readArticle();
+  },
   components: {
     search: _search.default
-  },
-  created: function created() {
-    this.readAllArticle();
   }
 };
 exports.default = _default;
-        var $474325 = exports.default || module.exports;
+        var $3ea629 = exports.default || module.exports;
       
-      if (typeof $474325 === 'function') {
-        $474325 = $474325.options;
+      if (typeof $3ea629 === 'function') {
+        $3ea629 = $3ea629.options;
       }
     
         /* template */
-        Object.assign($474325, (function () {
+        Object.assign($3ea629, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11732,19 +11833,46 @@ exports.default = _default;
         _c("div", { staticClass: "left" }),
         _vm._v(" "),
         _c("div", { staticClass: "right" }, [
-          _c("div", { staticClass: "box" }, [_c("search")], 1)
+          _c(
+            "div",
+            { staticClass: "box" },
+            [_c("search", { on: { search: _vm.search } })],
+            1
+          )
         ])
       ]),
       _vm._v(" "),
-      _vm._l(_vm.articles, function(article, index) {
-        return _c("div", { key: index, staticClass: "content" }, [
+      _vm._l(_vm.filter(), function(article, index) {
+        return _c("div", { key: index, staticClass: "row" }, [
           _c("div", { staticClass: "left" }, [
-            _c("div", [_c("h2", [_vm._v(_vm._s(article.title))])]),
+            _c("div", { staticClass: "top" }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.gotofifth(article)
+                      }
+                    }
+                  },
+                  [_c("h2", [_vm._v(_vm._s(article.title))])]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("p", { domProps: { innerHTML: _vm._s(article.content) } })
+              ])
+            ]),
             _vm._v(" "),
-            _c("div", [_c("p", [_vm._v(_vm._s(article.content))])])
+            _c("div", { staticClass: "bottom" }, [
+              _c("p", [_vm._v(_vm._s(article.updatedAt))])
+            ])
           ]),
           _vm._v(" "),
-          _c("div")
+          _c("div", { staticClass: "right" })
         ])
       })
     ],
@@ -11758,7 +11886,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-474325",
+            _scopeId: "data-v-3ea629",
             functional: undefined
           };
         })());
@@ -11771,9 +11899,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$474325', $474325);
+            api.createRecord('$3ea629', $3ea629);
           } else {
-            api.reload('$474325', $474325);
+            api.reload('$3ea629', $3ea629);
           }
         }
 
@@ -11784,7 +11912,7 @@ render._withStripped = true
       
       }
     })();
-},{"axios":"node_modules/axios/index.js","./search":"src/components/search.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/secondPage.vue":[function(require,module,exports) {
+},{"./search":"src/components/search.vue","axios":"node_modules/axios/index.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/pageTwo.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11794,7 +11922,7 @@ exports.default = void 0;
 
 var _navbar = _interopRequireDefault(require("./navbar"));
 
-var _contentAll = _interopRequireDefault(require("./contentAll"));
+var _contentPublish = _interopRequireDefault(require("./contentPublish"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11816,11 +11944,10 @@ var _default = {
   data: function data() {
     return {};
   },
-  components: {
-    navbar: _navbar.default,
-    contentall: _contentAll.default
-  },
   methods: {
+    gotofifth: function gotofifth(article) {
+      this.$emit('gotofifth', article);
+    },
     gotofourthpage: function gotofourthpage() {
       this.$emit('gotofourthpage');
     },
@@ -11836,17 +11963,22 @@ var _default = {
     gotothirdpage: function gotothirdpage() {
       this.$emit('gotothirdpage');
     }
-  }
+  },
+  components: {
+    navbar: _navbar.default,
+    contentpublish: _contentPublish.default
+  },
+  created: function created() {}
 };
 exports.default = _default;
-        var $28e033 = exports.default || module.exports;
+        var $305548 = exports.default || module.exports;
       
-      if (typeof $28e033 === 'function') {
-        $28e033 = $28e033.options;
+      if (typeof $305548 === 'function') {
+        $305548 = $305548.options;
       }
     
         /* template */
-        Object.assign($28e033, (function () {
+        Object.assign($305548, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11857,7 +11989,6 @@ exports.default = _default;
       _c("navbar", {
         attrs: { page: _vm.page },
         on: {
-          gotofifthpage: _vm.gotofifthpage,
           gotofourthpage: _vm.gotofourthpage,
           gotosecondpage: _vm.gotosecondpage,
           gotothirdpage: _vm.gotothirdpage,
@@ -11865,7 +11996,12 @@ exports.default = _default;
         }
       }),
       _vm._v(" "),
-      _c("contentall", { staticClass: "content" })
+      _c("h2", { staticClass: "title" }, [_vm._v("Your published articles")]),
+      _vm._v(" "),
+      _c("contentpublish", {
+        staticClass: "content",
+        on: { gotofifth: _vm.gotofifth }
+      })
     ],
     1
   )
@@ -11877,7 +12013,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-28e033",
+            _scopeId: null,
             functional: undefined
           };
         })());
@@ -11890,9 +12026,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$28e033', $28e033);
+            api.createRecord('$305548', $305548);
           } else {
-            api.reload('$28e033', $28e033);
+            api.reload('$305548', $305548);
           }
         }
 
@@ -11903,7 +12039,332 @@ render._withStripped = true
       
       }
     })();
-},{"./navbar":"src/components/navbar.vue","./contentAll":"src/components/contentAll.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"vueWysiwyg.js":[function(require,module,exports) {
+},{"./navbar":"src/components/navbar.vue","./contentPublish":"src/components/contentPublish.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/contentDraft.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _search = _interopRequireDefault(require("./search"));
+
+var _axios = _interopRequireDefault(require("axios"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var baseUrl = 'http://localhost:3000';
+var _default = {
+  data: function data() {
+    return {
+      articles: [],
+      searchtext: ""
+    };
+  },
+  methods: {
+    gotofifth: function gotofifth(article) {
+      this.$emit('gotofifth', article);
+    },
+    search: function search(value) {
+      this.searchtext = value;
+    },
+    filter: function filter() {
+      var regex = new RegExp("^".concat(this.searchtext));
+      var filtered = this.articles.filter(function (article) {
+        return regex.test(article.title);
+      });
+      return filtered;
+    },
+    readArticle: function readArticle() {
+      var _this = this;
+
+      (0, _axios.default)({
+        url: "".concat(baseUrl, "/articles"),
+        method: 'get',
+        headers: {
+          publish: false,
+          token: localStorage.getItem('token')
+        }
+      }).then(function (response) {
+        _this.articles = response.data;
+      }).catch(function (err) {
+        if (err.response) {
+          console.log("".concat(err.response.data.message));
+        } else if (err.request) {
+          alert("No response from server");
+        } else {
+          console.log(err);
+        }
+      }).finally(function () {});
+    }
+  },
+  created: function created() {
+    this.readArticle();
+  },
+  components: {
+    search: _search.default
+  }
+};
+exports.default = _default;
+        var $e8cf91 = exports.default || module.exports;
+      
+      if (typeof $e8cf91 === 'function') {
+        $e8cf91 = $e8cf91.options;
+      }
+    
+        /* template */
+        Object.assign($e8cf91, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "root" },
+    [
+      _c("div", { staticClass: "header" }, [
+        _c("div", { staticClass: "left" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "right" }, [
+          _c(
+            "div",
+            { staticClass: "box" },
+            [_c("search", { on: { search: _vm.search } })],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.filter(), function(article, index) {
+        return _c("div", { key: index, staticClass: "row" }, [
+          _c("div", { staticClass: "left" }, [
+            _c("div", { staticClass: "top" }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.gotofifth(article)
+                      }
+                    }
+                  },
+                  [_c("h2", [_vm._v(_vm._s(article.title))])]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("p", { domProps: { innerHTML: _vm._s(article.content) } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "bottom" }, [
+              _c("p", [_vm._v(_vm._s(article.updatedAt))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "right" })
+        ])
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-e8cf91",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$e8cf91', $e8cf91);
+          } else {
+            api.reload('$e8cf91', $e8cf91);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"./search":"src/components/search.vue","axios":"node_modules/axios/index.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/pageThree.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _navbar = _interopRequireDefault(require("./navbar"));
+
+var _contentDraft = _interopRequireDefault(require("./contentDraft"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  props: ['page'],
+  data: function data() {
+    return {};
+  },
+  methods: {
+    gotofifth: function gotofifth(article) {
+      this.$emit('gotofifth', article);
+    },
+    gotofourthpage: function gotofourthpage() {
+      this.$emit('gotofourthpage');
+    },
+    gotosecondpage: function gotosecondpage() {
+      this.$emit('gotosecondpage');
+    },
+    gotofirstpage: function gotofirstpage() {
+      this.$emit('gotofirstpage');
+    },
+    gotothirdpage: function gotothirdpage() {
+      this.$emit('gotothirdpage');
+    }
+  },
+  components: {
+    navbar: _navbar.default,
+    contentdraft: _contentDraft.default
+  },
+  created: function created() {}
+};
+exports.default = _default;
+        var $d299d9 = exports.default || module.exports;
+      
+      if (typeof $d299d9 === 'function') {
+        $d299d9 = $d299d9.options;
+      }
+    
+        /* template */
+        Object.assign($d299d9, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("navbar", {
+        attrs: { page: _vm.page },
+        on: {
+          gotofourthpage: _vm.gotofourthpage,
+          gotosecondpage: _vm.gotosecondpage,
+          gotothirdpage: _vm.gotothirdpage,
+          gotofirstpage: _vm.gotofirstpage
+        }
+      }),
+      _vm._v(" "),
+      _c("h2", { staticClass: "title" }, [_vm._v("Your drafts")]),
+      _vm._v(" "),
+      _c("contentdraft", {
+        staticClass: "content",
+        on: { gotofifth: _vm.gotofifth }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$d299d9', $d299d9);
+          } else {
+            api.reload('$d299d9', $d299d9);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"./navbar":"src/components/navbar.vue","./contentDraft":"src/components/contentDraft.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"vueWysiwyg.js":[function(require,module,exports) {
 var define;
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -14976,21 +15437,27 @@ var _default = {
   props: ['content', 'title'],
   data: function data() {
     return {
-      inicontent: "" // title: ""
-
+      inicontent: "",
+      inititle: ""
     };
   },
   watch: {
     inicontent: function inicontent() {
       console.log('tr');
       this.$emit('updatecontent', this.inicontent);
+    },
+    inititle: function inititle() {
+      console.log('as');
+      this.$emit('updatetitle', this.inititle);
     }
   },
-  methods: {},
+  created: function created() {
+    if (this.content) this.inicontent = this.content;
+    if (this.title) this.inititle = this.title;
+  },
   components: {
     wysiwyg: _vueWysiwyg.default.component
-  },
-  created: function created() {}
+  }
 };
 exports.default = _default;
         var $4ee92d = exports.default || module.exports;
@@ -15008,11 +15475,22 @@ exports.default = _default;
   return _c("div", { staticClass: "root" }, [
     _c("div", { staticClass: "header" }, [
       _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inititle,
+            expression: "inititle"
+          }
+        ],
         attrs: { type: "text", placeholder: "Your title goes here" },
-        domProps: { value: _vm.title },
+        domProps: { value: _vm.inititle },
         on: {
           input: function($event) {
-            return _vm.$emit("update:title", $event.target.value)
+            if ($event.target.composing) {
+              return
+            }
+            _vm.inititle = $event.target.value
           }
         }
       })
@@ -15070,7 +15548,7 @@ render._withStripped = true
       
       }
     })();
-},{"axios":"node_modules/axios/index.js","../../vueWysiwyg":"vueWysiwyg.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/thirdPage.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","../../vueWysiwyg":"vueWysiwyg.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/pageFour.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15101,10 +15579,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 var baseUrl = 'http://localhost:3000';
 var _default = {
-  props: ['page'],
+  props: ['page', 'articles'],
   data: function data() {
     return {
       title: "",
@@ -15116,11 +15593,8 @@ var _default = {
     contentwrite: _contentWrite.default
   },
   methods: {
-    gotofourthpage: function gotofourthpage() {
-      this.$emit('gotofourthpage');
-    },
-    gotofifthpage: function gotofifthpage() {
-      this.$emit('gotofifthpage');
+    gotothirdpage: function gotothirdpage() {
+      this.$emit('gotothirdpage');
     },
     gotofirstpage: function gotofirstpage() {
       this.$emit('gotofirstpage');
@@ -15129,43 +15603,83 @@ var _default = {
       this.$emit('gotosecondpage');
     },
     publish: function publish(_publish) {
-      (0, _axios.default)({
-        url: "".concat(baseUrl, "/articles"),
-        method: 'post',
-        data: {
-          title: this.title,
-          content: this.content,
-          publish: _publish
-        },
-        headers: {
-          token: localStorage.getItem('token')
-        }
-      }).then(function (response) {
-        console.log(response);
-      }).catch(function (err) {
-        if (err.response) {
-          console.log("".concat(err.response.data.message));
-        } else if (err.request) {
-          alert("No response from server");
-        } else {
-          console.log(err);
-        }
-      }).finally(function () {});
+      var _this = this;
+
+      if (this.articles.length !== 0) {
+        var url = "".concat(baseUrl, "/articles/").concat(this.articles._id);
+        console.log(url);
+        (0, _axios.default)({
+          url: url,
+          method: 'patch',
+          data: {
+            title: this.title,
+            content: this.content,
+            publish: _publish
+          },
+          headers: {
+            token: localStorage.getItem('token')
+          }
+        }).then(function (response) {
+          if (_publish) {
+            _this.$emit('gotosecondpage');
+          } else {
+            _this.$emit('gotothirdpage');
+          }
+        }).catch(function (err) {
+          if (err.response) {
+            console.log("".concat(err.response.data.message));
+          } else if (err.request) {
+            alert("No response from server");
+          } else {
+            console.log(err);
+          }
+        }).finally(function () {});
+      } else {
+        (0, _axios.default)({
+          url: "".concat(baseUrl, "/articles"),
+          method: 'post',
+          data: {
+            title: this.title,
+            content: this.content,
+            publish: _publish
+          },
+          headers: {
+            token: localStorage.getItem('token')
+          }
+        }).then(function (response) {
+          if (_publish) {
+            _this.$emit('gotosecondpage');
+          } else {
+            _this.$emit('gotothirdpage');
+          }
+        }).catch(function (err) {
+          if (err.response) {
+            console.log("".concat(err.response.data.message));
+          } else if (err.request) {
+            alert("No response from server");
+          } else {
+            console.log(err);
+          }
+        }).finally(function () {});
+      }
     },
     updatecontent: function updatecontent(value) {
       this.content = value;
+    },
+    updatetitle: function updatetitle(value) {
+      this.title = value;
     }
   }
 };
 exports.default = _default;
-        var $7e04ce = exports.default || module.exports;
+        var $0d6230 = exports.default || module.exports;
       
-      if (typeof $7e04ce === 'function') {
-        $7e04ce = $7e04ce.options;
+      if (typeof $0d6230 === 'function') {
+        $0d6230 = $0d6230.options;
       }
     
         /* template */
-        Object.assign($7e04ce, (function () {
+        Object.assign($0d6230, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -15177,9 +15691,8 @@ exports.default = _default;
         attrs: { page: _vm.page },
         on: {
           publish: _vm.publish,
-          gotofifthpage: _vm.gotofifthpage,
-          gotofourthpage: _vm.gotofourthpage,
           gotosecondpage: _vm.gotosecondpage,
+          gotothirdpage: _vm.gotothirdpage,
           gotofirstpage: _vm.gotofirstpage
         }
       }),
@@ -15189,12 +15702,10 @@ exports.default = _default;
         { staticClass: "editor" },
         [
           _c("contentwrite", {
-            attrs: { title: _vm.title },
+            attrs: { title: _vm.articles.title, content: _vm.articles.content },
             on: {
               updatecontent: _vm.updatecontent,
-              "update:title": function($event) {
-                _vm.title = $event
-              }
+              updatetitle: _vm.updatetitle
             }
           })
         ],
@@ -15211,7 +15722,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-7e04ce",
+            _scopeId: "data-v-0d6230",
             functional: undefined
           };
         })());
@@ -15224,9 +15735,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$7e04ce', $7e04ce);
+            api.createRecord('$0d6230', $0d6230);
           } else {
-            api.reload('$7e04ce', $7e04ce);
+            api.reload('$0d6230', $0d6230);
           }
         }
 
@@ -15237,106 +15748,7 @@ render._withStripped = true
       
       }
     })();
-},{"axios":"node_modules/axios/index.js","./navbar":"src/components/navbar.vue","./contentWrite":"src/components/contentWrite.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/contentDraft.vue":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _axios = _interopRequireDefault(require("axios"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-var baseUrl = 'http://localhost:3000';
-var _default = {
-  data: function data() {
-    return {
-      articles: []
-    };
-  },
-  methods: {
-    readArticle: function readArticle() {
-      (0, _axios.default)({
-        url: "".concat(baseUrl, "/articles"),
-        method: 'get',
-        data: {
-          publishskjnasnsad: "lasndak"
-        },
-        headers: {
-          token: localStorage.getItem('token')
-        }
-      }).then(function (response) {
-        console.log(response);
-      }).catch(function (err) {
-        if (err.response) {
-          console.log("".concat(err.response.data.message));
-        } else if (err.request) {
-          alert("No response from server");
-        } else {
-          console.log(err);
-        }
-      }).finally(function () {});
-    }
-  },
-  created: function created() {
-    this.readArticle();
-  }
-};
-exports.default = _default;
-        var $e8cf91 = exports.default || module.exports;
-      
-      if (typeof $e8cf91 === 'function') {
-        $e8cf91 = $e8cf91.options;
-      }
-    
-        /* template */
-        Object.assign($e8cf91, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div")
-}
-var staticRenderFns = []
-render._withStripped = true
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: "data-v-e8cf91",
-            functional: undefined
-          };
-        })());
-      
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$e8cf91', $e8cf91);
-          } else {
-            api.reload('$e8cf91', $e8cf91);
-          }
-        }
-
-        
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-      }
-    })();
-},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/fourthPage.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","./navbar":"src/components/navbar.vue","./contentWrite":"src/components/contentWrite.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/pageFive.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15346,8 +15758,6 @@ exports.default = void 0;
 
 var _navbar = _interopRequireDefault(require("./navbar"));
 
-var _contentDraft = _interopRequireDefault(require("./contentDraft"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //
@@ -15363,17 +15773,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
-  props: ['page'],
+  props: ['page', 'articles'],
   data: function data() {
     return {};
   },
   methods: {
-    gotofourthpage: function gotofourthpage() {
-      this.$emit('gotofourthpage');
-    },
-    gotofifthpage: function gotofifthpage() {
-      this.$emit('gotofifthpage');
+    gotoeditpage: function gotoeditpage() {
+      this.$emit('gotoeditpage');
     },
     gotosecondpage: function gotosecondpage() {
       this.$emit('gotosecondpage');
@@ -15386,20 +15798,18 @@ var _default = {
     }
   },
   components: {
-    navbar: _navbar.default,
-    contentdraft: _contentDraft.default
-  },
-  created: function created() {}
+    navbar: _navbar.default
+  }
 };
 exports.default = _default;
-        var $50005c = exports.default || module.exports;
+        var $defb8e = exports.default || module.exports;
       
-      if (typeof $50005c === 'function') {
-        $50005c = $50005c.options;
+      if (typeof $defb8e === 'function') {
+        $defb8e = $defb8e.options;
       }
     
         /* template */
-        Object.assign($50005c, (function () {
+        Object.assign($defb8e, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -15410,15 +15820,20 @@ exports.default = _default;
       _c("navbar", {
         attrs: { page: _vm.page },
         on: {
-          gotofifthpage: _vm.gotofifthpage,
-          gotofourthpage: _vm.gotofourthpage,
+          gotoeditpage: _vm.gotoeditpage,
           gotosecondpage: _vm.gotosecondpage,
           gotothirdpage: _vm.gotothirdpage,
           gotofirstpage: _vm.gotofirstpage
         }
       }),
       _vm._v(" "),
-      _c("contentdraft")
+      _c("div", { staticClass: "root" }, [
+        _c("div", { staticClass: "content" }, [
+          _c("h1", [_vm._v(_vm._s(_vm.articles.title))]),
+          _vm._v(" "),
+          _c("p", { domProps: { innerHTML: _vm._s(_vm.articles.content) } })
+        ])
+      ])
     ],
     1
   )
@@ -15430,7 +15845,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-defb8e",
             functional: undefined
           };
         })());
@@ -15443,9 +15858,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$50005c', $50005c);
+            api.createRecord('$defb8e', $defb8e);
           } else {
-            api.reload('$50005c', $50005c);
+            api.reload('$defb8e', $defb8e);
           }
         }
 
@@ -15456,7 +15871,7 @@ render._withStripped = true
       
       }
     })();
-},{"./navbar":"src/components/navbar.vue","./contentDraft":"src/components/contentDraft.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/contentPublish.vue":[function(require,module,exports) {
+},{"./navbar":"src/components/navbar.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15464,7 +15879,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _axios = _interopRequireDefault(require("axios"));
+var _pageOne = _interopRequireDefault(require("./components/pageOne"));
+
+var _pageTwo = _interopRequireDefault(require("./components/pageTwo"));
+
+var _pageThree = _interopRequireDefault(require("./components/pageThree"));
+
+var _pageFour = _interopRequireDefault(require("./components/pageFour"));
+
+var _pageFive = _interopRequireDefault(require("./components/pageFive"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15472,276 +15895,56 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = 'http://localhost:3000';
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
+      page: 1,
       articles: []
     };
   },
   methods: {
-    readArticle: function readArticle(value) {
-      (0, _axios.default)({
-        url: "".concat(baseUrl, "/articles"),
-        method: 'get',
-        data: {
-          publish: "sadjnfkasdnfalksdfn"
-        },
-        headers: {
-          token: localStorage.getItem('token')
-        }
-      }).then(function (response) {
-        console.log(response);
-      }).catch(function (err) {
-        if (err.response) {
-          console.log("".concat(err.response.data.message));
-        } else if (err.request) {
-          alert("No response from server");
-        } else {
-          console.log(err);
-        }
-      }).finally(function () {});
-    }
-  },
-  created: function created() {
-    this.readArticle();
-  }
-};
-exports.default = _default;
-        var $3ea629 = exports.default || module.exports;
-      
-      if (typeof $3ea629 === 'function') {
-        $3ea629 = $3ea629.options;
-      }
-    
-        /* template */
-        Object.assign($3ea629, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div")
-}
-var staticRenderFns = []
-render._withStripped = true
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: "data-v-3ea629",
-            functional: undefined
-          };
-        })());
-      
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$3ea629', $3ea629);
-          } else {
-            api.reload('$3ea629', $3ea629);
-          }
-        }
-
-        
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-      }
-    })();
-},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/fifthPage.vue":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _navbar = _interopRequireDefault(require("./navbar"));
-
-var _contentPublish = _interopRequireDefault(require("./contentPublish"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
-  props: ['page'],
-  data: function data() {
-    return {};
-  },
-  methods: {
-    gotofourthpage: function gotofourthpage() {
-      this.$emit('gotofourthpage');
-    },
-    gotofifthpage: function gotofifthpage() {
-      this.$emit('gotofifthpage');
-    },
-    gotosecondpage: function gotosecondpage() {
-      this.$emit('gotosecondpage');
-    },
-    gotofirstpage: function gotofirstpage() {
-      this.$emit('gotofirstpage');
-    },
-    gotothirdpage: function gotothirdpage() {
-      this.$emit('gotothirdpage');
-    }
-  },
-  components: {
-    navbar: _navbar.default,
-    contentpublish: _contentPublish.default
-  },
-  created: function created() {}
-};
-exports.default = _default;
-        var $77da91 = exports.default || module.exports;
-      
-      if (typeof $77da91 === 'function') {
-        $77da91 = $77da91.options;
-      }
-    
-        /* template */
-        Object.assign($77da91, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("navbar", {
-        attrs: { page: _vm.page },
-        on: {
-          gotofifthpage: _vm.gotofifthpage,
-          gotofourthpage: _vm.gotofourthpage,
-          gotosecondpage: _vm.gotosecondpage,
-          gotothirdpage: _vm.gotothirdpage,
-          gotofirstpage: _vm.gotofirstpage
-        }
-      }),
-      _vm._v(" "),
-      _c("contentpublish")
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: null,
-            functional: undefined
-          };
-        })());
-      
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$77da91', $77da91);
-          } else {
-            api.reload('$77da91', $77da91);
-          }
-        }
-
-        
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-      }
-    })();
-},{"./navbar":"src/components/navbar.vue","./contentPublish":"src/components/contentPublish.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _firstPage = _interopRequireDefault(require("./components/firstPage"));
-
-var _secondPage = _interopRequireDefault(require("./components/secondPage"));
-
-var _thirdPage = _interopRequireDefault(require("./components/thirdPage"));
-
-var _fourthPage = _interopRequireDefault(require("./components/fourthPage"));
-
-var _fifthPage = _interopRequireDefault(require("./components/fifthPage"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
-  data: function data() {
-    return {
-      page: 1
-    };
-  },
-  methods: {
-    gotofourthpage: function gotofourthpage() {
-      this.page = 4;
-    },
-    gotofifthpage: function gotofifthpage() {
+    gotofifth: function gotofifth(articles) {
       this.page = 5;
+      this.articles = articles;
+    },
+    gotofourthpage: function gotofourthpage() {
+      this.articles = [];
+      this.page = 4;
     },
     gotofirstpage: function gotofirstpage() {
       this.page = 1;
@@ -15751,14 +15954,17 @@ var _default = {
     },
     gotothirdpage: function gotothirdpage() {
       this.page = 3;
+    },
+    gotoeditpage: function gotoeditpage() {
+      this.page = 4;
     }
   },
   components: {
-    firstpage: _firstPage.default,
-    secondpage: _secondPage.default,
-    thirdpage: _thirdPage.default,
-    fifthpage: _fifthPage.default,
-    fourthpage: _fourthPage.default
+    firstpage: _pageOne.default,
+    secondpage: _pageTwo.default,
+    thirdpage: _pageThree.default,
+    fifthpage: _pageFive.default,
+    fourthpage: _pageFour.default
   },
   created: function created() {
     if (localStorage.getItem('token')) {
@@ -15785,29 +15991,28 @@ exports.default = _default;
     ? _c("secondpage", {
         attrs: { page: _vm.page },
         on: {
-          gotofifthpage: _vm.gotofifthpage,
           gotofourthpage: _vm.gotofourthpage,
           gotosecondpage: _vm.gotosecondpage,
           gotothirdpage: _vm.gotothirdpage,
-          gotofirstpage: _vm.gotofirstpage
+          gotofirstpage: _vm.gotofirstpage,
+          gotofifth: _vm.gotofifth
         }
       })
     : _vm.page === 3
     ? _c("thirdpage", {
         attrs: { page: _vm.page },
         on: {
-          gotofifthpage: _vm.gotofifthpage,
           gotofourthpage: _vm.gotofourthpage,
           gotosecondpage: _vm.gotosecondpage,
           gotothirdpage: _vm.gotothirdpage,
-          gotofirstpage: _vm.gotofirstpage
+          gotofirstpage: _vm.gotofirstpage,
+          gotofifth: _vm.gotofifth
         }
       })
     : _vm.page === 4
     ? _c("fourthpage", {
-        attrs: { page: _vm.page },
+        attrs: { page: _vm.page, articles: _vm.articles },
         on: {
-          gotofifthpage: _vm.gotofifthpage,
           gotofourthpage: _vm.gotofourthpage,
           gotosecondpage: _vm.gotosecondpage,
           gotothirdpage: _vm.gotothirdpage,
@@ -15816,10 +16021,9 @@ exports.default = _default;
       })
     : _vm.page === 5
     ? _c("fifthpage", {
-        attrs: { page: _vm.page },
+        attrs: { page: _vm.page, articles: _vm.articles },
         on: {
-          gotofifthpage: _vm.gotofifthpage,
-          gotofourthpage: _vm.gotofourthpage,
+          gotoeditpage: _vm.gotoeditpage,
           gotosecondpage: _vm.gotosecondpage,
           gotothirdpage: _vm.gotothirdpage,
           gotofirstpage: _vm.gotofirstpage
@@ -15860,7 +16064,7 @@ render._withStripped = true
       
       }
     })();
-},{"./components/firstPage":"src/components/firstPage.vue","./components/secondPage":"src/components/secondPage.vue","./components/thirdPage":"src/components/thirdPage.vue","./components/fourthPage":"src/components/fourthPage.vue","./components/fifthPage":"src/components/fifthPage.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/main.js":[function(require,module,exports) {
+},{"./components/pageOne":"src/components/pageOne.vue","./components/pageTwo":"src/components/pageTwo.vue","./components/pageThree":"src/components/pageThree.vue","./components/pageFour":"src/components/pageFour.vue","./components/pageFive":"src/components/pageFive.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -15902,7 +16106,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64773" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55324" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

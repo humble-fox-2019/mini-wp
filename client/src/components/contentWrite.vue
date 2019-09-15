@@ -1,7 +1,7 @@
 <template>
     <div class="root">
         <div class="header">
-            <input type="text" @input="$emit('update:title', $event.target.value)" :value="title" placeholder="Your title goes here">
+            <input type="text" v-model="inititle" placeholder="Your title goes here">
         </div>
         <div class="editor">
             <wysiwyg class="texteditor" v-model="inicontent"></wysiwyg>
@@ -18,24 +18,28 @@ export default {
     data: function(){
         return {
             inicontent: "",
-            // title: ""
+            inititle: ""
         }
     },
     watch:{
          inicontent: function(){
              console.log('tr')
              this.$emit('updatecontent', this.inicontent)
+         },
+         inititle: function(){
+             console.log('as')
+             this.$emit('updatetitle', this.inititle)
          }
+
     },
-    methods: {
-        
+    created(){
+        if(this.content) this.inicontent = this.content
+        if(this.title) this.inititle = this.title
     },
     components: {
         wysiwyg: wysiwyg.component
     },
-    created () {
-
-    }
+    
 }
 </script>
 

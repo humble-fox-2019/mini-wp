@@ -1,36 +1,30 @@
 <template>
     <div>
-        <div v-if="page === 2 || page === 5 || page === 4" class="root">
+        <div v-if="page === 2 || page === 3" class="root">
             <div class="left">
                 <div class="box">
-                    <a href="" @click.prevent="gotosecondpage"><i class="fas fa-globe-asia fa-1x"></i></a>
+                    <a href="" @click.prevent="gotosecondpage"><i class="fas fa-globe-asia fa-1x"> Published</a>
                 </div>
                 <div class="box">
-                    <a href="" @click.prevent="gotofifthpage">Published</a>
-                </div>
-                <div class="box">
-                    <a href="" @click.prevent="gotofourthpage">Draft</a>
+                    <a href="" @click.prevent="gotothirdpage">Draft</a>
                 </div>
             </div>
             <div class="right">
                 <div class="box">
-                    <a href="" @click.prevent="gotothirdpage"><i class="fas fa-feather-alt"></i> Write.</a>
+                    <a href="" @click.prevent="gotofourthpage"><i class="fas fa-feather-alt"></i> Write.</a>
                 </div>
                 <div class="box">
                     <a @click.prevent="logout" href="">Sign out</a>
                 </div>
             </div>
         </div>
-        <div v-else-if="page === 3" class="root">
+        <div v-else-if="page === 4" class="root">
             <div class="left">
                 <div class="box">
-                    <a href="" @click.prevent="gotosecondpage"><i class="fas fa-globe-asia fa-1x"></i></a>
+                    <a href="" @click.prevent="gotosecondpage"><i class="fas fa-globe-asia fa-1x"> Published</a>
                 </div>
                 <div class="box">
-                    <a href="" @click.prevent="gotofourthpage">Published</a>
-                </div>
-                <div class="box">
-                    <a href="" @click.prevent="gotofifthpage">Draft</a>
+                    <a href="" @click.prevent="gotothirdpage">Draft</a>
                 </div>
             </div>
             <div class="right">
@@ -45,6 +39,24 @@
                 </div>
             </div>
         </div>
+        <div v-else-if="page === 5" class="root">
+            <div class="left">
+                <div class="box">
+                    <a href="" @click.prevent="gotosecondpage"><i class="fas fa-globe-asia fa-1x"> Published</a>
+                </div>
+                <div class="box">
+                    <a href="" @click.prevent="gotothirdpage">Draft</a>
+                </div>
+            </div>
+            <div class="right">
+                <div class="box">
+                    <a href="" @click.prevent="gotoeditpage"><i class="fas fa-feather-alt"></i> Edit.</a>
+                </div>
+                <div class="box">
+                    <a @click.prevent="logout" href="">Sign out</a>
+                </div>
+            </div>
+        </div>        
         
 
     </div>
@@ -65,9 +77,6 @@ export default {
         gotofourthpage(){
             this.$emit('gotofourthpage')
         },
-        gotofifthpage(){
-            this.$emit('gotofifthpage')
-        },
         gotosecondpage(){
             this.$emit('gotosecondpage')
         },
@@ -77,7 +86,12 @@ export default {
         },
         gotothirdpage(){
             this.$emit('gotothirdpage')
+        },
+        gotoeditpage(){
+            
+            this.$emit('gotoeditpage')
         }
+        
     }
 }
 </script>

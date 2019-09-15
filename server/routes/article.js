@@ -5,9 +5,7 @@ const authorizeArticle = require('../middlewares/authorizeArticle')
 router.use(authenticate)
 router.get('/', ArticleController.readArticle)
 router.post('/', ArticleController.createArticle)
-router.get('/all', ArticleController.readAllArticle)
-router.use(authorizeArticle)
-router.patch('/:_id', ArticleController.updateArticle)
-router.delete('/:_id', ArticleController.removeArticle)
+router.patch('/:_id', authorizeArticle, ArticleController.updateArticle)
+router.delete('/:_id', authorizeArticle, ArticleController.removeArticle)
 
 module.exports = router

@@ -2,12 +2,13 @@
     <div>
     
         <navbar 
-            @gotofifthpage="gotofifthpage"
             @gotofourthpage="gotofourthpage"
             @gotosecondpage="gotosecondpage" 
-            @gotothirdpage="gotothirdpage" :page="page" 
+            @gotothirdpage="gotothirdpage" 
+            :page="page" 
             @gotofirstpage="gotofirstpage"></navbar>
-        <contentdraft></contentdraft>
+            <h2 class="title">Your drafts</h2>
+        <contentdraft @gotofifth="gotofifth" class="content"></contentdraft>
     </div>
 </template>
 
@@ -22,11 +23,11 @@ export default {
         }
     },
     methods:{
+        gotofifth(article){
+            this.$emit('gotofifth', article)
+        },
         gotofourthpage(){
             this.$emit('gotofourthpage')
-        },
-        gotofifthpage(){
-            this.$emit('gotofifthpage')
         },
         gotosecondpage(){
             this.$emit('gotosecondpage')
@@ -48,5 +49,14 @@ export default {
 </script>
 
 <style>
-
+    .title{
+        position: relative;
+        top: 5vh;
+        left: 10vw;
+    }
+    .content{
+        margin-top: 10vh;
+        margin-left: auto;
+        margin-right: auto;
+    }
 </style>

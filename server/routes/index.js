@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 
 router.post('/signup', UserController.signup);
 router.post('/signin', UserController.signin);
+router.post('/Gsignin', UserController.Gsignin);
 
 router.use('/articles', articleRoute);
 router.use('/users', userRoute);

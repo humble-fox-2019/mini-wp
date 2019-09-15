@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div class="mx-16 mt-10">
-      <h1 class="text-5xl font-bold bg-black text-white pl-5 mb-5">Welcome to Mini WP!</h1>
+      <h1 class="text-5xl font-bold bg-black text-white pl-5 mb-5 tracking-wide">Welcome to Mini WP!</h1>
       <p class="mb-5">
         Here's a Content Management System to make your life easier and hopefully happier. We'are
         kindly enough to assembled some links, incase you didn't saw that <span class="font-bold">BIG</span> navbar.

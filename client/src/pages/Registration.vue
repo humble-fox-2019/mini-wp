@@ -1,5 +1,6 @@
 <template>
   <div class="flex">
+    <Loading :isLoading="isLoading" :fullPage="fullPage"></Loading>
     <div class="w-1/2 flex justify-center items-center">
       <img class="w-4/5" src="../../resources/undraw_services_5tv9.svg" alt="" />
     </div>
@@ -59,18 +60,25 @@
 
 <script>
 import axios from 'axios'
+import Loading from '../helper/Loading'
 
 export default {
+  components: {
+    Loading
+  },
   data() {
     return {
       name: '',
       email: '',
       password: '',
-      falseRegister: false
+      falseRegister: false,
+      isLoading: false,
+      fullPage: true
     }
   },
   methods: {
     register() {
+      this.isLoading = true
       axios({
         method: 'post',
         url: 'http://35.187.235.228/users/register',
@@ -81,6 +89,7 @@ export default {
         }
       })
         .then(({ data }) => {
+          this.isLoading = false
           this.falseRegister = false
 
           const payload = {
@@ -90,6 +99,7 @@ export default {
           EventBus.$emit('changePage', { page: 'dashboard' })
         })
         .catch(error => {
+          this.isLoading = false
           if (error.response) {
             console.log(error.response.data)
             if (error.response.data.errors) {

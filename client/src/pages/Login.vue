@@ -1,5 +1,6 @@
 <template>
   <div class="w-full flex-col h-full">
+    <Loading :isLoading="isLoading" :fullPage="fullPage"></Loading>
     <form class="w-1/4 my-32 mx-auto">
       <h1 class="text-3xl capitalize font-bold mb-4">Login to Mini WP</h1>
 
@@ -62,8 +63,12 @@
 import EventBus from '../eventBus'
 import axios from 'axios'
 import { eventNames } from 'cluster'
+import Loading from '../helper/Loading'
 
 export default {
+  components: {
+    Loading
+  },
   data() {
     return {
       email: '',
@@ -71,7 +76,9 @@ export default {
       falseLogin: false,
       googleSignInParams: {
         client_id: '160776637941-dnr0nh9hfm26894b08ld9as9232v6ofk.apps.googleusercontent.com'
-      }
+      },
+      isLoading: false,
+      fullPage: true
     }
   },
   methods: {
@@ -83,6 +90,7 @@ export default {
       EventBus.$emit('changePage', payload)
     },
     login() {
+      this.isLoading = true
       axios({
         method: 'post',
         url: 'http://35.187.235.228/users/login',
@@ -92,7 +100,7 @@ export default {
         }
       })
         .then(({ data }) => {
-          this.falseLogin = false
+          this.isLoading = false
 
           const payload = {
             token: data.token
@@ -101,6 +109,7 @@ export default {
           EventBus.$emit('changePage', { page: 'dashboard' })
         })
         .catch(error => {
+          this.isLoading = false
           if (error.response) {
             console.log(error.response.data)
             if (error.response.data.errors) {
@@ -118,6 +127,7 @@ export default {
         })
     },
     onSignInSuccess(googleUser) {
+      this.isLoading = true
       // `googleUser` is the GoogleUser object that represents the just-signed-in user.
       // See https://developers.google.com/identity/sign-in/web/reference#users
       const id_token = googleUser.getAuthResponse().id_token
@@ -127,10 +137,12 @@ export default {
         headers: { id_token }
       })
         .then(({ data }) => {
+          this.isLoading = false
           localStorage.setItem('token', data.token)
           EventBus.$emit('checkToken')
         })
         .catch(err => {
+          this.isLoading = false
           console.log(err)
         })
     },

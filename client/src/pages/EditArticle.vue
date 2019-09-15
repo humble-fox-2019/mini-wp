@@ -1,5 +1,6 @@
 <template>
   <div class="w-full">
+    <Loading :isLoading="isLoading" :fullPage="fullPage"></Loading>
     <div class="mx-16 mt-10">
       <form enctype="multipart/form-data" @submit.prevent="submit">
         <input
@@ -26,21 +27,27 @@ import EventBus from '../eventBus'
 import { quillEditor } from 'vue-quill-editor'
 import axios from 'axios'
 
+import Loading from '../helper/Loading'
+
 export default {
   components: {
-    quillEditor
+    quillEditor,
+    Loading
   },
   data() {
     return {
       id: '',
       title: '',
-      content: ''
-      // featured_image: ''
+      content: '',
+      featured_image: '',
+      isLoading: false,
+      fullPage: true
     }
   },
   props: ['token'],
   methods: {
     submit() {
+      this.isLoading = true
       axios({
         method: 'put',
         url: `http://35.187.235.228/articles/${this.id}`,
@@ -53,13 +60,15 @@ export default {
         }
       })
         .then(({ data }) => {
+          this.isLoading = false
           console.log(data)
-          EventBus.$emit('changePage', {page: 'articles'})
+          EventBus.$emit('changePage', { page: 'articles' })
           this.id = ''
           this.title = ''
           this.content = ''
         })
         .catch(err => {
+          this.isLoading = false
           console.log(err)
         })
     },
@@ -67,6 +76,7 @@ export default {
       this.featured_image = this.$refs.picture.files[0]
     },
     fetchArticle(id) {
+      this.isLoading = true
       axios({
         method: 'get',
         url: `http://35.187.235.228/articles/${id}`,
@@ -75,11 +85,13 @@ export default {
         }
       })
         .then(({ data }) => {
+          this.isLoading = false
           this.title = data.title
           this.content = data.content
           this.featured_image = data.featured_image
         })
         .catch(err => {
+          this.isLoading = false
           console.log(err)
         })
     }

@@ -1,11 +1,17 @@
 <template>
   <div id="dashboardCard">
-    <b-card v-for="(article,index) in articles" :key="index" :title="article.title">
+    <b-card-img
+      src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Mount_Fuji_Japan_with_Snow%2C_Lakes_and_Surrounding_Mountains.jpg"
+      img-alt="Image"
+      img-top
+      id="cardImage"
+    ></b-card-img>
+    <b-card id="cardTitle" v-for="(article,index) in articles" :key="index" :title="article.title">
+      <b-card-text id="cardText" v-html="article.content"></b-card-text>
       <b-card-text>{{article.createdAt}}</b-card-text>
-      <b-card-text v-html="article.content"></b-card-text>
       <div>
-        <b-button variant="warning" @click.prevent="showEditArticle(article)">Edit</b-button>
-        <b-button variant="danger" @click.prevent="deleteArticle(article._id)">Delete</b-button>
+        <b-button id="editButton" @click.prevent="showEditArticle(article)">Edit</b-button>
+        <b-button id="deleteButton" @click.prevent="deleteArticle(article._id)">Delete</b-button>
       </div>
     </b-card>"
   </div>
@@ -72,4 +78,36 @@ export default {
 </script>
 
 <style>
+#dashboardCard {
+  max-width: 60%;
+}
+
+#cardImage {
+  max-width: 100%;
+  max-height: 300px;
+  margin-top: 30px;
+}
+
+#cardTitle {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#cardText {
+  text-align: justify;
+}
+
+#editButton {
+  background-image: linear-gradient(to bottom right, #ffdd00, #fbb034);
+  border: none;
+  box-shadow: 0px 10px 10px -5px #111;
+  color: #000000;
+}
+
+#deleteButton {
+  background-image: linear-gradient(to bottom right, #ff0000, #990000);
+  border: none;
+  box-shadow: 0px 10px 10px -5px #111;
+}
 </style>

@@ -29,12 +29,12 @@
                 <input
                   type="file"
                   class="custom-file-input"
-                  id="image"
-                  name="image"
-                  ref="image"
+                  id="featured_image"
+                  name="featured_image"
+                  ref="featured_image"
                   v-on:change="handleImage"
                 />
-                <label class="custom-file-label" for="image" id="imgLabel">{{imageName}}</label>
+                <label class="custom-file-label" for="featured_image" id="imgLabel">{{imageName}}</label>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default {
     return {
       title: "",
       content: "",
-      image: "",
+      featured_image: "",
       isPublished: true,
       errors: "",
       imageName: "",
@@ -106,7 +106,7 @@ export default {
       let reader = new FileReader();
 
       reader.readAsDataURL(this.$refs.image.files[0]);
-      this.image = this.$refs.image.files[0];
+      this.featured_image = this.$refs.image.files[0];
       this.imageName = this.$refs.image.files[0].name;
     },
     createPost() {
@@ -114,7 +114,7 @@ export default {
 
       formData.append("title", this.title);
       formData.append("content", this.content);
-      formData.append("image", this.image);
+      formData.append("featured_image", this.featured_image);
       formData.append("isPublished", this.isPublished);
       formData.append("tags", this.tags);
 

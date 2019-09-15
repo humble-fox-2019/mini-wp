@@ -41,6 +41,7 @@
                   data-toggle="tooltip"
                   title
                   data-original-title="Delete"
+                  @click="remove(article._id)"
                 >
                   <i class="fas fa-times"></i>
                 </button>
@@ -55,6 +56,7 @@
 
 <script>
 import axios from "../api/server";
+import Swal from "sweetalert2";
 
 export default {
   data() {
@@ -62,20 +64,51 @@ export default {
       articles: []
     };
   },
-  created() {
-    axios
-      .get("/articles", {
-        headers: {
-          token: localStorage.getItem("token")
+  methods: {
+    getArticles() {
+      axios
+        .get("/articles", {
+          headers: {
+            token: localStorage.getItem("token")
+          }
+        })
+        .then(({ data }) => {
+          this.articles = data;
+        })
+        .catch(err => {
+          console.log(err.response.data);
+        });
+    },
+    remove(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(result => {
+        if (result.value) {
+          axios
+            .delete("/articles/" + id, {
+              headers: {
+                token: localStorage.getItem("token")
+              }
+            })
+            .then(({ data }) => {
+              this.getArticles();
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            })
+            .catch(err => {
+              console.log(err.response.data);
+            });
         }
-      })
-      .then(({ data }) => {
-        this.articles = data;
-        console.log(data);
-      })
-      .catch(err => {
-        console.log(err.response.data);
       });
+    }
+  },
+  created() {
+    this.getArticles();
   }
 };
 </script>

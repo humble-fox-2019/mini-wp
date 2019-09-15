@@ -82,6 +82,7 @@
                       <button type="submit" class="btn btn-sm btn-hero btn-alt-primary">
                         <i class="fas fa-sign-in-alt"></i> Sign In
                       </button>
+
                       <div class="mt-30">
                         <a
                           class="link-effect text-muted mr-10 mb-5 d-inline-block"

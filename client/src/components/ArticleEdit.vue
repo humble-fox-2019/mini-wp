@@ -94,9 +94,9 @@ export default {
     handleImage() {
       let reader = new FileReader();
 
-      reader.readAsDataURL(this.$refs.image.files[0]);
-      this.featured_image = this.$refs.image.files[0];
-      this.imageName = this.$refs.image.files[0].name;
+      reader.readAsDataURL(this.$refs.featured_image.files[0]);
+      this.featured_image = this.$refs.featured_image.files[0];
+      this.imageName = this.$refs.featured_image.files[0].name;
     },
     updatePost() {
       let formData = new FormData();

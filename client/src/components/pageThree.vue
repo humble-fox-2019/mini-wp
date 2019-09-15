@@ -7,7 +7,9 @@
             @gotothirdpage="gotothirdpage" 
             :page="page" 
             @gotofirstpage="gotofirstpage"></navbar>
-            <h2 class="title">Your drafts</h2>
+            <div class="title">
+                <h2>Your drafts</h2>
+            </div>
         <contentdraft @gotofifth="gotofifth" class="content"></contentdraft>
     </div>
 </template>
@@ -49,9 +51,14 @@ export default {
 </script>
 
 <style scoped>
-
+    .title{
+        margin-top: 3vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
     .content{
-        margin-top: 10vh;
+        margin-top: 3vh;
         margin-left: auto;
         margin-right: auto;
     }

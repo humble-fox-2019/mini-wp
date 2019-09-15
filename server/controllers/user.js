@@ -43,6 +43,7 @@ class UserController {
         .catch(next)
     }
     static loginGoogle(req, res, next){
+        console.log('masukjndnscsmnclsnclsnl')
         const client = new OAuth2Client(process.env.GTOKEN)
         let data = null
         client.verifyIdToken({

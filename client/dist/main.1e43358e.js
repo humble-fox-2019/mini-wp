@@ -10628,7 +10628,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = "http://35.240.183.35";
+//
+//
+//
+//
+var baseUrl = "http://localhost:3000";
 var _default = {
   data: function data() {
     return {
@@ -10636,24 +10640,24 @@ var _default = {
       password: "",
       error: "",
       errorShow: "hidden",
-      loading: false
+      loading: false,
+      googleSignInParams: {
+        client_id: '938474376936-sbut31u45htv7qbb2os3p5o698q1skt4.apps.googleusercontent.com'
+      }
     };
   },
   methods: {
-    login: function login() {
+    onSignInSuccess: function onSignInSuccess(googleUser) {
       var _this = this;
 
-      this.loading = true;
+      var id_token = googleUser.getAuthResponse().id_token;
       (0, _axios.default)({
-        method: 'post',
-        url: "".concat(baseUrl, "/users/loginform"),
+        method: "post",
+        url: "".concat(baseUrl, "/users/logingoogle"),
         data: {
-          email: this.email,
-          password: this.password
+          token: id_token
         }
       }).then(function (response) {
-        _this.resetLogin();
-
         localStorage.setItem('token', response.data.token);
 
         _this.$emit('gotosecondpage');
@@ -10669,17 +10673,23 @@ var _default = {
         _this.loading = false;
       });
     },
-    onSignIn: function onSignIn(googleUser) {
+    onSignInError: function onSignInError(error) {
+      console.log('OH NOES', error);
+    },
+    login: function login() {
       var _this2 = this;
 
-      var id_token = googleUser.getAuthResponse().id_token;
+      this.loading = true;
       (0, _axios.default)({
-        method: "post",
-        url: "".concat(baseUrl, "/logingoogle"),
+        method: 'post',
+        url: "".concat(baseUrl, "/users/loginform"),
         data: {
-          token: id_token
+          email: this.email,
+          password: this.password
         }
       }).then(function (response) {
+        _this2.resetLogin();
+
         localStorage.setItem('token', response.data.token);
 
         _this2.$emit('gotosecondpage');
@@ -10721,123 +10731,131 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("Sign in.")]),
-    _vm._v(" "),
-    _c("div", { attrs: { id: "errorPosition" } }, [
-      _c("p", { style: { visibility: _vm.errorShow } }, [
-        _vm._v(_vm._s(_vm.error))
-      ])
-    ]),
-    _vm._v(" "),
-    _c("form", { attrs: { action: "" } }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.email,
-            expression: "email"
-          }
-        ],
-        attrs: { type: "email", placeholder: "Email" },
-        domProps: { value: _vm.email },
-        on: {
-          keyup: function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm.login($event)
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.email = $event.target.value
-          }
-        }
-      }),
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v("Sign in.")]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.password,
-            expression: "password"
-          }
-        ],
-        attrs: { type: "password", placeholder: "Password" },
-        domProps: { value: _vm.password },
-        on: {
-          keyup: function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm.login($event)
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.password = $event.target.value
-          }
-        }
-      }),
+      _c("div", { attrs: { id: "errorPosition" } }, [
+        _c("p", { style: { visibility: _vm.errorShow } }, [
+          _vm._v(_vm._s(_vm.error))
+        ])
+      ]),
       _vm._v(" "),
-      _vm.loading === false
-        ? _c(
-            "button",
+      _c("form", { attrs: { action: "" } }, [
+        _c("input", {
+          directives: [
             {
-              attrs: { type: "submit" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.login($event)
-                }
+              name: "model",
+              rawName: "v-model",
+              value: _vm.email,
+              expression: "email"
+            }
+          ],
+          attrs: { type: "email", placeholder: "Email" },
+          domProps: { value: _vm.email },
+          on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
               }
+              return _vm.login($event)
             },
-            [_vm._v("Sign in")]
-          )
-        : _c(
-            "button",
-            {
-              attrs: { type: "submit" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                }
+            input: function($event) {
+              if ($event.target.composing) {
+                return
               }
-            },
-            [_c("i", { staticClass: "fas fa-spinner fa-pulse" })]
-          )
-    ]),
-    _vm._v(" "),
-    _c(
-      "a",
-      {
-        attrs: { href: "" },
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-            return _vm.toregister($event)
+              _vm.email = $event.target.value
+            }
           }
-        }
-      },
-      [_c("h4", [_vm._v("Don't have an account?")])]
-    ),
-    _vm._v(" "),
-    _c("div", {
-      staticClass: "g-signin2",
-      attrs: { "data-onsuccess": "onSignIn" }
-    })
-  ])
+        }),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.password,
+              expression: "password"
+            }
+          ],
+          attrs: { type: "password", placeholder: "Password" },
+          domProps: { value: _vm.password },
+          on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.login($event)
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.password = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.loading === false
+          ? _c(
+              "button",
+              {
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.login($event)
+                  }
+                }
+              },
+              [_vm._v("Sign in")]
+            )
+          : _c(
+              "button",
+              {
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-spinner fa-pulse" })]
+            )
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          attrs: { href: "" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.toregister($event)
+            }
+          }
+        },
+        [_c("h4", [_vm._v("Don't have an account?")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "g-signin-button",
+        {
+          attrs: { params: _vm.googleSignInParams },
+          on: { success: _vm.onSignInSuccess, error: _vm.onSignInError }
+        },
+        [_vm._v("\n        Google\n    ")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -10905,7 +10923,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = "http://35.240.183.35";
+//
+//
+//
+//
+var baseUrl = "http://localhost:3000";
 var _default = {
   data: function data() {
     return {
@@ -10914,7 +10936,10 @@ var _default = {
       username: "",
       error: "",
       errorShow: "hidden",
-      loading: false
+      loading: false,
+      googleSignInParams: {
+        client_id: '938474376936-sbut31u45htv7qbb2os3p5o698q1skt4.apps.googleusercontent.com'
+      }
     };
   },
   methods: {
@@ -10944,13 +10969,13 @@ var _default = {
         _this.loading = false;
       });
     },
-    onSignIn: function onSignIn(googleUser) {
+    onSignInSuccess: function onSignInSuccess(googleUser) {
       var _this2 = this;
 
       var id_token = googleUser.getAuthResponse().id_token;
       (0, _axios.default)({
         method: "post",
-        url: "".concat(baseUrl, "/logingoogle"),
+        url: "".concat(baseUrl, "/users/logingoogle"),
         data: {
           token: id_token
         }
@@ -10997,153 +11022,161 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("Sign up.")]),
-    _vm._v(" "),
-    _c("div", { attrs: { id: "errorPosition" } }, [
-      _c("p", { style: { visibility: _vm.errorShow } }, [
-        _vm._v(_vm._s(_vm.error))
-      ])
-    ]),
-    _vm._v(" "),
-    _c("form", { attrs: { action: "" } }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.email,
-            expression: "email"
-          }
-        ],
-        attrs: { type: "email", placeholder: "Email" },
-        domProps: { value: _vm.email },
-        on: {
-          keyup: function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm.register($event)
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.email = $event.target.value
-          }
-        }
-      }),
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v("Sign up.")]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.username,
-            expression: "username"
-          }
-        ],
-        attrs: { type: "text", placeholder: "Username" },
-        domProps: { value: _vm.username },
-        on: {
-          keyup: function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm.register($event)
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.username = $event.target.value
-          }
-        }
-      }),
+      _c("div", { attrs: { id: "errorPosition" } }, [
+        _c("p", { style: { visibility: _vm.errorShow } }, [
+          _vm._v(_vm._s(_vm.error))
+        ])
+      ]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.password,
-            expression: "password"
-          }
-        ],
-        attrs: { type: "password", placeholder: "Password" },
-        domProps: { value: _vm.password },
-        on: {
-          keyup: function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm.register($event)
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.password = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
-      _vm.loading === false
-        ? _c(
-            "button",
+      _c("form", { attrs: { action: "" } }, [
+        _c("input", {
+          directives: [
             {
-              attrs: { type: "submit" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.register($event)
-                }
+              name: "model",
+              rawName: "v-model",
+              value: _vm.email,
+              expression: "email"
+            }
+          ],
+          attrs: { type: "email", placeholder: "Email" },
+          domProps: { value: _vm.email },
+          on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
               }
+              return _vm.register($event)
             },
-            [_vm._v("Sign up")]
-          )
-        : _c(
-            "button",
-            {
-              attrs: { type: "submit" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                }
+            input: function($event) {
+              if ($event.target.composing) {
+                return
               }
-            },
-            [_c("i", { staticClass: "fas fa-spinner fa-pulse" })]
-          )
-    ]),
-    _vm._v(" "),
-    _c(
-      "a",
-      {
-        attrs: { href: "" },
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-            return _vm.tologin($event)
+              _vm.email = $event.target.value
+            }
           }
-        }
-      },
-      [_c("h4", [_vm._v("Have an account?")])]
-    ),
-    _vm._v(" "),
-    _c("div", {
-      staticClass: "g-signin2",
-      attrs: { "data-onsuccess": "onSignIn" }
-    })
-  ])
+        }),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.username,
+              expression: "username"
+            }
+          ],
+          attrs: { type: "text", placeholder: "Username" },
+          domProps: { value: _vm.username },
+          on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.register($event)
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.username = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.password,
+              expression: "password"
+            }
+          ],
+          attrs: { type: "password", placeholder: "Password" },
+          domProps: { value: _vm.password },
+          on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.register($event)
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.password = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.loading === false
+          ? _c(
+              "button",
+              {
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.register($event)
+                  }
+                }
+              },
+              [_vm._v("Sign up")]
+            )
+          : _c(
+              "button",
+              {
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-spinner fa-pulse" })]
+            )
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          attrs: { href: "" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.tologin($event)
+            }
+          }
+        },
+        [_c("h4", [_vm._v("Have an account?")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "g-signin-button",
+        {
+          attrs: { params: _vm.googleSignInParams },
+          on: { success: _vm.onSignInSuccess, error: _vm.onSignInError }
+        },
+        [_vm._v("\n        Google\n    ")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11706,7 +11739,7 @@ var _default = {
   },
   watch: {
     search: function search() {
-      this.$emit('search', this.search);
+      this.$emit('search', this.search.toLowerCase());
     }
   }
 };
@@ -11734,7 +11767,7 @@ exports.default = _default;
         }
       ],
       staticClass: "searchbar",
-      attrs: { type: "text", placeholder: "Looking for something?" },
+      attrs: { type: "text", placeholder: "What title ?" },
       domProps: { value: _vm.search },
       on: {
         input: function($event) {
@@ -11833,7 +11866,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = 'http://35.240.183.35';
+var baseUrl = 'http://localhost:3000';
 var _default = {
   data: function data() {
     return {
@@ -12144,8 +12177,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticStyle: { width: "100vw" } }, [
-      _c("h2", { staticClass: "title" }, [_vm._v("Your published articles")])
+    return _c("div", { staticClass: "title" }, [
+      _c("h2", [_vm._v("Your published articles")])
     ])
   }
 ]
@@ -12230,7 +12263,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = 'http://35.240.183.35';
+var baseUrl = 'http://localhost:3000';
 var _default = {
   data: function data() {
     return {
@@ -12464,6 +12497,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 var _default = {
   props: ['page'],
   data: function data() {
@@ -12518,7 +12553,7 @@ exports.default = _default;
         }
       }),
       _vm._v(" "),
-      _c("h2", { staticClass: "title" }, [_vm._v("Your drafts")]),
+      _vm._m(0),
       _vm._v(" "),
       _c("contentdraft", {
         staticClass: "content",
@@ -12528,7 +12563,16 @@ exports.default = _default;
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "title" }, [
+      _c("h2", [_vm._v("Your drafts")])
+    ])
+  }
+]
 render._withStripped = true
 
           return {
@@ -15629,7 +15673,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = "http://35.240.183.35";
+var baseUrl = "http://localhost:3000";
 var _default = {
   props: ['content', 'title'],
   data: function data() {
@@ -15779,13 +15823,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = 'http://35.240.183.35';
+//
+//
+//
+//
+//
+var baseUrl = 'http://localhost:3000';
 var _default = {
   props: ['page', 'articles'],
   data: function data() {
     return {
       title: "",
-      content: ""
+      content: "",
+      image: null
     };
   },
   components: {
@@ -15793,6 +15843,9 @@ var _default = {
     contentwrite: _contentWrite.default
   },
   methods: {
+    handleimage: function handleimage() {
+      this.image = this.$refs.image.files[0];
+    },
     gotothirdpage: function gotothirdpage() {
       this.$emit('gotothirdpage');
     },
@@ -15805,6 +15858,11 @@ var _default = {
     publish: function publish(_publish) {
       var _this = this;
 
+      var formData = new FormData();
+      formData.append('image', this.image);
+      formData.append('title', this.title);
+      formData.append('content', this.content);
+      formData.append('publish', _publish);
       Swal.showLoading();
 
       if (this.articles.length !== 0) {
@@ -15849,11 +15907,7 @@ var _default = {
         (0, _axios.default)({
           url: "".concat(baseUrl, "/articles"),
           method: 'post',
-          data: {
-            title: this.title,
-            content: this.content,
-            publish: _publish
-          },
+          data: formData,
           headers: {
             token: localStorage.getItem('token')
           }
@@ -15934,7 +15988,25 @@ exports.default = _default;
               }
             }),
             _vm._v(" "),
-            _vm._m(0)
+            _vm.articles.length === 0
+              ? _c(
+                  "form",
+                  {
+                    attrs: {
+                      action: "/profile",
+                      method: "post",
+                      enctype: "multipart/form-data"
+                    }
+                  },
+                  [
+                    _c("input", {
+                      ref: "image",
+                      attrs: { type: "file", accept: "image/*", required: "" },
+                      on: { change: _vm.handleimage }
+                    })
+                  ]
+                )
+              : _vm._e()
           ],
           1
         )
@@ -15943,24 +16015,7 @@ exports.default = _default;
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "form",
-      {
-        attrs: {
-          action: "/profile",
-          method: "post",
-          enctype: "multipart/form-data"
-        }
-      },
-      [_c("input", { attrs: { type: "file", name: "avatar" } })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
           return {
@@ -16005,6 +16060,8 @@ var _navbar = _interopRequireDefault(require("./navbar"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
 //
 //
 //
@@ -16074,9 +16131,20 @@ exports.default = _default;
       _vm._v(" "),
       _c("div", { staticClass: "root" }, [
         _c("div", { staticClass: "content" }, [
-          _c("h1", [_vm._v(_vm._s(_vm.articles.title))]),
+          _c("img", { attrs: { src: _vm.articles.featured_image, alt: "" } }),
           _vm._v(" "),
-          _c("p", { domProps: { innerHTML: _vm._s(_vm.articles.content) } })
+          _c("p", { staticClass: "title", staticStyle: { display: "block" } }, [
+            _vm._v(_vm._s(_vm.articles.title))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "time" }, [
+            _vm._v(_vm._s(new Date(_vm.articles.updatedAt).toTimeString()))
+          ]),
+          _vm._v(" "),
+          _c("p", {
+            staticClass: "isi",
+            domProps: { innerHTML: _vm._s(_vm.articles.content) }
+          })
         ])
       ])
     ],
@@ -16309,21 +16377,29 @@ render._withStripped = true
       
       }
     })();
-},{"./components/pageOne":"src/components/pageOne.vue","./components/pageTwo":"src/components/pageTwo.vue","./components/pageThree":"src/components/pageThree.vue","./components/pageFour":"src/components/pageFour.vue","./components/pageFive":"src/components/pageFive.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/main.js":[function(require,module,exports) {
+},{"./components/pageOne":"src/components/pageOne.vue","./components/pageTwo":"src/components/pageTwo.vue","./components/pageThree":"src/components/pageThree.vue","./components/pageFour":"src/components/pageFour.vue","./components/pageFive":"src/components/pageFive.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/vue-google-signin-button/dist/vue-google-signin-button.min.js":[function(require,module,exports) {
+var define;
+'use strict';var _typeof='function'==typeof Symbol&&'symbol'==typeof Symbol.iterator?function(obj){return typeof obj}:function(obj){return obj&&'function'==typeof Symbol&&obj.constructor===Symbol&&obj!==Symbol.prototype?'symbol':typeof obj};(function(){function a(c){'undefined'!=typeof console&&console.error('[g-signin-button] '+c)}function b(c){c.component('g-signin-button',{name:'g-signin-button',render:function render(d){return d('div',{attrs:{class:'g-signin-button'},ref:'signinBtn'},this.$slots.default)},props:{params:{type:Object,required:!0,default:function _default(){return{}}}},mounted:function mounted(){var _this=this;return window.gapi?this.params.client_id?void window.gapi.load('auth2',function(){var d=window.gapi.auth2.init(_this.params);d.attachClickHandler(_this.$refs.signinBtn,{},function(e){_this.$emit('success',e)},function(e){_this.$emit('error',e),_this.$emit('failure',e)})}):void a('params.client_id must be specified.'):void a('"https://apis.google.com/js/api:client.js" needs to be included as a <script>.')}})}'object'==('undefined'==typeof exports?'undefined':_typeof(exports))?module.exports=b:'function'==typeof define&&define.amd?define([],function(){return b}):window.Vue&&window.Vue.use(b)})();
+
+},{}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
 
 var _App = _interopRequireDefault(require("./App.vue"));
 
+var _vueGoogleSigninButton = _interopRequireDefault(require("vue-google-signin-button"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue.default.use(_vueGoogleSigninButton.default);
 
 new _vue.default({
   render: function render(createElement) {
     return createElement(_App.default);
   }
 }).$mount('#app');
-},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"src/App.vue"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"src/App.vue","vue-google-signin-button":"node_modules/vue-google-signin-button/dist/vue-google-signin-button.min.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -16351,7 +16427,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54734" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54693" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

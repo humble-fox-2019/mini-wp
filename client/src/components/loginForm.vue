@@ -11,15 +11,19 @@
             <button v-else type="submit"  @click.prevent=""><i class="fas fa-spinner fa-pulse"></i></button>
         </form>
         <a href="" @click.prevent="toregister"><h4>Don't have an account?</h4></a>
-        
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <g-signin-button
+            :params="googleSignInParams"
+            @success="onSignInSuccess"
+            @error="onSignInError">
+            Google
+        </g-signin-button>
         
     </div>
 </template>
 
 <script>
 import axios from 'axios'
-let baseUrl = "http://35.240.183.35"
+let baseUrl = "http://localhost:3000"
 export default {
     data: function(){
         return {
@@ -27,10 +31,41 @@ export default {
             password: "",
             error: "",
             errorShow: "hidden",
-            loading: false
+            loading: false,
+            googleSignInParams: {
+                client_id: '938474376936-sbut31u45htv7qbb2os3p5o698q1skt4.apps.googleusercontent.com'
+            }
         }
     },
     methods: {
+        onSignInSuccess (googleUser) {
+            var id_token = googleUser.getAuthResponse().id_token;
+            axios({
+                method: "post",
+                url: `${baseUrl}/users/logingoogle`,
+                data: {
+                    token: id_token
+                }
+            })
+            .then(response =>{
+                localStorage.setItem('token', response.data.token)
+                this.$emit('gotosecondpage')
+            })
+            .catch(err =>{
+                if(err.response){
+                    this.error = err.response.data.message
+                }else if(err.request){
+                    this.error = "No response from server"
+                }
+                this.errorShow = 'visible'
+            })
+            .finally(()=>{
+                this.loading = false
+            })
+        },
+        onSignInError (error) {
+            console.log('OH NOES', error)
+        },
         login(){
             this.loading = true
             axios({
@@ -57,32 +92,7 @@ export default {
             .finally(()=>{
                 this.loading = false
             })
-        },
-        onSignIn(googleUser) {
-            var id_token = googleUser.getAuthResponse().id_token;
-            axios({
-                method: "post",
-                url: `${baseUrl}/logingoogle`,
-                data: {
-                    token: id_token
-                }
-            })
-            .then(response =>{
-                localStorage.setItem('token', response.data.token)
-                this.$emit('gotosecondpage')
-            })
-            .catch(err =>{
-                if(err.response){
-                    this.error = err.response.data.message
-                }else if(err.request){
-                    this.error = "No response from server"
-                }
-                this.errorShow = 'visible'
-            })
-            .finally(()=>{
-                this.loading = false
-            })
-        },        
+        },      
         toregister(){
             this.resetLogin()
             this.$emit('toregister')
@@ -114,6 +124,15 @@ export default {
     form{
         display: flex;
         flex-direction: column;
+    }
+    .g-signin-button {
+        display: inline-block;
+        padding: 4px 8px;
+        width: 4vw;
+        border-radius: 3px;
+        background-color: #3c82f7;
+        color: #fff;
+        box-shadow: 0px 0px 2px silver;
     }
     p {
         font-family: 'Roboto', sans-serif;
@@ -158,10 +177,6 @@ export default {
         -webkit-box-shadow: 0px 5px 30px -10px rgba(0,0,0,0.57);
         -moz-box-shadow: 0px 5px 30px -10px rgba(0,0,0,0.57);
         transition: all 0.4s ease 0s;
-    }
-    .g-signin2 {
-        display: flex;
-        justify-content: space-evenly;
     }
     h4{
         margin: 0px;

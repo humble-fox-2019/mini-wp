@@ -6,8 +6,8 @@
             @gotothirdpage="gotothirdpage" 
             :page="page" 
             @gotofirstpage="gotofirstpage"></navbar>
-            <div style="width: 100vw;">
-                <h2 class="title">Your published articles</h2>
+            <div class="title">
+                <h2>Your published articles</h2>
             </div>
             <contentpublish  @gotofifth="gotofifth" class="content"></contentpublish>
     </div>
@@ -53,9 +53,14 @@ export default {
 </script>
 
 <style scoped>
-
+    .title{
+        margin-top: 3vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
     .content{
-        margin-top: 10vh;
+        margin-top: 3vh;
         margin-left: auto;
         margin-right: auto;
     }

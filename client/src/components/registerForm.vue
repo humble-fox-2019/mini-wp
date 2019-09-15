@@ -13,14 +13,18 @@
             
         </form>
         <a href="" @click.prevent="tologin"><h4>Have an account?</h4></a>
-        
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <g-signin-button
+            :params="googleSignInParams"
+            @success="onSignInSuccess"
+            @error="onSignInError">
+            Google
+        </g-signin-button>
         
     </div>
 </template>
 
 <script>
-let baseUrl = "http://35.240.183.35"
+let baseUrl = "http://localhost:3000"
 import axios from 'axios'
 export default {
     data: function(){
@@ -30,7 +34,10 @@ export default {
             username: "",
             error: "",
             errorShow: "hidden",
-            loading: false
+            loading: false,
+            googleSignInParams: {
+                client_id: '938474376936-sbut31u45htv7qbb2os3p5o698q1skt4.apps.googleusercontent.com'
+            }
         }
     },
     methods: {
@@ -60,11 +67,11 @@ export default {
                 this.loading = false
             })
         },
-        onSignIn(googleUser) {
+        onSignInSuccess (googleUser) {
             var id_token = googleUser.getAuthResponse().id_token;
             axios({
                 method: "post",
-                url: `${baseUrl}/logingoogle`,
+                url: `${baseUrl}/users/logingoogle`,
                 data: {
                     token: id_token
                 }
@@ -156,9 +163,14 @@ export default {
         -moz-box-shadow: 0px 5px 30px -10px rgba(0,0,0,0.57);
         transition: all 0.4s ease 0s;
     }
-    .g-signin2 {
-        display: flex;
-        justify-content: space-evenly;
+    .g-signin-button {
+        display: inline-block;
+        padding: 4px 8px;
+        width: 4vw;
+        border-radius: 3px;
+        background-color: #3c82f7;
+        color: #fff;
+        box-shadow: 0px 0px 2px silver;
     }
     h4{
         margin: 0px;

@@ -9,8 +9,13 @@
         <div class="editor">
             <div class="colum">
                 <contentwrite  :title="articles.title" :content="articles.content" @updatecontent="updatecontent" @updatetitle='updatetitle'></contentwrite>
-                <form action="/profile" method="post" enctype="multipart/form-data">
-                    <input type="file" name="avatar" />
+                <form v-if="articles.length === 0" action="/profile" method="post" enctype="multipart/form-data">
+                        <input
+                            type="file"
+                            ref="image"
+                            accept="image/*"
+                            v-on:change="handleimage"
+                            required>
                 </form>
             </div>
         </div>
@@ -19,7 +24,7 @@
 </template>
 
 <script>
-let baseUrl = 'http://35.240.183.35'
+let baseUrl = 'http://localhost:3000'
 import axios from 'axios'
 import navbar from './navbar'
 import contentwrite from './contentWrite'
@@ -28,7 +33,8 @@ export default {
     data: function(){
         return {
             title: "",
-            content: ""
+            content: "",
+            image:null
         }
     },
     components: {
@@ -36,6 +42,10 @@ export default {
         contentwrite
     },
     methods: {
+
+        handleimage(){
+            this.image = this.$refs.image.files[0]
+        },        
         gotothirdpage(){
             this.$emit('gotothirdpage')
         },
@@ -46,6 +56,12 @@ export default {
             this.$emit('gotosecondpage')
         },
         publish(publish){
+            let formData = new FormData()
+
+            formData.append('image', this.image)
+            formData.append('title', this.title)
+            formData.append('content', this.content)
+            formData.append('publish', publish)       
             Swal.showLoading()
             if(this.articles.length !== 0){
                 let url = `${baseUrl}/articles/${this.articles._id}`
@@ -55,7 +71,7 @@ export default {
                     data:{
                         title: this.title,
                         content: this.content,
-                        publish
+                        publish,
                     },
                     headers: {
                         token: localStorage.getItem('token')
@@ -95,11 +111,7 @@ export default {
                 axios({
                     url: `${baseUrl}/articles`,
                     method: 'post',
-                    data: {
-                        title: this.title,
-                        content: this.content,
-                        publish
-                    },
+                    data: formData,
                     headers: {
                         token: localStorage.getItem('token')
                     }
@@ -144,6 +156,7 @@ export default {
             this.title = value
         }
     }
+
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input class="searchbar" type="text" v-model="search" placeholder="Looking for something?"><i class="fas fa-search"></i>
+        <input class="searchbar" type="text" v-model="search" placeholder="What title ?"><i class="fas fa-search"></i>
     </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
     },
     watch: {
         search: function (){
-            this.$emit('search', this.search)
+            this.$emit('search', this.search.toLowerCase())
         }
     }
 }

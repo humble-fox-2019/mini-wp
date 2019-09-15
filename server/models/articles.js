@@ -17,8 +17,7 @@ const articleSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    tag: [String],
-    categorize: [String]  
+    featured_image: String
 },{ timestamps: true })
 
 

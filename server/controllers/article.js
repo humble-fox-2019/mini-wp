@@ -2,12 +2,15 @@ const Article = require('../models/articles')
 class ArticleController {
     static createArticle(req, res, next){
         const { title, content, publish } = req.body
+        const featuredImage = req.file.cloudStoragePublicUrl
+        console.log(featuredImage);
         Article.create({
             title,
             content,
             publish,
             userId: req.decode._id,
-            author: req.decode.username
+            author: req.decode.username,
+            featured_image: featuredImage
         })
         .then(response =>{
             res.status(201).json(response)

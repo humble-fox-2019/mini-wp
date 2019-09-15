@@ -6,6 +6,16 @@ const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_RANDOM_PWD = process.env.GOOGLE_RANDOM_PWD;
 
 class UserController {
+    static getUser(req, res, next) {
+        const _id = req.decoded.author;
+
+        User.findOne({_id})
+            .then(user => {
+                res.status(200).json(user);
+            })
+            .catch(next);
+    }
+
     static signup(req, res, next) {
         const { name, email, password } = req.body;
         User.create({

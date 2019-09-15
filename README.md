@@ -1,5 +1,24 @@
-# mini-wp
+# Mini-WP - DeepPress Documentation 
 
+## Getting Started
+```
+Client
+===================
+1. npm install
+2. npm run dev
+
+Server
+===================
+1. npm install 
+2. please get your keyfile.json from google to enable upload image to google cloud storage
+3. insert your env variables, see the template
+4. npm run dev
+
+```
+Link : http://deeppress.cado.store/
+
+
+#
 ## User
 ### Login
 Route : `/login`  
@@ -8,8 +27,8 @@ Headers : -
 Body : 
 ```
 {
-	"email" : "johnDoe@email.com",
-	"password" : "johnDoe123"
+    "email" : "johnDoe@email.com",
+    "password" : "johnDoe123"
 }
 ```
 Response : 
@@ -35,9 +54,9 @@ Headers : -
 Body : 
 ```
 {
-    "username" : "johnDoe"
-	"email" : "johnDoe@email.com",
-	"password" : "johnDoe123"
+    "username" : "johnDoe",
+    "email" : "johnDoe@email.com",
+    "password" : "johnDoe123"
 }
 ```
 Response : 

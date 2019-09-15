@@ -1,0 +1,9 @@
+CLIENT_ID=397711291646-fgrnl8h2969mqm5fd2ufmjthm4kv36p5.apps.googleusercontent.com
+PORT=3000
+DATABASE_URL=mongodb://localhost:27017/mini-wp
+SECRET_JWT=SECRETWOI
+SALT_ROUND=10
+DEFAULT_PASSWORD=DEFAULT
+CLOUD_BUCKET=deeppress
+GCLOUD_PROJECT=deeppress
+KEYFILE_PATH=keyfile.json

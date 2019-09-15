@@ -10,7 +10,7 @@
     </div>
     <div class="block-content d-flex justify-content-center">
       <div class="col-9">
-        <form action="be_forms_elements_bootstrap.html" method="post" onsubmit="return false;">
+        <form @submit.prevent="createPost()">
           <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" v-model="title" />
@@ -26,6 +26,22 @@
               v-model="content"
             ></textarea>
           </div>
+          <div class="form-group row">
+            <label class="col-12">Image</label>
+            <div class="col-8">
+              <div class="custom-file">
+                <input
+                  type="file"
+                  class="custom-file-input"
+                  id="image"
+                  name="image"
+                  ref="image"
+                  v-on:change="handleImage"
+                />
+                <label class="custom-file-label" for="image">Choose image</label>
+              </div>
+            </div>
+          </div>
           <div class="form-group">
             <label for="isPublished">Publish</label>
             <select class="form-control" id="isPublished" v-model="isPublished">
@@ -33,9 +49,19 @@
               <option value="false">Draff</option>
             </select>
           </div>
+
+          <transition name="shake">
+            <div class="alert alert-danger alert-dismissable" role="alert" v-if="errors.length > 0">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              {{errors}}
+            </div>
+          </transition>
+
           <br />
           <div class="form-group">
-            <button type="submit" class="btn btn-alt-primary">Save</button>
+            <button type="submit" class="btn btn-alt-primary" id="button-add">Save</button>
           </div>
         </form>
       </div>
@@ -44,13 +70,52 @@
 </template>
 
 <script>
+import axios from "../api/server";
+
 export default {
   data() {
     return {
       title: "",
       content: "",
-      isPublished: true
+      image: "",
+      isPublished: true,
+      errors: ""
     };
+  },
+  methods: {
+    handleImage() {
+      let reader = new FileReader();
+
+      reader.readAsDataURL(this.$refs.image.files[0]);
+      this.image = this.$refs.image.files[0];
+    },
+    createPost() {
+      let formData = new FormData();
+
+      formData.append("title", this.title);
+      formData.append("content", this.content);
+      formData.append("image", this.image);
+      formData.append("isPublished", this.isPublished);
+
+      axios
+        .post("/articles", formData, {
+          headers: {
+            token: localStorage.getItem("token")
+          }
+        })
+        .then(({ data }) => {
+          console.log(data);
+          this.$emit("changepage", "ArticleList");
+        })
+        .catch(err => {
+          this.errors = err.response.data.message;
+
+          setTimeout(() => {
+            this.errors = "";
+          }, 2000);
+        })
+        .finally(() => {});
+    }
   }
 };
 </script>

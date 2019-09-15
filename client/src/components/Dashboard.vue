@@ -1,9 +1,9 @@
 <template>
   <div class="dashboard">
     <div id="page-container" class="sidebar-o enable-page-overlay side-scroll main-content-boxed">
-      <SideBar @changepage="changePage" @signout="$emit('signout')"></SideBar>
+      <SideBar @changepage="changePage"></SideBar>
 
-      <Header @changepage="changePage"></Header>
+      <Header @changepage="changePage" @signout="$emit('signout')"></Header>
 
       <Main :page="page" @changepage="changePage"></Main>
     </div>

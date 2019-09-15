@@ -5,7 +5,8 @@ class ArticleController {
 
         Article.find({
             createdBy: req.decode.id
-        }).populate('createdBy')
+        }).sort({ createdAt: -1 })
+            .populate('createdBy')
             .then(articles => {
                 if (articles.length > 0) {
                     res.status(200).json(articles);

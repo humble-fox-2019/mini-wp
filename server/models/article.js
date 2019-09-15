@@ -19,8 +19,7 @@ const articleSchema = new Schema({
         ref: 'User'
     },
     url: {
-        type: String,
-        required: [true, "There's no image uploaded"]
+        type: String
     }
 }, { timestamps: true })
 

@@ -2,9 +2,9 @@
     <main class="h-full pt-10 flex">
         <div class="w-2/12"></div>
         <div class="min-h-screen w-10/12" id="contentBox">
-            <dashboard v-if="selectedNav === 'dashboard'"></dashboard>
+            <dashboard v-if="selectedNav === 'dashboard'" :user="user"></dashboard>
             <posts v-else-if="selectedNav === 'posts'" @editPost="editPost" :alert="alert"></posts>
-            <postdetail v-else-if="selectedNav === 'postdetail'" :selectedArticle="selectedArticle" @save="save"></postdetail>
+            <postdetail v-else-if="selectedNav === 'postdetail'" :selectedArticle="selectedArticle" @save="save" @addTag="addTag" @removeTag="removeTag" @changeImg="changeImg"></postdetail>
             <media v-else-if="selectedNav === 'media'"></media>
             <comments v-else-if="selectedNav === 'comments'"></comments>
             <appearance v-else-if="selectedNav === 'appearance'"></appearance>
@@ -57,6 +57,19 @@ export default {
         save(alert) {
             this.alert = alert
             this.$emit('save')
+        },
+        addTag(tagInput) {
+            console.log('masuk contnetarea');
+            this.$emit('addTag', tagInput)
+        },
+        removeTag(tag) {
+            this.$emit('removeTag', tag)
+        },
+        changeImg($event) {
+            this.$emit('changeImg', $event)
+        },
+        selectNav(param) {
+            this.$emit('selectNav', param)
         }
     }
 }

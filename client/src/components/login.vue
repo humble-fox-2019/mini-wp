@@ -52,9 +52,12 @@
                 here
             </p>
             <br>
-            <div>
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            </div>
+            <g-signin-button
+                :params="googleSignInParams"
+                @success="onSignInSuccess"
+                @error="onSignInError">
+                Sign in with Google
+            </g-signin-button>
         </form>
     </div>
 </template>
@@ -74,8 +77,12 @@ export default {
                 email: '',
                 password: ''
             },
-            server: 'https://34.87.72.235',
+            server: 'http://34.87.72.235',
+            // server: 'http://localhost:3000',
             loading: false,
+            googleSignInParams: {
+                client_id: '499897919347-nvooomqqkdib60v5sm3gk4h66qtnnp05.apps.googleusercontent.com'
+            }
         }
     },
     methods: {
@@ -106,11 +113,44 @@ export default {
                     let message = err.response.data.message
                     this.alert.msgs = [message]
                 })
+        },
+        onSignInSuccess(googleUser) {
+            this.loading = true
+            const id_token = googleUser.getAuthResponse().id_token
+            console.log(id_token)
+            axios({
+                method: 'post',
+                url: `${this.server}/users/oauth`,
+                data: { id_token }
+            })
+                .then(({ data }) => {
+                    console.log('masuk');
+                    this.loading = false
+                    localStorage.setItem('token', data.token)
+                    this.$emit('login', this.user)
+                })
+                .catch(err => {
+                    this.loading = false
+                    console.log(err.response, 'axios err')
+                })
+            },
+        onSignInError (error) {
+            // `error` contains any error occurred.
+            console.log('OH NOES', error)
         }
     }
 }
+
 </script>
 
 <style>
-
+    .g-signin-button {
+        /* This is where you control how the button looks. Be creative! */
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 3px;
+        background-color: #3c82f7;
+        color: #fff;
+        box-shadow: 0 3px 0 #0f69ff;
+    }
 </style>

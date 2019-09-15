@@ -8,7 +8,7 @@
         </div>
         <div v-else-if="isLogin === true">
             <sidebar @selectNav="selectNav"></sidebar>
-            <contentarea :selectedNav="selectedNav" @editPost="editPost" :selectedArticle="selectedArticle" @save="save" :user="user"></contentarea>
+            <contentarea :selectedNav="selectedNav" @editPost="editPost" :selectedArticle="selectedArticle" @save="save" :user="user" @addTag="addTag" @removeTag="removeTag"></contentarea>
         </div>
     </div>
 </template>
@@ -32,7 +32,10 @@ export default {
        return {
            selectedNav: 'dashboard',
            articles: [],
-           selectedArticle: {},
+           selectedArticle: {
+               tags: [],
+               image: ''
+           },
            isLogin: false,
            isRegistered: true,
            user: {},
@@ -62,10 +65,25 @@ export default {
        logout() {
            this.isLogin = false
            this.alert.status = 'bye'
+           this.user = {}
+       },
+       addTag(tagInput) {
+           console.log('masuk app', tagInput);
+           this.selectedArticle.tags.push(tagInput)
+           console.log(this.selectedArticle.tags);
+       },
+       removeTag(tag) {
+            for (let i = 0; i < this.selectedArticle.tags.length; i++){
+                if (this.selectedArticle.tags[i] === tag) {
+                    this.selectedArticle.tags.splice(i, 1)
+                    break
+                }
+            }
        }
     },
     created: function() {
         if(localStorage.getItem('token')) this.isLogin = true
+        selectedNav: 'dashboard'
     }
 }
 </script>

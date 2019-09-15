@@ -9,7 +9,7 @@
             </li>
         </ul>
         <div class="py-3 ml-auto">
-            <input class="focus:outline-none" type="text" placeholder="search . . .">
+            <input @keyup.enter="searcharticle" v-model="keyword" class="focus:outline-none" type="text" placeholder="search . . .">
         </div>
         <a href="#" class="px-6 py-3">
             <i class="fas fa-search"></i>
@@ -19,7 +19,16 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            keyword: ''
+        }
+    },
+    methods: {
+        searcharticle(){
+            this.$emit('searcharticle', this.keyword)
+        }
+    }
 }
 </script>
 

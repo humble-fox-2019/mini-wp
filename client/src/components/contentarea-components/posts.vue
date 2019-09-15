@@ -9,14 +9,15 @@
             </div>
         </div>
         <h1 class="text-3xl">Posts</h1>
-        <postnav class="mt-3"></postnav>
+        <postnav class="mt-3" @searcharticle="searcharticle"></postnav>
         <pulseloader 
             v-if="loading === true" 
             class="flex justify-center"></pulseloader>
         <postcontent 
             v-else-if="loading === false"
             :articles="articles" 
-            @editPost="editPost"></postcontent>
+            @editPost="editPost"
+            @deletePost="deletePost"></postcontent>
     </div>
 </template>
 
@@ -58,16 +59,59 @@ export default {
                 this.articles = data
             })
             .catch(err => {
+                this.loading = false
                 console.log(err.response.data.message)
             })
         },
         editPost(selectedArticle) {
             this.$emit('editPost', selectedArticle)
+        },
+        deletePost(selectedArticle) {
+            axios({
+                method: `delete`,
+                url: `${this.server}/articles/${selectedArticle._id}`,
+                headers: {
+                   token: this.token
+                }
+            })
+                .then(({data}) => {
+                    this.$nextTick(() => {
+                        this.getArticles()
+                    })
+                })
+                .catch(err => {
+                    this.loading = false
+                    console.log(err.response.data)
+                })
+        },
+        searcharticle(keyword) {
+            this.loading = true
+
+            axios({
+                method: `get`,
+                url: `${this.server}/articles/search/${keyword}`,
+                headers: {
+                   token: this.token
+                }
+            })
+                .then(({data}) => {
+                    this.loading = false
+
+                    this.$nextTick(() => {
+                        this.articles = data
+                    })
+                })
+                .catch(err => {
+                    this.loading = false
+                    
+                    console.log(err.response.data)
+                })
         }
     }, 
     mounted: function () {
-        console.log('hooks');
-       this.getArticles()
+        this.$nextTick(() => {
+            this.getArticles()
+        })
     }
 }
 </script>

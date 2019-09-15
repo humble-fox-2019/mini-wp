@@ -75,6 +75,24 @@ class ArticleController {
             .catch(next)
     }
 
+    // static update(req, res, next) {
+    //     const { title, content, tags } = req.body
+    //     const { id } = req.params
+
+    //     Article.findById(id)
+    //         .then(article => {
+    //             article.title = title
+    //             article.content = content
+    //             article.tags = tags
+    //             article.save()
+    //                 .then(article => {
+    //                     res.status(200).json(article)
+    //                 })
+    //                 .catch(next)
+    //         })
+    //         .catch(next)
+    // }
+
     static delete(req, res, next) {
         const { id } = req.params
 

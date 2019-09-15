@@ -10,10 +10,11 @@
                 <p class="text-sm" v-html="article.content"></p>
                 <small class="text-gray-600 text-xs">author : {{ article.userId.email }}</small>
             </div>
-            <button @click.prevent="editPost(article)" class="ml-auto">
+            <img class="ml-auto" :src="article.url" alt="">
+            <button @click.prevent="editPost(article)" >
                 <i class="far fa-edit pr-3"></i>
             </button>
-            <button>
+            <button @click.prevent="deletePost(article)">
                 <i class="far fa-trash-alt pr-6"></i>
             </button>
         </li>
@@ -31,6 +32,10 @@ export default {
     methods: {
         editPost(param) {
             this.$emit('editPost', param)
+        },
+        deletePost(param) {
+            console.log('di postcontent');
+            this.$emit('deletePost', param)
         }
     }
 }

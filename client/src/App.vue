@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <transition name="fade">
-      <Dashboard v-if="page === 'dashboard'"></Dashboard>
+      <Dashboard v-if="page === 'dashboard'" @signout="signout"></Dashboard>
       <Signup v-else-if="page === 'signup'" @changepage="changePage"></Signup>
       <Signin v-else @changepage="changePage"></Signin>
     </transition>

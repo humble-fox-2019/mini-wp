@@ -52,7 +52,7 @@
             </a>
 
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="#" @click="$emit('signout')">
               <i class="fas fa-sign-out-alt mr-5"></i> Sign Out
             </a>
           </div>

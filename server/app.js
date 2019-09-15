@@ -13,7 +13,7 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use("/",routes);
-mongoose.connect('mongodb://localhost:27017/miniWP',{useNewUrlParser:true, useUnifiedTopology: true})
+mongoose.connect('mongodb://localhost:27017/miniWP',{useNewUrlParser:true, useUnifiedTopology: true, useFindAndModify:false})
 .then(data => {
     console.log('success connect')
 }).catch(err => {
@@ -23,3 +23,4 @@ app.use(errorHandler);
 app.listen(port,()=>{
     console.log("Server listen to "+port);
 });
+

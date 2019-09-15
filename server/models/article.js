@@ -7,7 +7,12 @@ let articleSchema =  new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users',
-    }
+    },
+    featured_image: {
+        type: String,
+    },
+    author:String,
+    articletags: []
 },{
     timestamps: true,
     versionKey: false

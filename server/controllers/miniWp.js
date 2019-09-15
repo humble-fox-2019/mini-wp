@@ -1,4 +1,5 @@
 const articleModel = require('../models/article')
+const deleteFile = require('../helpers/images').deleteFile
 class Article {
     static getAll(req,res,next){
         articleModel.find()
@@ -31,13 +32,40 @@ class Article {
     }
 
     static createArticle(req,res,next){
+        console.log("masuk ke controller create")
         let {
-            id
+            id,
+            name
         } = req.decode
-        const {title,content} = req.body
-        articleModel.create({title,content, user: id})
+        const {title,content, tagku} = req.body
+        console.log(title)
+        console.log(content)
+        console.log(tagku)
+        let featured_image = req.file.cloudStoragePublicUrl
+        let myTags = tagku.split(',')
+        console.log(name)
+        console.log(featured_image)
+        articleModel.create({title,content, user: id, author:name, featured_image})
         .then(data => {
-            res.status(201).json({data})
+            console.log("success create")
+            let myId = data._id
+            console.log(myId)
+            return articleModel.findOneAndUpdate({
+                _id: myId
+                }, {
+                    $addToSet: {
+                        articletags: {
+                            $each: myTags
+                        }
+                    }
+                }, {
+                    new: true
+                })
+                .then(dataafterupdate => {
+                    res.status(201).json({
+                        dataafterupdate
+                    })
+                })
         })
         .catch(next)
     }
@@ -47,14 +75,12 @@ class Article {
             _id : req.params.id
         })
         .then(data=>{
-            if(data!==null){
-                res.status(200).json({
-                    message: "Success Remove",
-                    data: data
-                })
+            console.log(data.featured_image)
+            if (data.featured_image) {
+                deleteFile(req, res, next, data.featured_image)
             } else {
-                res.status(404).json({
-                    message: "Data is not found"
+                res.status(200).json({
+                    data
                 })
             }
         })
@@ -62,7 +88,11 @@ class Article {
     }
 
     static updateArticle(req,res,next){
+        console.log("masuk ke update controller")
+        console.log(req.body)
         let updatedData = {}
+        req.body.title && (updatedData.title = req.body.title)
+        req.body.content && (updatedData.content = req.body.content)
         req.body.title && (updatedData.title = req.body.title)
         req.body.content && (updatedData.content = req.body.content)
         articleModel.findOneAndUpdate({_id : req.params.id}, updatedData)

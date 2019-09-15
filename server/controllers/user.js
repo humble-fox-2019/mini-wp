@@ -44,6 +44,7 @@ class UserController {
     // }
 
     static signIn(req,res,next){
+        console.log("masuk ke login server")
         const {email, password} = req.body
         User.findOne({
             email: email
@@ -72,10 +73,13 @@ class UserController {
     }
 
     static register(req,res,next){
+        console.log("masuk ke register")
+            console.log(req.body)
             const {name, email, password} = req.body
             User.create({
                 name, email, password: encrypt(password)
             }).then(data => {
+                console.log(data)
                 res.status(201).json({
                     message: 'Account is successfully created',
                     data

@@ -8,6 +8,4 @@ router.use('/user', user)
 router.use(authentication)
 router.use('/miniWp',miniWp)
 
-
-
 module.exports = router

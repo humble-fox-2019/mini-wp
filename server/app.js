@@ -6,6 +6,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const userRouter = require('./routes/user');
 const articleRouter = require('./routes/article');
+const logger = require('morgan')
+
 
 const errorHandler = require('./middleware/errorHandler');
 
@@ -17,6 +19,7 @@ mongoose.connect( DATABASE_URL , { useNewUrlParser : true })
     .catch( err =>{ console.log( err ); })
 mongoose.set('useCreateIndex', true);
 
+app.use(logger('dev'))
 app.use( cors() )
 app.use( express.json() ); 
 app.use( express.urlencoded({ extended : true }));

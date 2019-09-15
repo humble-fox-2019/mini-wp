@@ -13,7 +13,8 @@ const articleSchema = mongoose.Schema(
         },
         image : {
             type: String,
-            default :"https://i.pinimg.com/originals/15/51/69/1551696c66b26f200c3ba94641316780.jpg"
+            default :"https://i.pinimg.com/originals/15/51/69/1551696c66b26f200c3ba94641316780.jpg",
+            required: true
         },
         tags : [{
             type: String,

@@ -202,20 +202,26 @@ div[data-v-78ccc7]:focus-within{
     transition-duration: 0.2s;
 }
 .root[data-v-474325] {
-    
+  
     width: 60vw;
-    
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
 .header[data-v-474325] {
     margin-bottom: 4vh !important;
-}
-.row[data-v-474325]{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     height: 8vh;
+    background-color: #F6F7F7;
+    margin-bottom: 2vh;
+    border-radius: 5px;
+}
+.content[data-v-474325]{
+    display: flex;
+ 
+    height: 15vh;
     background-color: #F6F7F7;
     margin-bottom: 1vh;
     border-radius: 5px;
@@ -224,7 +230,7 @@ div[data-v-78ccc7]:focus-within{
     display: flex;
     align-items: center;
 }
-.right .box[data-v-474325] {
+.header .right .box[data-v-474325] {
     padding-right: 2vw;
 }
 .content[data-v-28e033]{

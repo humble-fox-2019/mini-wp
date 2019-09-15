@@ -1,11 +1,11 @@
 const Article = require('../models/articles')
 class ArticleController {
     static createArticle(req, res, next){
-        const { title, content, published } = req.body
+        const { title, content, publish } = req.body
         Article.create({
             title,
             content,
-            published,
+            publish,
             userId: req.decode._id,
             author: req.decode.username
         })
@@ -50,7 +50,10 @@ class ArticleController {
         .catch(next)
     }
     static readArticle(req, res, next){
+        console.log(req.body)
+        const { publish } = req.body
         Article.find({
+            publish,
             userId: req.decode._id
         }).then(response=>{
             res.status(200).json(response)
@@ -58,7 +61,9 @@ class ArticleController {
         .catch(next)
     }
     static readAllArticle(req, res, next){
-        Article.find().then(response =>{
+        Article.find({
+            publish: true
+        }).then(response =>{
             res.status(200).json(response)
         })
         .catch(next)

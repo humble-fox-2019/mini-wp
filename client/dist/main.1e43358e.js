@@ -11289,6 +11289,15 @@ var _default = {
     return {};
   },
   methods: {
+    publish: function publish(value) {
+      this.$emit('publish', value);
+    },
+    gotofourthpage: function gotofourthpage() {
+      this.$emit('gotofourthpage');
+    },
+    gotofifthpage: function gotofifthpage() {
+      this.$emit('gotofifthpage');
+    },
     gotosecondpage: function gotosecondpage() {
       this.$emit('gotosecondpage');
     },
@@ -11315,7 +11324,7 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.page === 2
+    _vm.page === 2 || _vm.page === 5 || _vm.page === 4
       ? _c("div", { staticClass: "root" }, [
           _c("div", { staticClass: "left" }, [
             _c("div", { staticClass: "box" }, [
@@ -11334,9 +11343,37 @@ exports.default = _default;
               )
             ]),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "box" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.gotofifthpage($event)
+                    }
+                  }
+                },
+                [_vm._v("Published")]
+              )
+            ]),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "box" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.gotofourthpage($event)
+                    }
+                  }
+                },
+                [_vm._v("Draft")]
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "right" }, [
@@ -11376,9 +11413,7 @@ exports.default = _default;
             ])
           ])
         ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.page === 3
+      : _vm.page === 3
       ? _c("div", { staticClass: "root" }, [
           _c("div", { staticClass: "left" }, [
             _c("div", { staticClass: "box" }, [
@@ -11397,15 +11432,71 @@ exports.default = _default;
               )
             ]),
             _vm._v(" "),
-            _vm._m(2),
+            _c("div", { staticClass: "box" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.gotofourthpage($event)
+                    }
+                  }
+                },
+                [_vm._v("Published")]
+              )
+            ]),
             _vm._v(" "),
-            _vm._m(3)
+            _c("div", { staticClass: "box" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.gotofifthpage($event)
+                    }
+                  }
+                },
+                [_vm._v("Draft")]
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "right" }, [
-            _vm._m(4),
+            _c("div", { staticClass: "box" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.publish(false)
+                    }
+                  }
+                },
+                [_vm._v("Save to draft")]
+              )
+            ]),
             _vm._v(" "),
-            _vm._m(5),
+            _c("div", { staticClass: "box" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.publish(true)
+                    }
+                  }
+                },
+                [_vm._v("Publish")]
+              )
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "box" }, [
               _c(
@@ -11427,56 +11518,7 @@ exports.default = _default;
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("a", { attrs: { href: "" } }, [_vm._v("Published")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("a", { attrs: { href: "" } }, [_vm._v("Draft")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("a", { attrs: { href: "" } }, [_vm._v("Published")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("a", { attrs: { href: "" } }, [_vm._v("Draft")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("a", { attrs: { href: "" } }, [_vm._v("Save to draft")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("a", { attrs: { href: "" } }, [_vm._v("Publish")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
           return {
@@ -11596,6 +11638,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _axios = _interopRequireDefault(require("axios"));
+
 var _search = _interopRequireDefault(require("./search"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -11622,16 +11666,50 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+var baseUrl = 'http://localhost:3000';
 var _default = {
   data: function data() {
     return {
       articles: []
     };
   },
+  methods: {
+    readAllArticle: function readAllArticle() {
+      var _this = this;
+
+      (0, _axios.default)({
+        url: "".concat(baseUrl, "/articles/all"),
+        method: 'get',
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      }).then(function (response) {
+        _this.articles = response.data;
+      }).catch(function (err) {
+        if (err.response) {
+          console.log("".concat(err.response.data.message));
+        } else if (err.request) {
+          alert("No response from server");
+        } else {
+          console.log(err);
+        }
+      }).finally(function () {});
+    }
+  },
   components: {
     search: _search.default
   },
-  created: function created() {}
+  created: function created() {
+    this.readAllArticle();
+  }
 };
 exports.default = _default;
         var $474325 = exports.default || module.exports;
@@ -11646,21 +11724,32 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "root" }, [
-    _c("div", { staticClass: "row header" }, [
-      _c("div", { staticClass: "left" }, [_vm._v("nnkn")]),
+  return _c(
+    "div",
+    { staticClass: "root" },
+    [
+      _c("div", { staticClass: "header" }, [
+        _c("div", { staticClass: "left" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "right" }, [
+          _c("div", { staticClass: "box" }, [_c("search")], 1)
+        ])
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "right" }, [
-        _c("div", { staticClass: "box" }, [_c("search")], 1)
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" })
-  ])
+      _vm._l(_vm.articles, function(article, index) {
+        return _c("div", { key: index, staticClass: "content" }, [
+          _c("div", { staticClass: "left" }, [
+            _c("div", [_c("h2", [_vm._v(_vm._s(article.title))])]),
+            _vm._v(" "),
+            _c("div", [_c("p", [_vm._v(_vm._s(article.content))])])
+          ]),
+          _vm._v(" "),
+          _c("div")
+        ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11695,7 +11784,7 @@ render._withStripped = true
       
       }
     })();
-},{"./search":"src/components/search.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/secondPage.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","./search":"src/components/search.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/secondPage.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11719,6 +11808,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
 var _default = {
   props: ['page'],
   data: function data() {
@@ -11729,6 +11821,12 @@ var _default = {
     contentall: _contentAll.default
   },
   methods: {
+    gotofourthpage: function gotofourthpage() {
+      this.$emit('gotofourthpage');
+    },
+    gotofifthpage: function gotofifthpage() {
+      this.$emit('gotofifthpage');
+    },
     gotosecondpage: function gotosecondpage() {
       this.$emit('gotosecondpage');
     },
@@ -11759,6 +11857,8 @@ exports.default = _default;
       _c("navbar", {
         attrs: { page: _vm.page },
         on: {
+          gotofifthpage: _vm.gotofifthpage,
+          gotofourthpage: _vm.gotofourthpage,
           gotosecondpage: _vm.gotosecondpage,
           gotothirdpage: _vm.gotothirdpage,
           gotofirstpage: _vm.gotofirstpage
@@ -14854,6 +14954,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _axios = _interopRequireDefault(require("axios"));
+
 var _vueWysiwyg = _interopRequireDefault(require("../../vueWysiwyg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -14869,16 +14971,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+var baseUrl = "http://localhost:3000";
 var _default = {
+  props: ['content', 'title'],
   data: function data() {
     return {
-      text: "",
-      title: ""
+      inicontent: "" // title: ""
+
     };
   },
+  watch: {
+    inicontent: function inicontent() {
+      console.log('tr');
+      this.$emit('updatecontent', this.inicontent);
+    }
+  },
+  methods: {},
   components: {
     wysiwyg: _vueWysiwyg.default.component
-  }
+  },
+  created: function created() {}
 };
 exports.default = _default;
         var $4ee92d = exports.default || module.exports;
@@ -14896,22 +15008,11 @@ exports.default = _default;
   return _c("div", { staticClass: "root" }, [
     _c("div", { staticClass: "header" }, [
       _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.title,
-            expression: "title"
-          }
-        ],
         attrs: { type: "text", placeholder: "Your title goes here" },
         domProps: { value: _vm.title },
         on: {
           input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.title = $event.target.value
+            return _vm.$emit("update:title", $event.target.value)
           }
         }
       })
@@ -14924,11 +15025,11 @@ exports.default = _default;
         _c("wysiwyg", {
           staticClass: "texteditor",
           model: {
-            value: _vm.text,
+            value: _vm.inicontent,
             callback: function($$v) {
-              _vm.text = $$v
+              _vm.inicontent = $$v
             },
-            expression: "text"
+            expression: "inicontent"
           }
         })
       ],
@@ -14969,13 +15070,15 @@ render._withStripped = true
       
       }
     })();
-},{"../../vueWysiwyg":"vueWysiwyg.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/thirdPage.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","../../vueWysiwyg":"vueWysiwyg.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/thirdPage.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
 
 var _navbar = _interopRequireDefault(require("./navbar"));
 
@@ -14993,21 +15096,64 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+var baseUrl = 'http://localhost:3000';
 var _default = {
   props: ['page'],
   data: function data() {
-    return {};
+    return {
+      title: "",
+      content: ""
+    };
   },
   components: {
     navbar: _navbar.default,
     contentwrite: _contentWrite.default
   },
   methods: {
+    gotofourthpage: function gotofourthpage() {
+      this.$emit('gotofourthpage');
+    },
+    gotofifthpage: function gotofifthpage() {
+      this.$emit('gotofifthpage');
+    },
     gotofirstpage: function gotofirstpage() {
       this.$emit('gotofirstpage');
     },
     gotosecondpage: function gotosecondpage() {
       this.$emit('gotosecondpage');
+    },
+    publish: function publish(_publish) {
+      (0, _axios.default)({
+        url: "".concat(baseUrl, "/articles"),
+        method: 'post',
+        data: {
+          title: this.title,
+          content: this.content,
+          publish: _publish
+        },
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      }).then(function (response) {
+        console.log(response);
+      }).catch(function (err) {
+        if (err.response) {
+          console.log("".concat(err.response.data.message));
+        } else if (err.request) {
+          alert("No response from server");
+        } else {
+          console.log(err);
+        }
+      }).finally(function () {});
+    },
+    updatecontent: function updatecontent(value) {
+      this.content = value;
     }
   }
 };
@@ -15030,12 +15176,30 @@ exports.default = _default;
       _c("navbar", {
         attrs: { page: _vm.page },
         on: {
-          gotofirstpage: _vm.gotofirstpage,
-          gotosecondpage: _vm.gotosecondpage
+          publish: _vm.publish,
+          gotofifthpage: _vm.gotofifthpage,
+          gotofourthpage: _vm.gotofourthpage,
+          gotosecondpage: _vm.gotosecondpage,
+          gotofirstpage: _vm.gotofirstpage
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "editor" }, [_c("contentwrite")], 1)
+      _c(
+        "div",
+        { staticClass: "editor" },
+        [
+          _c("contentwrite", {
+            attrs: { title: _vm.title },
+            on: {
+              updatecontent: _vm.updatecontent,
+              "update:title": function($event) {
+                _vm.title = $event
+              }
+            }
+          })
+        ],
+        1
+      )
     ],
     1
   )
@@ -15073,7 +15237,444 @@ render._withStripped = true
       
       }
     })();
-},{"./navbar":"src/components/navbar.vue","./contentWrite":"src/components/contentWrite.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","./navbar":"src/components/navbar.vue","./contentWrite":"src/components/contentWrite.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/contentDraft.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+var baseUrl = 'http://localhost:3000';
+var _default = {
+  data: function data() {
+    return {
+      articles: []
+    };
+  },
+  methods: {
+    readArticle: function readArticle() {
+      (0, _axios.default)({
+        url: "".concat(baseUrl, "/articles"),
+        method: 'get',
+        data: {
+          publishskjnasnsad: "lasndak"
+        },
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      }).then(function (response) {
+        console.log(response);
+      }).catch(function (err) {
+        if (err.response) {
+          console.log("".concat(err.response.data.message));
+        } else if (err.request) {
+          alert("No response from server");
+        } else {
+          console.log(err);
+        }
+      }).finally(function () {});
+    }
+  },
+  created: function created() {
+    this.readArticle();
+  }
+};
+exports.default = _default;
+        var $e8cf91 = exports.default || module.exports;
+      
+      if (typeof $e8cf91 === 'function') {
+        $e8cf91 = $e8cf91.options;
+      }
+    
+        /* template */
+        Object.assign($e8cf91, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-e8cf91",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$e8cf91', $e8cf91);
+          } else {
+            api.reload('$e8cf91', $e8cf91);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/fourthPage.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _navbar = _interopRequireDefault(require("./navbar"));
+
+var _contentDraft = _interopRequireDefault(require("./contentDraft"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  props: ['page'],
+  data: function data() {
+    return {};
+  },
+  methods: {
+    gotofourthpage: function gotofourthpage() {
+      this.$emit('gotofourthpage');
+    },
+    gotofifthpage: function gotofifthpage() {
+      this.$emit('gotofifthpage');
+    },
+    gotosecondpage: function gotosecondpage() {
+      this.$emit('gotosecondpage');
+    },
+    gotofirstpage: function gotofirstpage() {
+      this.$emit('gotofirstpage');
+    },
+    gotothirdpage: function gotothirdpage() {
+      this.$emit('gotothirdpage');
+    }
+  },
+  components: {
+    navbar: _navbar.default,
+    contentdraft: _contentDraft.default
+  },
+  created: function created() {}
+};
+exports.default = _default;
+        var $50005c = exports.default || module.exports;
+      
+      if (typeof $50005c === 'function') {
+        $50005c = $50005c.options;
+      }
+    
+        /* template */
+        Object.assign($50005c, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("navbar", {
+        attrs: { page: _vm.page },
+        on: {
+          gotofifthpage: _vm.gotofifthpage,
+          gotofourthpage: _vm.gotofourthpage,
+          gotosecondpage: _vm.gotosecondpage,
+          gotothirdpage: _vm.gotothirdpage,
+          gotofirstpage: _vm.gotofirstpage
+        }
+      }),
+      _vm._v(" "),
+      _c("contentdraft")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$50005c', $50005c);
+          } else {
+            api.reload('$50005c', $50005c);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"./navbar":"src/components/navbar.vue","./contentDraft":"src/components/contentDraft.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/contentPublish.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+var baseUrl = 'http://localhost:3000';
+var _default = {
+  data: function data() {
+    return {
+      articles: []
+    };
+  },
+  methods: {
+    readArticle: function readArticle(value) {
+      (0, _axios.default)({
+        url: "".concat(baseUrl, "/articles"),
+        method: 'get',
+        data: {
+          publish: "sadjnfkasdnfalksdfn"
+        },
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      }).then(function (response) {
+        console.log(response);
+      }).catch(function (err) {
+        if (err.response) {
+          console.log("".concat(err.response.data.message));
+        } else if (err.request) {
+          alert("No response from server");
+        } else {
+          console.log(err);
+        }
+      }).finally(function () {});
+    }
+  },
+  created: function created() {
+    this.readArticle();
+  }
+};
+exports.default = _default;
+        var $3ea629 = exports.default || module.exports;
+      
+      if (typeof $3ea629 === 'function') {
+        $3ea629 = $3ea629.options;
+      }
+    
+        /* template */
+        Object.assign($3ea629, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-3ea629",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$3ea629', $3ea629);
+          } else {
+            api.reload('$3ea629', $3ea629);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/fifthPage.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _navbar = _interopRequireDefault(require("./navbar"));
+
+var _contentPublish = _interopRequireDefault(require("./contentPublish"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  props: ['page'],
+  data: function data() {
+    return {};
+  },
+  methods: {
+    gotofourthpage: function gotofourthpage() {
+      this.$emit('gotofourthpage');
+    },
+    gotofifthpage: function gotofifthpage() {
+      this.$emit('gotofifthpage');
+    },
+    gotosecondpage: function gotosecondpage() {
+      this.$emit('gotosecondpage');
+    },
+    gotofirstpage: function gotofirstpage() {
+      this.$emit('gotofirstpage');
+    },
+    gotothirdpage: function gotothirdpage() {
+      this.$emit('gotothirdpage');
+    }
+  },
+  components: {
+    navbar: _navbar.default,
+    contentpublish: _contentPublish.default
+  },
+  created: function created() {}
+};
+exports.default = _default;
+        var $77da91 = exports.default || module.exports;
+      
+      if (typeof $77da91 === 'function') {
+        $77da91 = $77da91.options;
+      }
+    
+        /* template */
+        Object.assign($77da91, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("navbar", {
+        attrs: { page: _vm.page },
+        on: {
+          gotofifthpage: _vm.gotofifthpage,
+          gotofourthpage: _vm.gotofourthpage,
+          gotosecondpage: _vm.gotosecondpage,
+          gotothirdpage: _vm.gotothirdpage,
+          gotofirstpage: _vm.gotofirstpage
+        }
+      }),
+      _vm._v(" "),
+      _c("contentpublish")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$77da91', $77da91);
+          } else {
+            api.reload('$77da91', $77da91);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"./navbar":"src/components/navbar.vue","./contentPublish":"src/components/contentPublish.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15087,8 +15688,35 @@ var _secondPage = _interopRequireDefault(require("./components/secondPage"));
 
 var _thirdPage = _interopRequireDefault(require("./components/thirdPage"));
 
+var _fourthPage = _interopRequireDefault(require("./components/fourthPage"));
+
+var _fifthPage = _interopRequireDefault(require("./components/fifthPage"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15109,6 +15737,12 @@ var _default = {
     };
   },
   methods: {
+    gotofourthpage: function gotofourthpage() {
+      this.page = 4;
+    },
+    gotofifthpage: function gotofifthpage() {
+      this.page = 5;
+    },
     gotofirstpage: function gotofirstpage() {
       this.page = 1;
     },
@@ -15122,7 +15756,9 @@ var _default = {
   components: {
     firstpage: _firstPage.default,
     secondpage: _secondPage.default,
-    thirdpage: _thirdPage.default
+    thirdpage: _thirdPage.default,
+    fifthpage: _fifthPage.default,
+    fourthpage: _fourthPage.default
   },
   created: function created() {
     if (localStorage.getItem('token')) {
@@ -15149,6 +15785,8 @@ exports.default = _default;
     ? _c("secondpage", {
         attrs: { page: _vm.page },
         on: {
+          gotofifthpage: _vm.gotofifthpage,
+          gotofourthpage: _vm.gotofourthpage,
           gotosecondpage: _vm.gotosecondpage,
           gotothirdpage: _vm.gotothirdpage,
           gotofirstpage: _vm.gotofirstpage
@@ -15158,8 +15796,33 @@ exports.default = _default;
     ? _c("thirdpage", {
         attrs: { page: _vm.page },
         on: {
-          gotofirstpage: _vm.gotofirstpage,
-          gotosecondpage: _vm.gotosecondpage
+          gotofifthpage: _vm.gotofifthpage,
+          gotofourthpage: _vm.gotofourthpage,
+          gotosecondpage: _vm.gotosecondpage,
+          gotothirdpage: _vm.gotothirdpage,
+          gotofirstpage: _vm.gotofirstpage
+        }
+      })
+    : _vm.page === 4
+    ? _c("fourthpage", {
+        attrs: { page: _vm.page },
+        on: {
+          gotofifthpage: _vm.gotofifthpage,
+          gotofourthpage: _vm.gotofourthpage,
+          gotosecondpage: _vm.gotosecondpage,
+          gotothirdpage: _vm.gotothirdpage,
+          gotofirstpage: _vm.gotofirstpage
+        }
+      })
+    : _vm.page === 5
+    ? _c("fifthpage", {
+        attrs: { page: _vm.page },
+        on: {
+          gotofifthpage: _vm.gotofifthpage,
+          gotofourthpage: _vm.gotofourthpage,
+          gotosecondpage: _vm.gotosecondpage,
+          gotothirdpage: _vm.gotothirdpage,
+          gotofirstpage: _vm.gotofirstpage
         }
       })
     : _vm._e()
@@ -15197,7 +15860,7 @@ render._withStripped = true
       
       }
     })();
-},{"./components/firstPage":"src/components/firstPage.vue","./components/secondPage":"src/components/secondPage.vue","./components/thirdPage":"src/components/thirdPage.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/main.js":[function(require,module,exports) {
+},{"./components/firstPage":"src/components/firstPage.vue","./components/secondPage":"src/components/secondPage.vue","./components/thirdPage":"src/components/thirdPage.vue","./components/fourthPage":"src/components/fourthPage.vue","./components/fifthPage":"src/components/fifthPage.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -15239,7 +15902,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62645" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64773" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

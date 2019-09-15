@@ -1,19 +1,19 @@
 <template>
     <div>
-        <navbar 
-        @gotofifthpage="gotofifthpage"
-        @gotofourthpage="gotofourthpage"
-        @gotosecondpage="gotosecondpage" 
-        @gotothirdpage="gotothirdpage" :page="page" 
-        @gotofirstpage="gotofirstpage"></navbar>
-        <contentall class="content"></contentall>
-    </div>
     
+        <navbar 
+            @gotofifthpage="gotofifthpage"
+            @gotofourthpage="gotofourthpage"
+            @gotosecondpage="gotosecondpage" 
+            @gotothirdpage="gotothirdpage" :page="page" 
+            @gotofirstpage="gotofirstpage"></navbar>
+        <contentdraft></contentdraft>
+    </div>
 </template>
 
 <script>
 import navbar from './navbar'
-import contentall from './contentAll'
+import contentdraft from './contentDraft'
 export default {
     props: ['page'],
     data: function(){
@@ -21,11 +21,7 @@ export default {
 
         }
     },
-    components: {
-        navbar,
-        contentall
-    },
-    methods: {
+    methods:{
         gotofourthpage(){
             this.$emit('gotofourthpage')
         },
@@ -41,14 +37,16 @@ export default {
         gotothirdpage(){
             this.$emit('gotothirdpage')
         }
+    },
+    components: {
+        navbar,
+        contentdraft
+    },
+    created(){
     }
 }
 </script>
 
-<style scoped>
-    .content{
-        margin-top: 10vh;
-        margin-left: auto;
-        margin-right: auto;
-    }
+<style>
+
 </style>

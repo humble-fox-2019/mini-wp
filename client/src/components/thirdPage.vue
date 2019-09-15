@@ -1,21 +1,30 @@
 <template>
     <div>
-        <navbar @gotofirstpage="gotofirstpage" @gotosecondpage="gotosecondpage" :page="page"></navbar>
+        <navbar 
+        @publish="publish"
+        @gotofifthpage="gotofifthpage"
+        @gotofourthpage="gotofourthpage"
+        @gotosecondpage="gotosecondpage" 
+        :page="page" 
+        @gotofirstpage="gotofirstpage"></navbar>
         <div class="editor">
-            <contentwrite ></contentwrite>
+            <contentwrite @updatecontent="updatecontent" :title.sync="title"></contentwrite>
         </div>
         
     </div>
 </template>
 
 <script>
+let baseUrl = 'http://localhost:3000'
+import axios from 'axios'
 import navbar from './navbar'
 import contentwrite from './contentWrite'
 export default {
     props: ['page'],
     data: function(){
         return {
-
+            title: "",
+            content: ""
         }
     },
     components: {
@@ -23,11 +32,51 @@ export default {
         contentwrite
     },
     methods: {
+        gotofourthpage(){
+            this.$emit('gotofourthpage')
+        },
+        gotofifthpage(){
+            this.$emit('gotofifthpage')
+        },
         gotofirstpage(){
             this.$emit('gotofirstpage')
         },
         gotosecondpage(){
             this.$emit('gotosecondpage')
+        },
+        publish(publish){
+            axios({
+                url: `${baseUrl}/articles`,
+                method: 'post',
+                data: {
+                    title: this.title,
+                    content: this.content,
+                    publish
+                },
+                headers: {
+                    token: localStorage.getItem('token')
+                }
+            })
+            .then(response => {
+               console.log(response)
+            })
+            .catch(err =>{
+                if(err.response){
+                    console.log(`${err.response.data.message}`)
+                }
+                else if(err.request){
+                    alert("No response from server")
+                }
+                else {
+                    console.log(err)
+                }
+            })
+            .finally(()=>{
+
+            })
+        },
+        updatecontent(value){
+            this.content = value
         }
     }
 }

@@ -1,25 +1,40 @@
 <template>
     <div class="root">
         <div class="header">
-            <input type="text" v-model="title" placeholder="Your title goes here">
+            <input type="text" @input="$emit('update:title', $event.target.value)" :value="title" placeholder="Your title goes here">
         </div>
         <div class="editor">
-            <wysiwyg  class="texteditor" v-model="text"></wysiwyg>
+            <wysiwyg class="texteditor" v-model="inicontent"></wysiwyg>
         </div>
     </div> 
 </template>
 
 <script>
+import axios from 'axios'
+let baseUrl = "http://localhost:3000"
 import wysiwyg from '../../vueWysiwyg'
 export default {
+    props:['content', 'title'],
     data: function(){
         return {
-            text: "",
-            title: ""
+            inicontent: "",
+            // title: ""
         }
+    },
+    watch:{
+         inicontent: function(){
+             console.log('tr')
+             this.$emit('updatecontent', this.inicontent)
+         }
+    },
+    methods: {
+        
     },
     components: {
         wysiwyg: wysiwyg.component
+    },
+    created () {
+
     }
 }
 </script>

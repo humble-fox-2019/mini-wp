@@ -38,3 +38,7 @@ ErrorExample: 400,{
     "message": "invalid password"
 
 }
+
+**Articles Api**
+
+Body: body

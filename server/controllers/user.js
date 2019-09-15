@@ -23,9 +23,18 @@ class UserController {
             email,
             password
         }).then(user => {
-            res.status(201).json({
-                name, email
-            });
+            const payload = {
+                author: user.id,
+                name: user.name,
+                email: user.email
+            }
+
+            const token = generateToken(payload);
+            
+            res.status(200).json({
+                name: user.name,
+                token
+            })
         }).catch(next);
     }
 

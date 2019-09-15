@@ -1,3 +1,7 @@
-PORT=3000
-JWT=iphonasda
-GTOKEN=9asdasdasdalksadjgfho39434983493439efju.apps.googleusercontent.com
+JWT="iphonekurusak"
+PORT=80
+GTOKEN=917807764644-vpc8agqmpl8v5bn8d273i4te0ojs2b3m.apps.googleusercontent.com
+ATLAS_CONNECT="mongodb+srv://tatag:tatag@thproject-eys6c.gcp.mongodb.net/readwords?retryWrites=true&w=majority"
+GOOGLE_CLOUD_BUCKET=miniwp_images
+GOOGLE_CLOUD_PROJECT_ID=coastal-science-252603
+GOOGLE_CLOUD_KEYFILE='./My First Project-1b0430f1145f.json'

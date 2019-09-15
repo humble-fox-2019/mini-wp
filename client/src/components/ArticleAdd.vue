@@ -17,14 +17,7 @@
           </div>
           <div class="form-group">
             <label for="content">Content</label>
-            <textarea
-              name="content"
-              class="form-control"
-              id="content"
-              cols="30"
-              rows="10"
-              v-model="content"
-            ></textarea>
+            <quillEditor cols="30" rows="10" v-model="content"></quillEditor>
           </div>
           <div class="form-group row">
             <label class="col-12">Image</label>
@@ -72,6 +65,12 @@
 <script>
 import axios from "../api/server";
 
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
+
+import { quillEditor } from "vue-quill-editor";
+
 export default {
   data() {
     return {
@@ -81,6 +80,9 @@ export default {
       isPublished: true,
       errors: ""
     };
+  },
+  components: {
+    quillEditor
   },
   methods: {
     handleImage() {

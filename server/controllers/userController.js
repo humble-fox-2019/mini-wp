@@ -50,7 +50,6 @@ class UserController {
     }
 
     static Gsignin(req, res, next) {
-        console.log('object');
         client.verifyIdToken({
             idToken: req.body.idToken,
             audience: GOOGLE_CLIENT_ID

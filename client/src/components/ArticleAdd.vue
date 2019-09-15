@@ -31,7 +31,7 @@
                   ref="image"
                   v-on:change="handleImage"
                 />
-                <label class="custom-file-label" for="image">Choose image</label>
+                <label class="custom-file-label" for="image" id="imgLabel">{{imageName}}</label>
               </div>
             </div>
           </div>
@@ -78,7 +78,8 @@ export default {
       content: "",
       image: "",
       isPublished: true,
-      errors: ""
+      errors: "",
+      imageName: ""
     };
   },
   components: {
@@ -90,6 +91,7 @@ export default {
 
       reader.readAsDataURL(this.$refs.image.files[0]);
       this.image = this.$refs.image.files[0];
+      this.imageName = this.$refs.image.files[0].name;
     },
     createPost() {
       let formData = new FormData();

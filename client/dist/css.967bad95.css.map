@@ -1,0 +1,1 @@
+{"version":3,"sources":["css/index.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA","file":"css.967bad95.css","sourceRoot":"..","sourcesContent":[".line-clamp {\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;  \n}"]}

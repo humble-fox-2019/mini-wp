@@ -51,6 +51,7 @@ import GSignInButton from "vue-google-signin-button";
 // import Swal from "sweetalert2"
 import image from '../../img/logo.png'
 
+const server_url = "http://34.87.39.22"
 export default {
     directives: {
     GoogleSignInButton
@@ -77,7 +78,7 @@ export default {
       console.log(idToken)
       axios({
         method: "POST",
-        url: "http://localhost:3000/users/signIn",
+        url: `${server_url}/users/signIn`,
         data: {
             idToken
         }
@@ -102,7 +103,7 @@ export default {
       let password = this.inputPassword;
       axios({
         method: "POST",
-        url: `http://localhost:3000/users/login`,
+        url: `${server_url}/users/login`,
         data: {
           email,
           password

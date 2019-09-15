@@ -43,6 +43,7 @@
 
 <script>
 import axios from "axios";
+const server_url = "http://34.87.39.22"
 export default {
   props: {
     article: Object,
@@ -67,7 +68,7 @@ export default {
       }).then(result => {
         if (result.value) {
           return axios({
-            url: `http://localhost:3000/articles/${id}`,
+            url: `${server_url}/articles/${id}`,
             method: "DELETE",
             headers: {
               token
@@ -101,7 +102,7 @@ export default {
       let token = localStorage.getItem("token");
       this.$emit("detailedArticle", obj);
       axios({
-        url: `http://localhost:3000/articles/${id}/addView`,
+        url: `${server_url}/articles/${id}/addView`,
         method: "PATCH",
         headers: { token }
       })

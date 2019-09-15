@@ -2,7 +2,6 @@
   <div>
     <b-navbar type="dark"  toggleable="lg"  style="font-weight:bold;background-color:rgb(34, 4, 65);color:rgb(255, 255, 255);">
       
-      <img :src="image">
       <b-navbar-brand @click.prevent="trigger">X Wordpress</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -32,7 +31,7 @@
 </template>
 
 <script>
-import image from "../../img/logo2.png"
+
 export default {
   props: {
     message: String,
@@ -41,8 +40,7 @@ export default {
   },
   data() {
     return {
-      search:"",
-      image : image
+      search:""
     };
   },
   methods: {
@@ -62,7 +60,7 @@ export default {
     },
     showCreateForm() {
       console.log("create dari navbar");
-      this.$emit("showPage", "createTodoForm");
+      this.$emit("showPage", "createArticleForm");
     }
   },
   created() {

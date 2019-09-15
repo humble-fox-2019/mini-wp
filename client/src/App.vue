@@ -26,13 +26,14 @@
       v-bind:isUserArticle="isUserArticle"
     ></articleList>
     <createArticle
+      v-if="isLogin"
       v-bind:isCreate="isCreate"
       @addArticle="getAllArticles"
       @showPage="showPageToggle"
     ></createArticle>
     <updateArticle
       v-bind:articleToBeEdited="articleToBeEdited"
-      v-if="isEditArticle"
+      v-if="isEditArticle&&isLogin"
       @showPage="showPageToggle"
     ></updateArticle>
     <detailedArticlePage v-bind:articleDetailObj="articleDetailObj" v-if="isDetailedArticle"></detailedArticlePage>
@@ -50,6 +51,7 @@ import axios from "axios";
 import createArticle from "./components/createArticle";
 import detailedArticlePage from "./components/detailedArticle";
 // import Swal from "sweetalert2"
+const server_url = "http://34.87.39.22";
 
 export default {
   components: {
@@ -76,7 +78,7 @@ export default {
       allArticles: [],
       tempArticles: [],
       isLoginForm: true,
-      currentUser : {},
+      currentUser: {}
     };
   },
   methods: {
@@ -88,9 +90,8 @@ export default {
       this.isLoginForm = cond;
     },
     deleteArticle(id) {
-      
       // this.getAllArticles()
-      this.showPageToggle("UserArticle")
+      this.showPageToggle("UserArticle");
       // this.isUserArticle()
       // this.getUserArticles()
     },
@@ -100,33 +101,37 @@ export default {
       this.articleDetailObj = obj;
       this.showPageToggle("detailedArticle");
     },
-    
+
     editArticle(obj) {
       // console.log(obj)
       this.showPageToggle("editArticle");
       this.articleToBeEdited = obj;
       // console.log(obj);
     },
-    loginCondition(cond,currentUser) {
+    loginCondition(cond, currentUser) {
+      
+      // console.log("masuk ke login condition")
       let token = localStorage.getItem("token");
-      this.currentUser = currentUser
+      this.currentUser = currentUser;
 
       if (token) {
         this.isLogin = true;
-        this.getAllArticles();
-      } 
-      
-      else {
-
+        this.isUserArticle = false;
+        // this.getAllArticles();
+        this.showPageToggle("AllArticle")
+      } else {
         if (cond) {
           this.isUserArticle = false;
           this.isLogin = true;
-          this.getAllArticles();
-        } 
-        else {
+          // this.getAllArticles();
+          this.showPageToggle("AllArticle")
+        } else {
           this.isLogin = false;
-          this.allArticles = []
-          this.isUserArticle = false;
+          this.allArticles = [];
+          // this.isUserArticle = false;
+          // this.isCreate = false;
+          // this.isEditArticle = false;
+         
         }
       }
     },
@@ -140,9 +145,7 @@ export default {
         this.isEditArticle = false;
         this.isDetailedArticle = false;
         this.getUserArticles();
-      } 
-
-      else if (page == "AllArticle") {
+      } else if (page == "AllArticle") {
         // console.log("masuk ke all article");
         this.isShowArticle = true;
         this.isUserArticle = false;
@@ -150,25 +153,19 @@ export default {
         this.isEditArticle = false;
         this.isDetailedArticle = false;
         this.getAllArticles();
-      } 
-
-      else if (page == "createTodoForm") {
+      } else if (page == "createArticleForm") {
         // console.log("masuk ke create");
         this.isShowArticle = false;
         this.isCreate = true;
         this.isEditArticle = false;
         this.isDetailedArticle = false;
-      } 
-
-      else if (page == "editArticle") {
+      } else if (page == "editArticle") {
         this.isShowArticle = false;
         this.isUserArticle = false;
         this.isCreate = false;
         this.isEditArticle = true;
         this.isDetailedArticle = false;
-      } 
-      
-      else if ((page = "detailedArticle")) {
+      } else if ((page = "detailedArticle")) {
         // console.log("masuk page");
         this.isShowArticle = false;
         this.isUserArticle = false;
@@ -178,21 +175,21 @@ export default {
       }
     },
     getUserArticles() {
-
-      let token = localStorage.getItem("token")
+      let token = localStorage.getItem("token");
       axios({
-        url : "http://localhost:3000/articles/user",
-        method : "GET",
-        headers : {token}
+        url: `${server_url}/articles/user`,
+        method: "GET",
+        headers: { token }
       })
-      .then(response=>{          // console.log(response.data);
+        .then(response => {
+          // console.log(response.data);
 
           this.allArticles = response.data;
           this.tempArticles = response.data;
-      })
-      .catch(err=>{
-        console.log(err)
-      })
+        })
+        .catch(err => {
+          console.log(err);
+        });
       // console.log("masuk ke user article")
       // this.getAllArticles()
       // // console.log(author)
@@ -212,13 +209,12 @@ export default {
       // }
     },
     getAllArticles() {
-
       // console.log("masuk ke get all");
-       console.log("masuk ke get all articles")
-      let token = localStorage.getItem("token")
+      console.log("masuk ke get all articles");
+      let token = localStorage.getItem("token");
       // console.log(token)
       axios({
-        url: "http://localhost:3000/articles",
+        url: `${server_url}/articles`,
         method: "GET",
         headers: {
           token
@@ -233,27 +229,28 @@ export default {
           console.log(err);
         });
     },
-    searchByTag(tag){
-
-      let token = localStorage.getItem("token")
+    searchByTag(tag) {
+      let token = localStorage.getItem("token");
 
       axios({
-        url : `http://localhost:3000/articles/${tag}`,
-        method : "GET",
-        headers : {token}
+        url: `${server_url}/articles/${tag}`,
+        method: "GET",
+        headers: { token }
       })
-      .then(response=>{
-        this.allArticles = response.data
-        // this.tempArticles = response.data
-      })
-      .catch(err=>{
-        console.log(err)
-      })
+        .then(response => {
+          this.allArticles = response.data;
+          // this.tempArticles = response.data
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
-    search(value){
+    search(value) {
       // console.log(value)
-      const title = new RegExp(value,'i')
-      this.allArticles = this.tempArticles.filter((el) => { return title.test(el.title)})
+      const title = new RegExp(value, "i");
+      this.allArticles = this.tempArticles.filter(el => {
+        return title.test(el.title);
+      });
       // console.log(this.allArticles)
     }
   },
@@ -261,21 +258,18 @@ export default {
     this.loginCondition(null);
     if (localStorage.getItem("token")) {
       this.getAllArticles();
-      if (localStorage.getItem("currentUser")){
-        this.currentUser = JSON.parse(localStorage.getItem("currentUser"))
+      if (localStorage.getItem("currentUser")) {
+        this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
       }
-    }
-    else {
-       
-      this.allArticles = [],
-      this.tempArticles = []
+    } else {
+      (this.allArticles = []), (this.tempArticles = []);
     }
   }
 };
 </script>
 
 <style>
-*{
- font-family: 'Quicksand', sans-serif; 
+* {
+  font-family: "Quicksand", sans-serif;
 }
 </style>

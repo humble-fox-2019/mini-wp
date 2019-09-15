@@ -27,6 +27,7 @@
 
 <script>
 import axios from "axios"
+const server_url = "http://34.87.39.22"
 export default {
 
     data (){
@@ -46,7 +47,7 @@ export default {
             let password = this.password
 
             axios({
-                url : "http://localhost:3000/users/register",
+                url : `${server_url}/users/register`,
                 method : 'POST',
                 data : {
                     username, email, password

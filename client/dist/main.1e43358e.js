@@ -49969,9 +49969,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
+var server_url = "http://34.87.39.22";
 var _default = {
   components: {
     VueTagsInput: _vueTagsInput.default
@@ -50072,7 +50070,7 @@ var _default = {
       });
       Swal.showLoading();
       (0, _axios.default)({
-        url: "http://localhost:3000/articles/".concat(id),
+        url: "".concat(server_url, "/articles/").concat(id),
         method: "PATCH",
         data: bodyFormData,
         headers: {
@@ -50157,8 +50155,6 @@ exports.default = _default;
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "mt-2" }, [
-                    _c("label", [_c("h4", [_vm._v("Title")])]),
-                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -50339,6 +50335,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+var server_url = "http://34.87.39.22";
 var _default = {
   props: {
     article: Object,
@@ -50364,7 +50361,7 @@ var _default = {
       }).then(function (result) {
         if (result.value) {
           return (0, _axios.default)({
-            url: "http://localhost:3000/articles/".concat(id),
+            url: "".concat(server_url, "/articles/").concat(id),
             method: "DELETE",
             headers: {
               token: token
@@ -50394,7 +50391,7 @@ var _default = {
       var token = localStorage.getItem("token");
       this.$emit("detailedArticle", obj);
       (0, _axios.default)({
-        url: "http://localhost:3000/articles/".concat(id, "/addView"),
+        url: "".concat(server_url, "/articles/").concat(id, "/addView"),
         method: "PATCH",
         headers: {
           token: token
@@ -50723,21 +50720,13 @@ render._withStripped = true
       
       }
     })();
-},{"./articleListItem":"src/components/articleListItem.vue","_css_loader":"../../../../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"img/logo2.png":[function(require,module,exports) {
-module.exports = "/logo2.1f2bbc09.png";
-},{}],"src/components/navbar.vue":[function(require,module,exports) {
+},{"./articleListItem":"src/components/articleListItem.vue","_css_loader":"../../../../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/navbar.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-
-var _logo = _interopRequireDefault(require("../../img/logo2.png"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
 //
 //
 //
@@ -50778,8 +50767,7 @@ var _default = {
   },
   data: function data() {
     return {
-      search: "",
-      image: _logo.default
+      search: ""
     };
   },
   methods: {
@@ -50798,7 +50786,7 @@ var _default = {
     },
     showCreateForm: function showCreateForm() {
       console.log("create dari navbar");
-      this.$emit("showPage", "createTodoForm");
+      this.$emit("showPage", "createArticleForm");
     }
   },
   created: function created() {// console.log(this.isLogin);
@@ -50838,8 +50826,6 @@ exports.default = _default;
           attrs: { type: "dark", toggleable: "lg" }
         },
         [
-          _c("img", { attrs: { src: _vm.image } }),
-          _vm._v(" "),
           _c(
             "b-navbar-brand",
             {
@@ -50996,7 +50982,7 @@ render._withStripped = true
       
       }
     })();
-},{"../../img/logo2.png":"img/logo2.png","_css_loader":"../../../../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/vue-google-signin-button-directive/index.js":[function(require,module,exports) {
+},{"_css_loader":"../../../../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/vue-google-signin-button-directive/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51120,6 +51106,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 // import Swal from "sweetalert2"
+var server_url = "http://34.87.39.22";
 var _default = {
   directives: {
     GoogleSignInButton: _vueGoogleSigninButtonDirective.default
@@ -51145,7 +51132,7 @@ var _default = {
       console.log(idToken);
       (0, _axios.default)({
         method: "POST",
-        url: "http://localhost:3000/users/signIn",
+        url: "".concat(server_url, "/users/signIn"),
         data: {
           idToken: idToken
         }
@@ -51171,7 +51158,7 @@ var _default = {
       var password = this.inputPassword;
       (0, _axios.default)({
         method: "POST",
-        url: "http://localhost:3000/users/login",
+        url: "".concat(server_url, "/users/login"),
         data: {
           email: email,
           password: password
@@ -51440,6 +51427,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+var server_url = "http://34.87.39.22";
 var _default = {
   data: function data() {
     return {
@@ -51457,7 +51445,7 @@ var _default = {
       var email = this.email;
       var password = this.password;
       (0, _axios.default)({
-        url: "http://localhost:3000/users/register",
+        url: "".concat(server_url, "/users/register"),
         method: 'POST',
         data: {
           username: username,
@@ -51720,6 +51708,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+var server_url = "http://34.87.39.22";
 var _default = {
   components: {
     VueTagsInput: _vueTagsInput.default
@@ -51786,7 +51775,7 @@ var _default = {
       });
       Swal.showLoading();
       (0, _axios.default)({
-        url: "http://localhost:3000/articles",
+        url: "".concat(server_url, "/articles"),
         method: "POST",
         data: bodyFormData,
         headers: {
@@ -51809,7 +51798,7 @@ var _default = {
 
         _this.$emit("addArticle", true);
 
-        _this.$emit("showPage", "AllArticle");
+        _this.$emit("showPage", "UserArticle");
       }).catch(function (err) {
         var message = err.response.data.message; // swal("Error!", errMessage , "error")
 
@@ -52165,7 +52154,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 // import Swal from "sweetalert2"
+var server_url = "http://34.87.39.22";
 var _default = {
   components: {
     navbar: _navbar.default,
@@ -52219,21 +52210,26 @@ var _default = {
       this.articleToBeEdited = obj; // console.log(obj);
     },
     loginCondition: function loginCondition(cond, currentUser) {
+      // console.log("masuk ke login condition")
       var token = localStorage.getItem("token");
       this.currentUser = currentUser;
 
       if (token) {
         this.isLogin = true;
-        this.getAllArticles();
+        this.isUserArticle = false; // this.getAllArticles();
+
+        this.showPageToggle("AllArticle");
       } else {
         if (cond) {
           this.isUserArticle = false;
-          this.isLogin = true;
-          this.getAllArticles();
+          this.isLogin = true; // this.getAllArticles();
+
+          this.showPageToggle("AllArticle");
         } else {
           this.isLogin = false;
-          this.allArticles = [];
-          this.isUserArticle = false;
+          this.allArticles = []; // this.isUserArticle = false;
+          // this.isCreate = false;
+          // this.isEditArticle = false;
         }
       }
     },
@@ -52255,7 +52251,7 @@ var _default = {
         this.isEditArticle = false;
         this.isDetailedArticle = false;
         this.getAllArticles();
-      } else if (page == "createTodoForm") {
+      } else if (page == "createArticleForm") {
         // console.log("masuk ke create");
         this.isShowArticle = false;
         this.isCreate = true;
@@ -52281,7 +52277,7 @@ var _default = {
 
       var token = localStorage.getItem("token");
       (0, _axios.default)({
-        url: "http://localhost:3000/articles/user",
+        url: "".concat(server_url, "/articles/user"),
         method: "GET",
         headers: {
           token: token
@@ -52318,7 +52314,7 @@ var _default = {
       var token = localStorage.getItem("token"); // console.log(token)
 
       (0, _axios.default)({
-        url: "http://localhost:3000/articles",
+        url: "".concat(server_url, "/articles"),
         method: "GET",
         headers: {
           token: token
@@ -52336,7 +52332,7 @@ var _default = {
 
       var token = localStorage.getItem("token");
       (0, _axios.default)({
-        url: "http://localhost:3000/articles/".concat(tag),
+        url: "".concat(server_url, "/articles/").concat(tag),
         method: "GET",
         headers: {
           token: token
@@ -52349,7 +52345,7 @@ var _default = {
     },
     search: function search(value) {
       // console.log(value)
-      var title = new RegExp(value, 'i');
+      var title = new RegExp(value, "i");
       this.allArticles = this.tempArticles.filter(function (el) {
         return title.test(el.title);
       }); // console.log(this.allArticles)
@@ -52436,12 +52432,14 @@ exports.default = _default;
           })
         : _vm._e(),
       _vm._v(" "),
-      _c("createArticle", {
-        attrs: { isCreate: _vm.isCreate },
-        on: { addArticle: _vm.getAllArticles, showPage: _vm.showPageToggle }
-      }),
+      _vm.isLogin
+        ? _c("createArticle", {
+            attrs: { isCreate: _vm.isCreate },
+            on: { addArticle: _vm.getAllArticles, showPage: _vm.showPageToggle }
+          })
+        : _vm._e(),
       _vm._v(" "),
-      _vm.isEditArticle
+      _vm.isEditArticle && _vm.isLogin
         ? _c("updateArticle", {
             attrs: { articleToBeEdited: _vm.articleToBeEdited },
             on: { showPage: _vm.showPageToggle }
@@ -71455,7 +71453,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41509" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38385" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

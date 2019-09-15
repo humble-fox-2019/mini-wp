@@ -29,7 +29,7 @@
 <script>
 import VueTagsInput from "@johmun/vue-tags-input";
 import axios from "axios";
-
+const server_url ="http://34.87.39.22"
 export default {
   components: {
     VueTagsInput
@@ -71,7 +71,7 @@ export default {
       });
       Swal.showLoading();
       axios({
-        url: "http://localhost:3000/articles",
+        url: `${server_url}/articles`,
         method: "POST",
         data: bodyFormData,
         headers: {
@@ -93,7 +93,7 @@ export default {
             timer: 1500
           });
           this.$emit("addArticle", true);
-          this.$emit("showPage", "AllArticle");
+          this.$emit("showPage", "UserArticle");
         })
         .catch(err => {
           let message = err.response.data.message;

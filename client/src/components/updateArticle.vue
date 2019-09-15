@@ -5,9 +5,6 @@
         <div class="form-group" style="display:flex;flex-direction:column;align-items:center;">
           <img :src="articleImage" style="width:200px;height:200px" />
           <div class="mt-2">
-            <label>
-              <h4>Title</h4>
-            </label>
             <input
               v-model="articleTitle"
               type="text"
@@ -35,7 +32,7 @@
 <script>
 import axios from "axios";
 import VueTagsInput from "@johmun/vue-tags-input";
-
+const server_url = "http://34.87.39.22"
 export default {
   components : {
      VueTagsInput
@@ -94,7 +91,7 @@ export default {
             Swal.showLoading()
 
       axios({
-        url: `http://localhost:3000/articles/${id}`,
+        url: `${server_url}/articles/${id}`,
         method: "PATCH",
         data: bodyFormData,
         headers: {

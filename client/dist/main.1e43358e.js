@@ -10719,7 +10719,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = "http://localhost:3000/user";
+var baseUrl = "http://35.240.238.224/user";
 var _default = {
   data: function data() {
     return {
@@ -10807,14 +10807,6 @@ var _default = {
         var response = _ref4.response;
         console.log(response.data, "<<< ini errornya ada di google sign in");
       });
-    },
-    // BAGIAN LOGOUT
-    signOutGoogle: function signOutGoogle() {
-      this.$gAuth.signOut().then(function () {
-        localStorage.clear();
-      }).catch(function (error) {
-        console.log(error, "<<< DISINI ERORRNYA BRAY");
-      });
     }
   }
 };
@@ -10833,7 +10825,10 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "b-container homepage mt-5 flex-box d-flex" },
+    {
+      staticClass:
+        "b-container homepage mt-5 flex-box d-flex align-items-center"
+    },
     [
       _c(
         "div",
@@ -10841,7 +10836,7 @@ exports.default = _default;
         [
           _c("div", { staticClass: "banner-inner" }, [
             _c("h1", { staticClass: "welcome-register" }, [
-              _vm._v("Welcome to SimplePress")
+              _vm._v("Welcome to People Press")
             ]),
             _vm._v(" "),
             _c("form", [
@@ -10968,20 +10963,6 @@ exports.default = _default;
               _c("button", { on: { click: _vm.onSignIn } }, [
                 _vm._v("Continue with Google")
               ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.signOutGoogle($event)
-                    }
-                  }
-                },
-                [_vm._v("Sign out")]
-              ),
               _vm._v(" "),
               _c("br")
             ]),
@@ -11156,7 +11137,6 @@ exports.default = void 0;
 //
 //
 //
-//
 var _default = {};
 exports.default = _default;
         var $4bbfa2 = exports.default || module.exports;
@@ -11178,61 +11158,49 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "header" }, [
-      _c(
-        "nav",
-        { staticClass: "navbar navbar-expand bg-dark", attrs: { id: "baru" } },
-        [
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse ml-3",
-              attrs: { id: "navbarTogglerDemo01" }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "navbar-brand",
-                  staticStyle: { "text-decoration": "none" },
-                  attrs: { href: "#" }
-                },
-                [_vm._v("Simple Post")]
-              ),
-              _vm._v(" "),
-              _c("ul", { staticClass: "navbar-nav mr-auto mt-2 mt-lg-0" }, [
-                _c("li", { staticClass: "nav-item active" }, [
-                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                    _vm._v("\n            Home\n            "),
-                    _c("span", { staticClass: "sr-only" }, [
-                      _vm._v("(current)")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                    _vm._v("Link")
-                  ])
+    return _c(
+      "nav",
+      { staticClass: "navbar navbar-expand bg-dark", attrs: { id: "baru" } },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse ml-3",
+            attrs: { id: "navbarTogglerDemo01" }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "navbar-brand",
+                staticStyle: { "text-decoration": "none" },
+                attrs: { href: "#" }
+              },
+              [_vm._v("People Press")]
+            ),
+            _vm._v(" "),
+            _c("ul", { staticClass: "navbar-nav mr-auto mt-2 mt-lg-0" }, [
+              _c("li", { staticClass: "nav-item active" }, [
+                _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                  _vm._v("\n          Home\n          "),
+                  _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
                 ])
               ]),
               _vm._v(" "),
-              _c(
-                "a",
-                { staticClass: "btn btn-success mr-2", attrs: { href: "#" } },
-                [_vm._v("Sign In")]
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                { staticClass: "btn btn-warning", attrs: { href: "#" } },
-                [_vm._v("Sign Out")]
-              )
-            ]
-          )
-        ]
-      )
-    ])
+              _c("li", { staticClass: "nav-item" }, [
+                _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                  _vm._v("Link")
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "btn btn-warning", attrs: { href: "#" } }, [
+              _vm._v("Sign Out")
+            ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -11585,7 +11553,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = "http://localhost:3000/article";
+// yang ada local hostnya dirubah semua menjadi yang ada di componen ya
+// 35.240.238.224 <<< LINK URL GOOGLE
+var baseUrl = "http://35.240.238.224/article";
 var _default = {
   data: function data() {
     return {
@@ -11750,7 +11720,7 @@ var _default = {
       this.showLoginHome = false;
       (0, _axios.default)({
         method: "GET",
-        url: "http://localhost:3000/article/all/thread",
+        url: "".concat(baseUrl, "/all/thread"),
         headers: {
           token: localStorage.getItem("token")
         }
@@ -11763,6 +11733,17 @@ var _default = {
         console.log(data, "<<< DARI FIND ALL PUBLISH");
       }).catch(function (err) {
         console.log(err, "<<< INI DARI ERRNYA");
+      });
+    },
+    signOutGoogle: function signOutGoogle() {
+      var _this7 = this;
+
+      this.$gAuth.signOut().then(function () {
+        localStorage.clear();
+
+        _this7.$emit("signOut");
+      }).catch(function (error) {
+        console.log(error, "<<< DISINI ERORRNYA BRAY");
       });
     }
   },
@@ -11787,7 +11768,7 @@ exports.default = _default;
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "container-fluid" }, [
-      _c("div", { staticClass: "row", staticStyle: { height: "90vh" } }, [
+      _c("div", { staticClass: "row", staticStyle: { height: "100vh" } }, [
         _c("div", { staticClass: "addArticle col-4 p-0 container-fluid" }, [
           _vm._m(1),
           _vm._v(" "),
@@ -11823,7 +11804,7 @@ exports.default = _default;
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-primary mt-2",
+                      staticClass: "btn btn-primary mt-3",
                       attrs: { href: "" },
                       on: {
                         click: function($event) {
@@ -11833,6 +11814,21 @@ exports.default = _default;
                       }
                     },
                     [_vm._v("HOME")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary mt-3",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.signOutGoogle($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Sign out")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -12292,9 +12288,9 @@ var staticRenderFns = [
         },
         [
           _c("div", { staticClass: "container" }, [
-            _c("h1", [_vm._v("Welcome to Simple Post")]),
+            _c("h1", [_vm._v("Welcome to People Post")]),
             _vm._v(" "),
-            _c("p", [_vm._v("Amplify your voice with just a click !")])
+            _c("p", [_vm._v("Heard and Be Heard")])
           ])
         ]
       )
@@ -12308,30 +12304,13 @@ var staticRenderFns = [
       "div",
       {
         staticClass: "info col m-0 p-0",
-        staticStyle: {
-          "background-color": "whitesmoke",
-          height: "40%",
-          width: "100%"
-        }
+        staticStyle: { "background-color": "whitesmoke", height: "40%" }
       },
       [
         _c(
           "div",
           { staticClass: "container text-center", attrs: { id: "sec1top" } },
-          [
-            _c("img", {
-              attrs: { src: "", alt: "", srcset: "", id: "userPic" }
-            }),
-            _vm._v(" "),
-            _c(
-              "p",
-              {
-                staticClass: "username",
-                staticStyle: { "font-weight": "bold" }
-              },
-              [_vm._v("User")]
-            )
-          ]
+          [_c("h1", [_vm._v("User")])]
         )
       ]
     )
@@ -12394,7 +12373,7 @@ exports.default = void 0;
 
 var _register = _interopRequireDefault(require("./components/register.vue"));
 
-var _header = _interopRequireDefault(require("./components/header"));
+var _header = _interopRequireDefault(require("./components/header.vue"));
 
 var _footer = _interopRequireDefault(require("./components/footer"));
 
@@ -12402,6 +12381,8 @@ var _mainpage = _interopRequireDefault(require("./components/mainpage"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
 //
 //
 //
@@ -12427,13 +12408,15 @@ var _default = {
     login: function login() {
       this.isLogin = true;
       console.log(this.isLogin);
+    },
+    signout: function signout() {
+      this.isLogin = false, this.homePage = false, this.headerPart = false, this.footerPart = false;
     }
   },
   data: function data() {
     return {
       isLogin: false,
       homePage: false,
-      editPage: false,
       headerPart: false,
       footerPart: false
     };
@@ -12482,9 +12465,15 @@ exports.default = _default;
       _vm._v(" "),
       _vm.isLogin ? _c("header") : _vm._e(),
       _vm._v(" "),
-      _vm.isLogin ? _c("loadingPage") : _vm._e(),
-      _vm._v(" "),
-      _vm.isLogin ? _c("footer") : _vm._e()
+      _vm.isLogin
+        ? _c("loadingPage", {
+            on: {
+              signOut: function($event) {
+                return _vm.signout()
+              }
+            }
+          })
+        : _vm._e()
     ],
     1
   )
@@ -12522,7 +12511,7 @@ render._withStripped = true
       
       }
     })();
-},{"./components/register.vue":"src/components/register.vue","./components/header":"src/components/header.vue","./components/footer":"src/components/footer.vue","./components/mainpage":"src/components/mainpage.vue","_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/bootstrap-vue/esm/utils/vue.js":[function(require,module,exports) {
+},{"./components/register.vue":"src/components/register.vue","./components/header.vue":"src/components/header.vue","./components/footer":"src/components/footer.vue","./components/mainpage":"src/components/mainpage.vue","_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/bootstrap-vue/esm/utils/vue.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51062,7 +51051,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53398" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53311" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,9 +1,9 @@
 <template>
   <!-- REGISTER PART -->
-  <div class="b-container homepage mt-5 flex-box d-flex">
+  <div class="b-container homepage mt-5 flex-box d-flex align-items-center">
     <div class="banner-outer register-form align-items-center col-5">
       <div class="banner-inner">
-        <h1 class="welcome-register">Welcome to SimplePress</h1>
+        <h1 class="welcome-register">Welcome to People Press</h1>
         <form>
           <table>
             <tr>
@@ -56,7 +56,7 @@
             >Register</a>
           </div>
           <button @click="onSignIn">Continue with Google</button>
-          <a href="#" @click.prevent="signOutGoogle">Sign out</a>
+          <!-- <a href="#" @click.prevent="signOutGoogle">Sign out</a> -->
 
           <br />
         </form>
@@ -109,7 +109,7 @@
 </template>
 
 <script>
-const baseUrl = "http://localhost:3000/user";
+const baseUrl = "http://35.240.238.224/user";
 import axios from "axios";
 
 export default {
@@ -192,7 +192,7 @@ export default {
         .then(({ data }) => {
           console.log("berhasil masuk ke google sign in");
           localStorage.setItem("token", data.token);
-          this.$emit("loginGoogle")
+          this.$emit("loginGoogle");
         })
         .catch(({ response }) => {
           console.log(response.data, "<<< ini errornya ada di google sign in");
@@ -200,16 +200,16 @@ export default {
     },
 
     // BAGIAN LOGOUT
-    signOutGoogle() {
-      this.$gAuth
-        .signOut()
-        .then(() => {
-          localStorage.clear();
-        })
-        .catch(error => {
-          console.log(error, "<<< DISINI ERORRNYA BRAY");
-        });
-    }
+    // signOutGoogle() {
+    //   this.$gAuth
+    //     .signOut()
+    //     .then(() => {
+    //       localStorage.clear();
+    //     })
+    //     .catch(error => {
+    //       console.log(error, "<<< DISINI ERORRNYA BRAY");
+    //     });
+    // }
   }
 };
 </script>

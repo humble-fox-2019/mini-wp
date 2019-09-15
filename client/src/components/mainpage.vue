@@ -4,8 +4,8 @@
     <div class="banner-tron">
       <div class="jumbotron jumbotron-fluid" id="welcome-banner">
         <div class="container">
-          <h1>Welcome to Simple Post</h1>
-          <p>Amplify your voice with just a click !</p>
+          <h1>Welcome to People Post</h1>
+          <p>Heard and Be Heard</p>
         </div>
       </div>
     </div>
@@ -15,17 +15,16 @@
       <!-- INI ADALAH UNTUK PEMBAGIAN -->
 
       <!-- PEMBAGIAN 1 -->
-      <div class="row" style="height: 90vh;">
+      <div class="row" style="height: 100vh;">
         <div class="addArticle col-4 p-0 container-fluid">
           <!-- ISI 1 -->
-          <div
-            class="info col m-0 p-0"
-            style="background-color: whitesmoke; height: 40%; width: 100%"
-          >
+          <div class="info col m-0 p-0" style="background-color: whitesmoke; height: 40%; ">
             <div class="container text-center" id="sec1top">
               <!-- DISINI PIC BUAT USERNYA -->
-              <img src alt srcset id="userPic" />
-              <p class="username" style="font-weight: bold;">User</p>
+              <!-- <img v-bind:src="''" /> -->
+              <h1>User</h1>
+
+              <!-- <p class="username" style="font-weight: bold;">User</p> -->
             </div>
           </div>
           <div class="container" id="sec2bot"></div>
@@ -42,7 +41,8 @@
                   class="btn btn-outline-info mt-3 ml-3"
                   @click="findAllPublish()"
                 >View all Threads</button>
-                <a href class="btn btn-primary mt-2" @click.prevent="backtoHome">HOME</a>
+                <a href class="btn btn-primary mt-3" @click.prevent="backtoHome">HOME</a>
+                <a href="#" @click.prevent="signOutGoogle" class="btn btn-primary mt-3">Sign out</a>
 
                 <form action @submit.prevent="searchArt">
                   <input
@@ -219,7 +219,9 @@
 </template>
 
 <script>
-const baseUrl = "http://localhost:3000/article";
+// yang ada local hostnya dirubah semua menjadi yang ada di componen ya
+// 35.240.238.224 <<< LINK URL GOOGLE
+const baseUrl = "http://35.240.238.224/article";
 import axios from "axios";
 
 export default {
@@ -386,7 +388,7 @@ export default {
       this.showLoginHome = false;
       axios({
         method: "GET",
-        url: `http://localhost:3000/article/all/thread`,
+        url: `${baseUrl}/all/thread`,
         headers: {
           token: localStorage.getItem("token")
         }
@@ -395,11 +397,22 @@ export default {
           this.showAll = data.data;
           console.log(this.showAll, "<<<<<< bisa");
           // console.log(data);
-          this.showAllPage = true
+          this.showAllPage = true;
           console.log(data, "<<< DARI FIND ALL PUBLISH");
         })
         .catch(err => {
           console.log(err, "<<< INI DARI ERRNYA");
+        });
+    },
+    signOutGoogle() {
+      this.$gAuth
+        .signOut()
+        .then(() => {
+          localStorage.clear();
+          this.$emit("signOut");
+        })
+        .catch(error => {
+          console.log(error, "<<< DISINI ERORRNYA BRAY");
         });
     }
   },

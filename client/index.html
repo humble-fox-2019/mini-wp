@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel= "stylesheet" type="text/css" href="./style/style.css">
+    <!-- Include quill stylesheet -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="./script/createArticlePopup.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <ul class="nav justify-content-center">
+        <li class="nav-item active">
+            <a class="nav-link active" href="#">My Blog</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>
+    </ul>
+    <div id="sidenav">
+        <ul>
+            <li><a class="btn-invitation-to-write" v-on:click='toggleForm()'>Create new post</a></li>
+        </ul>
+    </div>
+    <div class="intro-pic container-fluid"">
+        <div class="content"><img src="https://residentevil.org/wp-content/themes/residentevil/images/logo.png"></div>
+        <div class="overlay"></div>
+    </div>
+    <div class="container" id="post-history">
+        <!-- Create the form for submitting article -->
+        <form v-show="showForm" id="article-form">
+            <label>Article title</label><br>
+            <input type="text" name="title" id="form-title" v-model="form.title"><br>
+            <p>{{form.description}}</p>
+            <p>{{form.id}}</p>
+            <p>{{form.title}}</p>
+            <label>Tell your story</label><br>
+            <input type="text" name="description" id="form-description" v-model="form.description"><br>
+            <button type="button" id="btn-submit-article" @click='submitData()' v-show="!updateSubmit">Submit story</button><br>
+            <button type="button" v-show="updateSubmit" @click='updateData()'>Update story</button><br>
+            <button class="btn-close-popup" @click="hideForm()" >Close</button><br>
+        </form>
+        <div class="row">
+            <button class="col btn-invitation-to-write" @click='toggleForm()'> Create new post</button>
+        </div>
+        <div class="post row" v-for="post in posts">
+            <div class="col-5 article-img"></div>
+            <div class="col-7 article">
+                <p class="post-date">{{post.createdAt}}</p>
+                <p v-bind:value="post.id"></p>
+                <h1>{{post.title}}</h1>
+                <p>{{post.description}}</p>
+                <button class="btn-update-article" @click="edit(post)">Edit</button>
+                <button @click="del(post)">Delete</button>
+            </div>
+        </div>
+        <div class="post row">
+            <div class="col-5 article-img"><img src="https://images-na.ssl-images-amazon.com/images/I/513SmJUHbPL.jpg"></div>
+            <div class="col-7 article">
+                <p class="post-date">12/09/2019</p>
+                <h1>Resident evil 2 remake</h1>
+                <p>#1
+                    In hardcore and standard it feels very lacking of zombies is there any chance we can get a setting 
+                    that can increase the amount of zombies, also there is a bug with the Handgun from claire's found in 
+                    police car in campaign it doesn't show in cutscenes even if the Sls60 is in the box please rectify this. 
+                    On some of claire's skins her grenade launcher and other guns that go over her shoulders do not appear, 
+                    could we also be given access to both campaigns weapons to use on both stories. I love this game so much 
+                    it was my birthday present the same week it was originally released. Will we be getting some Ada Wong Dlc 
+                    seen pweety pwease</p>
+            </div>
+        </div>
+        <div class="post row">
+                <div class="col-5 article-img"><img src="https://i.etsystatic.com/12175780/r/il/19fc5a/1532651946/il_794xN.1532651946_9fb5.jpg"></div>
+                <div class="col-7 article">
+                    <p class="post-date">11/09/2019</p>
+                    <h1>Fiction Based Movies Yet to Be Made</h1>
+                    <p>So, between things like Harry Potter, Marvel, and of course, Resident Evil, some of our favorite IP's in 
+                        other mediums have made the transition to the silver screen. Some with...Less success than others. 
+                        In a time where Hollywood is becoming less and less original, I'm sure we'll be seeing more and more of these 
+                        beloved IP's in the years that come, on a screen bigger than our houses, because that's how we forget our 
+                        problems. So, with that being said, what are some works of fiction that haven't been adapted yet, 
+                        that you actually think could be done well? How would you do it? Why? These are the questions I choose to try 
+                        and bring this website back from the dead!
+                    </p>
+                </div>
+        </div>
+    </div>
+
+    
+    <!-- Create the Quill editor container -->
+    <div class="quill-container">
+        <div id="editor">
+            <p>Hi there! What's on your mind?</p>
+            <p><br></p>
+        </div>
+        <button>Create post</button>
+        <button class="btn-close-popup" >Close</button>
+    </div>
+    the Quill editor container
+    <footer>
+        <ul>
+            <li><a>Terms & Conditions</a></li>
+            <li><a>Privacy Policy</a></li>
+            <li><a>Cookie Policy</a></li>
+            <li><a>Site Map</a></li>
+            <li><a>Forum Support</a></li>
+        </ul>
+    </footer>
+    
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <!-- Initialize Quill editor -->
+    <script>
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#post-history",
+            data: {
+                posts : [],
+                updateSubmit : false,
+                form: {
+                    id: '',
+                    title: '',
+                    description: ''
+                    },
+                showForm: false
+            },
+            methods: {
+                fetchData : function(){
+                    axios({
+                        method: 'GET',
+                        url: 'http://localhost:3000/posts/'
+                    }).then((response)=>{
+                        console.log(response)
+                        this.posts = response.data.reverse()
+                    })
+                },
+                submitData : function(){
+                    console.log(this.form.description)
+                    console.log("wyo")
+                    axios({
+                        method: 'POST',
+                        url: 'http://localhost:3000/posts/',
+                        data : {
+                            title: this.form.title,
+                            description: this.form.description,
+                            createdAt: new Date()
+                        }
+                    }).then(()=>{
+                        console.log('success')
+                    }).catch((err)=>{
+                        console.log(err)
+                    })
+                },
+                updateData : function(){
+                    console.log(this.form.id)
+                    console.log(this.form.title)
+                    console.log(this.form.description)
+                    axios({
+                        method: 'PATCH',
+                        url: 'http://localhost:3000/posts/' + this.form.id,
+                        data : {
+                            title: this.form.title,
+                            description: this.form.description
+                        }
+                    }).then(res => {
+                        this.form.id = ''
+                        this.form.title = ''
+                        this.form.description = ''
+                        this.updateSubmit = false
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+                },
+                edit : function(post){ 
+                    console.log(post._id)
+                    this.updateSubmit = true
+                    this.form.id = post._id 
+                    this.form.title = post.title
+                    this.form.description = post.description 
+                },
+                del : function(post){
+                    axios({
+                        method: 'DELETE',
+                        url: 'http://localhost:3000/posts/' + post._id,
+                    }).then(res =>{
+                        let index = this.posts.indexOf(this.form.title)
+                        this.posts.splice(index,1)
+                    })
+                },
+                toggleForm : function(){
+                    console.log(this.showForm)
+                    this.showForm = true
+                    console.log(this.showForm)
+                },
+                hideForm : function(){
+                    this.showForm = false
+                }
+            },
+            mounted : function(){
+                this.fetchData();
+            }
+        })
+    </script>
+    <script>
+/*     $('#btn-submit-article').click(function(event){
+        console.log('final');
+        event.preventDefault();
+        app.submitData();
+    })
+ */
+    $('#btn-update-article').click(function(event){
+        console.log('hello')
+        event.preventDefault();
+        app.updateData();
+    })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "description": "typicode",
+      "createdAt": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "title": "JSON Test",
+      "description": "Testing post method",
+      "createdAt": "2019-09-10T07:12:13.974Z",
+      "id": 2
+    },
+    {
+      "title": "Terminatrix",
+      "description": "Is Dangerous",
+      "createdAt": "2019-09-10T07:12:14.522Z",
+      "id": 3
+    }
+  ]
+}

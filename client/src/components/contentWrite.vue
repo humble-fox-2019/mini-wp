@@ -23,11 +23,9 @@ export default {
     },
     watch:{
          inicontent: function(){
-             console.log('tr')
              this.$emit('updatecontent', this.inicontent)
          },
          inititle: function(){
-             console.log('as')
              this.$emit('updatetitle', this.inititle)
          }
 

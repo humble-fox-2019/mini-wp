@@ -12,7 +12,7 @@
         </form>
         <a href="" @click.prevent="toregister"><h4>Don't have an account?</h4></a>
         
-        <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
         
     </div>
 </template>

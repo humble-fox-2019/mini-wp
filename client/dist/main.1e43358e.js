@@ -10805,7 +10805,12 @@ exports.default = _default;
         }
       },
       [_c("h4", [_vm._v("Don't have an account?")])]
-    )
+    ),
+    _vm._v(" "),
+    _c("div", {
+      staticClass: "g-signin2",
+      attrs: { "data-onsuccess": "onSignIn" }
+    })
   ])
 }
 var staticRenderFns = []
@@ -11760,6 +11765,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
 var baseUrl = 'http://localhost:3000';
 var _default = {
   data: function data() {
@@ -11769,6 +11778,34 @@ var _default = {
     };
   },
   methods: {
+    deleteArticle: function deleteArticle(_id) {
+      var _this = this;
+
+      (0, _axios.default)({
+        url: "".concat(baseUrl, "/articles/").concat(_id),
+        method: 'delete',
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      }).then(function (response) {
+        _this.readArticle();
+      }).catch(function (err) {
+        if (err.response) {
+          console.log("".concat(err.response.data.message));
+        } else if (err.request) {
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: "No response from server"
+          });
+        } else {
+          console.log(err);
+        }
+      }).finally(function () {});
+    },
+    dateConverter: function dateConverter(value) {
+      return new Date(value).toTimeString();
+    },
     gotofifth: function gotofifth(article) {
       this.$emit('gotofifth', article);
     },
@@ -11778,12 +11815,12 @@ var _default = {
     filter: function filter() {
       var regex = new RegExp("^".concat(this.searchtext));
       var filtered = this.articles.filter(function (article) {
-        return regex.test(article.title);
+        return regex.test(article.title.toLowerCase());
       });
       return filtered;
     },
     readArticle: function readArticle(value) {
-      var _this = this;
+      var _this2 = this;
 
       (0, _axios.default)({
         url: "".concat(baseUrl, "/articles"),
@@ -11793,12 +11830,16 @@ var _default = {
           token: localStorage.getItem('token')
         }
       }).then(function (response) {
-        _this.articles = response.data;
+        _this2.articles = response.data;
       }).catch(function (err) {
         if (err.response) {
           console.log("".concat(err.response.data.message));
         } else if (err.request) {
-          alert("No response from server");
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: "No response from server"
+          });
         } else {
           console.log(err);
         }
@@ -11842,39 +11883,65 @@ exports.default = _default;
         ])
       ]),
       _vm._v(" "),
-      _vm._l(_vm.filter(), function(article, index) {
-        return _c("div", { key: index, staticClass: "row" }, [
-          _c("div", { staticClass: "left" }, [
-            _c("div", { staticClass: "top" }, [
-              _c("div", [
-                _c(
-                  "a",
-                  {
-                    attrs: { href: "" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.gotofifth(article)
-                      }
+      _vm.filter().length === 0
+        ? _c("div", { staticClass: "notif" }, [
+            _c("p", [_vm._v("You haven't published anything")])
+          ])
+        : _vm._l(_vm.filter(), function(article, index) {
+            return _c("div", { key: index, staticClass: "row" }, [
+              _c("div", { staticClass: "left" }, [
+                _c("div", { staticClass: "top" }, [
+                  _c("div", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.gotofifth(article)
+                          }
+                        }
+                      },
+                      [_c("h2", [_vm._v(_vm._s(article.title))])]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("p", {
+                      domProps: { innerHTML: _vm._s(article.content) }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "bottom" }, [
+                  _c("p", {
+                    staticClass: "time",
+                    domProps: {
+                      textContent: _vm._s(_vm.dateConverter(article.updatedAt))
                     }
-                  },
-                  [_c("h2", [_vm._v(_vm._s(article.title))])]
-                )
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "delete",
+                      attrs: { href: "" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.deleteArticle(article._id)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-trash-alt fa-1x" })]
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c("div", [
-                _c("p", { domProps: { innerHTML: _vm._s(article.content) } })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "bottom" }, [
-              _c("p", [_vm._v(_vm._s(article.updatedAt))])
+              _c("div", { staticClass: "right" })
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "right" })
-        ])
-      })
+          })
     ],
     2
   )
@@ -11926,6 +11993,8 @@ var _contentPublish = _interopRequireDefault(require("./contentPublish"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
 //
 //
 //
@@ -11996,7 +12065,7 @@ exports.default = _default;
         }
       }),
       _vm._v(" "),
-      _c("h2", { staticClass: "title" }, [_vm._v("Your published articles")]),
+      _vm._m(0),
       _vm._v(" "),
       _c("contentpublish", {
         staticClass: "content",
@@ -12006,14 +12075,23 @@ exports.default = _default;
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { width: "100vw" } }, [
+      _c("h2", { staticClass: "title" }, [_vm._v("Your published articles")])
+    ])
+  }
+]
 render._withStripped = true
 
           return {
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-305548",
             functional: undefined
           };
         })());
@@ -12087,6 +12165,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var baseUrl = 'http://localhost:3000';
 var _default = {
   data: function data() {
@@ -12096,6 +12175,30 @@ var _default = {
     };
   },
   methods: {
+    deleteArticle: function deleteArticle(_id) {
+      var _this = this;
+
+      (0, _axios.default)({
+        url: "".concat(baseUrl, "/articles/").concat(_id),
+        method: 'delete',
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      }).then(function (response) {
+        _this.readArticle();
+      }).catch(function (err) {
+        if (err.response) {
+          console.log("".concat(err.response.data.message));
+        } else if (err.request) {
+          alert("No response from server");
+        } else {
+          console.log(err);
+        }
+      }).finally(function () {});
+    },
+    dateConverter: function dateConverter(value) {
+      return new Date(value).toTimeString();
+    },
     gotofifth: function gotofifth(article) {
       this.$emit('gotofifth', article);
     },
@@ -12105,12 +12208,12 @@ var _default = {
     filter: function filter() {
       var regex = new RegExp("^".concat(this.searchtext));
       var filtered = this.articles.filter(function (article) {
-        return regex.test(article.title);
+        return regex.test(article.title.toLowerCase());
       });
       return filtered;
     },
     readArticle: function readArticle() {
-      var _this = this;
+      var _this2 = this;
 
       (0, _axios.default)({
         url: "".concat(baseUrl, "/articles"),
@@ -12120,12 +12223,16 @@ var _default = {
           token: localStorage.getItem('token')
         }
       }).then(function (response) {
-        _this.articles = response.data;
+        _this2.articles = response.data;
       }).catch(function (err) {
         if (err.response) {
           console.log("".concat(err.response.data.message));
         } else if (err.request) {
-          alert("No response from server");
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: "No response from server"
+          });
         } else {
           console.log(err);
         }
@@ -12169,39 +12276,65 @@ exports.default = _default;
         ])
       ]),
       _vm._v(" "),
-      _vm._l(_vm.filter(), function(article, index) {
-        return _c("div", { key: index, staticClass: "row" }, [
-          _c("div", { staticClass: "left" }, [
-            _c("div", { staticClass: "top" }, [
-              _c("div", [
-                _c(
-                  "a",
-                  {
-                    attrs: { href: "" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.gotofifth(article)
-                      }
+      _vm.filter().length === 0
+        ? _c("div", { staticClass: "notif" }, [
+            _c("p", [_vm._v("Your draft is empty")])
+          ])
+        : _vm._l(_vm.filter(), function(article, index) {
+            return _c("div", { key: index, staticClass: "row" }, [
+              _c("div", { staticClass: "left" }, [
+                _c("div", { staticClass: "top" }, [
+                  _c("div", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.gotofifth(article)
+                          }
+                        }
+                      },
+                      [_c("h2", [_vm._v(_vm._s(article.title))])]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("p", {
+                      domProps: { innerHTML: _vm._s(article.content) }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "bottom" }, [
+                  _c("p", {
+                    staticClass: "time",
+                    domProps: {
+                      textContent: _vm._s(_vm.dateConverter(article.updatedAt))
                     }
-                  },
-                  [_c("h2", [_vm._v(_vm._s(article.title))])]
-                )
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "delete",
+                      attrs: { href: "" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.deleteArticle(article._id)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-trash-alt fa-1x" })]
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c("div", [
-                _c("p", { domProps: { innerHTML: _vm._s(article.content) } })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "bottom" }, [
-              _c("p", [_vm._v(_vm._s(article.updatedAt))])
+              _c("div", { staticClass: "right" })
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "right" })
-        ])
-      })
+          })
     ],
     2
   )
@@ -12338,7 +12471,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-d299d9",
             functional: undefined
           };
         })());
@@ -15443,11 +15576,9 @@ var _default = {
   },
   watch: {
     inicontent: function inicontent() {
-      console.log('tr');
       this.$emit('updatecontent', this.inicontent);
     },
     inititle: function inititle() {
-      console.log('as');
       this.$emit('updatetitle', this.inititle);
     }
   },
@@ -15579,6 +15710,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
 var baseUrl = 'http://localhost:3000';
 var _default = {
   props: ['page', 'articles'],
@@ -15605,9 +15741,10 @@ var _default = {
     publish: function publish(_publish) {
       var _this = this;
 
+      Swal.showLoading();
+
       if (this.articles.length !== 0) {
         var url = "".concat(baseUrl, "/articles/").concat(this.articles._id);
-        console.log(url);
         (0, _axios.default)({
           url: url,
           method: 'patch',
@@ -15620,6 +15757,8 @@ var _default = {
             token: localStorage.getItem('token')
           }
         }).then(function (response) {
+          Swal.close();
+
           if (_publish) {
             _this.$emit('gotosecondpage');
           } else {
@@ -15627,9 +15766,17 @@ var _default = {
           }
         }).catch(function (err) {
           if (err.response) {
-            console.log("".concat(err.response.data.message));
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: "".concat(err.response.data.message)
+            });
           } else if (err.request) {
-            alert("No response from server");
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: "No response from server"
+            });
           } else {
             console.log(err);
           }
@@ -15647,6 +15794,8 @@ var _default = {
             token: localStorage.getItem('token')
           }
         }).then(function (response) {
+          Swal.close();
+
           if (_publish) {
             _this.$emit('gotosecondpage');
           } else {
@@ -15654,9 +15803,17 @@ var _default = {
           }
         }).catch(function (err) {
           if (err.response) {
-            console.log("".concat(err.response.data.message));
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: "".concat(err.response.data.message)
+            });
           } else if (err.request) {
-            alert("No response from server");
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: "No response from server"
+            });
           } else {
             console.log(err);
           }
@@ -15697,25 +15854,49 @@ exports.default = _default;
         }
       }),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "editor" },
-        [
-          _c("contentwrite", {
-            attrs: { title: _vm.articles.title, content: _vm.articles.content },
-            on: {
-              updatecontent: _vm.updatecontent,
-              updatetitle: _vm.updatetitle
-            }
-          })
-        ],
-        1
-      )
+      _c("div", { staticClass: "editor" }, [
+        _c(
+          "div",
+          { staticClass: "colum" },
+          [
+            _c("contentwrite", {
+              attrs: {
+                title: _vm.articles.title,
+                content: _vm.articles.content
+              },
+              on: {
+                updatecontent: _vm.updatecontent,
+                updatetitle: _vm.updatetitle
+              }
+            }),
+            _vm._v(" "),
+            _vm._m(0)
+          ],
+          1
+        )
+      ])
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "form",
+      {
+        attrs: {
+          action: "/profile",
+          method: "post",
+          enctype: "multipart/form-data"
+        }
+      },
+      [_c("input", { attrs: { type: "file", name: "avatar" } })]
+    )
+  }
+]
 render._withStripped = true
 
           return {
@@ -16106,7 +16287,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55324" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52197" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

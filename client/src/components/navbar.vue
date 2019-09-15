@@ -109,7 +109,7 @@ export default {
     }
     .root {
         background-color: #016087;
-        height: 7vh;
+        height: 6vh;
         width: 100vw;
         display: flex;
         justify-content: space-between;

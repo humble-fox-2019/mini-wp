@@ -8,7 +8,10 @@
                 </div>
             </div>
         </div>
-        <div class="row" v-for="(article, index) in filter()" :key="index">
+        <div class="notif" v-if="filter().length === 0">
+            <p>You haven't published anything</p>
+        </div>
+        <div v-else class="row" v-for="(article, index) in filter()" :key="index">
             
             <div class="left">
                 <div class="top">
@@ -20,12 +23,13 @@
                     </div>
                 </div>
                 <div class="bottom">
-                    <p>{{article.updatedAt}}</p>
+                    <p class="time" v-text="dateConverter(article.updatedAt)"></p>
+                    <a class="delete" @click.prevent="deleteArticle(article._id)" href=""><i class="fas fa-trash-alt fa-1x"></i></a>   
                 </div>
 
             </div>
             <div class="right">
-
+         
             </div>
             
         </div>
@@ -44,6 +48,39 @@ export default {
         }
     },
     methods:{
+        deleteArticle(_id){
+            axios({
+                url: `${baseUrl}/articles/${_id}`,
+                method: 'delete',
+                headers: {
+                    token: localStorage.getItem('token')
+                }
+            })
+            .then(response=>{
+                this.readArticle()
+            })
+            .catch(err =>{
+                if(err.response){
+                    console.log(`${err.response.data.message}`)
+                }
+                else if(err.request){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: `No response from server`
+                    })
+                }
+                else {
+                    console.log(err)
+                }
+            })
+            .finally(()=>{
+
+            })
+        },
+        dateConverter(value){
+            return new Date(value).toTimeString()
+        },
         gotofifth(article){
             
             this.$emit('gotofifth', article)
@@ -54,7 +91,7 @@ export default {
         filter(){
             let regex =  new RegExp(`^${this.searchtext}`)
             let filtered =  this.articles.filter(article =>{
-                return regex.test(article.title)
+                return regex.test(article.title.toLowerCase())
             })
             return (filtered)
         },
@@ -75,7 +112,11 @@ export default {
                     console.log(`${err.response.data.message}`)
                 }
                 else if(err.request){
-                    alert("No response from server")
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: `No response from server`
+                    })
                 }
                 else {
                     console.log(err)
@@ -96,6 +137,14 @@ export default {
 </script>
 
 <style scoped>
+    .notif{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .notif p{
+        font-size: 1.3rem;
+    }
     .root {
         
         width: 60vw;
@@ -121,11 +170,18 @@ export default {
         margin-bottom: 1vh;
         
     }
-    .row .left h2, .row .left p{
+    .row .left  .top h2, .row .left .top p{
         width: 100%;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        font-family: 'Work Sans', sans-serif;
+    }
+    .row .left .top p{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        height: 6vh;
     }
     .row .left a {
         text-decoration: none;
@@ -139,7 +195,19 @@ export default {
         justify-content: space-between;
 
     }
-    
+    .time {
+        margin-right: 1vw;
+        color: #a3a3a3;
+        font-size: 0.8rem;
+    }
+    .time:hover{
+        color: black;
+        transition-duration: 0.2s;
+    }
+    .row .left .bottom {
+        display: flex;
+        justify-items: start;
+    }
     .row .right{
         padding-right: 1vw;
     }

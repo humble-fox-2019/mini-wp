@@ -55,7 +55,7 @@ export default {
     }
     .content {
         margin-top: 10vh;
-        width: 80%;
+        width: 50%;
         font-family: 'Roboto', sans-serif;
     }
     .content h1{

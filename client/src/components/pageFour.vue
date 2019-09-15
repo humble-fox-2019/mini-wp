@@ -7,7 +7,12 @@
         :page="page" 
         @gotofirstpage="gotofirstpage"></navbar>
         <div class="editor">
-            <contentwrite  :title="articles.title" :content="articles.content" @updatecontent="updatecontent" @updatetitle='updatetitle'></contentwrite>
+            <div class="colum">
+                <contentwrite  :title="articles.title" :content="articles.content" @updatecontent="updatecontent" @updatetitle='updatetitle'></contentwrite>
+                <form action="/profile" method="post" enctype="multipart/form-data">
+                    <input type="file" name="avatar" />
+                </form>
+            </div>
         </div>
         
     </div>
@@ -41,9 +46,9 @@ export default {
             this.$emit('gotosecondpage')
         },
         publish(publish){
+            Swal.showLoading()
             if(this.articles.length !== 0){
                 let url = `${baseUrl}/articles/${this.articles._id}`
-                console.log(url)
                 axios({
                     url,
                     method: 'patch',
@@ -57,6 +62,7 @@ export default {
                     }
                 })
                 .then(response => {
+                    Swal.close()
                     if(publish){
                         this.$emit('gotosecondpage')
                     }else{
@@ -65,17 +71,25 @@ export default {
                 })
                 .catch(err =>{
                     if(err.response){
-                        console.log(`${err.response.data.message}`)
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: `${err.response.data.message}`
+                        })
                     }
                     else if(err.request){
-                        alert("No response from server")
+                         Swal.fire({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: `No response from server`
+                        })
                     }
                     else {
                         console.log(err)
                     }
                 })
                 .finally(()=>{
-
+                    
                 }) 
             }else{
                 axios({
@@ -91,6 +105,7 @@ export default {
                     }
                 })
                 .then(response => {
+                    Swal.close()
                     if(publish){
                         this.$emit('gotosecondpage')
                     }else{
@@ -99,17 +114,25 @@ export default {
                 })
                 .catch(err =>{
                     if(err.response){
-                        console.log(`${err.response.data.message}`)
+                         Swal.fire({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: `${err.response.data.message}`
+                        })
                     }
                     else if(err.request){
-                        alert("No response from server")
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: `No response from server`
+                        })
                     }
                     else {
                         console.log(err)
                     }
                 })
                 .finally(()=>{
-
+                   
                 }) 
             }
             
@@ -130,5 +153,13 @@ export default {
         width: 100%;
         display: flex;
         justify-content: center;
+
+    }
+    .colum{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 </style>

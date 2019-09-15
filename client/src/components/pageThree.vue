@@ -48,12 +48,8 @@ export default {
 }
 </script>
 
-<style>
-    .title{
-        position: relative;
-        top: 5vh;
-        left: 10vw;
-    }
+<style scoped>
+
     .content{
         margin-top: 10vh;
         margin-left: auto;

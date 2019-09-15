@@ -4,22 +4,280 @@ Mini Worpress By Savero
 http://miniwordpress.saveroz.com/
 
 ===
-## Usage
+## Usage Locally
+
+### On server
 ```javascript
 $ npm install
 $ npm run dev
+```
+
+### On Client
+```javascript
+$ npm install
+$ parcel index.html
 ```
 Access client via `http://miniwordpress.saveroz.com/`
 
 Access server via `http://localhost:3000`
 
-##  Routes
-|Routes|HTTP|Header(s)|Body|Response|Description| 
-|:--:|:--:|:--:|:--:|:--:|:--:|
-|/users/register  |POST  |none|username: String (**required**), email: String (**required**),  password: String (**required**)|**Success**: Register a user, **Error**: Internal server error (Validation)|Register a user|
-|/users/login  |POST  |none|email: String (**required**),  password: String (**required**)|**Success**: Login as a user, **Error**: Internal server error (Wrong e-mail/password)|Login as a user|
-|/users/signIn  |POST  |none|email: String (**required**),  password: String (**required**)|**Success**: Login as a user (**via Google**), **Error**: Internal server error (Wrong e-mail/password)|Login as a user (**via Google**)|
-|/articles  |GET  |token|none|**Success**: Show all articles of alluser, **Error**: Internal server error|Show tasks of logged in user|
-|/articles  |POST  |token|title: String (**required**), content: String (**required**), featured_image: String  (**required**), |**Success**: Create a new article, **Error**: Internal server error (Validation)|Create a new articles
-|/articles/:id  |PATCH  |token|title: String, content: String, featured_image: String,|  Successfully Edited Article, **Error**:Internal server error (Validation)| Edited Article
-|/articles/:id  |DELETE|token|none|**Success**: Delete a article, **Error**: Internal server error|Delete a article|
+##  User Routes
+### **Register New User**
+
+Register new user to the database
+| Route | HTTP | Headers |
+|---|---|---|
+|`/users/register`|POST|`none`|
+
+Body :  
+```
+   username: String (Required)
+   password: String (Required)
+   email : String (Required) (Unique)
+```
+Success :
+```
+   status: 201
+   message: 'You have successfully registered account'
+```
+error :
+```
+   status: 404
+   message: 'failed to registered account'
+```
+
+### **Login User**
+
+Login with user info
+| Route | HTTP | Headers |
+|---|---|---|
+|`/users/login`|POST|`none`|
+
+Body :
+```
+   email: String (Required)
+   password: String (Required)
+```
+Success :
+```
+   status: 200
+   message : 'Login successfull'
+   data: 'token'
+```
+error :
+```
+   status: 404
+   message: 'email/password is wrong'
+```
+## login with Google SignIn
+Login with user info
+| Route | HTTP | Headers |
+|---|---|---|
+|`/users/signIn`|POST|`idToken`|
+
+Body :
+```
+    none
+
+```
+Success :
+```
+   status: 200
+   message : 'Login successfully'
+   data: 'token'
+```
+error :
+```
+   status: 404
+   message: 'email/password is wrong'
+```
+## get all user
+Login with user info
+| Route | HTTP | Headers |
+|---|---|---|
+|`/users/login`|POST|`none`|
+
+Body :
+```
+None
+```
+Success :
+```
+   status: 200
+   data: all users information
+
+```
+error :
+```
+   status: 404
+   message: 'data not found'
+```
+
+
+
+## Articles Routes
+
+### **Create Articles**
+
+Create new todo into the database
+| Route | HTTP | Headers |
+|---|---|---|
+|`/articles`|POST|`token`|
+Body :
+```
+   UserId : String (Required)
+   title: String (Required)
+   content: String (Required)
+   featured_image : date(required)
+   tags : String(required)
+```
+   
+success :
+```
+   status : 201
+   message : 'Article has been created successfully'
+   data : Article
+```
+error :
+```
+   status: 404
+   message : 'failed to create Article'
+```
+
+### **Find All Article**
+
+Find All Articles 
+| Route | HTTP | Headers |
+|---|---|---|
+|`/articles`|GET|`token`|
+Body :
+```
+   none
+   ```
+success :
+```
+   status: 200
+   data: 'all user's articles'
+```
+error:
+```
+   status: 404
+   message: 'data not found'
+```
+   
+### **Find user articles **
+
+Find all articles user in the database
+| Route | HTTP | Headers |
+|---|---|---|
+|`/articles/user`|GET|`token`|
+Body:
+```
+   none
+```
+success :
+```
+   status: 200
+   data : all user article 
+```
+error :
+```
+   status: 404
+   message: 'data not found'
+```
+
+### **Find one articles **
+
+Find one articles by id in the database
+| Route | HTTP | Headers |
+|---|---|---|
+|`/articles/:id`|GET|`token`|
+Body:
+```
+   none
+```
+success :
+```
+   status: 200
+   data : article 
+```
+error :
+```
+   status: 404
+   message: 'data not found'
+```
+
+
+### **Update article**
+
+Update a articles in the database
+| Route | HTTP | Headers |
+|---|---|---|
+|`/articles/:id`|PATCH|`token`|
+
+Body :
+```
+   title : String
+   content: String 
+   featured_image : String
+   UserId :String
+   tags : String
+    
+```
+
+success :
+```
+   status: 200
+   message: 'update successfully'
+```
+error:
+```
+   status: 404
+   message: 'update failed'
+```
+
+note : one of the body variable have to different from before 
+
+### **Delete articles**
+Delete articles in the database
+| Route | HTTP | Headers |
+|---|---|---|
+|`/articles/:id`|DELETE|`token`|
+
+Body :
+```
+   none
+```
+success :
+```
+   status: 200
+   message: 'delete successfully'
+```
+error:
+```
+   status: 404
+   message: 'failed to delete todo'
+```
+
+### **add view articles**
+add view in articles by one
+
+| Route | HTTP | Headers |
+|---|---|---|
+|`/articles/:id/addView`|PATCH|`token`|
+
+Body :
+```
+   none
+```
+success :
+```
+   status: 200
+   message: 'add view successfully'
+```
+error:
+```
+   status: 404
+   message: 'failed to add view articles'
+```
+

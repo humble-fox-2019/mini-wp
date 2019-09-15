@@ -26,6 +26,10 @@ const articleSchema = new Schema({
     type: String,
     slug: 'title'
   },
+  status: {
+    type: Boolean,
+    default: false
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User'

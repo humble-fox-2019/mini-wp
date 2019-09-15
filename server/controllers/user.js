@@ -7,7 +7,7 @@ class UserController {
   static register(req, res, next) {
     const { name, email, password } = req.body
     User.create({ name, email, password })
-      .then(_ => {
+      .then((user) => {
         res.status(201).json({ message: 'Register success', token: generateToken({ id: user._id, name: user.name }) })
       })
       .catch(next)

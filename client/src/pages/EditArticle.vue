@@ -43,7 +43,7 @@ export default {
     submit() {
       axios({
         method: 'put',
-        url: `http://localhost:3000/articles/${this.id}`,
+        url: `http://35.187.235.228/articles/${this.id}`,
         data: {
           title: this.title,
           content: this.content
@@ -69,7 +69,7 @@ export default {
     fetchArticle(id) {
       axios({
         method: 'get',
-        url: `http://localhost:3000/articles/${id}`,
+        url: `http://35.187.235.228/articles/${id}`,
         headers: {
           token: this.token
         }

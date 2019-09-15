@@ -1,5 +1,6 @@
 <template>
   <div class="w-full">
+    <Loading :isLoading="isLoading" :fullPage="fullPage"></Loading>
     <div class="mx-16 mt-10">
       <form enctype="multipart/form-data" @submit.prevent="submit">
         <input
@@ -26,39 +27,45 @@ import EventBus from '../eventBus'
 
 import { quillEditor } from 'vue-quill-editor'
 import axios from 'axios'
-// import Editor from '../Helper/Editor'
+import Loading from '../helper/Loading'
 
 export default {
   components: {
-    quillEditor
+    quillEditor,
+    Loading
   },
   data() {
     return {
       title: '',
       content: '',
-      featured_image: ''
+      featured_image: '',
+      isLoading: false,
+      fullPage: true
     }
   },
   props: ['token'],
   methods: {
     submit() {
+      this.isLoading = true
       let bodyFormData = new FormData()
       bodyFormData.append('title', this.title)
       bodyFormData.append('content', this.content)
       bodyFormData.append('image', this.featured_image)
       axios({
         method: 'post',
-        url: 'http://localhost:3000/articles',
+        url: 'http://35.187.235.228/articles',
         data: bodyFormData,
         headers: {
           token: this.token
         }
       })
         .then(({ data }) => {
+          this.isLoading = false
           console.log(data)
-          EventBus.$emit('changePage', {page: 'articles'})
+          EventBus.$emit('changePage', { page: 'articles' })
         })
         .catch(err => {
+          this.isLoading = false
           console.log(err)
         })
     },

@@ -70,7 +70,7 @@ export default {
       password: '',
       falseLogin: false,
       googleSignInParams: {
-        client_id: '250484679063-cb34pi8qsjc1dvfmdmgegu5vo2mpan32.apps.googleusercontent.com'
+        client_id: '160776637941-dnr0nh9hfm26894b08ld9as9232v6ofk.apps.googleusercontent.com'
       }
     }
   },
@@ -85,7 +85,7 @@ export default {
     login() {
       axios({
         method: 'post',
-        url: 'http://localhost:3000/users/login',
+        url: 'http://35.187.235.228/users/login',
         data: {
           email: this.email,
           password: this.password
@@ -123,7 +123,7 @@ export default {
       const id_token = googleUser.getAuthResponse().id_token
       axios({
         method: 'post',
-        url: 'http://localhost:3000/users/google',
+        url: 'http://35.187.235.228/users/google',
         headers: { id_token }
       })
         .then(({ data }) => {

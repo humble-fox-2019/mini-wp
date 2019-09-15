@@ -1,22 +1,6 @@
 <template>
   <div class="w-full h-full flex justify-center">
     <div class="w-4/5">
-      <!-- <table class="w-full text-left mt-10 table-auto">
-        <thead>
-          <tr>
-            <th class="w-2/5">Title</th>
-            <th class="w-2/5">Slug</th>
-            <th class="w-1/5">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="article in articles" :key="article._id">
-            <td>{{ article.title }}</td>
-            <td>{{ article.content }}</td>
-            <td>{{ new Date(article.createdAt).toISOString().split('T')[0] }}</td>
-          </tr>
-        </tbody>
-      </table> -->
       <div class="w-full flex mt-10 mb-4 border-b">
         <div class="w-1/4">Title</div>
         <div class="w-1/4">Slug</div>
@@ -62,7 +46,7 @@ export default {
     removeArticle(id) {
       axios({
         method: 'delete',
-        url: `http://localhost:3000/articles/${id}`,
+        url: `http://35.187.235.228/articles/${id}`,
         headers: {
           token: this.token
         }
@@ -79,7 +63,7 @@ export default {
     fetchArticles() {
       axios({
         method: 'get',
-        url: 'http://localhost:3000/articles',
+        url: 'http://35.187.235.228/articles/',
         headers: {
           token: this.token
         }

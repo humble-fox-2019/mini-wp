@@ -11171,7 +11171,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'post',
-        url: 'http://localhost:3000/users/register',
+        url: 'http://35.187.235.228/users/register',
         data: {
           name: this.name,
           email: this.email,
@@ -11504,7 +11504,7 @@ var _default = {
       password: '',
       falseLogin: false,
       googleSignInParams: {
-        client_id: '250484679063-cb34pi8qsjc1dvfmdmgegu5vo2mpan32.apps.googleusercontent.com'
+        client_id: '160776637941-dnr0nh9hfm26894b08ld9as9232v6ofk.apps.googleusercontent.com'
       }
     };
   },
@@ -11521,7 +11521,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'post',
-        url: 'http://localhost:3000/users/login',
+        url: 'http://35.187.235.228/users/login',
         data: {
           email: this.email,
           password: this.password
@@ -11562,7 +11562,7 @@ var _default = {
       var id_token = googleUser.getAuthResponse().id_token;
       (0, _axios.default)({
         method: 'post',
-        url: 'http://localhost:3000/users/google',
+        url: 'http://35.187.235.228/users/google',
         headers: {
           id_token: id_token
         }
@@ -11799,6 +11799,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   methods: {
     changePage: function changePage(page) {
@@ -11825,26 +11846,79 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "w-full" }, [
     _c("div", { staticClass: "mx-16 mt-10" }, [
-      _c("h1", { staticClass: "text-3xl font-bold" }, [
-        _vm._v("Welcome to Mini WP!")
+      _c(
+        "h1",
+        { staticClass: "text-5xl font-bold bg-black text-white pl-5 mb-5" },
+        [_vm._v("Welcome to Mini WP!")]
+      ),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("ul", [
+        _c("li", [
+          _c(
+            "a",
+            {
+              staticClass: "focus:outline-none underline",
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.changePage("new-article")
+                }
+              }
+            },
+            [_vm._v("Create a new article")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              staticClass: "focus:outline-none underline",
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.changePage("articles")
+                }
+              }
+            },
+            [_vm._v("Your pile of awesomeness")]
+          )
+        ])
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "focus:outline-none",
-          on: {
-            click: function($event) {
-              return _vm.changePage("new-article")
-            }
-          }
-        },
-        [_vm._v("New Article")]
-      )
+      _vm._m(1)
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "mb-5" }, [
+      _vm._v(
+        "\n      Here's a Content Management System to make your life easier and hopefully happier. We'are\n      kindly enough to assembled some links, incase you didn't saw that "
+      ),
+      _c("span", { staticClass: "font-bold" }, [_vm._v("BIG")]),
+      _vm._v(" navbar.\n    ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-full flex justify-center mt-5" }, [
+      _c("img", {
+        staticClass: " w-1/2",
+        attrs: { src: "/undraw_animating_1rgh.9bf230e5.svg", alt: "" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
           return {
@@ -11877,7 +11951,7 @@ render._withStripped = true
       
       }
     })();
-},{"../eventBus":"src/eventBus.js","axios":"node_modules/axios/index.js","_css_loader":"../../../../../.nvm/versions/node/v10.15.3/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/pages/Articles.vue":[function(require,module,exports) {
+},{"../eventBus":"src/eventBus.js","axios":"node_modules/axios/index.js","./../../resources/undraw_animating_1rgh.svg":[["undraw_animating_1rgh.9bf230e5.svg","resources/undraw_animating_1rgh.svg"],"resources/undraw_animating_1rgh.svg"],"_css_loader":"../../../../../.nvm/versions/node/v10.15.3/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/pages/Articles.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11891,22 +11965,6 @@ var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -11957,7 +12015,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'delete',
-        url: "http://localhost:3000/articles/".concat(id),
+        url: "http://35.187.235.228/articles/".concat(id),
         headers: {
           token: this.token
         }
@@ -11976,7 +12034,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'get',
-        url: 'http://localhost:3000/articles',
+        url: 'http://35.187.235.228/articles/',
         headers: {
           token: this.token
         }
@@ -26007,7 +26065,651 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     e.a = o;
   }]);
 });
-},{"quill":"node_modules/quill/dist/quill.js"}],"src/pages/NewArticle.vue":[function(require,module,exports) {
+},{"quill":"node_modules/quill/dist/quill.js"}],"node_modules/vue-loading-overlay/dist/vue-loading.min.js":[function(require,module,exports) {
+var define;
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+!function (t, e) {
+  "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) && "object" == (typeof module === "undefined" ? "undefined" : _typeof(module)) ? module.exports = e() : "function" == typeof define && define.amd ? define("VueLoading", [], e) : "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? exports.VueLoading = e() : t.VueLoading = e();
+}("undefined" != typeof self ? self : this, function () {
+  return function (t) {
+    var e = {};
+
+    function i(n) {
+      if (e[n]) return e[n].exports;
+      var r = e[n] = {
+        i: n,
+        l: !1,
+        exports: {}
+      };
+      return t[n].call(r.exports, r, r.exports, i), r.l = !0, r.exports;
+    }
+
+    return i.m = t, i.c = e, i.d = function (t, e, n) {
+      i.o(t, e) || Object.defineProperty(t, e, {
+        enumerable: !0,
+        get: n
+      });
+    }, i.r = function (t) {
+      "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+        value: "Module"
+      }), Object.defineProperty(t, "__esModule", {
+        value: !0
+      });
+    }, i.t = function (t, e) {
+      if (1 & e && (t = i(t)), 8 & e) return t;
+      if (4 & e && "object" == _typeof(t) && t && t.__esModule) return t;
+      var n = Object.create(null);
+      if (i.r(n), Object.defineProperty(n, "default", {
+        enumerable: !0,
+        value: t
+      }), 2 & e && "string" != typeof t) for (var r in t) {
+        i.d(n, r, function (e) {
+          return t[e];
+        }.bind(null, r));
+      }
+      return n;
+    }, i.n = function (t) {
+      var e = t && t.__esModule ? function () {
+        return t.default;
+      } : function () {
+        return t;
+      };
+      return i.d(e, "a", e), e;
+    }, i.o = function (t, e) {
+      return Object.prototype.hasOwnProperty.call(t, e);
+    }, i.p = "", i(i.s = 1);
+  }([function (t, e, i) {}, function (t, e, i) {
+    "use strict";
+
+    i.r(e);
+    var n = "undefined" != typeof window ? window.HTMLElement : Object,
+        r = {
+      mounted: function mounted() {
+        document.addEventListener("focusin", this.focusIn);
+      },
+      methods: {
+        focusIn: function focusIn(t) {
+          if (this.isActive && t.target !== this.$el && !this.$el.contains(t.target)) {
+            var e = this.container ? this.container : this.isFullPage ? null : this.$el.parentElement;
+            (this.isFullPage || e && e.contains(t.target)) && (t.preventDefault(), this.$el.focus());
+          }
+        }
+      },
+      beforeDestroy: function beforeDestroy() {
+        document.removeEventListener("focusin", this.focusIn);
+      }
+    };
+
+    function a(t, e, i, n, r, a, o, s) {
+      var u,
+          l = "function" == typeof t ? t.options : t;
+      if (e && (l.render = e, l.staticRenderFns = i, l._compiled = !0), n && (l.functional = !0), a && (l._scopeId = "data-v-" + a), o ? (u = function u(t) {
+        (t = t || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) || "undefined" == typeof __VUE_SSR_CONTEXT__ || (t = __VUE_SSR_CONTEXT__), r && r.call(this, t), t && t._registeredComponents && t._registeredComponents.add(o);
+      }, l._ssrRegister = u) : r && (u = s ? function () {
+        r.call(this, this.$root.$options.shadowRoot);
+      } : r), u) if (l.functional) {
+        l._injectStyles = u;
+        var c = l.render;
+
+        l.render = function (t, e) {
+          return u.call(e), c(t, e);
+        };
+      } else {
+        var d = l.beforeCreate;
+        l.beforeCreate = d ? [].concat(d, u) : [u];
+      }
+      return {
+        exports: t,
+        options: l
+      };
+    }
+
+    var o = a({
+      name: "spinner",
+      props: {
+        color: {
+          type: String,
+          default: "#000"
+        },
+        height: {
+          type: Number,
+          default: 64
+        },
+        width: {
+          type: Number,
+          default: 64
+        }
+      }
+    }, function () {
+      var t = this.$createElement,
+          e = this._self._c || t;
+      return e("svg", {
+        attrs: {
+          viewBox: "0 0 38 38",
+          xmlns: "http://www.w3.org/2000/svg",
+          width: this.width,
+          height: this.height,
+          stroke: this.color
+        }
+      }, [e("g", {
+        attrs: {
+          fill: "none",
+          "fill-rule": "evenodd"
+        }
+      }, [e("g", {
+        attrs: {
+          transform: "translate(1 1)",
+          "stroke-width": "2"
+        }
+      }, [e("circle", {
+        attrs: {
+          "stroke-opacity": ".25",
+          cx: "18",
+          cy: "18",
+          r: "18"
+        }
+      }), e("path", {
+        attrs: {
+          d: "M36 18c0-9.94-8.06-18-18-18"
+        }
+      }, [e("animateTransform", {
+        attrs: {
+          attributeName: "transform",
+          type: "rotate",
+          from: "0 18 18",
+          to: "360 18 18",
+          dur: "0.8s",
+          repeatCount: "indefinite"
+        }
+      })], 1)])])]);
+    }, [], !1, null, null, null).exports,
+        s = a({
+      name: "dots",
+      props: {
+        color: {
+          type: String,
+          default: "#000"
+        },
+        height: {
+          type: Number,
+          default: 240
+        },
+        width: {
+          type: Number,
+          default: 60
+        }
+      }
+    }, function () {
+      var t = this.$createElement,
+          e = this._self._c || t;
+      return e("svg", {
+        attrs: {
+          viewBox: "0 0 120 30",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: this.color,
+          width: this.width,
+          height: this.height
+        }
+      }, [e("circle", {
+        attrs: {
+          cx: "15",
+          cy: "15",
+          r: "15"
+        }
+      }, [e("animate", {
+        attrs: {
+          attributeName: "r",
+          from: "15",
+          to: "15",
+          begin: "0s",
+          dur: "0.8s",
+          values: "15;9;15",
+          calcMode: "linear",
+          repeatCount: "indefinite"
+        }
+      }), e("animate", {
+        attrs: {
+          attributeName: "fill-opacity",
+          from: "1",
+          to: "1",
+          begin: "0s",
+          dur: "0.8s",
+          values: "1;.5;1",
+          calcMode: "linear",
+          repeatCount: "indefinite"
+        }
+      })]), e("circle", {
+        attrs: {
+          cx: "60",
+          cy: "15",
+          r: "9",
+          "fill-opacity": "0.3"
+        }
+      }, [e("animate", {
+        attrs: {
+          attributeName: "r",
+          from: "9",
+          to: "9",
+          begin: "0s",
+          dur: "0.8s",
+          values: "9;15;9",
+          calcMode: "linear",
+          repeatCount: "indefinite"
+        }
+      }), e("animate", {
+        attrs: {
+          attributeName: "fill-opacity",
+          from: "0.5",
+          to: "0.5",
+          begin: "0s",
+          dur: "0.8s",
+          values: ".5;1;.5",
+          calcMode: "linear",
+          repeatCount: "indefinite"
+        }
+      })]), e("circle", {
+        attrs: {
+          cx: "105",
+          cy: "15",
+          r: "15"
+        }
+      }, [e("animate", {
+        attrs: {
+          attributeName: "r",
+          from: "15",
+          to: "15",
+          begin: "0s",
+          dur: "0.8s",
+          values: "15;9;15",
+          calcMode: "linear",
+          repeatCount: "indefinite"
+        }
+      }), e("animate", {
+        attrs: {
+          attributeName: "fill-opacity",
+          from: "1",
+          to: "1",
+          begin: "0s",
+          dur: "0.8s",
+          values: "1;.5;1",
+          calcMode: "linear",
+          repeatCount: "indefinite"
+        }
+      })])]);
+    }, [], !1, null, null, null).exports,
+        u = a({
+      name: "bars",
+      props: {
+        color: {
+          type: String,
+          default: "#000"
+        },
+        height: {
+          type: Number,
+          default: 40
+        },
+        width: {
+          type: Number,
+          default: 40
+        }
+      }
+    }, function () {
+      var t = this.$createElement,
+          e = this._self._c || t;
+      return e("svg", {
+        attrs: {
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 30 30",
+          height: this.height,
+          width: this.width,
+          fill: this.color
+        }
+      }, [e("rect", {
+        attrs: {
+          x: "0",
+          y: "13",
+          width: "4",
+          height: "5"
+        }
+      }, [e("animate", {
+        attrs: {
+          attributeName: "height",
+          attributeType: "XML",
+          values: "5;21;5",
+          begin: "0s",
+          dur: "0.6s",
+          repeatCount: "indefinite"
+        }
+      }), e("animate", {
+        attrs: {
+          attributeName: "y",
+          attributeType: "XML",
+          values: "13; 5; 13",
+          begin: "0s",
+          dur: "0.6s",
+          repeatCount: "indefinite"
+        }
+      })]), e("rect", {
+        attrs: {
+          x: "10",
+          y: "13",
+          width: "4",
+          height: "5"
+        }
+      }, [e("animate", {
+        attrs: {
+          attributeName: "height",
+          attributeType: "XML",
+          values: "5;21;5",
+          begin: "0.15s",
+          dur: "0.6s",
+          repeatCount: "indefinite"
+        }
+      }), e("animate", {
+        attrs: {
+          attributeName: "y",
+          attributeType: "XML",
+          values: "13; 5; 13",
+          begin: "0.15s",
+          dur: "0.6s",
+          repeatCount: "indefinite"
+        }
+      })]), e("rect", {
+        attrs: {
+          x: "20",
+          y: "13",
+          width: "4",
+          height: "5"
+        }
+      }, [e("animate", {
+        attrs: {
+          attributeName: "height",
+          attributeType: "XML",
+          values: "5;21;5",
+          begin: "0.3s",
+          dur: "0.6s",
+          repeatCount: "indefinite"
+        }
+      }), e("animate", {
+        attrs: {
+          attributeName: "y",
+          attributeType: "XML",
+          values: "13; 5; 13",
+          begin: "0.3s",
+          dur: "0.6s",
+          repeatCount: "indefinite"
+        }
+      })])]);
+    }, [], !1, null, null, null).exports,
+        l = a({
+      name: "vue-loading",
+      mixins: [r],
+      props: {
+        active: Boolean,
+        programmatic: Boolean,
+        container: [Object, Function, n],
+        isFullPage: {
+          type: Boolean,
+          default: !0
+        },
+        transition: {
+          type: String,
+          default: "fade"
+        },
+        canCancel: Boolean,
+        onCancel: {
+          type: Function,
+          default: function _default() {}
+        },
+        color: String,
+        backgroundColor: String,
+        opacity: Number,
+        width: Number,
+        height: Number,
+        zIndex: Number,
+        loader: {
+          type: String,
+          default: "spinner"
+        }
+      },
+      data: function data() {
+        return {
+          isActive: this.active
+        };
+      },
+      components: {
+        Spinner: o,
+        Dots: s,
+        Bars: u
+      },
+      beforeMount: function beforeMount() {
+        this.programmatic && (this.container ? (this.isFullPage = !1, this.container.appendChild(this.$el)) : document.body.appendChild(this.$el));
+      },
+      mounted: function mounted() {
+        this.programmatic && (this.isActive = !0), document.addEventListener("keyup", this.keyPress);
+      },
+      methods: {
+        cancel: function cancel() {
+          this.canCancel && this.isActive && (this.hide(), this.onCancel.apply(null, arguments));
+        },
+        hide: function hide() {
+          var t = this;
+          this.$emit("hide"), this.$emit("update:active", !1), this.programmatic && (this.isActive = !1, setTimeout(function () {
+            var e;
+            t.$destroy(), void 0 !== (e = t.$el).remove ? e.remove() : e.parentNode.removeChild(e);
+          }, 150));
+        },
+        keyPress: function keyPress(t) {
+          27 === t.keyCode && this.cancel();
+        }
+      },
+      watch: {
+        active: function active(t) {
+          this.isActive = t;
+        }
+      },
+      beforeDestroy: function beforeDestroy() {
+        document.removeEventListener("keyup", this.keyPress);
+      }
+    }, function () {
+      var t = this,
+          e = t.$createElement,
+          i = t._self._c || e;
+      return i("transition", {
+        attrs: {
+          name: t.transition
+        }
+      }, [i("div", {
+        directives: [{
+          name: "show",
+          rawName: "v-show",
+          value: t.isActive,
+          expression: "isActive"
+        }],
+        staticClass: "vld-overlay is-active",
+        class: {
+          "is-full-page": t.isFullPage
+        },
+        style: {
+          zIndex: this.zIndex
+        },
+        attrs: {
+          tabindex: "0",
+          "aria-busy": t.isActive,
+          "aria-label": "Loading"
+        }
+      }, [i("div", {
+        staticClass: "vld-background",
+        style: {
+          background: this.backgroundColor,
+          opacity: this.opacity
+        },
+        on: {
+          click: function click(e) {
+            return e.preventDefault(), t.cancel(e);
+          }
+        }
+      }), i("div", {
+        staticClass: "vld-icon"
+      }, [t._t("before"), t._t("default", [i(t.loader, {
+        tag: "component",
+        attrs: {
+          color: t.color,
+          width: t.width,
+          height: t.height
+        }
+      })]), t._t("after")], 2)])]);
+    }, [], !1, null, null, null).exports,
+        c = function c(t) {
+      var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
+          i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
+      return {
+        show: function show() {
+          var n = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : e,
+              r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : i,
+              a = Object.assign({}, e, n, {
+            programmatic: !0
+          }),
+              o = new (t.extend(l))({
+            el: document.createElement("div"),
+            propsData: a
+          }),
+              s = Object.assign({}, i, r);
+          return Object.keys(s).map(function (t) {
+            o.$slots[t] = s[t];
+          }), o;
+        }
+      };
+    };
+
+    i(0);
+
+    l.install = function (t) {
+      var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
+          i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+          n = c(t, e, i);
+      t.$loading = n, t.prototype.$loading = n;
+    };
+
+    e.default = l;
+  }]).default;
+});
+},{}],"node_modules/vue-loading-overlay/dist/vue-loading.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../../.nvm/versions/node/v10.15.3/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/helper/Loading.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _vueLoadingOverlay = _interopRequireDefault(require("vue-loading-overlay"));
+
+require("vue-loading-overlay/dist/vue-loading.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  props: ['isLoading', 'fullPage'],
+  // data() {
+  //   return {
+  //     isLoading: false,
+  //     fullPage: true
+  //   }
+  // },
+  components: {
+    Loading: _vueLoadingOverlay.default
+  },
+  methods: {
+    onCancel: function onCancel() {
+      console.log('User cancelled the loader.');
+    }
+  }
+};
+exports.default = _default;
+        var $480722 = exports.default || module.exports;
+      
+      if (typeof $480722 === 'function') {
+        $480722 = $480722.options;
+      }
+    
+        /* template */
+        Object.assign($480722, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "vld-parent" },
+    [
+      _c("loading", {
+        attrs: {
+          active: _vm.isLoading,
+          "can-cancel": true,
+          "on-cancel": _vm.onCancel,
+          "is-full-page": _vm.fullPage
+        },
+        on: {
+          "update:active": function($event) {
+            _vm.isLoading = $event
+          }
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$480722', $480722);
+          } else {
+            api.reload('$480722', $480722);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"vue-loading-overlay":"node_modules/vue-loading-overlay/dist/vue-loading.min.js","vue-loading-overlay/dist/vue-loading.css":"node_modules/vue-loading-overlay/dist/vue-loading.css","_css_loader":"../../../../../.nvm/versions/node/v10.15.3/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/pages/NewArticle.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26026,6 +26728,8 @@ var _eventBus = _interopRequireDefault(require("../eventBus"));
 var _vueQuillEditor = require("vue-quill-editor");
 
 var _axios = _interopRequireDefault(require("axios"));
+
+var _Loading = _interopRequireDefault(require("../helper/Loading"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26048,40 +26752,48 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-// import Editor from '../Helper/Editor'
+//
 var _default = {
   components: {
-    quillEditor: _vueQuillEditor.quillEditor
+    quillEditor: _vueQuillEditor.quillEditor,
+    Loading: _Loading.default
   },
   data: function data() {
     return {
       title: '',
       content: '',
-      featured_image: ''
+      featured_image: '',
+      isLoading: false,
+      fullPage: true
     };
   },
   props: ['token'],
   methods: {
     submit: function submit() {
+      var _this = this;
+
+      this.isLoading = true;
       var bodyFormData = new FormData();
       bodyFormData.append('title', this.title);
       bodyFormData.append('content', this.content);
       bodyFormData.append('image', this.featured_image);
       (0, _axios.default)({
         method: 'post',
-        url: 'http://localhost:3000/articles',
+        url: 'http://35.187.235.228/articles',
         data: bodyFormData,
         headers: {
           token: this.token
         }
       }).then(function (_ref) {
         var data = _ref.data;
+        _this.isLoading = false;
         console.log(data);
 
         _eventBus.default.$emit('changePage', {
           page: 'articles'
         });
       }).catch(function (err) {
+        _this.isLoading = false;
         console.log(err);
       });
     },
@@ -26103,69 +26815,78 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full" }, [
-    _c("div", { staticClass: "mx-16 mt-10" }, [
-      _c(
-        "form",
-        {
-          attrs: { enctype: "multipart/form-data" },
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.submit($event)
-            }
-          }
-        },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.title,
-                expression: "title"
-              }
-            ],
-            staticClass: "text-3xl focus:outline-none",
-            attrs: { type: "text", placeholder: "Input your title here" },
-            domProps: { value: _vm.title },
+  return _c(
+    "div",
+    { staticClass: "w-full" },
+    [
+      _c("Loading", {
+        attrs: { isLoading: _vm.isLoading, fullPage: _vm.fullPage }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "mx-16 mt-10" }, [
+        _c(
+          "form",
+          {
+            attrs: { enctype: "multipart/form-data" },
             on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.title = $event.target.value
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.submit($event)
               }
             }
-          }),
-          _vm._v(" "),
-          _c("quillEditor", {
-            ref: "myQuillEditor",
-            staticClass: "mt-4 h-64",
-            model: {
-              value: _vm.content,
-              callback: function($$v) {
-                _vm.content = $$v
-              },
-              expression: "content"
-            }
-          }),
-          _vm._v(" "),
-          _c("input", {
-            ref: "picture",
-            staticClass: "mt-24 focus:outline-none",
-            attrs: { type: "file" },
-            on: { change: _vm.addPicture }
-          }),
-          _vm._v(" "),
-          _c("button", { staticClass: "mt-24 focus:outline-none" }, [
-            _vm._v("Save")
-          ])
-        ],
-        1
-      )
-    ])
-  ])
+          },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.title,
+                  expression: "title"
+                }
+              ],
+              staticClass: "text-3xl focus:outline-none",
+              attrs: { type: "text", placeholder: "Input your title here" },
+              domProps: { value: _vm.title },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.title = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("quillEditor", {
+              ref: "myQuillEditor",
+              staticClass: "mt-4 h-64",
+              model: {
+                value: _vm.content,
+                callback: function($$v) {
+                  _vm.content = $$v
+                },
+                expression: "content"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              ref: "picture",
+              staticClass: "mt-24 focus:outline-none",
+              attrs: { type: "file" },
+              on: { change: _vm.addPicture }
+            }),
+            _vm._v(" "),
+            _c("button", { staticClass: "mt-24 focus:outline-none" }, [
+              _vm._v("Save")
+            ])
+          ],
+          1
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -26200,7 +26921,7 @@ render._withStripped = true
       
       }
     })();
-},{"quill/dist/quill.core.css":"node_modules/quill/dist/quill.core.css","quill/dist/quill.snow.css":"node_modules/quill/dist/quill.snow.css","quill/dist/quill.bubble.css":"node_modules/quill/dist/quill.bubble.css","../eventBus":"src/eventBus.js","vue-quill-editor":"node_modules/vue-quill-editor/dist/vue-quill-editor.js","axios":"node_modules/axios/index.js","_css_loader":"../../../../../.nvm/versions/node/v10.15.3/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/pages/EditArticle.vue":[function(require,module,exports) {
+},{"quill/dist/quill.core.css":"node_modules/quill/dist/quill.core.css","quill/dist/quill.snow.css":"node_modules/quill/dist/quill.snow.css","quill/dist/quill.bubble.css":"node_modules/quill/dist/quill.bubble.css","../eventBus":"src/eventBus.js","vue-quill-editor":"node_modules/vue-quill-editor/dist/vue-quill-editor.js","axios":"node_modules/axios/index.js","../helper/Loading":"src/helper/Loading.vue","_css_loader":"../../../../../.nvm/versions/node/v10.15.3/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/pages/EditArticle.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26259,7 +26980,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'put',
-        url: "http://localhost:3000/articles/".concat(this.id),
+        url: "http://35.187.235.228/articles/".concat(this.id),
         data: {
           title: this.title,
           content: this.content
@@ -26290,7 +27011,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'get',
-        url: "http://localhost:3000/articles/".concat(id),
+        url: "http://35.187.235.228/articles/".concat(id),
         headers: {
           token: this.token
         }
@@ -26669,7 +27390,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62662" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60091" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

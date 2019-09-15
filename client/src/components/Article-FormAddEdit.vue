@@ -9,8 +9,12 @@
             <textarea class="form-control" id="content" cols="30" rows="10" v-model="article.content"></textarea>
         </div>
         <div class="form-group">
-            <label>Featured Image</label>
-            <input class="form-control" id="featured_image" placeholder="url to image" v-model="article.featured_image">
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile02" ref="file" @change="handleImage" accept="image/*">
+                    <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                </div>  
+            </div>
         </div>
 
         <div v-if="selectedArticle">
@@ -32,6 +36,9 @@ export default {
                 title: '',
                 content: '',
                 featured_image: ''
+            },
+            input: {
+                featured_image: ''
             }
         }
     },
@@ -44,16 +51,13 @@ export default {
         }, 
 
         insertArticle() {
-            axios({
-                url: '/articles',
-                method: 'POST',
+            let formData = new FormData();
+            formData.append('title', this.article.title);
+            formData.append('featured_image', this.article.featured_image);
+            formData.append('content', this.article.content);
+            axios.post('/articles', formData, {
                 headers: {
-                    token: localStorage.getItem('token')
-                },
-                data: {
-                    title: this.article.title,
-                    content: this.article.content,
-                    featured_image: this.article.featured_image
+                    'token': localStorage.getItem('token')
                 }
             }).then(({ data }) => {
                 console.log(data);
@@ -98,7 +102,18 @@ export default {
                     this.$toasted.show(err.message);
                 }
             });
-        }
+        },
+        handleImage(event){
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                this.input.featured_image  = e.target.result;
+                this.article.featured_image = this.$refs.file.files[0];
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
     },
     created() {
         if (this.selectedArticle) {

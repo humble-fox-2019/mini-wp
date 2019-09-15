@@ -11,7 +11,8 @@ class ArticleController {
     }
 
     static create(req, res, next) {
-        const { title, content, featured_image } = req.body;
+        const { title, content } = req.body;
+        const featured_image = req.file.publicUrl;
         const { author } = req.decoded;
         Article.create({ title, content, author, featured_image })
             .then(article => {
@@ -22,7 +23,8 @@ class ArticleController {
 
     static update(req, res, next) {
         const _id = req.params.id;
-        const { title, content, featured_image } = req.body;
+        const { title, content } = req.body;
+        const featured_image = req.file.publicUrl;
         const { author } = req.decoded;
         Article.updateOne({_id}, { title, content, author, featured_image })
             .then(article => {

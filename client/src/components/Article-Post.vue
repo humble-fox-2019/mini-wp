@@ -1,6 +1,6 @@
 <template>
   <div class="col-10 card d-flex flex-row align-items-center mb-3 p-2" style="border-radius: 10px">
-    <img class="ml-1" :src="article.featured_image" alt="" style="object-fit: cover; border-radius: 8px" width="40%">
+    <img class="ml-1" :src="article.featured_image" alt="" style="object-fit: cover; border-radius: 8px" width="30%">
     <div class="card-body ml-2">
         <h5 class="card-title"> {{ article.title }} </h5>
         <p> {{ article.content }} </p>
@@ -27,7 +27,7 @@ export default {
   }, 
   computed: {
     dateCreated(strDate) {
-      
+
     }
   }
 }

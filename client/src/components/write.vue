@@ -53,16 +53,21 @@ export default {
       this.image = file[0];
     },
     submitForm() {
-      let taggs = []
-      for(let i = 0; i < this.tags.length;i++){
-        taggs.push(this.tags[i].text)
+      let taggs = [];
+      for (let i = 0; i < this.tags.length; i++) {
+        taggs.push(this.tags[i].text);
       }
       let token = localStorage.getItem("token");
       let formData = new FormData();
       formData.set("featured_image", this.image);
       formData.set("title", this.title);
       formData.set("content", this.content);
-      formData.set("tagku", taggs)
+      formData.set("tagku", taggs);
+      Swal.fire({
+        title: "Creating your article...",
+        allowOutsideClick: () => !Swal.isLoading()
+      });
+      Swal.showLoading();
       axios({
         method: "POST",
         url: "http://34.87.37.210/articles/create",
@@ -72,6 +77,7 @@ export default {
         data: formData
       })
         .then(data => {
+          Swal.close()
           let response = data.data.data;
           this.$emit("uploadFile", response);
           Swal.fire(
@@ -81,8 +87,10 @@ export default {
           );
         })
         .catch(error => {
-          let message = error.response.data && error.response.data.message || 'Failed to Create'
-          Swal.fire("Error!",message, "error");
+          let message =
+            (error.response.data && error.response.data.message) ||
+            "Failed to Create";
+          Swal.fire("Error!", message, "error");
         });
     },
     clearItem() {

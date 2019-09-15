@@ -3,5 +3,5 @@ function toName(url){
    let filename= halo[halo.length-1]
    return filename
 
-}localStorage
+}
 module.exports=toName

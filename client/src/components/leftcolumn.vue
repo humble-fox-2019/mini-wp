@@ -5,7 +5,7 @@
     </div>
     <div class="box">
       <a class="dalambox" href="#" @click="checkBody">
-        <i class="fas fa-laptop"></i> View Articles
+        <i class="fas fa-laptop"></i> All Articles
       </a>
     </div>
     <div class="box">

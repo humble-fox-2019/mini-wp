@@ -60,6 +60,11 @@ export default {
       formData.set("featured_image", this.featured_image);
       formData.set("title", this.title);
       formData.set("content", this.content);
+      Swal.fire({
+        title: "Updating your article...",
+        allowOutsideClick: () => !Swal.isLoading()
+      });
+      Swal.showLoading();
       axios({
         method: "PATCH",
         url: `http://34.87.37.210/articles/update/${id}`,
@@ -69,6 +74,7 @@ export default {
         data: formData
       })
         .then(data => {
+          Swal.close()
           let response = data.data.data;
           if (response) {
             Swal.fire(

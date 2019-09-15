@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 export default {
   props: ["articles", "tempArticles"],
   data() {
@@ -57,32 +57,29 @@ export default {
       })
         .then(result => {
           if (result.value) {
+            Swal.fire({
+              title: "Deleting your article...",
+              allowOutsideClick: () => !Swal.isLoading()
+            });
+            Swal.showLoading();
             axios({
               method: "DELETE",
               url: `http://34.87.37.210/articles/delete/${id}`,
               headers: {
                 token
               }
-            }).then(data => {
-              let response = data.data.data;
-              if (response) {
+            })
+              .then(data => {
+                Swal.close()
                 this.$emit("delete-article", id);
                 Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              } else {
-                Swal.fire({
-                  position: "center",
-                  type: "error",
-                  title: "Forbidden",
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-              }
-            }).catch(error => {
-          let message =
-            (error.response.data && error.response.data.message) ||
-            "failed to Delete";
-          Swal.fire("Error!", message, "error");
-        });
+              })
+              .catch(error => {
+                let message =
+                  (error.response.data && error.response.data.message) ||
+                  "failed to Delete";
+                Swal.fire("Error!", message, "error");
+              });
           }
         })
         .catch(error => {

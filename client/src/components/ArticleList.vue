@@ -22,7 +22,11 @@
           <tr v-for="article in articles" :key="article._id">
             <td>{{article.title}}</td>
             <td>
-              <div class="d-inline-flex pl-1" v-for="tag in article.tags">
+              <div
+                class="d-inline-flex pl-1"
+                v-for="(tag, index) in article.tags"
+                :key="`tag-${index}`"
+              >
                 <span class="badge badge-success">{{tag}}</span>
               </div>
             </td>

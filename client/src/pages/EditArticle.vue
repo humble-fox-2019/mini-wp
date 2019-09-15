@@ -2,6 +2,7 @@
   <div class="w-full">
     <Loading :isLoading="isLoading" :fullPage="fullPage"></Loading>
     <div class="mx-16 mt-10">
+      <img alt="" class="w-full h-32 object-cover mb-4" :src="featured_image">
       <form enctype="multipart/form-data" @submit.prevent="submit">
         <input
           class="text-3xl focus:outline-none"

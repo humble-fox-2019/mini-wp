@@ -27055,6 +27055,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   components: {
     quillEditor: _vueQuillEditor.quillEditor,
@@ -27160,6 +27161,11 @@ exports.default = _default;
       }),
       _vm._v(" "),
       _c("div", { staticClass: "mx-16 mt-10" }, [
+        _c("img", {
+          staticClass: "w-full h-32 object-cover mb-4",
+          attrs: { alt: "", src: _vm.featured_image }
+        }),
+        _vm._v(" "),
         _c(
           "form",
           {
@@ -27507,7 +27513,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54728" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56136" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

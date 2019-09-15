@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "@johmun/vue-tags-input": "^2.1.0",
+    "vue": "^2.6.10",
+    "vue-google-signin-button": "^1.0.4",
+    "vue-google-signin-button-directive": "^1.0.3",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-wysiwyg": "^1.7.2",
+    "vuesax": "^3.10.2"
+  }
+}

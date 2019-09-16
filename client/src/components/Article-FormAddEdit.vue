@@ -76,16 +76,13 @@ export default {
             });
         }, 
         updateArticle(id) {
-            axios({
-                url: `/articles/${id}`,
-                method: 'PUT',
+            let formData = new FormData();
+            formData.append('title', this.article.title);
+            formData.append('featured_image', this.article.featured_image);
+            formData.append('content', this.article.content);
+            axios.put(`/articles/${id}`, formData, {
                 headers: {
-                    token: localStorage.getItem('token')
-                },
-                data: {
-                    title: this.article.title,
-                    content: this.article.content,
-                    featured_image: this.article.featured_image
+                    'token': localStorage.getItem('token')
                 }
             }).then(({ data }) => {
                 console.log(data);

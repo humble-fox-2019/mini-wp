@@ -53,7 +53,7 @@
         <!-- Visible only in normal mode -->
         <div class="sidebar-mini-hidden-b text-center">
           <a class="img-link" href="#">
-            <img class="img-avatar" src="https://img.icons8.com/clouds/2x/user.png" alt />
+            <img class="img-avatar" :src="getImage" alt="profile" />
           </a>
           <ul class="list-inline mt-10">
             <li class="list-inline-item">
@@ -101,9 +101,18 @@
 export default {
   data() {
     return {
-      name: localStorage.getItem("name"),
-      image: localStorage.getItem("image")
+      name: localStorage.getItem("name")
     };
+  },
+  computed: {
+    getImage: function() {
+      let img = "https://img.icons8.com/clouds/2x/user.png";
+      if (localStorage.getItem("image") != "null") {
+        img = localStorage.getItem("image");
+      }
+
+      return img;
+    }
   }
 };
 </script>

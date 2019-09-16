@@ -134,6 +134,8 @@ export default {
           localStorage.setItem("token", data.token);
           localStorage.setItem("id", data.userData.id);
           localStorage.setItem("name", data.userData.name);
+          localStorage.setItem("email", data.userData.email);
+          localStorage.setItem("image", data.userData.image);
           this.$emit("changepage", "dashboard");
         })
         .catch(err => {
@@ -157,6 +159,8 @@ export default {
           localStorage.setItem("token", data.token);
           localStorage.setItem("id", data.userData.id);
           localStorage.setItem("name", data.userData.name);
+          localStorage.setItem("email", data.userData.email);
+          localStorage.setItem("image", data.userData.image);
           this.$emit("changepage", "dashboard");
         })
         .catch(err => {

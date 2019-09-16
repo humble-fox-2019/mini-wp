@@ -69,8 +69,7 @@
 export default {
   data() {
     return {
-      name: localStorage.getItem("name"),
-      image: localStorage.getItem("image")
+      name: localStorage.getItem("name")
     };
   },
   methods: {

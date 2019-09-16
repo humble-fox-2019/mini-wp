@@ -10,7 +10,7 @@
       <div v-for="(article, index) in passingarticle" :key="index" class="card">
         <div class="content">
           <h2>{{ article.title}}</h2>
-          <p>{{article.content}}</p>
+          <p v-html="article.content"></p>
           <p>{{new Date(article.updatedAt).getFullYear()}}-{{new Date(article.updatedAt).getMonth()}}-{{new Date(article.updatedAt).getDate()}}</p>
         </div>
         <div class="img">
@@ -24,8 +24,7 @@
 <script>
 export default {
   data: function() {
-    return {
-    };
+    return {};
   },
   props: ["passingarticle", "passingauthor"]
 };
@@ -56,7 +55,7 @@ article {
 }
 
 .card {
-  width: 100%;
+  width: 800px;
   display: flex;
   background-color: #444;
   justify-content: space-between;
@@ -65,6 +64,8 @@ article {
 
 .content {
   display: flex;
+  flex-wrap: wrap;
+  word-wrap: break-word;
   flex-direction: column;
   justify-content: space-between;
   width: 500;

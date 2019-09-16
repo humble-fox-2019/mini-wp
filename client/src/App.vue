@@ -21,7 +21,7 @@ import LandingPage from "./components/landingPgae";
 import FirstPage from "./components/firstPage";
 import SecondPage from "./components/secondPage";
 import Axios from "axios";
-const baseUrl = `http://localhost:3000`;
+const baseUrl = `http://35.187.228.79`;
 export default {
   data: function() {
     return {

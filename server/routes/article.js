@@ -7,11 +7,12 @@ const upload = require('../middlewares/upload');
 
 router.use(authentication);
 
-router.post('/upload', gcs.multer.single('image'), gcs.sendUploadToGCS, (req, res, next) => {
-    res.status(201).json({
-        link: req.file.publicUrl
-    })
-});
+// untuk coba upload saja
+// router.post('/upload', gcs.multer.single('image'), gcs.sendUploadToGCS, (req, res, next) => {
+//     res.status(201).json({
+//         link: req.file.publicUrl
+//     })
+// });
 
 router.get('/', ArticleController.findAll);
 

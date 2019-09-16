@@ -17,7 +17,7 @@ router.get('/', ArticleController.findAll);
 
 router.post('/', upload, gcs.sendUploadToGCS, ArticleController.create);
 
-router.put('/:id', isOwner, gcs.multer.single('featured_image'), gcs.sendUploadToGCS, ArticleController.update);
+router.put('/:id', isOwner, upload, gcs.sendUploadToGCS, ArticleController.update);
 
 router.delete('/:id', isOwner, ArticleController.delete);
 

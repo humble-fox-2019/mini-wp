@@ -20,35 +20,35 @@ const getGsUri = (filename) => {
 }
 
 const sendUploadToGCS = (req, res, next) => {
-  console.log(req.file)
+ 
   if (!req.file) {
     return next()
-  }
+  }else{
+    const gcsname = Date.now() + req.file.originalname
+    const file = bucket.file(gcsname)
   
-  const gcsname = Date.now() + req.file.originalname
-  const file = bucket.file(gcsname)
-
-  const stream = file.createWriteStream({
-    metadata: {
-      contentType: req.file.mimetype
-    }
-  })
-
-  stream.on('error', (err) => {
-    req.file.cloudStorageError = err
-    next(err)
-  })
-  stream.on('finish', () => {
-    req.file.cloudStorageObject = gcsname
-    file.makePublic().then(() => {
-        
-      req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
-      req.file.cloudStorageGsUri = getGsUri(gcsname)
-      next()
+    const stream = file.createWriteStream({
+      metadata: {
+        contentType: req.file.mimetype
+      }
     })
-  })
-
-  stream.end(req.file.buffer)
+  
+    stream.on('error', (err) => {
+      req.file.cloudStorageError = err
+      next(err)
+    })
+    stream.on('finish', () => {
+      req.file.cloudStorageObject = gcsname
+      file.makePublic().then(() => {
+          
+        req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
+        req.file.cloudStorageGsUri = getGsUri(gcsname)
+        next()
+      })
+    })
+  
+    stream.end(req.file.buffer)
+  }
 }
 
 const Multer = require('multer')

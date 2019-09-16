@@ -9,7 +9,7 @@
             <div class="title">
                 <h2>Your published articles</h2>
             </div>
-            <contentpublish  @gotofifth="gotofifth" class="content"></contentpublish>
+            <contentpublish @gotofirstpage="gotofirstpage"  @gotofifth="gotofifth" class="content"></contentpublish>
     </div>
 </template>
 

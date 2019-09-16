@@ -9,7 +9,7 @@
         <div class="editor">
             <div class="colum">
                 <contentwrite  :title="articles.title" :content="articles.content" @updatecontent="updatecontent" @updatetitle='updatetitle'></contentwrite>
-                <form v-if="articles.length === 0" action="/profile" method="post" enctype="multipart/form-data">
+                <form action="/profile" method="post" enctype="multipart/form-data">
                         <input
                             type="file"
                             ref="image"
@@ -68,11 +68,7 @@ export default {
                 axios({
                     url,
                     method: 'patch',
-                    data:{
-                        title: this.title,
-                        content: this.content,
-                        publish,
-                    },
+                    data: formData,
                     headers: {
                         token: localStorage.getItem('token')
                     }
@@ -92,6 +88,7 @@ export default {
                             title: 'Oops...',
                             text: `${err.response.data.message}`
                         })
+                        if(err.response.status === 401) this.$emit('gotofirstpage')
                     }
                     else if(err.request){
                          Swal.fire({
@@ -131,6 +128,8 @@ export default {
                             title: 'Oops...',
                             text: `${err.response.data.message}`
                         })
+
+                        if(err.response.status === 401) this.$emit('gotofirstpage')
                     }
                     else if(err.request){
                         Swal.fire({

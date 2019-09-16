@@ -61,7 +61,12 @@ export default {
             })
             .catch(err =>{
                 if(err.response){
-                    console.log(`${err.response.data.message}`)
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: `${err.response.data.message}`
+                    })
+                    if(err.response.status === 401) this.$emit('gotofirstpage')
                 }
                 else if(err.request){
                     Swal.fire({
@@ -109,7 +114,13 @@ export default {
             })
             .catch(err =>{
                 if(err.response){
-                    console.log(`${err.response.data.message}`)
+                    
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: `${err.response.data.message}`
+                    })
+                    if(err.response.status === 401) this.$emit('gotofirstpage')
                 }
                 else if(err.request){
                     Swal.fire({

@@ -15,6 +15,10 @@ const getPublicUrl = (filename) => {
   return `https://storage.googleapis.com/${CLOUD_BUCKET}/${filename}`
 }
 
+const deleteFromGCS = (fileName) => {
+  bucket.file(fileName).delete()
+}
+
 const sendUploadToGCS = (req, res, next) => {
   if (!req.file) {
     return next()
@@ -76,6 +80,7 @@ function validate_format(req, res, next) {
 module.exports = {
   getPublicUrl,
   sendUploadToGCS,
-  multer
+  multer,
+  deleteFromGCS
   // validate_format
 }

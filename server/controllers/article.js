@@ -1,4 +1,5 @@
 const { Article } = require('../models')
+const { deleteFromGCS } = require('../middlewares/images')
 
 class ArticleController {
   // need authentication only
@@ -49,11 +50,18 @@ class ArticleController {
   static delete(req, res, next) {
     const { id } = req.params
 
-    Article.findByIdAndDelete(id)
+    Article.findById(id)
+      .then(article => {
+        const split = article.featured_image.split('/')
+        const fileName = split[split.length - 1]
+        deleteFromGCS(fileName)
+        return Article.findByIdAndDelete(id)
+      })
       .then(article => {
         res.status(200).json(article)
       })
       .catch(next)
+
   }
 }
 

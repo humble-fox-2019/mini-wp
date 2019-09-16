@@ -71,11 +71,4 @@ Respond (Example):
 ```
 
 
-# Error handler
-
-Error Status:
-`401` : Unauthorized access, Authentication needed
-`403` :  Wrong Email/Password, No Access to certain post
-`404` : No post found
-`500`: Internal Server Error
 

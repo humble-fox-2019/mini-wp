@@ -1,7 +1,9 @@
 const express = require('express')
+const authentication = require("../middlewares/authentication");
+const article = require('./article')
+const user = require("./user");
 
 const Router = express.Router()
-const blog = require('./blog')
 
 Router.get('/', (req, res, next) => {
     res.status(200).json({
@@ -9,6 +11,8 @@ Router.get('/', (req, res, next) => {
     })
 })
 
-Router.use('/blog', blog)
+Router.use("/user", user);
+Router.use(authentication)
+Router.use('/article', article)
 
 module.exports = Router

@@ -1,0 +1,86 @@
+<template>
+  <article>
+    <div :style="{'background-image' : `url('${passingarticle[0].photo}')` }" class="headline">
+      <h1>{{passingarticle[0].title}}</h1>
+      <div class="tags">
+        <vs-chip style="width: 100px" v-for="(tag, i) in passingarticle[0].tags" :key="i">{{tag}}</vs-chip>
+      </div>
+    </div>
+    <div class="list-article">
+      <div v-for="(article, index) in passingarticle" :key="index" class="card">
+        <div class="content">
+          <h2>{{ article.title}}</h2>
+          <p>{{article.content}}</p>
+          <p>{{new Date(article.updatedAt).getFullYear()}}-{{new Date(article.updatedAt).getMonth()}}-{{new Date(article.updatedAt).getDate()}}</p>
+        </div>
+        <div class="img">
+          <img :src="article.photo" alt="foto" />
+        </div>
+      </div>
+    </div>
+  </article>
+</template>
+
+<script>
+export default {
+  data: function() {
+    return {
+      tags: ["makan", "minum", "ngoding", "tidur", "makan bakso"],
+      imgheadline: `https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60`,
+      articles: [1, 3, 4, 5]
+    };
+  },
+  props: ["passingarticle", "passingauthor"]
+};
+</script>
+
+<style scoped>
+article {
+  margin-top: 20px;
+  width: 800px;
+  min-height: 800px;
+}
+
+.headline {
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  width: 100%;
+  height: 400px;
+  background-color: #666;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.headline h1 {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.card {
+  width: 100%;
+  display: flex;
+  background-color: #444;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 500;
+  padding: 10px 20px;
+}
+
+.img {
+  width: 300px;
+  height: 150px;
+}
+
+.img img {
+  width: 300px;
+  height: 150px;
+}
+</style>

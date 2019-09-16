@@ -19,7 +19,7 @@
       <a @click.prevent="toWritePage" href="#" @mouseover="showWrite" @mouseleave="hiddenWrite">
         <i class="fas fa-edit" style="color:white"></i>
       </a>
-      <a href="#" @click="signOut()" @mouseover="showLogout" @mouseleave="hiddenLogout">
+      <a href="#" @click="signOut" @mouseover="showLogout" @mouseleave="hiddenLogout">
         <i class="fas fa-sign-out-alt" style="color:white"></i>
       </a>
       <h3
@@ -55,7 +55,7 @@ export default {
       this.$emit("toSecondPage");
     },
     signOut() {
-      if (gapi.auth2) {
+      if (gapi.auth2.getAuthInstance.arguments) {
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function() {
           console.log("User signed out.");

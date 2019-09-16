@@ -27,7 +27,7 @@
 </template>
 
 <script>
-let baseUrl = 'http://localhost:3000'
+let baseUrl = 'http://35.247.158.142'
 export default {
   data() {
     return {
@@ -99,7 +99,7 @@ div.avatarImg img {
 
 .media {
   font-family: 'Heebo', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
   padding: 9%;
   display: flex;
@@ -111,12 +111,12 @@ div.avatarImg img {
 
 .media p:hover {
   color: rgb(8, 67, 134);
-  font-size: 2.5vh;
+  font-size: 21px;
   cursor: pointer;
 }
 .media p:hover[name="none"] {
   color: rgb(8, 67, 134);
-  font-size: 2.5vh;
+  font-size: 21px;
   cursor: not-allowed;
 }
 </style>

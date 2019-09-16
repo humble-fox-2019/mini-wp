@@ -6,7 +6,7 @@
       <input v-on:change="getImage($event)" type="file" />
 
       <wysiwyg v-model="content" class="box-create"></wysiwyg>
-      <input  type="submit">Submit
+      <input  type="submit" style="cursor: pointer;">Submit
     </form>
   </div>
 </template>
@@ -32,7 +32,7 @@ toastr.options = {
   hideMethod: "fadeOut"
 };
 
-let baseUrl = "http://localhost:3000/";
+let baseUrl = "http://35.247.158.142";
 export default {
   data() {
     return {
@@ -56,20 +56,17 @@ export default {
       console.log(this.image);
       console.log("form data (down)");
       console.log("formdata", formdata);
+      Swal.showLoading();
       axios({
         method: "POST",
-        url: baseUrl + "articles/upload",
+        url: baseUrl + "/articles/upload",
         data: formdata
       })
         // axios.post(`${baseUrl}articles/upload`, formdata)
         .then(result => {
-          console.log("link?");
-          console.log(result);
-          console.log(result.data);
-          console.log(">>>>>>>>>>>>>>>>>");
           axios({
             method: "POST",
-            url: baseUrl + "articles/create",
+            url: baseUrl + "/articles/create",
             data: {
               title: this.title,
               content: this.content,
@@ -80,14 +77,19 @@ export default {
             }
           })
             .then(data => {
-              toastr.success('Success create new article').css({
-                width: "550px",
-                "max-width": "600px",
-                height: "18vh",
-                "font-size": "30px",
-                display: "flex",
-                "align-items": "center"
-              });
+              // toastr.success('Success create new article').css({
+              //   width: "550px",
+              //   "max-width": "600px",
+              //   height: "18vh",
+              //   "font-size": "30px",
+              //   display: "flex",
+              //   "align-items": "center"
+              // });
+              Swal.fire(
+                "Success create new article!",
+                "Your article has been created.",
+                "success"
+              );
               this.$emit("backToHome");
             })
             .catch(err => {
@@ -103,7 +105,7 @@ export default {
             });
         })
         .catch(err => {
-          toastr.warning("Image is required and Image type is JPEG").css({
+          toastr.warning("Image is required and Image type is JPG").css({
                 width: "550px",
                 "max-width": "600px",
                 height: "18vh",

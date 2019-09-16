@@ -41,7 +41,7 @@
 
 <script>
 import Swal from "sweetalert2";
-let baseUrl = "http://localhost:3000/";
+let baseUrl = "http://35.247.158.142";
 export default {
   data() {
     return {
@@ -55,7 +55,7 @@ export default {
     getMyArticle() {
       axios({
         method: "GET",
-        url: baseUrl + "articles/myarticle",
+        url: baseUrl + "/articles/myarticle",
         headers: {
           token: localStorage.token
         }
@@ -86,18 +86,20 @@ export default {
         if (result.value) {
           axios({
             method: "DELETE",
-            url: baseUrl + "articles/" + input,
+            url: baseUrl + "/articles/" + input,
             headers: {
               token: localStorage.token
             }
           })
             .then(data => {
-              this.getMyArticle();
+              // this.articles = this.articles.filter(el => el._id !== input);
               Swal.fire(
                 "Deleted!",
                 "Your article has been deleted.",
                 "success"
               );
+              // this.getMyArticle()
+              window.location.href='http://mini-wp.ayusudi.com/'
               console.log(data);
             })
             .catch(err => {
@@ -112,8 +114,8 @@ export default {
       console.log(input);
       this.$emit("changeToEdit", input);
     },
-    toReadOne(input){
-      this.$emit("changeToRead", input)
+    toReadOne(input) {
+      this.$emit("changeToRead", input);
     }
   },
   created() {
@@ -121,12 +123,11 @@ export default {
   },
   watch: {
     search(a, b) {
-      if(a.length>0){
+      if (a.length > 0) {
         let regex = new RegExp(a, "i");
-        this.items= this.items.filter(el => regex.test(el.title));
-      }
-      else{
-        this.getMyArticle()
+        this.items = this.items.filter(el => regex.test(el.title));
+      } else {
+        this.getMyArticle();
       }
     }
   }
@@ -170,7 +171,7 @@ export default {
   width: 65vw;
   min-height: 100vh;
   background: #d9ab91;
-  margin-bottom: 4%
+  margin-bottom: 4%;
 }
 
 p {
@@ -231,14 +232,14 @@ button[type="submit"]:hover {
   background: rgb(229, 232, 235);
 }
 
-input{
+input {
   outline: 0;
-  padding-left: 10px
+  padding-left: 10px;
 }
 
-input:hover{
+input:hover {
   outline: 0;
-  padding-left: 10px
+  padding-left: 10px;
 }
 
 .action i {

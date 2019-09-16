@@ -18,12 +18,10 @@ images.sendUploadToGCS,
 }
 );
 router.use(authentication)
-router.get('/', ArticleController.getAll)
+router.post('/create', ArticleController.create)
 router.get('/myarticle', ArticleController.getMyArticle)
 router.get('/:id', ArticleController.getOne)
-router.get('/search/:search', ArticleController.getByTitle)
-router.post('/create', ArticleController.create)
-router.get('/own', ArticleController.findMyArticle)
+// router.get('/search/:search', ArticleController.getByTitle)
 router.put('/:id', authorization, images.multer.single("featured_image"), images.sendUploadToGCS, ArticleController.updatePut)
 router.delete('/:id', authorization, ArticleController.destroy)
 

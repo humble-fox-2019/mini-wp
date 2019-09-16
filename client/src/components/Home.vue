@@ -49,12 +49,12 @@ h1{
   color: rgb(233, 199, 88);
   text-shadow: 4px 4px #221616;
   font-family: 'Patua One', cursive;
-  font-size: 67px;
+  font-size: 60px;
 }
 
 p{
   font-family: 'Montserrat', sans-serif;
-  font-size: 21px;
+  font-size: 18px;
 }
 
 h4{

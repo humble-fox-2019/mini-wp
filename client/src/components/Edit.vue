@@ -34,7 +34,7 @@ toastr.options = {
   showMethod: "fadeIn",
   hideMethod: "fadeOut"
 };
-let baseUrl = "http://localhost:3000/";
+let baseUrl = "http://35.247.158.142";
 export default {
   data() {
     return {
@@ -58,7 +58,7 @@ export default {
     getData(input) {
       axios({
         method: "GET",
-        url: baseUrl + "articles/" + input,
+        url: baseUrl + "/articles/" + input,
         headers: {
           token: localStorage.token
         }
@@ -78,7 +78,7 @@ export default {
       // console.log();
       axios({
         method: "PUT",
-        url: baseUrl + "articles/" + this.id,
+        url: baseUrl + "/articles/" + this.id,
         headers: {
           token: localStorage.token
         },

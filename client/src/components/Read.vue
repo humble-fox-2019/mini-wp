@@ -14,7 +14,7 @@
 </template>
 
 <script>
-let baseUrl = 'http://localhost:3000/'
+let baseUrl = 'http://35.247.158.142'
 export default {
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
   created() {
     axios({
       method: "GET",
-      url: baseUrl + "articles/" + this.readOne,
+      url: baseUrl + "/articles/" + this.readOne,
       headers: {
         token: localStorage.token
       }

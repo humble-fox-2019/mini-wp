@@ -89,7 +89,7 @@ div.logo h4 {
   color: rgb(255, 208, 0);
   font-family: "Diplomata SC", cursive;
   font-weight: bolder;
-  font-size: 5vh;
+  font-size: 20px;
 }
 
 div.logo img {
@@ -107,7 +107,7 @@ div.logo img {
 
 h2 {
   font-family: 'Patua One', cursive;
-  font-size: 49px;
+  font-size: 34px;
   margin-left: 15px;
   margin-block-start: 0.2em;
   justify-self: flex-start;
@@ -117,7 +117,7 @@ h2 {
 #icon-bar {
   margin-right: 2.5%;
   margin-top: 0.5%;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bolder;
 }
 

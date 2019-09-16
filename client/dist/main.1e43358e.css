@@ -20,11 +20,11 @@ h1[data-v-e7fbfc]{
   color: rgb(233, 199, 88);
   text-shadow: 4px 4px #221616;
   font-family: 'Patua One', cursive;
-  font-size: 67px;
+  font-size: 60px;
 }
 p[data-v-e7fbfc]{
   font-family: 'Montserrat', sans-serif;
-  font-size: 21px;
+  font-size: 18px;
 }
 h4[data-v-e7fbfc]{
   font-family: 'Libre Baskerville', serif;
@@ -68,7 +68,7 @@ to {
 }
 h1[data-v-d1b4ba] {
   font-family: "Patua One", cursive;
-  font-size: 49px;
+  font-size: 40px;
   margin-left: 15px;
   margin-block-start: 0.2em;
   justify-self: flex-start;
@@ -106,7 +106,7 @@ div.logo img[data-v-d1b4ba] {
   position: absolute;
   background-color: white;
   border-radius: 15px;
-  width: 370px;
+  width: 320px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   right: 0;
   left: auto;
@@ -144,9 +144,9 @@ input[type="submit"][data-v-d1b4ba]:hover {
   background: rgb(248, 209, 79);
 }
 input[data-v-d1b4ba] {
-  font-size: 20px;
+  font-size: 18px;
   width: 83%;
-  height: 4vh;
+  height: 3.5vh;
 }
 label[data-v-d1b4ba] {
   margin-top: 4%;
@@ -229,7 +229,7 @@ div.logo h4[data-v-6137a7] {
   color: rgb(255, 208, 0);
   font-family: "Diplomata SC", cursive;
   font-weight: bolder;
-  font-size: 5vh;
+  font-size: 20px;
 }
 div.logo img[data-v-6137a7] {
   margin-left: 25px;
@@ -244,7 +244,7 @@ div.logo img[data-v-6137a7] {
 }
 h2[data-v-6137a7] {
   font-family: 'Patua One', cursive;
-  font-size: 49px;
+  font-size: 34px;
   margin-left: 15px;
   margin-block-start: 0.2em;
   justify-self: flex-start;
@@ -253,7 +253,7 @@ h2[data-v-6137a7] {
 #icon-bar[data-v-6137a7] {
   margin-right: 2.5%;
   margin-top: 0.5%;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bolder;
 }
 #icon-bar[data-v-6137a7]:hover {
@@ -289,7 +289,7 @@ div.avatarImg img[data-v-c8fb60] {
 }
 .media[data-v-c8fb60] {
   font-family: 'Heebo', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
   padding: 9%;
   display: flex;
@@ -300,12 +300,12 @@ div.avatarImg img[data-v-c8fb60] {
 }
 .media p[data-v-c8fb60]:hover {
   color: rgb(8, 67, 134);
-  font-size: 2.5vh;
+  font-size: 21px;
   cursor: pointer;
 }
 .media p:hover[name="none"][data-v-c8fb60] {
   color: rgb(8, 67, 134);
-  font-size: 2.5vh;
+  font-size: 21px;
   cursor: not-allowed;
 }
 @import url("https://fonts.googleapis.com/css?family=Heebo|Merriweather|Montserrat|Patua+One&display=swap");
@@ -341,7 +341,7 @@ div.avatarImg img[data-v-c8fb60] {
   width: 65vw;
   min-height: 100vh;
   background: #d9ab91;
-  margin-bottom: 4%
+  margin-bottom: 4%;
 }
 p[data-v-d346d7] {
   white-space: nowrap;
@@ -393,13 +393,13 @@ button[type="submit"][data-v-d346d7]:hover {
   border-bottom-right-radius: 13px;
   background: rgb(229, 232, 235);
 }
-input[data-v-d346d7]{
+input[data-v-d346d7] {
   outline: 0;
-  padding-left: 10px
+  padding-left: 10px;
 }
-input[data-v-d346d7]:hover{
+input[data-v-d346d7]:hover {
   outline: 0;
-  padding-left: 10px
+  padding-left: 10px;
 }
 .action i[data-v-d346d7] {
   position: relative;
@@ -598,7 +598,6 @@ img[data-v-e46cf5] {
   background: rgb(216, 209, 209);
   margin: 28px 20px 20px 20px;
 }
-/* @import "~vue-wysiwyg/dist/vueWysiwyg.css"; */
 .beforeSign {
   height: 100vh;
   width: 100vw;

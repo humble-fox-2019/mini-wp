@@ -114,20 +114,6 @@ class ArticleController {
       .catch(next)
   }
 
-  static findMyArticle(req, res, next) {
-    console.log('here<<<<<<<,');
-    let author = req.decoded._id
-    Article.find({
-      author : author
-    })
-      .then(data => {
-        res.status(200).json({
-          message: 'here is yours article',
-          articles : data
-        })
-      })
-      .catch(next)
-  }
 }
 
 module.exports = ArticleController

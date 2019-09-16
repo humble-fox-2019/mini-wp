@@ -11,7 +11,7 @@
           <LeftBar @changeToGetAll="toGetAll" @changeToWrite="toWrite"></LeftBar>
         </div>
         <div class="timeline">
-          <GetAll v-if="page==='getall'" @changeToEdit="toEdit" @changeToRead="toRead"></GetAll>
+          <GetAll v-if="page==='getall'" @changeToEdit="toEdit" @changeToRead="toRead" @getNewList="toGetAll"></GetAll>
           <Write v-else-if="page==='write'" @backToHome="toGetAll" ></Write>
           <Edit v-else-if="page==='edit'" v-bind:id="editThis" @changeToGetAll="toGetAll"></Edit>
           <Read v-else-if="page==='read'" v-bind:readOne="readOne" @changeToGetAll="toGetAll"></Read>
@@ -92,7 +92,7 @@ export default {
 </script>
 
 <style>
-/* @import "~vue-wysiwyg/dist/vueWysiwyg.css"; */
+
 .beforeSign {
   height: 100vh;
   width: 100vw;

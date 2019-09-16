@@ -73,7 +73,7 @@ toastr.options = {
   hideMethod: "fadeOut"
 };
 
-let baseUrl = "http://localhost:3000/";
+let baseUrl = "http://35.247.158.142";
 export default {
   directives: {
     GoogleSignInButton
@@ -88,7 +88,7 @@ export default {
       registerPassword: "",
       signEmail: "",
       signPassword: "",
-      clientId: "107734373912-9fihrpbj89rsdn0dkev86lv0gq49lomm.apps.googleusercontent.com"
+      clientId: "264807503866-e9bn257e3mpemegm957tjsglk87i12b6.apps.googleusercontent.com"
     };
   },
   mounted() {
@@ -98,11 +98,11 @@ export default {
   },
   methods: {
     OnGoogleAuthSuccess(idToken) {
-      console.log("idToken",idToken);
+      // console.log("idToken",idToken);
       // const token = googleUser.getAuthResponse().id_token;
       axios({
         method: "POST",
-        url: baseUrl + "users/signGoogle",
+        url: baseUrl + "/users/signGoogle",
         data: {
           googleToken: idToken
         }
@@ -126,7 +126,7 @@ export default {
       let password = this.signPassword;
       axios({
         method: "POST",
-        url: baseUrl + "users/login",
+        url: baseUrl + "/users/login",
         data: {
           email,
           password
@@ -140,10 +140,10 @@ export default {
         .catch(err => {
           let error = err.response.data.errMsg;
           toastr.warning(error).css({
-            width: "550px",
+            width: "500px",
             "max-width": "600px",
             height: "18vh",
-            "font-size": "30px",
+            "font-size": "28px",
             display: "flex",
             "align-items": "center"
           });
@@ -156,7 +156,7 @@ export default {
       console.log(name, email, password);
       axios({
         method: "POST",
-        url: baseUrl + "users/create",
+        url: baseUrl + "/users/create",
         data: {
           name,
           email,
@@ -165,10 +165,10 @@ export default {
       })
         .then(response => {
           toastr.success("Success create an account").css({
-            width: "550px",
+            width: "500px",
             "max-width": "600px",
             height: "18vh",
-            "font-size": "30px",
+            "font-size": "28px",
             display: "flex",
             "align-items": "center"
           });
@@ -177,10 +177,10 @@ export default {
           console.log(err);
           let error = err.response.data.errMsg.join("<br>");
           toastr.warning(error).css({
-            width: "550px",
+            width: "500px",
             "max-width": "600px",
             height: "18vh",
-            "font-size": "30px",
+            "font-size": "28px",
             display: "flex",
             "align-items": "center"
           });
@@ -221,7 +221,7 @@ export default {
 
 h1 {
   font-family: "Patua One", cursive;
-  font-size: 49px;
+  font-size: 40px;
   margin-left: 15px;
   margin-block-start: 0.2em;
   justify-self: flex-start;
@@ -265,7 +265,7 @@ div.logo img {
   position: absolute;
   background-color: white;
   border-radius: 15px;
-  width: 370px;
+  width: 320px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   right: 0;
   left: auto;
@@ -310,9 +310,9 @@ input[type="submit"]:hover {
 }
 
 input {
-  font-size: 20px;
+  font-size: 18px;
   width: 83%;
-  height: 4vh;
+  height: 3.5vh;
 }
 
 label {

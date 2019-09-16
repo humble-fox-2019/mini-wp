@@ -20428,7 +20428,7 @@ _toastr.default.options = {
   showMethod: "fadeIn",
   hideMethod: "fadeOut"
 };
-var baseUrl = "http://localhost:3000/";
+var baseUrl = "http://35.247.158.142";
 var _default = {
   directives: {
     GoogleSignInButton: _vueGoogleSigninButtonDirective.default
@@ -20443,7 +20443,7 @@ var _default = {
       registerPassword: "",
       signEmail: "",
       signPassword: "",
-      clientId: "107734373912-9fihrpbj89rsdn0dkev86lv0gq49lomm.apps.googleusercontent.com"
+      clientId: "264807503866-e9bn257e3mpemegm957tjsglk87i12b6.apps.googleusercontent.com"
     };
   },
   mounted: function mounted() {
@@ -20455,11 +20455,11 @@ var _default = {
     OnGoogleAuthSuccess: function OnGoogleAuthSuccess(idToken) {
       var _this = this;
 
-      console.log("idToken", idToken); // const token = googleUser.getAuthResponse().id_token;
-
+      // console.log("idToken",idToken);
+      // const token = googleUser.getAuthResponse().id_token;
       axios({
         method: "POST",
-        url: baseUrl + "users/signGoogle",
+        url: baseUrl + "/users/signGoogle",
         data: {
           googleToken: idToken
         }
@@ -20482,7 +20482,7 @@ var _default = {
       var password = this.signPassword;
       axios({
         method: "POST",
-        url: baseUrl + "users/login",
+        url: baseUrl + "/users/login",
         data: {
           email: email,
           password: password
@@ -20496,10 +20496,10 @@ var _default = {
         var error = err.response.data.errMsg;
 
         _toastr.default.warning(error).css({
-          width: "550px",
+          width: "500px",
           "max-width": "600px",
           height: "18vh",
-          "font-size": "30px",
+          "font-size": "28px",
           display: "flex",
           "align-items": "center"
         });
@@ -20512,7 +20512,7 @@ var _default = {
       console.log(name, email, password);
       axios({
         method: "POST",
-        url: baseUrl + "users/create",
+        url: baseUrl + "/users/create",
         data: {
           name: name,
           email: email,
@@ -20520,10 +20520,10 @@ var _default = {
         }
       }).then(function (response) {
         _toastr.default.success("Success create an account").css({
-          width: "550px",
+          width: "500px",
           "max-width": "600px",
           height: "18vh",
-          "font-size": "30px",
+          "font-size": "28px",
           display: "flex",
           "align-items": "center"
         });
@@ -20532,10 +20532,10 @@ var _default = {
         var error = err.response.data.errMsg.join("<br>");
 
         _toastr.default.warning(error).css({
-          width: "550px",
+          width: "500px",
           "max-width": "600px",
           height: "18vh",
-          "font-size": "30px",
+          "font-size": "28px",
           display: "flex",
           "align-items": "center"
         });
@@ -24020,7 +24020,7 @@ exports.default = void 0;
 //
 //
 //
-var baseUrl = 'http://localhost:3000';
+var baseUrl = 'http://35.247.158.142';
 var _default = {
   data: function data() {
     return {
@@ -24212,7 +24212,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var baseUrl = "http://localhost:3000/";
+var baseUrl = "http://35.247.158.142";
 var _default = {
   data: function data() {
     return {
@@ -24228,7 +24228,7 @@ var _default = {
 
       axios({
         method: "GET",
-        url: baseUrl + "articles/myarticle",
+        url: baseUrl + "/articles/myarticle",
         headers: {
           token: localStorage.token
         }
@@ -24240,8 +24240,6 @@ var _default = {
       });
     },
     deleteArticle: function deleteArticle(input) {
-      var _this2 = this;
-
       _sweetalert.default.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -24263,15 +24261,16 @@ var _default = {
         if (result.value) {
           axios({
             method: "DELETE",
-            url: baseUrl + "articles/" + input,
+            url: baseUrl + "/articles/" + input,
             headers: {
               token: localStorage.token
             }
           }).then(function (data) {
-            _this2.getMyArticle();
+            // this.articles = this.articles.filter(el => el._id !== input);
+            _sweetalert.default.fire("Deleted!", "Your article has been deleted.", "success"); // this.getMyArticle()
 
-            _sweetalert.default.fire("Deleted!", "Your article has been deleted.", "success");
 
+            window.location.href = 'http://mini-wp.ayusudi.com/';
             console.log(data);
           }).catch(function (err) {
             console.log(err.response);
@@ -24497,7 +24496,7 @@ _toastr.default.options = {
   showMethod: "fadeIn",
   hideMethod: "fadeOut"
 };
-var baseUrl = "http://localhost:3000/";
+var baseUrl = "http://35.247.158.142";
 var _default = {
   data: function data() {
     return {
@@ -24523,19 +24522,18 @@ var _default = {
       console.log(this.image);
       console.log("form data (down)");
       console.log("formdata", formdata);
+
+      _sweetalert.default.showLoading();
+
       axios({
         method: "POST",
-        url: baseUrl + "articles/upload",
+        url: baseUrl + "/articles/upload",
         data: formdata
       }) // axios.post(`${baseUrl}articles/upload`, formdata)
       .then(function (result) {
-        console.log("link?");
-        console.log(result);
-        console.log(result.data);
-        console.log(">>>>>>>>>>>>>>>>>");
         axios({
           method: "POST",
-          url: baseUrl + "articles/create",
+          url: baseUrl + "/articles/create",
           data: {
             title: _this.title,
             content: _this.content,
@@ -24545,14 +24543,15 @@ var _default = {
             token: localStorage.token
           }
         }).then(function (data) {
-          _toastr.default.success('Success create new article').css({
-            width: "550px",
-            "max-width": "600px",
-            height: "18vh",
-            "font-size": "30px",
-            display: "flex",
-            "align-items": "center"
-          });
+          // toastr.success('Success create new article').css({
+          //   width: "550px",
+          //   "max-width": "600px",
+          //   height: "18vh",
+          //   "font-size": "30px",
+          //   display: "flex",
+          //   "align-items": "center"
+          // });
+          _sweetalert.default.fire("Success create new article!", "Your article has been created.", "success");
 
           _this.$emit("backToHome");
         }).catch(function (err) {
@@ -24568,7 +24567,7 @@ var _default = {
           });
         });
       }).catch(function (err) {
-        _toastr.default.warning("Image is required and Image type is JPEG").css({
+        _toastr.default.warning("Image is required and Image type is JPG").css({
           width: "550px",
           "max-width": "600px",
           height: "18vh",
@@ -24653,7 +24652,10 @@ exports.default = _default;
           }
         }),
         _vm._v(" "),
-        _c("input", { attrs: { type: "submit" } }),
+        _c("input", {
+          staticStyle: { cursor: "pointer" },
+          attrs: { type: "submit" }
+        }),
         _vm._v("Submit\n  ")
       ],
       1
@@ -24739,7 +24741,7 @@ _toastr.default.options = {
   showMethod: "fadeIn",
   hideMethod: "fadeOut"
 };
-var baseUrl = "http://localhost:3000/";
+var baseUrl = "http://35.247.158.142";
 var _default = {
   data: function data() {
     return {
@@ -24765,7 +24767,7 @@ var _default = {
 
       axios({
         method: "GET",
-        url: baseUrl + "articles/" + input,
+        url: baseUrl + "/articles/" + input,
         headers: {
           token: localStorage.token
         }
@@ -24787,7 +24789,7 @@ var _default = {
 
       axios({
         method: "PUT",
-        url: baseUrl + "articles/" + this.id,
+        url: baseUrl + "/articles/" + this.id,
         headers: {
           token: localStorage.token
         },
@@ -24954,7 +24956,7 @@ exports.default = void 0;
 //
 //
 //
-var baseUrl = 'http://localhost:3000/';
+var baseUrl = 'http://35.247.158.142';
 var _default = {
   data: function data() {
     return {
@@ -24976,7 +24978,7 @@ var _default = {
 
     axios({
       method: "GET",
-      url: baseUrl + "articles/" + this.readOne,
+      url: baseUrl + "/articles/" + this.readOne,
       headers: {
         token: localStorage.token
       }
@@ -25217,7 +25219,8 @@ exports.default = _default;
                     ? _c("GetAll", {
                         on: {
                           changeToEdit: _vm.toEdit,
-                          changeToRead: _vm.toRead
+                          changeToRead: _vm.toRead,
+                          getNewList: _vm.toGetAll
                         }
                       })
                     : _vm.page === "write"
@@ -28312,7 +28315,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50300" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55905" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

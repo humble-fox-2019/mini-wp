@@ -13,12 +13,7 @@
       <div class="editor">
         <vueWysiwyg class="texteditor" v-model="articleContent"></vueWysiwyg>
       </div>
-      <b-form-file
-        type="file"
-        ref="file"
-        v-on:change="handlefileupload($event)"
-        placeholder="Choose an image to upload"
-      ></b-form-file>
+      <b-form-file v-model="articleImage" placeholder="Choose an image to upload" required></b-form-file>
 
       <div id="contentButtonGroup">
         <b-button type="submit" @click.prevent="createArticle" id="contentSubmitButton">Submit</b-button>
@@ -30,6 +25,7 @@
 
 <script>
 import axios from "axios";
+// const url = "http://localhost:3000";
 const url = "http://35.246.229.159";
 import vueWysiwyg from "../../js/vueWysiwyg";
 import Swal from "sweetalert2";
@@ -45,26 +41,21 @@ export default {
   data: function() {
     return {
       articleTitle: "",
-      articleContent: ""
+      articleContent: "",
+      articleImage: null
     };
   },
   methods: {
-    registerimage() {
-      let formData = new FormData();
-      formData.append("title", this.imagetitle);
-      formData.append("image", this.image);
-      this.$emit("registerimage", formData);
-      this.imagetitle = "";
-    },
-    handleimage() {
-      let reader = new FileReader();
-      reader.readAsDataURL(this.$refs.image.files[0]);
-      this.image = this.$refs.image.files[0];
-    },
     showDashboard() {
       this.$emit("show-dashboard-page");
     },
     createArticle: function() {
+      let formData = new FormData();
+      formData.append("image", this.articleImage);
+      formData.append("title", this.articleTitle);
+      formData.append("content", this.articleContent);
+      Swal.showLoading();
+
       let method = null;
       let path = null;
 
@@ -81,10 +72,7 @@ export default {
         headers: {
           token: localStorage.getItem("token")
         },
-        data: {
-          title: this.articleTitle,
-          content: this.articleContent
-        }
+        data: formData
       })
         .then(({ data }) => {
           console.log("Post is successfully created or updated");

@@ -58,6 +58,7 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
+// const url = "http://localhost:3000";
 const url = "http://35.246.229.159";
 
 export default {
@@ -70,6 +71,7 @@ export default {
       loading: false,
       googleSignInParams: {
         client_id:
+          // "450205956534-t8mv0qj0kqcc53van5mbbahtk9vg8b40.apps.googleusercontent.com"
           "706669614539-mg5oc4j27qsqm759nibl6gil3crk8s7i.apps.googleusercontent.com"
       }
     };

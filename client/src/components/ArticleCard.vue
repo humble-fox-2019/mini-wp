@@ -1,12 +1,7 @@
 <template>
   <div id="dashboardBlanket">
     <div id="dashboardCard" v-for="(article,index) in articles" :key="index">
-      <b-card-img
-        src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Mount_Fuji_Japan_with_Snow%2C_Lakes_and_Surrounding_Mountains.jpg"
-        img-alt="Image"
-        img-top
-        id="cardImage"
-      ></b-card-img>
+      <b-card-img :src="article.featured_image || 'null'" img-alt="Image" img-top id="cardImage"></b-card-img>
       <b-card id="cardTitle" :title="article.title">
         <b-card-text id="cardText" v-html="article.content"></b-card-text>
         <b-card-text id="cardDate">Last update: {{dateConverter(article.updatedAt)}}</b-card-text>
@@ -22,6 +17,7 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
+// const url = "http://localhost:3000";
 const url = "http://35.246.229.159";
 export default {
   data: function() {

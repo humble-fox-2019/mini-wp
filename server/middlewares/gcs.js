@@ -1,7 +1,6 @@
 'use strict'
 
 const { Storage } = require('@google-cloud/storage')
-const path = require('path')
 
 const GOOGLE_CLOUD_BUCKET = process.env.GOOGLE_CLOUD_BUCKET
 
@@ -20,9 +19,9 @@ const getGsUri = (filename) => {
 }
 
 const sendUploadToGCS = (req, res, next) => {
-  // if (!req.file) {
-  //   return next({ status: 400, message: 'Image required' })
-  // }
+  if (!req.file) {
+    return next({ status: 400, message: 'Image required' })
+  }
 
   const gcsname = Date.now() + req.file.originalname
   const file = bucket.file(gcsname)
@@ -56,12 +55,14 @@ const multer = Multer({
   limits: {
     fileSize: 5 * 1024 * 1024
   },
-  fileFilter: function (req, file, callback) {
-    var ext = path.extname(file.originalname)
-    if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
-      return callback(new Error('Only images are allowed'))
+  fileFilter: function (req, file, next) {
+    if (!file.mimetype.includes('image')) {
+      next({
+        status: 400,
+        message: 'File is not an images'
+      })
     }
-    callback(null, true)
+    next(null, true)
   }
 })
 

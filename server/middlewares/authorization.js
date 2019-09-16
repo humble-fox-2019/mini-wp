@@ -8,10 +8,9 @@ module.exports = {
       .then((article) => {
         console.log(article, req.decoded)
         if (String(article.author) === String(req.decoded.id)) {
-          // req.prevFile = article
           next()
         } else {
-          next({ status: 401, message: 'Unauthorized process! Cannot write other user\'s article' })
+          next({ status: 401, message: 'Unauthorized process!' })
         }
       }).catch(next)
   }

@@ -77,7 +77,6 @@ body {
 }
 
 .quill-container {
-    display: none;
     background-color: honeydew;
     position: fixed;
     bottom: 50px;

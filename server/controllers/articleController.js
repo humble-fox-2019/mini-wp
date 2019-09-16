@@ -32,7 +32,12 @@ class ArticleController {
     static store(req, res, next) {
         const { title, content, isPublished } = req.body;
         const author = req.decode.id;
-        const featured_image = req.file.cloudStoragePublicUrl;
+        let featured_image = null;
+
+        if (req.file) {
+            featured_image = req.file.cloudStoragePublicUrl;
+        }
+
         let tags;
 
         if (req.body.tags) {
@@ -70,6 +75,10 @@ class ArticleController {
         }
 
         const data = { title, content, tags, isPublished };
+
+        if (req.file) {
+            data.featured_image = req.file.cloudStoragePublicUrl;
+        }
 
         Article.updateOne({ _id: req.params.id }, data, { omitUndefined: true })
             .then((info) => {

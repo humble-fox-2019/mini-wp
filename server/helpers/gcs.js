@@ -18,7 +18,7 @@ const getGsUri = (filename) => {
 
 const sendUploadToGCS = (req, res, next) => {
     if (!req.file) {
-        next({ statusCode: 400, msg: 'Image required' })
+        next()
     } else {
         const gcsname = Date.now() + req.file.originalname
         const file = bucket.file(gcsname)

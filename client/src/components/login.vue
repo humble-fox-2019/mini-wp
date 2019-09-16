@@ -45,7 +45,7 @@ export default {
       passwordlogin: "",
       googleSignInParams: {
         client_id:
-          "1076346870616-m6m8v27e0drlov6q0ds53v103kgphmcn.apps.googleusercontent.com"
+          "1076346870616-g67nkvgg398aenfju4u3u59252e4rrd7.apps.googleusercontent.com"
       }
     };
   },

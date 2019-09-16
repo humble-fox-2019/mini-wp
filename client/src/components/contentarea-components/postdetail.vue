@@ -100,7 +100,7 @@ export default {
                     console.log('from postdetail', data);
                     this.loading = false
                     this.alert.status = 'success'
-                    this.alert.msgs = [`success added a new article`]
+                    this.alert.msgs = [`success save an article`]
                     this.$emit('save', this.alert)
                 })
                 .catch(err => {

@@ -1,5 +1,9 @@
 # mini-wp
 
+# linkdeploy
+```
+http://peoplepress.fadhilsurya.com/
+```
 
 # Mini-Wp
 

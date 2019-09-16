@@ -1,4 +1,5 @@
 const Article = require('../models/article');
+const deleteFile = require('../helpers/deleteFileGcs')
 
 class ArticleController {
     static myArticle(req, res, next) {
@@ -36,19 +37,20 @@ class ArticleController {
 
         if (req.file) {
             featured_image = req.file.cloudStoragePublicUrl;
+            let tags;
+
+            if (req.body.tags) {
+                tags = req.body.tags.split(',');
+            }
+
+            Article.create(
+                { title, content, tags, author, isPublished, featured_image }
+            ).then(article => {
+                res.status(201).json(article)
+            }).catch(next);
+        } else {
+            next({ statusCode: 400, msg: 'featured_image is required' })
         }
-
-        let tags;
-
-        if (req.body.tags) {
-            tags = req.body.tags.split(',');
-        }
-
-        Article.create(
-            { title, content, tags, author, isPublished, featured_image }
-        ).then(article => {
-            res.status(201).json(article)
-        }).catch(next);
     }
 
     static findOne(req, res, next) {
@@ -80,9 +82,17 @@ class ArticleController {
             data.featured_image = req.file.cloudStoragePublicUrl;
         }
 
-        Article.updateOne({ _id: req.params.id }, data, { omitUndefined: true })
-            .then((info) => {
-                res.status(200).json({ message: 'successfully updated', data: info });
+        Article.findOneAndUpdate({ _id: req.params.id }, data, { omitUndefined: true })
+            .then((data) => {
+
+                if (req.file) {
+                    let file = data.featured_image.split('/')
+                    let fileName = file[file.length - 1];
+
+                    deleteFile(fileName)
+                }
+
+                res.status(200).json({ message: 'successfully updated', data });
             })
             .catch(next);
     }
@@ -90,6 +100,11 @@ class ArticleController {
     static delete(req, res, next) {
         Article.findByIdAndDelete(req.params.id)
             .then(data => {
+                let file = data.featured_image.split('/')
+                let fileName = file[file.length - 1];
+
+                deleteFile(fileName)
+
                 res.status(200).json({ message: 'successfully deleted', data });
             })
             .catch(next);

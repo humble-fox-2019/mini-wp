@@ -11,7 +11,7 @@ import NavContent from "./navContent";
 import Title from "./title";
 import Axios from "axios";
 import Swal from "sweetalert2";
-let baseUrl = `http://localhost:3000`;
+let baseUrl = `http://35.187.228.79`;
 export default {
   data: function() {
     return {

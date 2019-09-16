@@ -25,9 +25,6 @@
 export default {
   data: function() {
     return {
-      tags: ["makan", "minum", "ngoding", "tidur", "makan bakso"],
-      imgheadline: `https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60`,
-      articles: [1, 3, 4, 5]
     };
   },
   props: ["passingarticle", "passingauthor"]

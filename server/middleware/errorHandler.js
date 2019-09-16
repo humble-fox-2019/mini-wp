@@ -2,12 +2,10 @@ const multer = require('multer')
 
 function errorHandler(err, req, res, next) {
 
+  console.log(err)
+
   const status = err.status || 500
   const message = err.message || 'Internal server error'
-
-  if(err instanceof multer.MulterError) {
-    console.log('Yaaasadsasdasd')
-  }
 
   if(err.name === 'ValidationError') {
     const errors = []
@@ -25,6 +23,10 @@ function errorHandler(err, req, res, next) {
         errors: ['File too large']
       })
     }
+  }else if(err.name === 'JsonWebTokenError') {
+    res.status(401).json({
+      errors: ['Not authenticated user']
+    })
   }else{
     res.status(status).json({
       errors: [message]

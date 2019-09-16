@@ -72,7 +72,19 @@ export default {
   },
   methods: {
     onSuccess(googleUser) {
-      console.log(googleUser)
+      axios.post('/user/signinGoogle', null, {
+        headers: {
+          idtoken: googleUser.Zi.id_token
+        }
+      })
+      .then(({data}) => {
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('username', data.username)
+        this.$router.push('/dashboard')
+      })
+      .catch(err => {
+        console.log(err.response.data)
+      })
     },
     onFailure(err) {
       console.log(err)
@@ -85,6 +97,8 @@ export default {
         password: this.password
       })
       .then(({data}) => {
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('username', data.username)
         this.$router.push('/dashboard')
       })
       .catch(err => {

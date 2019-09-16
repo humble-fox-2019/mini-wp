@@ -11,6 +11,13 @@ const articleSchema = new mongoose.Schema({
   image: {
     type: String,
     required: [true, 'Image required']
+  },
+  tags: [{
+    type: String
+  }],
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 }, {
   timestamps: true

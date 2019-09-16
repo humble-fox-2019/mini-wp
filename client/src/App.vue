@@ -8,6 +8,12 @@
 
 <script>
 export default {
+  beforeCreate() {
+    let token = localStorage.getItem('token')
+    if(token) {
+      this.$router.push('/dashboard')
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -180,8 +186,8 @@ a{
     }
   }
 }
-.another-login > div > div{
-  margin: auto;
+#google-signin-btn-0{
+  display: inline-block !important;
 }
 .input-group{
   margin-bottom: 20px;
@@ -307,15 +313,16 @@ a{
         a{
           display: flex;
           align-items: center;
+          flex-grow: 1;
           color: $black;
           margin-right: 50px;
 
           .article-image{
-            width: 150px;
+            flex-basis: 150px;
             height: 90px;
             overflow: hidden;
             position: relative;
-            background-color: red;
+            background-color: rgb(233, 233, 233);
             background-image: url('assets/book.jpg');
             background-size: cover;
             background-position: center;
@@ -323,6 +330,8 @@ a{
           }
 
           .article-text{
+            flex-grow: 1;
+            flex-basis: 300px;
             padding: 10px 10px 10px 20px;
 
             h1{

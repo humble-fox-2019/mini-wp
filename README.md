@@ -69,7 +69,7 @@ Body: -
 Response: [
 
 {
-    
+
     "publish": true,
     "_id": "5d7e28d6cb206e9e10c13d31",
     "tag": [],
@@ -141,5 +141,5 @@ npm run dev on server
 
 parcel on client
 
-Or you can visit the website through this link http://wp.project.in
+Or you can visit the website through this link http://wp.thproject.in
 

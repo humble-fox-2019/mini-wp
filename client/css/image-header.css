@@ -1,0 +1,23 @@
+.image-header-1 {
+    background-color: #0e0e11;
+    height: 440px;
+}
+
+.luar-sini {
+    height: 100%;
+}
+.image-header-2 {
+    height: 100%;
+}
+.image-header-2 img {
+    opacity: 0.6;
+    height: 100%;
+}
+
+.image-header-3 {
+    height: 100%;
+}
+.image-header-3 img {
+    opacity: 0.6;
+    height: 50%;
+}

@@ -1,0 +1,64 @@
+.add-artilce {
+    margin-top: 20px;
+    width: 50%;
+    border: 2px solid;
+    border-color: #90485E;
+    background-color: whitesmoke;
+    height: 190px;
+}
+
+
+.add-title-for77 {
+    width: 100%;
+    background-color: #90485E;
+    height: 10%;
+    border-radius: 0.2rem;
+}
+
+.add-artilce form {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-artilce-form-input {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: black;
+    border: 2px solid;
+    border-color: #90485E;
+}
+
+
+.button-add {
+    margin-top: 20px !important;
+    border: 1px solid #4267b2;
+    background-color: #4267b2;
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 0.6rem;
+    margin-bottom: 10px;
+}
+
+
+.add-artilce form textarea {
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    border: 2px solid;
+    border-color: #90485E;
+}
+
+.show-button {
+    padding-top: 10px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.show-button button {
+    border: 1px solid #4267b2;
+    background-color: #4267b2;
+    border-radius: 0.2rem;
+}

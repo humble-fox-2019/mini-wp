@@ -1,0 +1,20 @@
+.header-2 {
+    height: 65px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+} 
+
+.content-header2 {
+    height: 100%;
+    width: 50%;
+    /* margin-left: 320px; */
+    margin-top: 20px;
+}
+
+.item-header2 {
+    margin-left: 20px;
+    font-family: nunito sans,sans-serif;
+    font-size: 15px;
+    color: #939393;
+}

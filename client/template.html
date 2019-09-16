@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/navbar2.css">
+    <link rel="stylesheet" href="./css/header-1.css">
+    <link rel="stylesheet" href="./css/header2.css">
+    <link rel="stylesheet" href="./css/image-header.css">
+    <link rel="stylesheet" href="./css/content.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/addForm.css">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navbar -->
+
+    <div class="navbar-sss">
+            <div class="navbar1">
+    
+                <div class="navbar1-item1">
+                    <div class="icon-1">
+                        Icon
+                    </div>
+                    <div class="title-1">
+                        Latest-News
+                    </div>
+                </div>
+    
+                <div class="navbar1-item2">
+                    Dimana ini woeoeoeoeo
+                </div>
+    
+            </div>
+            <div class="navbar2">
+                <div class="search-1">
+                    <input type="text" placeholder="Search...">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Header 1 -->
+    
+        <div class="header-1">
+            <div class="title-logo">
+                <img src="https://storage.cloud.google.com/sultanrh32/5ae5bc93-6d81-4942-a48b-f7fd21c2ae25_200x200.png" alt="">
+            </div>
+            <div class="title-logo-2">
+                <img src="https://colorlib.com/newspaper-x/wp-content/uploads/sites/15/2017/05/banner.png" alt="">
+            </div>
+        </div>
+    
+        <!-- Header 2 -->
+    
+        <div class="header-2">
+            <div class="content-header2">
+                <a href="" class="item-header2">Home</a>
+                <a href="" class="item-header2">News</a>
+                <a href="" class="item-header2">Blog</a>
+                <a href="" class="item-header2">Contact</a>
+            </div>
+            <div>
+                <!--  -->
+            </div>
+        </div>
+    
+        <!-- Image Header -->
+    
+        <div class="image-header-1" v-if="onPage == 'home' ">
+            <div class="luar-sini container d-flex flex-row">
+                <div class="image-header-2">
+                    <img src="https://colorlib.com/newspaper-x/wp-content/uploads/sites/15/2017/05/00_header_slider_02-550x360.jpg" alt="">
+                </div>
+                <div class="image-header-3">
+                    <img src="https://colorlib.com/newspaper-x/wp-content/uploads/sites/15/2017/05/00_header_slider_02-550x360.jpg" alt="">
+                    <img src="https://colorlib.com/newspaper-x/wp-content/uploads/sites/15/2017/05/00_header_slider_02-550x360.jpg" alt="">
+                </div>
+            </div>
+        
+        </div>
+
+        <!-- Button For Add Article  -->
+
+        <div class="show-button">
+            <button v-if="!addOrNot" @click="showButton(true)">Add Article</button>
+            <button v-else @click="showButton(false)">Cancel</button>
+        </div>
+
+        <!-- Add Content -->
+
+        <div class="container add-artilce" v-if="addOrNot ">
+            <div>
+                <form @submit.prevent="addArticle"  >
+                    <input type="text" class="add-artilce-form-input" placeholder="Add Title" v-model="title">
+                    <textarea name="" id="" cols="30" rows="10" v-model="content"></textarea >
+                    <input type="submit" value="Add" class="button-add">
+                </form>
+
+            </div>
+        </div>
+    
+        <!-- Content -->
+    
+        <div class="container pt-5 d-flex flex-row justify-content-around mb-5" style="flex-wrap: wrap;" v-if="onPage == 'home' ">
+            <div class="box-content" v-for="article in articles" >
+                <div class="image-contents22">
+                    <img src="https://colorlib.com/newspaper-x/wp-content/uploads/sites/15/2017/05/01_latestnews_article_03-550x360.jpg" alt="">
+                </div>
+                <div class="description-content22 pt-2 ">
+                    <a href="#" class="desTitle">{{article.title}}</a>
+                </div>
+                <div class="content-date-btn ">
+                    <button @click="deleteOne(article._id)">News</button>
+                    <p>May 12, 2019</p>
+                </div>
+                <div class="content-description33">
+                    <p>
+                        {{article.content.slice(0 , 75)}}....
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-form shadow" v-if="onPage == 'login' ">
+            <p class="titlelogin55">Login To Your Account</p>
+            <form @submit.prevent="Login" >
+                <input type="text" placeholder="email" class="input-login" v-model="email">
+                <input type="text" placeholder="password" class="input-login" v-model="password">
+                <input type="submit" class="submit-button-login" value="SIGN IN">
+            </form>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

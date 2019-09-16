@@ -23,7 +23,7 @@
 
 <script>
 import axios from 'axios'
-let baseUrl = "http://localhost:3000"
+let baseUrl = "localhost:3000"
 export default {
     data: function(){
         return {

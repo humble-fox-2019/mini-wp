@@ -36,6 +36,7 @@
       <table class="table table-hover table-vcenter">
         <thead>
           <tr>
+            <th>Image</th>
             <th>Title</th>
             <th>Tags</th>
             <th class="d-none d-sm-table-cell" style="width: 15%;">isPublished</th>
@@ -44,6 +45,9 @@
         </thead>
         <tbody>
           <tr v-for="article in articles" :key="article._id">
+            <th>
+              <img :src="article.featured_image" alt="img" class="img" />
+            </th>
             <td>{{article.title}}</td>
             <td>
               <div
@@ -187,4 +191,7 @@ export default {
 </script>
 
 <style>
+.img {
+  width: 50px;
+}
 </style>

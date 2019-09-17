@@ -36,7 +36,8 @@ class UserController {
                     // console.log(Token(user))
                     res.status(201).json({
                         token : Token(user) ,
-                        message : user.name + ' Anda Berhasil Login'
+                        message : user.username + ' Anda Berhasil Login',
+                        user
                     })
                 }else {
                     console.log('here')
@@ -78,7 +79,8 @@ class UserController {
                 let tokenUser = Token(user._id)
                 res.json({
                     token : tokenUser,
-                    name : user.name
+                    name : user.name,
+                    user
                 })
             }else {
                 let { name , email } = data
@@ -95,6 +97,7 @@ class UserController {
                     token : Token(data2),
                     data2,
                     message : 'sukses add data'
+                    ,user
                 })
             }
         })

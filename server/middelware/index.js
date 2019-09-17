@@ -40,14 +40,10 @@ module.exports = {
         if(user){
           next()
         }else {
-          // next({ name :  })
           next({
             status : 401 ,
             message : "You don't have access"
           })
-          // res.status(403).json({
-          //   message : "You don't have access"
-          // })
         }
       })
       .catch(err=>{

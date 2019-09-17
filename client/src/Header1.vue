@@ -19,13 +19,20 @@
             <div class="search-1">
                 <input type="text" placeholder="Search...">
             </div>
+            <div class="mt-2">
+                <a class="title-1" href="#" @click="LogOut">LogOut</a>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-
+    methods : {
+        LogOut (){
+            this.$emit('keluar')
+        }
+    }
 }
 </script>
 

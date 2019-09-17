@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div  >
+  <div @click="getDetail(article._id)">
+    <div>
         <div class="box-content" >
             <div class="image-contents22">
                 <img :src="article.featured_image">
@@ -14,7 +14,7 @@
             </div>
             <div class="content-description33">
                 <p>
-                     {{article.content.slice(0 , 75)}}....
+                    {{article.content.slice(0 , 20)}}....
                 </p>
             </div>
         </div>
@@ -32,6 +32,11 @@ export default {
             }else {
                 this.onPage = 'login'
             }
+        }
+    },
+    methods : {
+        getDetail (id){
+            this.$emit('detail' , id)
         }
     }
 }

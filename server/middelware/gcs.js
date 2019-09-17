@@ -6,7 +6,7 @@ const storage = new Storage({
     projectId: process.env.GCLOUD_PROJECT,
     keyFilename: process.env.KEYFILE_PATH
 })
-const bucket = storage.bucket(CLOUD_BUCKET)
+const bucket = storage.bucket(CLOUD_BUCKET);
 
 const getPublicUrl = (filename) => {
     return `https://storage.googleapis.com/${CLOUD_BUCKET}/${filename}`
@@ -53,7 +53,7 @@ const Multer = require('multer'),
                 return cb(null, true);
             }
 
-            return cb(new Error('Only ' + accepted_extensions.join(", ") + ' files are allowed!'));
+            return  cb(new Error('Only ' + accepted_extensions.join(", ") + ' files are allowed!')); 
         }
         // dest: '../images'
 })
@@ -61,6 +61,9 @@ const Multer = require('multer'),
 function validate_format(req, res, next) {
     // For MemoryStorage, validate the format using `req.file.buffer`
     // For DiskStorage, validate the format using `fs.readFile(req.file.path)` from Node.js File System Module
+    if(!req.file){
+        return next()
+    }
     let mime = fileType(req.file.buffer);
 
     // if can't be determined or format not accepted
@@ -70,9 +73,49 @@ function validate_format(req, res, next) {
     next();
 }
 
+const { Article } = require('../models')
+const urlToFileName = require('../helpers/urlTofileName')
+async function deleteFile(req,res,next) {
+    // const image = req.file ? req.file.cloudStoragePublicUrl : ''
+    if(!req.file){
+        return next()
+    }
+    Article.findById(req.params.id)
+    .then(data=>{
+        let filename =  data.featured_image
+        filename = urlToFileName(filename)
+        return storage
+        .bucket(CLOUD_BUCKET)
+        .file(filename)
+        .delete()
+    })
+    .then(_=>{
+        next()
+    })
+    .catch(next)
+
+    // storage.bucket(CLOUD_BUCKET).file(filename).delete()
+    // try{
+    //  await storage
+    //  .bucket(CLOUD_BUCKET)
+    //  .file(filename)
+    //  .delete();
+    //  next()
+    // //  res.status(200).json({
+    // //    message : "successfully deleted in storage"
+    // //  })
+    // } 
+    // catch{
+    //     next({ status : 500 })
+    // //   res.status(500).json("hapus bro")
+    // }
+   
+   }
+
 module.exports = {
     getPublicUrl,
     sendUploadToGCS,
     multer ,
-    validate_format
+    validate_format,
+    deleteFile
 }

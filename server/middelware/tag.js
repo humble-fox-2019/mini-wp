@@ -1,5 +1,8 @@
 const tag = require('../models/tag')
 module.exports = async function addTag (req,res,next){
+    if(!req.body.tagList ){
+        return next()
+    }
     let tags = req.body.tagList.split(',')
     let result = []
     console.log(tags , ' MOST IMPORTANT !!!')

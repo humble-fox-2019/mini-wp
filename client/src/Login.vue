@@ -1,17 +1,39 @@
 <template>
-   <div class="login-form shadow" v-if="onPage == 'login'" >
+   <div>
+    <div class="login-form shadow" v-if="onPage == 'login' && onPageHere == 'login' " >
        <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
         <p class="titlelogin55">Login To Your Account</p>
         <form @submit.prevent="Login" >
             <input type="text" placeholder="email" class="input-login" v-model="email">
-            <input type="text" placeholder="password" class="input-login" v-model="password">
+            <input type="password" placeholder="password" class="input-login" v-model="password">
             <input type="submit" class="submit-button-login" value="SIGN IN">
         </form>
-    </div>
+        <div class="mt-4" style="margin-left : 200px;">
+            <a href="#" @click="GantiPageDisini('register')" >
+                Register Here
+            </a>
+        </div>
+    </div>    
+        <div class="login-form shadow" v-if="onPage == 'login' && onPageHere == 'register' " >
+        <p class="titlelogin55">Register</p>
+        <form @submit.prevent="Register" >
+            <input type="text" placeholder="username" class="input-login" v-model="username">
+            <input type="text" placeholder="email" class="input-login" v-model="email">
+            <input type="password" placeholder="password" class="input-login" v-model="password">
+            <input type="submit" class="submit-button-login" value="SIGN IN">
+        </form>
+        <div class="mt-4" style="margin-left : 200px;">
+            <a href="#" @click="GantiPageDisini('login')">
+                Login Here
+            </a>
+        </div>
+    </div>    
+   </div> 
+   
 </template>
 
 <script>
-import GoogleSignInButton from 'vue-google-signin-button-directive'
+import GoogleSignInButton from 'vue-google-signin-button-directive';
 import axios from 'axios'
 export default {
     props : ['onPage'],
@@ -21,8 +43,10 @@ export default {
     data () {
         return {
             clientId: '255957545157-h8t985f4eovr4l7rftbppvoul5s7rnnt.apps.googleusercontent.com',
-            email : 'luffy@mail.com',
-            password : '12345678'
+            email : '',
+            password : '',
+            onPageHere : 'login',
+            username : ''
         }
     },
     methods : {
@@ -31,9 +55,15 @@ export default {
                 id_token : idToken
             })
             .then(({data})=>{
+                localStorage.setItem('idUser' ,  data.user._id)
+                localStorage.setItem('token' ,  data.token)
+                this.$emit('login' ,  data)
                 console.log(data , ' berhaASILSF FEKMFEWKMFWE')
             })
             .catch(console.log)
+        },
+        GantiPageDisini (page){
+            this.onPageHere = page
         },
         OnGoogleAuthFail (error) {
             console.log(error)
@@ -45,9 +75,31 @@ export default {
             })
             .then(({data})=>{
                 localStorage.setItem('token' ,  data.token)
+                localStorage.setItem('idUser' ,  data.user._id)
                 this.$emit('login' ,  data)
             })
-            .catch(console.log)
+            .catch(err=>{
+                this.$swal(err.response.data.message ,'Click Me','error');
+                this.password = ''
+                this.email = ''
+            })
+        },
+        Register (){
+            let { email , password , username } = this
+            axios.post('http://localhost:3000/user/register',{
+                email , password , username
+            })
+            .then(({data})=>{
+                localStorage.setItem('token' ,  data.token)
+                localStorage.setItem('idUser' ,  data.user._id)
+                this.$emit('login' ,  data)
+            })
+            .catch(err=>{
+                this.$swal(err.response.data.message ,'Click Me','error');
+                this.username = ''
+                this.password = ''
+                this.email = ''
+            })
         }
     },
     watch : {
@@ -65,13 +117,15 @@ export default {
 <style>
 .google-signin-button {
   color: black;
-  background-color: whitesmoke;
+  background-color: #D95350;
+  color: #FFFFFF;
   height: 50px;
   font-size: 16px;
   border-radius: 10px;
   padding: 10px 20px 25px 20px;
   margin-top: 19px;
   margin-left: 150px;
+  font-weight: 200px;
 }
 
 
@@ -84,7 +138,7 @@ export default {
 }
 .login-form {
     margin: 0 auto;
-    background-color: #262836;
+    background-color: whitesmoke;
     height: 500px;
     width: 520px;
     margin-top: 70px;
@@ -117,7 +171,7 @@ export default {
     width: 70%;
     height: 50px;
     border-radius: 2.0rem;
-    background-color: #33354A;
+    background-color: #FFFFFF;
     border: 1px solid #ccc!important;
     border-color: #807D76;
     margin-bottom: 18px;
@@ -130,7 +184,7 @@ export default {
     width: 50%;
     height: 50px;
     border-radius: 2.0rem;
-    background-color: #33354A;
+    background-color: #D95350;
     border: 2px solid;
     border-color: #90485E;
 }

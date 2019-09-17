@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="add-form" v-if="onPage != 'login'" >
     <div class="header-1">
         <div class="title-logo">
             <!-- <img src="https://storage.cloud.google.com/sultanrh32/gambar.png" alt=""> -->
         </div>
-        <div class="title-logo-2">
+        <div class="title-logo-2" v-if="onPage != 'login' && onPage != 'addForm'">
             <img src="https://colorlib.com/newspaper-x/wp-content/uploads/sites/15/2017/05/banner.png" alt="">
         </div>
     </div>
     <div class="header-2">
         <div class="content-header2">
-            <a href="" class="item-header2">Home</a>
+            <a href="#" class="item-header2" @click="pindahPage('home')">Home</a>
             <a href="" class="item-header2">News</a>
             <a href="" class="item-header2">Blog</a>
             <a href="" class="item-header2">Contact</a>
@@ -18,7 +18,7 @@
         <div>
         </div>
     </div>
-    <div class="image-header-1">
+    <div class="image-header-1" v-if="onPage != 'login' && onPage != 'addForm' && onPage != 'detail'">
         <div class="luar-sini container d-flex flex-row">
             <div class="image-header-2">
                 <img src="https://colorlib.com/newspaper-x/wp-content/uploads/sites/15/2017/05/00_header_slider_02-550x360.jpg" alt="">
@@ -34,7 +34,12 @@
 
 <script>
 export default {
-
+    props : ['onPage'],
+    methods : {
+        pindahPage(page){
+            this.$emit('pindah' , page)
+        }
+    }
 }
 </script>
 
@@ -44,8 +49,6 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    border-bottom: 1px solid;
-    border-bottom-color: whitesmoke;
 }
 
 
@@ -79,16 +82,21 @@ export default {
 
 
 .header-2 {
-height: 65px;
-display: flex;
-flex-direction: row;
-justify-content: space-evenly;
+    height: 65px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-top: 1px solid;
+    border-top-color: #dcdcdc;
+    border-bottom: 1px solid;
+    border-bottom-color: #dcdcdc;
+    width: 100%;
 } 
 
 .content-header2 {
     height: 100%;
     width: 50%;
-    /* margin-left: 320px; */
+    margin-right: 720px;
     margin-top: 20px;
 }
 

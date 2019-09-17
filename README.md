@@ -1,7 +1,5 @@
 # Hackticle
 
-# **WHATS MY AGE?**
-
 ```
 Client :
 http://winiwp-ghz.maulanaghozi.web.id

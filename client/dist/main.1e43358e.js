@@ -49422,7 +49422,7 @@ var _default = {
   },
   data: function data() {
     return {
-      clientId: '255957545157-h8t985f4eovr4l7rftbppvoul5s7rnnt.apps.googleusercontent.com',
+      clientId: '183650412538-0fqi2t6c59ep63mobn8ro5t35319smku.apps.googleusercontent.com',
       email: '',
       password: '',
       onPageHere: 'login',
@@ -49433,7 +49433,7 @@ var _default = {
     OnGoogleAuthSuccess: function OnGoogleAuthSuccess(idToken) {
       var _this = this;
 
-      _axios.default.post('http://localhost:3000/user/google', {
+      _axios.default.post('http://34.87.89.246/user/google', {
         id_token: idToken
       }).then(function (_ref) {
         var data = _ref.data;
@@ -49457,7 +49457,7 @@ var _default = {
       var email = this.email,
           password = this.password;
 
-      _axios.default.post('http://localhost:3000/user/login', {
+      _axios.default.post('http://34.87.89.246/user/login', {
         email: email,
         password: password
       }).then(function (_ref2) {
@@ -49480,7 +49480,7 @@ var _default = {
           password = this.password,
           username = this.username;
 
-      _axios.default.post('http://localhost:3000/user/register', {
+      _axios.default.post('http://34.87.89.246/user/register', {
         email: email,
         password: password,
         username: username
@@ -49843,7 +49843,7 @@ var _default = {
       bodyFormData.append('tagList', hastagList);
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/article',
+        url: 'http://34.87.89.246/article',
         data: bodyFormData,
         headers: {
           token: localStorage.getItem('token')
@@ -50109,7 +50109,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'DELETE',
-        url: "http://localhost:3000/article/".concat(id),
+        url: "http://34.87.89.246/article/".concat(id),
         headers: {
           token: localStorage.getItem('token')
         }
@@ -50357,7 +50357,7 @@ var _default = {
       bodyFormData.append('tagList', resultTag);
       (0, _axios.default)({
         method: 'PUT',
-        url: "http://localhost:3000/article/".concat(id),
+        url: "http://34.87.89.246/article/".concat(id),
         data: bodyFormData,
         headers: {
           token: localStorage.getItem('token')
@@ -50664,7 +50664,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'GET',
-        url: "http://localhost:3000/article/tag?tag=".concat(tag),
+        url: "http://34.87.89.246/article/tag?tag=".concat(tag),
         headers: {
           token: localStorage.getItem('token')
         }
@@ -50682,7 +50682,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'GET',
-        url: "http://localhost:3000/article/".concat(id),
+        url: "http://34.87.89.246/article/".concat(id),
         headers: {
           token: localStorage.getItem('token')
         }
@@ -50701,7 +50701,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'GET',
-        url: "http://localhost:3000/article/".concat(id),
+        url: "http://34.87.89.246/article/".concat(id),
         headers: {
           token: localStorage.getItem('token')
         }
@@ -50728,7 +50728,7 @@ var _default = {
       // this.onPage = 'home'
       (0, _axios.default)({
         method: 'GET',
-        url: 'http://localhost:3000/article',
+        url: 'http://34.87.89.246/article',
         headers: {
           token: localStorage.getItem('token')
         }
@@ -54027,7 +54027,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42471" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41725" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -42,7 +42,7 @@ export default {
     },
     data () {
         return {
-            clientId: '255957545157-h8t985f4eovr4l7rftbppvoul5s7rnnt.apps.googleusercontent.com',
+            clientId: '183650412538-0fqi2t6c59ep63mobn8ro5t35319smku.apps.googleusercontent.com',
             email : '',
             password : '',
             onPageHere : 'login',
@@ -51,7 +51,7 @@ export default {
     },
     methods : {
         OnGoogleAuthSuccess (idToken) {
-            axios.post('http://localhost:3000/user/google',{
+            axios.post('http://34.87.89.246/user/google',{
                 id_token : idToken
             })
             .then(({data})=>{
@@ -70,7 +70,7 @@ export default {
         },
         Login (){
             let { email , password } = this
-            axios.post('http://localhost:3000/user/login',{
+            axios.post('http://34.87.89.246/user/login',{
                 email  , password
             })
             .then(({data})=>{
@@ -86,7 +86,7 @@ export default {
         },
         Register (){
             let { email , password , username } = this
-            axios.post('http://localhost:3000/user/register',{
+            axios.post('http://34.87.89.246/user/register',{
                 email , password , username
             })
             .then(({data})=>{

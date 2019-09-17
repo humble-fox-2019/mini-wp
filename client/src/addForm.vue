@@ -55,7 +55,7 @@ export default {
             bodyFormData.append('tagList' ,  hastagList)
             axios({
                 method : 'POST',
-                url : 'http://localhost:3000/article',
+                url : 'http://34.87.89.246/article',
                 data : bodyFormData,
                 headers : {
                     token : localStorage.getItem('token')

@@ -69,7 +69,7 @@ export default {
             bodyFormData.append('tagList' ,  resultTag);
             axios({
                 method : 'PUT',
-                url : `http://localhost:3000/article/${id}`,
+                url : `http://34.87.89.246/article/${id}`,
                 data : bodyFormData,
                 headers : {
                     token : localStorage.getItem('token')

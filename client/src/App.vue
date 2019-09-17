@@ -85,7 +85,7 @@ export default {
         getTag (tag){
             axios({
                 method : 'GET',
-                url : `http://localhost:3000/article/tag?tag=${tag}`,
+                url : `http://34.87.89.246/article/tag?tag=${tag}`,
                 headers : {
                     token : localStorage.getItem('token')
                 }
@@ -102,7 +102,7 @@ export default {
         RenderEdit(id){
             axios({
                 method : 'GET',
-                url : `http://localhost:3000/article/${id}`,
+                url : `http://34.87.89.246/article/${id}`,
                 headers : {
                     token : localStorage.getItem('token')
                 }
@@ -120,7 +120,7 @@ export default {
         getDetail (id){
             axios({
                 method : 'GET',
-                url : `http://localhost:3000/article/${id}`,
+                url : `http://34.87.89.246/article/${id}`,
                 headers : {
                     token : localStorage.getItem('token')
                 }
@@ -145,7 +145,7 @@ export default {
             // this.onPage = 'home'
             axios({
             method : 'GET',
-            url : 'http://localhost:3000/article',
+            url : 'http://34.87.89.246/article',
             headers : {
                 token : localStorage.getItem('token')
                 }

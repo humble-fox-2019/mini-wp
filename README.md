@@ -3,7 +3,7 @@
 # MINI-WP
 
 
-  #### REST API built Express and Sequelize
+  #### REST API built Express and Mongoose
  
 
 ##### List of user Routes

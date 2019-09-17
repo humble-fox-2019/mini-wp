@@ -3,6 +3,11 @@
     <NavContent @changeToHome="getHome" @publishArticle="getPublish"></NavContent>
     <Title @passingtags="getTags" @passingTitle="getTitle"></Title>
     <Wysiwyg @passingcontent="getContent"></Wysiwyg>
+    <div>
+      <form enctype="multipart/form-data">
+        <input type="file" ref="image" accept="image/*" @change="handleimage" required />
+      </form>
+    </div>
   </div>
 </template>
 <script>
@@ -17,19 +22,34 @@ export default {
     return {
       title: "",
       tags: [],
-      content: ""
+      content: "",
+      image: null
     };
   },
+  props: ["passingArticle"],
   components: {
     Wysiwyg,
     NavContent,
     Title
   },
   methods: {
+    handleimage() {
+      this.image = this.$refs.image.files[0];
+      console.log(this.image);
+      alert("image masuk");
+    },
     getHome() {
       this.$emit("homePageShow");
     },
     getPublish() {
+      let formData = new formData();
+
+      formData.append("image", this.image);
+      formData.append("title", this.title);
+      formData.append("content", this.content);
+      formData.append("tags", this.tags);
+      formData.append("author", localStorage.getItem("user_id"));
+      formData.append("published", true);
       Swal.fire({
         title: `Creating Article .....`,
         allowOutsideClick: () => !Swal.isLoading()
@@ -38,14 +58,7 @@ export default {
       Axios({
         method: `post`,
         url: `${baseUrl}/articles`,
-        data: {
-          title: this.title,
-          author: localStorage.getItem("user_id"),
-          tags: this.tags,
-          content: this.content,
-          published: true,
-          photo: `https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60`
-        },
+        data: formData,
         headers: {
           token: localStorage.getItem("token")
         }

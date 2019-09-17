@@ -1,5 +1,13 @@
 const Article = require('../models/article')
 const User = require('../models/user')
+const {
+    Storage
+} = require('@google-cloud/storage')
+
+const storage = new Storage({
+    projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+    keyFilename: process.env.GOOGLE_CLOUD_KEYFILE
+})
 
 class ArticleController {
     static findAll(req, res, next) {
@@ -8,6 +16,14 @@ class ArticleController {
             ])
             .then(articles => {
                 res.status(200).json(articles)
+            })
+            .catch(next)
+    }
+
+    static findById(req, res, next) {
+        Article.findById(req.params.id)
+            .then(user => {
+                res.status(200).json(user)
             })
             .catch(next)
     }
@@ -38,16 +54,19 @@ class ArticleController {
             author,
             content,
             tags,
-            published,
-            photo
+            published
         } = req.body
+        let featuredImage = null
+        if (req.file) {
+            featuredImage = req.file.cloudStoragePublicUrl
+        }
         Article.create({
                 title,
                 author,
                 content,
                 tags,
                 published,
-                photo
+                featured_image: featuredImage
             })
             .then(article => {
                 res.status(201).json(article)
@@ -75,10 +94,16 @@ class ArticleController {
     }
 
     static remove(req, res, next) {
+        const {
+            _id
+        } = req.params
         Article.findByIdAndDelete({
-                _id: req.params.id
+                _id
             })
-            .then(() => {
+            .then(response => {
+                let filename = response.featured_image.replace(/(https:\/\/storage.googleapis.com\/miniwp_images\/)/, '')
+                storage.bucket(process.env.GOOGLE_CLOUD_BUCKET)
+                    .file(filename).delete()
                 res.status(200).json(`Delete Success`)
             })
             .catch(next)

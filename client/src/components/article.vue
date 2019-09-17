@@ -1,6 +1,9 @@
 <template>
   <article>
-    <div :style="{'background-image' : `url('${passingarticle[0].photo}')` }" class="headline">
+    <div
+      :style="{'background-image' : `url('${passingarticle[0].featured_image}')` }"
+      class="headline"
+    >
       <h1>{{passingarticle[0].title}}</h1>
       <div class="tags">
         <vs-chip style="width: 100px" v-for="(tag, i) in passingarticle[0].tags" :key="i">{{tag}}</vs-chip>
@@ -9,12 +12,18 @@
     <div class="list-article">
       <div v-for="(article, index) in passingarticle" :key="index" class="card">
         <div class="content">
-          <h2>{{ article.title}}</h2>
+          <h2>
+            <a
+              href="#"
+              style="color:black; text-decoration:none"
+              @click="toThirdPage(article)"
+            >{{ article.title}}</a>
+          </h2>
           <p v-html="article.content"></p>
           <p>{{new Date(article.updatedAt).getFullYear()}}-{{new Date(article.updatedAt).getMonth()}}-{{new Date(article.updatedAt).getDate()}}</p>
         </div>
         <div class="img">
-          <img :src="article.photo" alt="foto" />
+          <img :src="article.featured_image" alt="foto" />
         </div>
       </div>
     </div>
@@ -26,7 +35,12 @@ export default {
   data: function() {
     return {};
   },
-  props: ["passingarticle", "passingauthor"]
+  props: ["passingarticle", "passingauthor"],
+  methods: {
+    toThirdPage(article) {
+      this.$emit("showThirdPage", article);
+    }
+  }
 };
 </script>
 
@@ -57,12 +71,12 @@ article {
 .card {
   width: 800px;
   display: flex;
-  background-color: #444;
   justify-content: space-between;
   margin: 10px 0;
 }
 
 .content {
+  font-size: 14px;
   display: flex;
   flex-wrap: wrap;
   word-wrap: break-word;

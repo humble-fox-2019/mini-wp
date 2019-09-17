@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Navbar @toSecondPage="getSecondPage" @toLandingPage="getLandingPage"></Navbar>
-    <Article :passingarticle="getarticle" :passingauthor="getauthor"></Article>
+    <Article :passingarticle="getarticle" :passingauthor="getauthor" @showThirdPage="getThirdPage"></Article>
   </div>
 </template>
 
@@ -22,6 +22,9 @@ export default {
     },
     getLandingPage() {
       this.$emit("landingPageShow");
+    },
+    getThirdPage(article) {
+      this.$emit("ThirdPageShow", article);
     }
   },
   props: ["getarticle", "getauthor"]

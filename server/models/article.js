@@ -7,7 +7,7 @@ const articleSchema = new Schema({
         required: [true, 'Title must be filled']
     },
     content: String,
-    photo: String,
+    featured_image: String,
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

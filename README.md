@@ -35,14 +35,15 @@ none
 		message : 'sukses add data'
 	}
 #### Error Response
-	
+1.
+
 		 {
 		    "message": ""User validation failed: username: Path `username` is required",
 		    "data": ""User validation failed: username: Path `username` is required"
 		 }	
 		status : 400 (Bad Request)
  
-2
+2.
 	
 	   {
 			"message": "internal server error",

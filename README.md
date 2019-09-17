@@ -35,15 +35,14 @@ none
 		message : 'sukses add data'
 	}
 #### Error Response
-1.
+
 
 		 {
 		    "message": ""User validation failed: username: Path `username` is required",
 		    "data": ""User validation failed: username: Path `username` is required"
 		 }	
 		status : 400 (Bad Request)
- 
-2.
+.
 	
 	   {
 			"message": "internal server error",
@@ -83,14 +82,14 @@ none
 		}
 	}
 #### Error Response
-1.
+
 	
 		{
 		    "message": "Email or Password NOT FOUND!!!!!"
 		}	
 		status : 400 (Bad Request)
 
-2.
+.
 	
 	   {
 		 "message": "internal server error",
@@ -131,14 +130,14 @@ none
 	    },
 	]
 #### Error Response
-1.
+
 	
 		{
 		    "message":  "You don't have access"
 		}	
 		status : 401 (Unauthorized)
 
-2.
+.
 	
 	   {
 		 "message": "internal server error",
@@ -182,14 +181,14 @@ none
 	},
 	
 #### Error Response
-1.
+
 	
 		{
 		    "message":  "You don't have access"
 		}	
 		status : 401 (Unauthorized)
 
-2.
+.
 
 		{
 		    "message": "Artitcle validation failed: title: Path `title` is required. ",
@@ -197,7 +196,7 @@ none
 		}
 		status : 400 (Bad Request)
 		
-3.
+.
 	
 	   {
 		 "message": "internal server error",
@@ -238,14 +237,14 @@ none
 	},
 	
 #### Error Response
-1.
+
 	
 		{
 		    "message":  "You don't have access"
 		}	
 		status : 401 (Unauthorized)
 
-2.
+.
 	
 	   {
 		 "message": "internal server error",
@@ -289,21 +288,21 @@ PUT
 	},
 	
 #### Error Response
-1.
+
 	
 		{
 		    "message":  "You don't have access"
 		}	
 		status : 401 (Unauthorized)
 
-2.
+.
 
 		{
 		    "message": "Artitcle validation failed: title: Path `title` is required. ",
 		    "data": "Artitcle validation failed: title: Path `title` is required., "
 		}
 		status : 400 (Bad Request)
-3.
+.
 	
 	   {
 		 "message": "internal server error",
@@ -330,14 +329,14 @@ none
 	},
 	
 #### Error Response
-1.
+
 	
 		{
 		    "message":  "You don't have access"
 		}	
 		status : 401 (Unauthorized)
 
-2.
+.
 	
 	   {
 		 "message": "internal server error",
@@ -364,14 +363,14 @@ none
 	},
 	
 #### Error Response
-1.
+
 	
 		{
 		    "message":  "You don't have access"
 		}	
 		status : 401 (Unauthorized)
 
-2.
+.
 	
 	   {
 		 "message": "internal server error",

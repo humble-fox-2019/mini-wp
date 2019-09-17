@@ -57,6 +57,7 @@ class ArticleController {
             published
         } = req.body
         let featuredImage = null
+        console.log(tags)
         if (req.file) {
             featuredImage = req.file.cloudStoragePublicUrl
         }
@@ -64,7 +65,7 @@ class ArticleController {
                 title,
                 author,
                 content,
-                tags,
+                tags: tags.split(','),
                 published,
                 featured_image: featuredImage
             })

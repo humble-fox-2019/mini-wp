@@ -32,6 +32,7 @@ import SecondPage from "./components/secondPage";
 import ThirdPage from "./components/thirdPage";
 import Axios from "axios";
 const baseUrl = `http://35.187.228.79`;
+// const baseUrl = `http://localhost:3000`;
 export default {
   data: function() {
     return {

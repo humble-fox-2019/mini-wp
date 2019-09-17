@@ -35,6 +35,7 @@
 
 <script>
 let baseUrl = "http://35.187.228.79";
+// let baseUrl = "http://localhost:3000";
 import GSignInButton from "vue-google-signin-button";
 import Axios from "axios";
 import Swal from "sweetalert2";

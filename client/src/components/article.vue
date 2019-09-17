@@ -33,7 +33,9 @@
 <script>
 export default {
   data: function() {
-    return {};
+    return {
+      lables: this.passingarticle
+    };
   },
   props: ["passingarticle", "passingauthor"],
   methods: {

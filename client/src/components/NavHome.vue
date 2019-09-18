@@ -19,8 +19,8 @@
             <input type="password" v-model="signPassword" />
             <input type="submit" value="Submit" />
             <!-- <div id="google-signin-button" class="g-signin2" data-onsuccess="onSignIn"></div> -->
-            <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google <i class="fab fa-google"></button>
           </form>
+            <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google <i class="fab fa-google"></button>
         </div>
       </div>
       <div class="dropdown">
@@ -44,8 +44,8 @@
             />
             <input type="submit" value="Submit" />
             <!-- <div id="google-signin-button" class="g-signin2" data-onsuccess="onSignIn"></div> -->
-            <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google <i class="fab fa-google"></button>
           </form>
+            <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google <i class="fab fa-google"></button>
         </div>
       </div>
     </div>
@@ -108,7 +108,7 @@ export default {
         }
       })
         .then(data => {
-          console.log("data", data);
+          // console.log("data", data);
           localStorage.setItem("token", data.data.token);
           this.$emit("doneSignG");
         })
@@ -133,7 +133,7 @@ export default {
         }
       })
         .then(response => {
-          console.log(response);
+          // console.log(response);
           localStorage.setItem("token", response.data.token);
           this.$emit("doneSignIn");
         })
@@ -153,7 +153,7 @@ export default {
       let name = this.registerName;
       let email = this.registerEmail;
       let password = this.registerPassword;
-      console.log(name, email, password);
+      // console.log(name, email, password);
       axios({
         method: "POST",
         url: baseUrl + "/users/create",
@@ -174,7 +174,7 @@ export default {
           });
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
           let error = err.response.data.errMsg.join("<br>");
           toastr.warning(error).css({
             width: "500px",
@@ -345,6 +345,7 @@ label {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
   margin-bottom: 20px;
+  margin-left : 32px;
 }
 
 .buttonGoogle p {

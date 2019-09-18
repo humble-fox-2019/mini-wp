@@ -2,7 +2,7 @@
   <div class="beforeSign">
     <div v-if="!login">
       <NavHome @doneSignIn="passSign" @doneSignG="passSign"></NavHome>
-      <Home></Home>
+      <Home v-if="!page"></Home>
     </div>
     <div v-else>
       <NavUser @signOut="falseSign" @changeToGetAll="toGetAll" @changeToWrite="toWrite"></NavUser>
@@ -54,12 +54,13 @@ export default {
     passSign() {
       this.login = true;
       this.toGetAll()
-      console.log("here");
-      console.log(this.login);
+      // console.log("here");
+      // console.log(this.login);
     },
     falseSign() {
       this.login = false;
-      console.log(this.login);
+      this.page = false
+      // console.log(this.login);
     },
     toGetAll(){
       this.page = "getall"
@@ -69,9 +70,7 @@ export default {
       this.editThis = id
     },
     toEdit(input){
-      console.log(this.$emit)
-      console.log('hellloo');
-      console.log(input);
+      // console.log(input);
       this.editThis = input
       this.page = "edit"
     },

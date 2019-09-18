@@ -61,7 +61,7 @@ export default {
         }
       })
         .then(result => {
-          console.log(result);
+          // console.log(result);
           this.items = result.data.articles;
         })
         .catch(err => {
@@ -100,7 +100,7 @@ export default {
               );
               // this.getMyArticle()
               window.location.href='http://mini-wp.ayusudi.com/'
-              console.log(data);
+              // console.log(data);
             })
             .catch(err => {
               console.log(err.response);
@@ -111,7 +111,7 @@ export default {
       });
     },
     toEditForm(input) {
-      console.log(input);
+      // console.log(input);
       this.$emit("changeToEdit", input);
     },
     toReadOne(input) {

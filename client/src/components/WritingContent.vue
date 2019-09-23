@@ -25,8 +25,8 @@
 
 <script>
 import axios from "axios";
-// const url = "http://localhost:3000";
-const url = "http://35.246.229.159";
+const url = "http://localhost:3000";
+// const url = "http://35.246.229.159";
 import vueWysiwyg from "../../js/vueWysiwyg";
 import Swal from "sweetalert2";
 

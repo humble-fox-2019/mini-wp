@@ -17,8 +17,8 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
-// const url = "http://localhost:3000";
-const url = "http://35.246.229.159";
+const url = "http://localhost:3000";
+// const url = "http://35.246.229.159";
 export default {
   data: function() {
     return {

@@ -1,0 +1,47 @@
+{
+  "name": "mini-wp",
+  "version": "1.0.0",
+  "description": "Mini WordPress Think Tank",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV='development' nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreassosilo/mini-wp.git"
+  },
+  "keywords": [
+    "wordpress",
+    "think",
+    "tank",
+    "article",
+    "blog"
+  ],
+  "author": "Andreas Sosilo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andreassosilo/mini-wp/issues"
+  },
+  "homepage": "https://github.com/andreassosilo/mini-wp#readme",
+  "dependencies": {
+    "@google-cloud/storage": "^3.2.1",
+    "axios": "^0.19.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "google-auth-library": "^5.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.13",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
+}

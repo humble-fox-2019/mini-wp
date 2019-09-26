@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the body for background color and font */
+body {
+  background: #f0f0f0;
+  font-family: "Crimson Pro", serif;
+}
+
+/* Style the dashboard (view post) container so between card (post) there is a sufficient space */
+.content {
+  margin-top: 10px;
+}
+
+/* Style the create post container so it will not be too wide */
+#createPost {
+  max-width: 80%;
+}
+
+/* Style the edit post container so it will not be too wide */
+#editPost {
+  max-width: 80%;
+}
+
+/* Style the top navigation bar using flexbox */
+.navbar {
+  display: flex;
+  background-color: #333;
+  font-family: "Crimson Pro";
+  justify-content: space-around;
+}
+
+.card-img-top {
+  max-height: 200px;
+  overflow: hidden;
+}

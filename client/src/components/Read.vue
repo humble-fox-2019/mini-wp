@@ -5,8 +5,7 @@
       <div class="pic">
         <img v-bind:src="image" alt />
       </div>
-      <div>
-        <p>{{content}}</p>
+      <div v-html="content" class="oke">
       </div>
       <input type="button" @click="backToHome" value="Close"/>
     </div>

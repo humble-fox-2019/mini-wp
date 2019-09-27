@@ -25,7 +25,7 @@
         </div>
         <div class="summary">
           <h3>{{item.title}}</h3>
-          <p>{{item.content}}</p>
+          <div v-html="item.content" style="max-height:90px"></div>
         </div>
         <div class="action">
           <div class="action-owner">
@@ -150,14 +150,13 @@ export default {
 }
 
 .navabar-timeline {
-  padding: 5%;
+  padding: 2.5% 4.5% 2.5% 4.5%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
   border-radius: 25px;
   width: 58vw;
-  height: 10vh;
   margin: 4%;
   background: #f2d0a7;
   font-family: "Patua One", cursive;

@@ -76,7 +76,7 @@ h4{
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  height: 100vh;
+  height: calc(100vh - 8vh);
   width: 100vw;
   background: rgb(174, 210, 219);
 }

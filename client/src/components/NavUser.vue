@@ -40,6 +40,7 @@ export default {
           }
           this.$emit("signOut");
           Swal.fire("See you again", "Success to log out", "success");
+          this.$router.push('/')
         }
         else {
           Swal.fire("Cancel", "You still online here..", "success");

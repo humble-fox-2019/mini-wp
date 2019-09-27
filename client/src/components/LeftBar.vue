@@ -93,6 +93,7 @@ h2{
 }
 
 div.avatarImg img {
+  margin: 20px;
   width: 10vw;
   border-radius: 50%;
 }
@@ -107,6 +108,10 @@ div.avatarImg img {
   flex-direction: column;
   background: rgb(219, 219, 214);
   box-shadow: -10px 0 10px -10px rgb(134, 125, 125) inset;
+}
+
+.media p{
+  margin: 15px
 }
 
 .media p:hover {

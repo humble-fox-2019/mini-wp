@@ -316,7 +316,7 @@ input {
 }
 
 label {
-  margin-top: 4%;
+  margin-top: 6%;
   font-size: 22px;
 }
 

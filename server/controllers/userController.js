@@ -54,11 +54,13 @@ class UserController {
             idToken: req.body.idToken,
             audience: GOOGLE_CLIENT_ID
         }).then(ticket => {
-            const { email } = ticket.getPayload()
+            const { email, given_name, family_name, picture } = ticket.getPayload()
             User.findOne({ email })
                 .then(user => {
                     if (!user) {
                         return User.create({
+                            "name": given_name + ' ' + family_name,
+                            "image": picture,
                             "email": email,
                             "password": process.env.DEFAULT_PASSWORD
                         })

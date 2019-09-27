@@ -14,15 +14,15 @@ const errorHandler = require('./middleware/errorHandler');
 const app = express();
 const DATABASE_URL = process.env.DATABASE_URL;
 
-mongoose.connect( DATABASE_URL , { useNewUrlParser : true })
+mongoose.connect( DATABASE_URL , { useNewUrlParser : true , useCreateIndex : true })
     .then( () => { console.log( `Database connected to: ${DATABASE_URL}` ); })
     .catch( err =>{ console.log( err ); })
-mongoose.set('useCreateIndex', true);
+// mongoose.set('useCreateIndex', true);
 
-app.use(logger('dev'))
+app.use( logger('dev') )
 app.use( cors() )
 app.use( express.json() ); 
-app.use( express.urlencoded({ extended : true }));
+app.use( express.urlencoded({ extended : true }) );
 
 app.use( '/' , userRouter );
 app.use( '/articles' , articleRouter )

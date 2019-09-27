@@ -19,7 +19,7 @@ class ArticleController {
         })
         .then ( createdArticle => {
             res.status(201).json({ status : 201 , createdArticle });
-        })
+        }) 
         .catch( next );
     }
     // View one Article by ID 

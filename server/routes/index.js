@@ -1,24 +1,14 @@
-const router = require('express').Router();
-const article = require('./article');
-const images = require('../middlewares/image')
+const express = require('express')
+const router = express.Router()
+const article = require('../routes/article')
+const user = require('../routes/user')
+const authentication = require('../middlewares/authentication')
 
 
- router.use('/article', article);
-
-// router.get('/', (req, res, next) => {
-//     res.send({ message: 'Welcome Buddy!' })
-//   })
-
-  router.post('/upload',
-    images.multer.single('image'), 
-    images.sendUploadToGCS,
-    (req, res) => {
-      res.send({
-        status: 200,
-        message: 'Your file is successfully uploaded',
-        link: req.file.cloudStoragePublicUrl
-      })
-    })
+router.use('/', user)
+//router.use(authentication)
+router.use('/articles', article)
 
 
-module.exports = router;
+
+module.exports = router

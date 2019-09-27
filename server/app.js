@@ -1,30 +1,30 @@
-if (process.env.NODE_ENV === 'development') {
-    require('dotenv').config()
+if(!process.env.NODE_ENV || process.env.NODE_ENV === 'development'){
+    require('dotenv').config();
 }
-
 const express = require('express')
-const cors = require('cors')
-const mongoose = require('mongoose')
+const cors = require('cors');
 const app = express()
-const router = require('./routes/index')
+const port = process.env.PORT || 3000
+
+const routes = require('./routes/index')
+console.log('one');
+const mongoose = require('mongoose');
+const morgan = require('morgan')
 const errorHandler = require('./middlewares/errorHandler')
-
-const PORT = process.env.PORT || 3000
-
-mongoose.connect('mongodb://localhost:27017/mini-wp', {useNewUrlParser: true, useUnifiedTopology: true})
-.then(() => {
-    console.log('mongodb connected')
-}).catch(err => {
-    console.log('failed connect to mongodb', err)
-})
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
 app.use(cors())
+app.use(morgan('dev'))
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
 
-app.use('/', router)
-app.use(errorHandler)
+app.use('/', routes)
 
-app.listen(PORT, function () {
-    console.log(`listen to port ${PORT}`)
+
+mongoose.connect(process.env.LINK, {useNewUrlParser: true})
+.then(data => {
+    console.log('success')
+}).catch(err => {
+    console.log('error')
 })
+
+app.use(errorHandler) 
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))

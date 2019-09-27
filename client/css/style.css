@@ -1,0 +1,336 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+nav {
+    background-color: darkcyan;
+    padding: 10px;
+}
+
+header{
+    text-align: center;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Arvo&display=swap');
+.brand {
+    font-size: 25px;
+    font-family: 'Arvo', serif;
+    color: white;
+}
+
+
+.container {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.flex {
+    display: flex;
+}
+.flex-between {
+    justify-content: space-between;
+}
+.header {
+    justify-content: center;
+}
+
+.formSection {
+  background: url(https://images.pond5.com/overlay-background-light-background-footage-069776379_prevstill.jpeg);
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  text-align: center;
+  display: flex;
+  color: white;
+  box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, .5);
+}
+
+.info {
+  width: 45%;
+  background: rgba(20, 20, 20, .8);
+  padding: 30px 0;
+  border-right: 5px solid rgba(30, 30, 30, .8);
+  
+}
+.info > .brand {
+    padding-top: 50px;
+    font-weight: 300;
+    font-size: 45px;
+}
+.info > p {
+    font-size: 18px;
+}
+.info > .icon {
+    font-size: 8em;
+    padding: 20px 0;
+    color: rgba(10, 180, 180, 1);
+}
+.form {
+  width: 70%;
+  padding: 30px 0;
+  background: rgba(20, 40, 40, .8);
+  transition: .2s;
+}
+.form >  h2 {
+    font-weight: 300;
+}
+
+.inputFields {
+  margin: 15px 0;
+  font-size: 16px;
+  padding: 10px;
+  width: 250px;
+  border: 1px solid rgba(10, 180, 180, 1);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: rgba(20, 20, 20, .2);
+  color: white;
+  outline: none;
+}
+
+.noBulletli {
+  list-style-type: none;
+  padding: 20px 0 0 0;
+}
+
+#signin-btn {
+  border: 1px solid rgba(10, 180, 180, 1);
+  background: rgba(20, 20, 20, .6);
+  font-size: 18px;
+  color: white;
+  margin-top: 20px;
+  padding: 10px 50px;
+  cursor: pointer;
+  transition: .4s;
+}
+#signin-btn:hover {
+    background: rgba(20, 20, 20, .8);
+    padding: 10px 80px;
+}
+#register-btn {
+    border: 1px solid rgba(10, 180, 180, 1);
+    background: rgba(20, 20, 20, .6);
+    font-size: 18px;
+    color: white;
+    margin-top: 20px;
+    padding: 10px 50px;
+    cursor: pointer;
+    transition: .4s;
+}
+#register-btn:hover {
+    background: rgba(20, 20, 20, .8);
+    padding: 10px 80px;
+}
+
+.error {
+    display: block;
+    color: red;
+    font-size: 15px;
+}
+
+.nav-content a {
+    color :white;
+    text-decoration: none;
+}
+
+.nav-content a:hover {
+    color :black;
+}
+
+#logo {
+    cursor: pointer;
+}
+
+
+#logout-btn {
+    margin-top: 100%;
+}
+
+
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+}
+
+.main-container {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+.article-header {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 40px;
+}
+.article-title {
+    font-size: 35px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.article {
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    overflow: hidden;
+}
+
+
+.warp {
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -86px;
+	margin-left: -89px;
+	text-align: center;
+}
+.button2 {
+	-webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	max-width: 180px;
+	text-decoration: none;
+	border-radius: 4px;
+    padding: 15px 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+a.button2 {
+    color: black;
+	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+}
+
+a.button2:hover {
+	color: rgba(255, 255, 255, 0.85);
+    box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
+    text-decoration: none;
+}
+.newArticle {
+    border-radius: 10px;
+    background-color: white;
+    padding: 30px;
+}
+.form-group {
+    color: black;
+}
+.form-group input[type=text] {
+    border-radius: 20px;
+    padding: 20px;
+}
+.form-group input[type=file] {
+    font-size: 15px;
+    padding: 5px;
+}
+.form-group textarea {
+    padding: 20px;
+    border-radius: 20px;
+}
+.form-group label {
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.file-input {
+    background-color: white;
+    border-radius: 10px; 
+    padding:10px;
+}
+.add-btn{
+    font-size: 20px;
+    border: 1px solid white;
+}
+
+#editor {
+    background-color: white;
+}
+
+
+
+.tags {
+    padding: 0;
+}
+.tags li {
+    float: left; 
+}
+
+.tag {
+    font-size: 13px;
+    background: #eee;
+    border-radius: 3px 0 0 3px;
+    color: #999;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px 0 23px;
+    position: relative;
+    margin: 0 10px 10px 0;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
+}
+
+.tag::before {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+    content: '';
+    height: 6px;
+    left: 10px;
+    position: absolute;
+    width: 6px;
+    top: 10px;
+}
+
+.tag::after {
+    background: #fff;
+    border-bottom: 13px solid transparent;
+    border-left: 10px solid #eee;
+    border-top: 13px solid transparent;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.viewMore-btn {
+    border: none;
+    color: blue;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.viewMore-btn:hover {
+    border: none;
+    color: black;
+}

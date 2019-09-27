@@ -13594,7 +13594,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "http://35.240.137.247";
 var _default = {
   props: ["tag"],
   methods: {
@@ -13837,13 +13837,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+//
+//
+//
+//
+//
+//
+//
+var url = "http://35.240.137.247";
 var _default = {
   data: function data() {
     return {
       title: "",
       content: "",
       file: "",
+      fileOld: "",
       tag: ""
     };
   },
@@ -13851,7 +13859,11 @@ var _default = {
   methods: {
     handlefileupload: function handlefileupload(event) {
       var file = event.target.files || event.dataTransfer.files;
-      this.file = file[0];
+
+      if (file.length) {
+        console.log(file[0]);
+        this.file = file[0];
+      }
     },
     editArticle: function editArticle(id) {
       var _this = this;
@@ -13900,6 +13912,8 @@ var _default = {
     this.title = this.article.title;
     this.content = this.article.content;
     this.tag = this.article.tag.join(" ");
+    this.file = this.article.img;
+    console.log(this.file);
   }
 };
 exports.default = _default;
@@ -13923,7 +13937,7 @@ exports.default = _default;
     _c(
       "form",
       {
-        staticClass: "mt-4",
+        staticClass: "mt-4 d-flex flex-column",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -13981,6 +13995,19 @@ exports.default = _default;
             }
           }
         }),
+        _vm._v(" "),
+        _vm.file
+          ? _c("img", {
+              staticClass: "mt-2",
+              staticStyle: {
+                width: "200px",
+                height: "200px",
+                "object-fit": "cover",
+                "border-radius": "10px"
+              },
+              attrs: { src: _vm.file, alt: "" }
+            })
+          : _vm._e(),
         _vm._v(" "),
         _c("label", [_vm._v("Tags")]),
         _vm._v(" "),
@@ -14112,7 +14139,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "http://35.240.137.247";
 var _default = {
   data: function data() {
     return {};
@@ -14396,7 +14423,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "http://35.240.137.247";
 var _default = {
   data: function data() {
     return {
@@ -14681,7 +14708,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "http://35.240.137.247";
 var _default = {
   data: function data() {
     return {
@@ -14970,7 +14997,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "http://35.240.137.247";
 var _default = {
   data: function data() {
     return {
@@ -15201,7 +15228,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "http://35.240.137.247";
 var _default = {
   data: function data() {
     return {
@@ -15634,7 +15661,7 @@ var _sweetalert = _interopRequireDefault(require("sweetalert2"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var url = "http://localhost:3000";
+var url = "http://35.240.137.247";
 var _default = {
   axios: _axios.default,
   Swal: _sweetalert.default,
@@ -54113,7 +54140,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44335" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46371" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

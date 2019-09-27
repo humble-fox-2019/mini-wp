@@ -40,12 +40,15 @@ class UserController {
                         })
                     }
                     else {
-                        throw { code: 400, message: "wrong email/password" }
+                        next({ code: 400, message: "wrong email/password" });
                     }
                 }
                 else {
-                    throw { code: 400, message: "wrong email/password" }
+                    next({ code: 400, message: "wrong email/password" });
                 }
+            })
+            .then(DATA => {
+                console.log('JALAN')
             })
             .catch(next)
     }

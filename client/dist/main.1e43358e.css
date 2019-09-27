@@ -43,6 +43,9 @@ button[data-v-e946a3]:hover {
   min-width: 100%;
 }
 .article-img[data-v-61666d] {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
   border-radius: 10px;
 }
 h4[data-v-61666d] {

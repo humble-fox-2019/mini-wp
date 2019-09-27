@@ -39,7 +39,7 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
-const url = `http://localhost:3000`;
+const url = `http://35.240.137.247`;
 import TagButton from "./TagButton";
 export default {
   data() {
@@ -117,6 +117,9 @@ export default {
   min-width: 100%;
 }
 .article-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
   border-radius: 10px;
 }
 h4 {

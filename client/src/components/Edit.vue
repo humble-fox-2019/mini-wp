@@ -1,7 +1,7 @@
 <template>
   <div class="new-box p-4">
     <h1 class="text-center">{{article.title}}</h1>
-    <form @submit.prevent="editArticle(article._id)" class="mt-4">
+    <form @submit.prevent="editArticle(article._id)" class="mt-4 d-flex flex-column">
       <label>Title</label>
       <input type="text" autocomplete="off" v-model="title" class="form-control" />
       <Label class="mt-2">Content</Label>
@@ -13,6 +13,13 @@
         lang="es"
         accept=".jpg"
         class="form-control"
+      />
+      <img
+        v-if="file"
+        :src="file"
+        alt
+        class="mt-2"
+        style="width: 200px; height: 200px; object-fit: cover; border-radius: 10px;"
       />
       <label>Tags</label>
       <input
@@ -32,21 +39,26 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
-const url = `http://localhost:3000`;
+const url = `http://35.240.137.247`;
 export default {
   data() {
     return {
       title: "",
       content: "",
       file: "",
+      fileOld: "",
       tag: ""
     };
   },
   props: ["article"],
   methods: {
     handlefileupload(event) {
+      
       let file = event.target.files || event.dataTransfer.files;
-      this.file = file[0];
+      if (file.length) {
+        console.log(file[0]);
+        this.file = file[0];
+      }
     },
     editArticle(id) {
       Swal.showLoading();
@@ -89,6 +101,8 @@ export default {
     this.title = this.article.title;
     this.content = this.article.content;
     this.tag = this.article.tag.join(" ");
+    this.file = this.article.img;
+    console.log(this.file);
   }
 };
 </script>

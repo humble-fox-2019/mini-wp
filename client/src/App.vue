@@ -1,14 +1,29 @@
 <template>
 <div id="app">
-    <Navbar>
+    <Navbar
+      v-bind:is-logged-in="isLoggedIn"
+      v-on:show-login-form="showRegisterForm = false"
+      v-on:show-register-form="showRegisterForm = true"
+      v-on:logged-out="isLoggedIn = false"
+    >
     </Navbar>
-    <Jumbotron>
+    <RegisterForm 
+      v-on:register-success="isLoggedIn = true"
+      v-show="!isLoggedIn && showRegisterForm">
+    </RegisterForm>
+    <LoginForm 
+      v-on:logged-in="isLoggedIn = true"
+      v-show="!isLoggedIn && !showRegisterForm">
+    </LoginForm>
+    <Jumbotron v-show="isLoggedIn">
     </Jumbotron>
-    <CreatePostButton>
+    <div>{{isLoggedIn}}</div>
+    <CreatePostButton v-show="isLoggedIn">
     </CreatePostButton>
-    <ListOfPosts>
+    <ListOfPosts v-show="isLoggedIn">
     </ListOfPosts>
-    <h1>{{ message }}</h1>
+    <Footer>
+    </Footer>
   <div>
 </template>
 
@@ -17,24 +32,29 @@
 
 
 import Navbar from './components/Navbar.vue';
+import RegisterForm from './components/RegisterForm';
+import LoginForm from './components/LoginForm';
 import Jumbotron from './components/Jumbotron';
 import ListOfPosts from './components/ListOfPosts';
 import CreatePostButton from './components/CreatePostButton'
+import Footer from './components/Footer'
 
 export default {
     components : {
         Navbar,
+        RegisterForm,
+        LoginForm,
         Jumbotron,
         CreatePostButton,
-        ListOfPosts
+        ListOfPosts,
+        Footer
     }, 
     data : function() {
     return {
+      isLoggedIn: false,
+      showRegisterForm: false,
       message: 'Hello world',
     };
   },
 };
 </script>
-
-<style scoped>
-</style>

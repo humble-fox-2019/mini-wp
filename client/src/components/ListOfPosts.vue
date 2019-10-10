@@ -2,7 +2,7 @@
     <div class="container" id="post-history">
         <PostItem
             v-for="post in posts"
-            :key="post.id"
+            :key="post._id"
             :post="post"
 		>
         
@@ -40,9 +40,7 @@ export default {
     },
     mounted : function () {
         this.fetchData()
-    },
-    updated : function(){
-        this.fetchData();
     }
+    
 }
 </script>

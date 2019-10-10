@@ -2,63 +2,65 @@ const Post = require('../models/post')
 
 class PostController {
 
-    static create(req,res){
+    static create(req,res,next){
         Post.create({
             title : req.body.title,
             description : req.body.description,
-            createdAt : req.body.createdAt
+            createdAt : new Date(),
+            //imageUrl : req.file.gcsUrl,
+            author : req.decode.id
         }).then((post)=>{
             res.status(200).json({
-                message : "success adding post",
                 post
             })
-        }).catch((error)=>{
-            message : "failed adding post",
-            error
-        })
+        }).catch(next)
     }
 
-    static patch(req,res){
+    static patch(req,res,next){
+        if (!req.body.title && !req.body.description){
+            throw {
+                name : 'Bad Request',
+                customMessage : 'Title and description cannot both be blank'
+            }
+        }
         let updateObject = {
             title : req.body.title,
             description : req.body.description
         }
-
+        console.log(updateObject)
         let options = {
             new : true,
-            omitUndefined : false
+            omitUndefined : true
         }
-        Post.findByIdAndUpdate({_id : req.params.id}, updateObject, options).then((post)=>{
+        Post.findByIdAndUpdate({ _id : req.params.id}, updateObject, options).then((post)=>{
             res.status(200).json({
-                message : "success updating the post",
-                newPost : post
+                post
             })
-        }).catch((error)=>{
-            res.status(400).json({
-                message : "failed to update the post",
-                error
-            })
+        }).catch(err=>{
+            if (err.name === 'CastError') {
+                err.customMessage = 'Post not found'
+            }
+            next(err)
         })
     }
 
-    static read(req,res){
-        Post.find().then((posts)=>{
-            res.json(posts)
-        }).catch((err)=>{
-            console.log(err)
-        })
+    static read(req,res,next){
+        Post.find({author : req.decode.id}).then((posts)=>{
+            res.json({
+                posts
+            })
+        }).catch(next)
     }
 
-    static delete(req,res){
-        Post.findByIdAndDelete({_id : req.params.id}).then(()=>{
+    static delete(req,res,next){
+        Post.findByIdAndDelete(req.params.id).then(()=>{
             res.status(200).json({
                 message : "post deleted"
             })
-        }). catch((error)=>{
-            res.status(400).json({
-                message : "failed to update the post",
-                error
-            })
+        }).catch(err=>{
+            console.log(err)
+            console.log('jayy')
+            next(err)
         })
     }
 }

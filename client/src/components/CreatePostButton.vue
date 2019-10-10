@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <button @click="showForm = true">Create post</button>
+    <div class="container">
+        <button class="btn-invitation-to-write" @click="showForm = true">Create post</button>
         <CreatePostForm v-show="showForm"
          v-on:hide-form="showForm = false"
         > </CreatePostForm>

@@ -1,0 +1,27 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "sweetalert2": "^8.17.1",
+    "vue": "^2.6.10",
+    "vue-google-signin-button": "^1.0.4",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-multiselect": "^2.1.6",
+    "vue-quill-editor": "^3.0.6"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
+    "cssnano": "^4.1.10",
+    "sass": "^1.22.12",
+    "vue-template-compiler": "^2.6.10"
+  }
+}

@@ -1,9 +1,7 @@
 # mini-wp
 
 ## **Deploy**
-```
-http://mini-wp.ayusudi.com
-```
+:x:~~http://mini-wp.ayusudi.com~~
 
 #  List of Routes API
 | HTTP   | Routes              | Headers  | Body                         | Description                  |
